@@ -1,0 +1,17 @@
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrackerDAL.csproj.AssemblyReference.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrackerDAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrackerDAL.AssemblyInfoInputs.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrackerDAL.AssemblyInfo.cs
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrackerDAL.csproj.CoreCompileInputs.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\bin\Debug\net10.0\TaskTrackerDAL.deps.json
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\bin\Debug\net10.0\TaskTrackerDAL.runtimeconfig.json
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\bin\Debug\net10.0\TaskTrackerDAL.dll
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\bin\Debug\net10.0\TaskTrackerDAL.pdb
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\bin\Debug\net10.0\TaskTrackerShared.dll
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\bin\Debug\net10.0\TaskTrackerShared.pdb
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrac.D2C03742.Up2Date
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrackerDAL.dll
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\refint\TaskTrackerDAL.dll
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrackerDAL.pdb
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\TaskTrackerDAL.genruntimeconfig.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerDAL\obj\Debug\net10.0\ref\TaskTrackerDAL.dll

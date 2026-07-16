@@ -1,0 +1,14 @@
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\bin\Debug\net10.0\TaskTrackerShared.deps.json
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\bin\Debug\net10.0\TaskTrackerShared.runtimeconfig.json
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\bin\Debug\net10.0\TaskTrackerShared.dll
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\bin\Debug\net10.0\TaskTrackerShared.pdb
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.csproj.AssemblyReference.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.GeneratedMSBuildEditorConfig.editorconfig
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.AssemblyInfoInputs.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.AssemblyInfo.cs
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.csproj.CoreCompileInputs.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.dll
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\refint\TaskTrackerShared.dll
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.pdb
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.genruntimeconfig.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\ref\TaskTrackerShared.dll

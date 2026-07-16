@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="D:/PracticeWebProject/TaskTracker/TaskTracker/TaskTracker.csproj" />
+  <Project Path="D:/PracticeWebProject/TaskTracker/TaskTrackerBLL/TaskTrackerBLL.csproj" />
+  <Project Path="D:/PracticeWebProject/TaskTracker/TaskTrackerDAL/TaskTrackerDAL.csproj" />
+  <Project Path="D:/PracticeWebProject/TaskTracker/TaskTrackerShared/TaskTrackerShared.csproj" />
+</Solution>

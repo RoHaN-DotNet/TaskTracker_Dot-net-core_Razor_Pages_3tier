@@ -1,0 +1,78 @@
+﻿@page
+@model TaskTracker.Pages.Employee.IndexModel
+@{
+    ViewData["Title"] = "Employees";
+}
+<!DOCTYPE html>
+    <head>
+       
+    </head>
+    <body>
+    <h1>Employees</h1>
+
+    <a asp-page="/Employees/Create" class="btn btn-primary mb-3">Register Employee</a>
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-auto">
+            <input asp-for="Filter.SearchTerm" class="form-control" placeholder="Search name, email, username" />
+        </div>
+        <div class="col-auto">
+            <select asp-for="Filter.RoleName" class="form-select">
+                <option value="">All Roles</option>
+                @foreach (var role in Model.RoleOptions)
+                {
+                    <option value="@role">@role</option>
+                }
+            </select>
+        </div>
+        <div class="col-auto">
+            <select asp-for="Filter.IsActive" class="form-select">
+                <option value="">All Statuses</option>
+                <option value="true">Active</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-secondary">Filter</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Role(s)</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>@employee.FullName</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.CompanyName</td>
+                    <td>@string.Join(", ", employee.Roles)</td>
+                    <td>
+                        @if (employee.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Disabled</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-page="/Employees/Details" asp-route-id="@employee.Id" class="btn btn-sm btn-outline-primary">Details</a>
+                        <a asp-page="/Employees/Edit" asp-route-id="@employee.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    </body>

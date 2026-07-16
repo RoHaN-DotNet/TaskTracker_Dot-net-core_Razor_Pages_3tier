@@ -1,0 +1,59 @@
+﻿@page "{id:int}"
+@model TaskTracker.Pages.Projects.EditModel
+@{
+    ViewData["Title"] = "Edit Project";
+}
+
+<h1>Edit Project</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <input type="hidden" asp-for="Input.Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Input.Name" class="form-label"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Input.Description" class="form-label"></label>
+                <textarea asp-for="Input.Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Input.StartDate" class="form-label"></label>
+                <input asp-for="Input.StartDate" class="form-control" />
+                <span asp-validation-for="Input.StartDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Input.EndDate" class="form-label"></label>
+                <input asp-for="Input.EndDate" class="form-control" />
+                <span asp-validation-for="Input.EndDate" class="text-danger"></span>
+            </div>
+            @{
+                var statusList = Html.GetEnumSelectList<TaskTrackerDAL.Models.Enums.ProjectStatus>()
+                                     .Where(i => i.Text != "Archived");
+            }
+            <div class="form-group mb-3">
+                <label asp-for="Input.Status" class="form-label"></label>
+                <select asp-for="Input.Status"
+                        asp-items="statusList"
+                        class="form-select">
+                </select>
+                <span asp-validation-for="Input.Status" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="/Projects/Details" asp-route-id="@Model.Input.Id" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

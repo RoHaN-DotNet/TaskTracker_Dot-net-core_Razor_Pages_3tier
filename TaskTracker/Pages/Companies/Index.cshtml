@@ -1,0 +1,113 @@
+﻿@page
+@model TaskTracker.Pages.Companies.IndexModel
+@{
+    ViewData["Title"] = "Companies";
+}
+
+        <h1>Companies</h1>
+
+<a asp-page="/Companies/Create" class="btn btn-primary mb-3">Create Company</a>
+
+<form method="get" class="row g-2 mb-4">
+    <div class="col-auto">
+        <input asp-for="Filter.SearchTerm" class="form-control" placeholder="Search name or email" />
+    </div>
+    <div class="col-auto">
+        <select asp-for="Filter.IsActive" class="form-select">
+            <option value="">All Statuses</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select>
+    </div>
+    <input type="hidden" asp-for="Filter.PageNumber" value="1" />
+    <div class="col-auto">
+        <button type="submit" class="btn btn-secondary">Search</button>
+    </div>
+</form>
+
+@if (Model.Result is null)
+{
+    <p class="text-danger">Unable to load companies.</p>
+}
+else if (Model.Result.Items.Count == 0)
+{
+    <p>No companies match your search.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Users</th>
+                <th>Projects</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var company in Model.Result.Items)
+            {
+                <tr>
+                    <td>@company.Name</td>
+                    <td>@company.Email</td>
+                    <td>@company.TotalUsers</td>
+                    <td>@company.TotalProjects</td>
+                    <td>
+                        @if (company.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Inactive</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-page="/Companies/Details" asp-route-id="@company.Id" class="btn btn-sm btn-outline-primary">Details</a>
+                        <a asp-page="/Companies/Edit" asp-route-id="@company.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <nav>
+        <ul class="pagination">
+            <li class="page-item @(Model.Result.HasPreviousPage ? "" : "disabled")">
+                <a class="page-link"
+                   asp-page="/Companies/Index"
+                   asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
+                   asp-route-Filter.IsActive="@Model.Filter.IsActive"
+                   asp-route-Filter.PageNumber="@(Model.Result.PageNumber - 1)">
+                    Previous
+                </a>
+            </li>
+            @for (var p = 1; p <= Model.Result.TotalPages; p++)//p=page
+            {
+                <li class="page-item @(p == Model.Result.PageNumber ? "active" : "")">
+                    <a class="page-link"
+                       asp-page="/Companies/Index"
+                       asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
+                       asp-route-Filter.IsActive="@Model.Filter.IsActive"
+                       asp-route-Filter.PageNumber="@p">
+                       @p
+                        
+                    </a>
+                </li>
+            }
+            <li class="page-item @(Model.Result.HasNextPage ? "" : "disabled")">
+                <a class="page-link"
+                   asp-page="/Companies/Index"
+                   asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
+                   asp-route-Filter.IsActive="@Model.Filter.IsActive"
+                   asp-route-Filter.PageNumber="@(Model.Result.PageNumber + 1)">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
+
+ 

@@ -1,0 +1,2228 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\PracticeWebProject\\TaskTracker\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\assignmember.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\assignmember.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\assignmember.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\assignmember.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\archive.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\archive.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\archive.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\archive.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projects\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projects\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\tasks\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\tasks\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\companies\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\companies\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\enums\\projectstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\enums\\projectstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\enums\\projecttasksstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\enums\\projecttasksstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\icompanyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\icompanyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\companyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\companyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\project\\projectdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\project\\projectdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\project\\projectsearchfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\project\\projectsearchfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\project\\updateprojectdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\project\\updateprojectdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\project\\assignprojectmemberdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\project\\assignprojectmemberdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\iprojectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\iprojectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\repositories\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\repositories\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\projecttask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\projecttask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\repositories\\projectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\repositories\\projectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\interfaces\\iprojectfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\interfaces\\iprojectfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\companies\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\companies\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\companies\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\companies\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\companies\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\companies\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\companies\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\companies\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\companies\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\companies\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\companies\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\companies\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\companies\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\companies\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\repositories\\companyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\repositories\\companyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\interfaces\\icompanyfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\interfaces\\icompanyfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\company\\companystatisticsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\company\\companystatisticsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\company\\companysearchfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\company\\companysearchfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\common\\pagedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\common\\pagedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\employees\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\editrole.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\employees\\editrole.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\editrole.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\employees\\editrole.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\roleassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\roleassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\role\\assignableroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\role\\assignableroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\constants\\approles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\constants\\approles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\tasktrackerdal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\tasktrackerdal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\employee\\editemployeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\employee\\editemployeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\employee\\updateemployeeroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\employee\\updateemployeeroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\employee\\signupemployeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\employee\\signupemployeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\employee\\employeesearchfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\employee\\employeesearchfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\employee\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\employee\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\role\\updateroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\role\\updateroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\role\\roledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\role\\roledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\role\\createroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\role\\createroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\iroleassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\iroleassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\common\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\common\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\infrastucture\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\infrastucture\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\iroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\iroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\irolefeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\irolefeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\employees\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\employees\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\employees\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\account\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\employees\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\employees\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\interfaces\\iuserfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\interfaces\\iuserfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\tasks\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\tasks\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\roles\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\roles\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\roles\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\roles\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\authorization\\dataaccesshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\authorization\\dataaccesshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\authorization\\dataaccessrequirement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\authorization\\dataaccessrequirement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\authorization\\authorizationresources.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\authorization\\authorizationresources.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\constants\\apppolicies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\constants\\apppolicies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\shared\\_authlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\shared\\_authlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\security\\ipasswordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\security\\ipasswordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\infrastucture\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\infrastucture\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\infrastucture\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\infrastucture\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\idashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\idashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\dashboard\\dashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\dashboard\\dashboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\user\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\user\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{098AD18B-711C-9E8E-E3A2-FFEB433BCC8F}|TaskTrackerShared\\TaskTrackerShared.csproj|d:\\practicewebproject\\tasktracker\\tasktrackershared\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{098AD18B-711C-9E8E-E3A2-FFEB433BCC8F}|TaskTrackerShared\\TaskTrackerShared.csproj|solutionrelative:tasktrackershared\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{098AD18B-711C-9E8E-E3A2-FFEB433BCC8F}|TaskTrackerShared\\TaskTrackerShared.csproj|d:\\practicewebproject\\tasktracker\\tasktrackershared\\exceptions\\businessruleexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{098AD18B-711C-9E8E-E3A2-FFEB433BCC8F}|TaskTrackerShared\\TaskTrackerShared.csproj|solutionrelative:tasktrackershared\\exceptions\\businessruleexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\tasktrackerbll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\tasktrackerbll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\tasks\\createtaskdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\tasks\\createtaskdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\project\\createprojectdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\project\\createprojectdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\company\\updatecompanydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\company\\updatecompanydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\company\\createcompanydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\company\\createcompanydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\company\\companydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\company\\companydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\auth\\signupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\auth\\signupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\auth\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\auth\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\tasks\\updatetaskdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\tasks\\updatetaskdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\tasks\\taskdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\dtos\\tasks\\taskdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\interfaces\\itaskfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\interfaces\\itaskfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\repositories\\generic\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\repositories\\generic\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\projectmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\projectmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\interfaces\\generic\\igenericfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\interfaces\\generic\\igenericfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{098AD18B-711C-9E8E-E3A2-FFEB433BCC8F}|TaskTrackerShared\\TaskTrackerShared.csproj|d:\\practicewebproject\\tasktracker\\tasktrackershared\\tasktrackershared.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{098AD18B-711C-9E8E-E3A2-FFEB433BCC8F}|TaskTrackerShared\\TaskTrackerShared.csproj|solutionrelative:tasktrackershared\\tasktrackershared.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\data\\tasktrackerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\data\\tasktrackerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\common\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\common\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\tasktracker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\tasktracker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\models\\enums\\taskpriority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\models\\enums\\taskpriority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 303,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "Style.css",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\wwwroot\\css\\Style.css",
+              "RelativeDocumentMoniker": "TaskTracker\\wwwroot\\css\\Style.css",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\wwwroot\\css\\Style.css",
+              "RelativeToolTip": "TaskTracker\\wwwroot\\css\\Style.css",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-07-15T03:56:35.353Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AssignMember.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\AssignMember.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\AssignMember.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\AssignMember.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\AssignMember.cshtml.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAuwCsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-16T11:48:50.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AssignMember.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\AssignMember.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\AssignMember.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\AssignMember.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\AssignMember.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T11:48:41.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Archive.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Archive.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Archive.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Archive.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Archive.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-16T11:47:10.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Archive.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Archive.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Archive.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Archive.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Archive.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T11:47:00.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Details.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Details.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Details.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T11:44:44.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Edit.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Edit.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Edit.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T11:30:19.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Details.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Details.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Details.cshtml.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAwFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-16T11:44:51.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Edit.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Edit.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Edit.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Edit.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Edit.cshtml.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAIwEYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-16T11:30:28.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Create.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Create.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-16T11:26:57.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Create.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Create.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Create.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Create.cshtml",
+              "ViewState": "AgIAACUAAAAAAAAAAAAIwEEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T11:26:51.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Index.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Index.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Index.cshtml.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAqwDEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:42:49.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Index.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Index.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Index.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Projects\\Index.cshtml",
+              "ViewState": "AgIAACkAAAAAAAAAAAAIwDYAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T05:42:44.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ProjectService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\ProjectService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\ProjectService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\ProjectService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\ProjectService.cs",
+              "ViewState": "AgIAAAUBAAAAAAAAAAAIwAsBAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:53:06.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DashboardService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\DashboardService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\DashboardService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\DashboardService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\DashboardService.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwCUAAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T18:40:02.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ProjectStatus.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\ProjectStatus.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Enums\\ProjectStatus.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\ProjectStatus.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\Enums\\ProjectStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:30:02.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Details.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Details.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Companies\\Details.cshtml.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowDcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:31:33.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Details.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Details.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Tasks\\Details.cshtml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwCEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:43:48.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProjectTasksStatus.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\ProjectTasksStatus.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Enums\\ProjectTasksStatus.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\ProjectTasksStatus.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\Enums\\ProjectTasksStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:30:33.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ICompanyService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\ICompanyService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\ICompanyService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\ICompanyService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\ICompanyService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:08:41.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CompanyService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\CompanyService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\CompanyService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\CompanyService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\CompanyService.cs",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAAAMQAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:17:27.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "TaskService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\TaskService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\TaskService.cs",
+              "ViewState": "AgIAAJQAAAAAAAAAAAAwwMAAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T12:05:08.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ProjectDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\ProjectDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\ProjectDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\ProjectDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Project\\ProjectDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:01:03.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ProjectSearchFilterDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\ProjectSearchFilterDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\ProjectSearchFilterDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\ProjectSearchFilterDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Project\\ProjectSearchFilterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:56:59.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UpdateProjectDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\UpdateProjectDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\UpdateProjectDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\UpdateProjectDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Project\\UpdateProjectDto.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAqwAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:02:39.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "AssignProjectMemberDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\AssignProjectMemberDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\AssignProjectMemberDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\AssignProjectMemberDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Project\\AssignProjectMemberDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:49:40.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IProjectService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IProjectService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IProjectService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IProjectService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\IProjectService.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwB0AAABfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:50:05.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "TaskRepository.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskRepository.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\TaskRepository.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskRepository.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\TaskRepository.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAkwEMAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T05:59:19.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ProjectTask.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\ProjectTask.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\ProjectTask.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\ProjectTask.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\ProjectTask.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:37:48.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ProjectRepository.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\ProjectRepository.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\ProjectRepository.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\ProjectRepository.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\ProjectRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:54:35.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "IProjectFeature.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\IProjectFeature.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\IProjectFeature.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\IProjectFeature.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Interfaces\\IProjectFeature.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAADwvxwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:53:55.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Details.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Details.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Details.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Companies\\Details.cshtml",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAowGkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T11:31:28.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Edit.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Edit.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Edit.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Edit.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Companies\\Edit.cshtml.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAQwDsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:29:55.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Edit.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Edit.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Edit.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Companies\\Edit.cshtml",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAowDMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T11:25:46.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Create.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Create.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Companies\\Create.cshtml.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA7wCcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:24:45.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Create.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Create.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Create.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Companies\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T11:24:40.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Index.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Index.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Companies\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:10:50.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Index.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Index.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Index.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Companies\\Index.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFYAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T11:10:46.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "CompanyRepository.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\CompanyRepository.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\CompanyRepository.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\CompanyRepository.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\CompanyRepository.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAkwF0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T11:30:06.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ICompanyFeature.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ICompanyFeature.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\ICompanyFeature.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ICompanyFeature.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Interfaces\\ICompanyFeature.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAADwvxgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T11:27:08.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "CompanyStatisticsDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanyStatisticsDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\CompanyStatisticsDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanyStatisticsDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Company\\CompanyStatisticsDto.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:03:38.596Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "CompanySearchFilterDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanySearchFilterDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\CompanySearchFilterDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanySearchFilterDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Company\\CompanySearchFilterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T11:00:54.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "PagedResult.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Common\\PagedResult.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Common\\PagedResult.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Common\\PagedResult.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Common\\PagedResult.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAIwBgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T10:53:45.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "EditRole.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\EditRole.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\EditRole.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\EditRole.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Employees\\EditRole.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T09:16:42.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Details.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\Details.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Details.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Employees\\Details.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T06:53:59.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "EditRole.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\EditRole.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\EditRole.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\EditRole.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Employees\\EditRole.cshtml.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAswFQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T09:16:47.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DependencyInjection.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DependencyInjection.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DependencyInjection.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T18:47:18.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "RoleAssignmentService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\RoleAssignmentService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\RoleAssignmentService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\RoleAssignmentService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\RoleAssignmentService.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAABMAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T07:35:15.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "AssignableRoleDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\AssignableRoleDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Role\\AssignableRoleDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\AssignableRoleDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Role\\AssignableRoleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T07:12:23.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "EditEmployeeDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EditEmployeeDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\EditEmployeeDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EditEmployeeDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Employee\\EditEmployeeDto.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:10:58.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "UpdateEmployeeRoleDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\UpdateEmployeeRoleDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\UpdateEmployeeRoleDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\UpdateEmployeeRoleDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Employee\\UpdateEmployeeRoleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T07:13:25.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "TaskTrackerDAL",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\TaskTrackerDAL.csproj",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\TaskTrackerDAL.csproj",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\TaskTrackerDAL.csproj",
+              "RelativeToolTip": "TaskTrackerDAL\\TaskTrackerDAL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-07-13T03:51:04.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "AppRoles.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Constants\\AppRoles.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Constants\\AppRoles.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Constants\\AppRoles.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Constants\\AppRoles.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:15:28.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "SignupEmployeeDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\SignupEmployeeDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\SignupEmployeeDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\SignupEmployeeDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Employee\\SignupEmployeeDto.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAgwCcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:10:18.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "EmployeeSearchFilterDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EmployeeSearchFilterDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\EmployeeSearchFilterDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EmployeeSearchFilterDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Employee\\EmployeeSearchFilterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:11:44.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "EmployeeDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EmployeeDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\EmployeeDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EmployeeDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Employee\\EmployeeDto.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA9wBoAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:09:32.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "UpdateRoleDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\UpdateRoleDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Role\\UpdateRoleDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\UpdateRoleDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Role\\UpdateRoleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:00:07.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "RoleDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\RoleDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Role\\RoleDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\RoleDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Role\\RoleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T06:58:52.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "CreateRoleDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\CreateRoleDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Role\\CreateRoleDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\CreateRoleDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Role\\CreateRoleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T06:59:29.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "IRoleAssignmentService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IRoleAssignmentService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IRoleAssignmentService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IRoleAssignmentService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\IRoleAssignmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T07:24:11.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "Result.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Common\\Result.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Common\\Result.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Common\\Result.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Common\\Result.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T08:26:58.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "RoleRepository.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\RoleRepository.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Infrastucture\\RoleRepository.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\RoleRepository.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Infrastucture\\RoleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T09:45:59.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "IRoleService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IRoleService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IRoleService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IRoleService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\IRoleService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:34:56.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "RoleService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\RoleService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\RoleService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\RoleService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\RoleService.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAADwv3gAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:36:08.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "IRoleFeature.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\IRoleFeature.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\IRoleFeature.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\IRoleFeature.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\IRoleFeature.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T09:41:57.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Program.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Program.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Program.cs",
+              "RelativeToolTip": "TaskTracker\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAYwCAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:36:15.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\Details.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Details.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Employees\\Details.cshtml.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwD8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:54:11.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Create.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\Create.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Create.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Employees\\Create.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAYwEIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T06:47:29.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "Signup.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Signup.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\Signup.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Signup.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Account\\Signup.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T03:35:55.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\Create.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Create.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Employees\\Create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:47:34.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Index.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\Index.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Index.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Employees\\Index.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAYwAUAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T06:20:43.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\Index.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Index.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Employees\\Index.cshtml.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwCIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:21:12.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "IEmployeeService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IEmployeeService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IEmployeeService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IEmployeeService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\IEmployeeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:12:41.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "EmployeeService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\EmployeeService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\EmployeeService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\EmployeeService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\EmployeeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T06:13:57.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "IUserFeature.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\IUserFeature.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\IUserFeature.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\IUserFeature.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Interfaces\\IUserFeature.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwBcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T11:34:15.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T04:07:23.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IUserService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IUserService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IUserService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:39:45.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Roles\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Roles\\Index.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Roles\\Index.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Roles\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:41:22.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Index.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Index.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\Index.cshtml.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:38:41.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Details.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Details.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Details.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Tasks\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T05:43:40.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Roles\\Index.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Roles\\Index.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Roles\\Index.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Roles\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T05:41:19.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "DataAccessHandler.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\DataAccessHandler.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Authorization\\DataAccessHandler.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\DataAccessHandler.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Authorization\\DataAccessHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:24:39.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "DataAccessRequirement.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\DataAccessRequirement.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Authorization\\DataAccessRequirement.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\DataAccessRequirement.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Authorization\\DataAccessRequirement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:19:10.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "AuthorizationResources.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\AuthorizationResources.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Authorization\\AuthorizationResources.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\AuthorizationResources.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Authorization\\AuthorizationResources.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:17:48.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "AppPolicies.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Constants\\AppPolicies.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Constants\\AppPolicies.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Constants\\AppPolicies.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Constants\\AppPolicies.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-15T05:16:30.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "_AuthLayout.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Shared\\_AuthLayout.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Shared\\_AuthLayout.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Shared\\_AuthLayout.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Shared\\_AuthLayout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T03:49:46.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T03:34:59.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\Security\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Infrastucture\\Security\\PasswordHasher.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\Security\\PasswordHasher.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Infrastucture\\Security\\PasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T10:36:25.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-14T19:55:12.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-15T03:36:15.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Infrastucture\\UnitOfWork.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\UnitOfWork.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Infrastucture\\UnitOfWork.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T10:12:14.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "IPasswordHasher.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Security\\IPasswordHasher.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Security\\IPasswordHasher.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Security\\IPasswordHasher.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Security\\IPasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T10:35:13.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\UserService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\UserService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\UserService.cs",
+              "ViewState": "AgIAAJ0AAAAAAAAAAADwv6kAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T18:59:08.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "IDashboardService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IDashboardService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IDashboardService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IDashboardService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\IDashboardService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T18:40:59.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "DashboardDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Dashboard\\DashboardDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Dashboard\\DashboardDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Dashboard\\DashboardDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Dashboard\\DashboardDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T18:43:51.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\AuthService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\AuthService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\AuthService.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwD4AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T12:09:14.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 96,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IAuthService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IAuthService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T12:07:26.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 97,
+              "Title": "ITaskService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\ITaskService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\ITaskService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\ITaskService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\ITaskService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T12:04:25.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 98,
+              "Title": "UpdateUserDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\User\\UpdateUserDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\User\\UpdateUserDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\User\\UpdateUserDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\User\\UpdateUserDto.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAkwBkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:42:59.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 99,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\User\\UserDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\User\\UserDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\User\\UserDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\User\\UserDto.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBYAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T11:42:05.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 100,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\IUnitOfWork.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\IUnitOfWork.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T10:09:32.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 102,
+              "Title": "BusinessRuleException.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\Exceptions\\BusinessRuleException.cs",
+              "RelativeDocumentMoniker": "TaskTrackerShared\\Exceptions\\BusinessRuleException.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\Exceptions\\BusinessRuleException.cs",
+              "RelativeToolTip": "TaskTrackerShared\\Exceptions\\BusinessRuleException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T09:12:01.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 101,
+              "Title": "NotFoundException.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\Exceptions\\NotFoundException.cs",
+              "RelativeDocumentMoniker": "TaskTrackerShared\\Exceptions\\NotFoundException.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\Exceptions\\NotFoundException.cs",
+              "RelativeToolTip": "TaskTrackerShared\\Exceptions\\NotFoundException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T09:03:36.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 103,
+              "Title": "TaskTrackerBLL",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\TaskTrackerBLL.csproj",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\TaskTrackerBLL.csproj",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\TaskTrackerBLL.csproj",
+              "RelativeToolTip": "TaskTrackerBLL\\TaskTrackerBLL.csproj",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-07-13T03:51:05.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 104,
+              "Title": "CreateTaskDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\CreateTaskDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\CreateTaskDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\CreateTaskDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Tasks\\CreateTaskDto.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAIwBoAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:04:25.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 105,
+              "Title": "CreateProjectDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\CreateProjectDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\CreateProjectDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\CreateProjectDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Project\\CreateProjectDto.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBoAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:01:47.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 106,
+              "Title": "UpdateCompanyDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\UpdateCompanyDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\UpdateCompanyDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\UpdateCompanyDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Company\\UpdateCompanyDto.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAABsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T06:57:58.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 107,
+              "Title": "CreateCompanyDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CreateCompanyDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\CreateCompanyDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CreateCompanyDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Company\\CreateCompanyDto.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T06:57:18.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 108,
+              "Title": "CompanyDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanyDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\CompanyDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanyDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Company\\CompanyDto.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAxwBgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T06:56:20.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 109,
+              "Title": "SignupDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Auth\\SignupDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Auth\\SignupDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Auth\\SignupDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Auth\\SignupDto.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T06:44:27.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 110,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Auth\\LoginDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Auth\\LoginDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Auth\\LoginDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Auth\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T06:55:20.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 111,
+              "Title": "UpdateTaskDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\UpdateTaskDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\UpdateTaskDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\UpdateTaskDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Tasks\\UpdateTaskDto.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAxwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:05:05.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 112,
+              "Title": "TaskDto.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\TaskDto.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\TaskDto.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\TaskDto.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Tasks\\TaskDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T07:03:25.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 114,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T09:42:50.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 113,
+              "Title": "ITaskFeature.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ITaskFeature.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\ITaskFeature.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ITaskFeature.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Interfaces\\ITaskFeature.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T05:57:46.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 115,
+              "Title": "ProjectMember.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\ProjectMember.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\ProjectMember.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\ProjectMember.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\ProjectMember.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:36:43.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 117,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\User.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\User.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\User.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\User.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:32:45.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 116,
+              "Title": "IGenericFeature.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T11:15:57.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 119,
+              "Title": "TaskTrackerDbContext.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Data\\TaskTrackerDbContext.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Data\\TaskTrackerDbContext.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Data\\TaskTrackerDbContext.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Data\\TaskTrackerDbContext.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAkwJkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T06:00:28.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 118,
+              "Title": "TaskTrackerShared",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\TaskTrackerShared.csproj",
+              "RelativeDocumentMoniker": "TaskTrackerShared\\TaskTrackerShared.csproj",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\TaskTrackerShared.csproj",
+              "RelativeToolTip": "TaskTrackerShared\\TaskTrackerShared.csproj",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-07-13T03:51:05.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 120,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA9wBUAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T06:43:59.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 121,
+              "Title": "Company.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Company.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Company.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Company.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\Company.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:31:26.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 122,
+              "Title": "BaseModel.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Common\\BaseModel.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Common\\BaseModel.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Common\\BaseModel.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\Common\\BaseModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:28:54.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 123,
+              "Title": "TaskTracker",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
+              "RelativeDocumentMoniker": "TaskTracker\\TaskTracker.csproj",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
+              "RelativeToolTip": "TaskTracker\\TaskTracker.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-07-13T03:51:05.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 124,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\UserRole.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\UserRole.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\UserRole.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\UserRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:33:49.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 125,
+              "Title": "Role.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Role.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Role.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:31:57.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 126,
+              "Title": "Project.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Project.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Project.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Project.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\Project.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:35:43.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 127,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\appsettings.json",
+              "RelativeDocumentMoniker": "TaskTracker\\appsettings.json",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\appsettings.json",
+              "RelativeToolTip": "TaskTracker\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAACmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-13T06:25:56.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 128,
+              "Title": "TaskPriority.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\TaskPriority.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Enums\\TaskPriority.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\TaskPriority.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Models\\Enums\\TaskPriority.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T05:30:55.984Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 97,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

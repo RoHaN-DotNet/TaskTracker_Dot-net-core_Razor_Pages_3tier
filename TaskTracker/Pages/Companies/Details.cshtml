@@ -1,0 +1,106 @@
+﻿@page "{id:int}"
+@model TaskTracker.Pages.Companies.DetailsModel
+@{
+    ViewData["Title"] = "Company Details";
+}
+
+<h1>@Model.Company.Name</h1>
+
+@if (TempData["DeleteError"] is string deleteError)
+{
+    <div class="alert alert-danger">@deleteError</div>
+}
+
+<dl class="row">
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@Model.Company.Email</dd>
+
+    <dt class="col-sm-3">Phone</dt>
+    <dd class="col-sm-9">@Model.Company.Phone</dd>
+
+    <dt class="col-sm-3">Address</dt>
+    <dd class="col-sm-9">@Model.Company.Address</dd>
+
+    <dt class="col-sm-3">Status</dt>
+    <dd class="col-sm-9">
+        @(Model.Company.IsActive ? "Active" : "Inactive")
+    </dd>
+
+    <dt class="col-sm-3">Created</dt>
+    <dd class="col-sm-9">@Model.Company.CreatedAt.ToString("d")</dd>
+</dl>
+
+<div class="mb-4">
+    <a asp-page="/Companies/Edit" asp-route-id="@Model.Company.Id" class="btn btn-secondary">Edit</a>
+
+    <form method="post" asp-page-handler="Deactivate" class="d-inline">
+        <input type="hidden" name="id" value="@Model.Company.Id" />
+        <button type="submit" class="btn btn-warning"
+                onclick="return confirm('Deactivate this company?');">
+            Deactivate
+        </button>
+    </form>
+
+    <form method="post" asp-page-handler="Delete" class="d-inline">
+        <input type="hidden" name="id" value="@Model.Company.Id" />
+        <button type="submit" class="btn btn-danger"
+                onclick="return confirm('Permanently delete this company? This cannot be undone.');">
+            Delete
+        </button>
+    </form>
+</div>
+
+<h2>Statistics</h2>
+
+@if (Model.Statistics is null)
+{
+    <p class="text-muted">Statistics are unavailable.</p>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-4 g-3 mb-4">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Statistics.TotalUsers</h5>
+                    <p class="card-text text-muted">Total Users (@Model.Statistics.ActiveUsers active)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Statistics.TotalProjects</h5>
+                    <p class="card-text text-muted">Total Projects</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Statistics.CompletedTasks / @Model.Statistics.TotalTasks</h5>
+                    <p class="card-text text-muted">Tasks Completed</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">@Model.Statistics.OverdueTasks</h5>
+                    <p class="card-text text-muted">Overdue Tasks</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Projects by Status</h3>
+    <ul class="list-group">
+        @foreach (var (status, count) in Model.Statistics.ProjectsByStatus)
+        {
+            <li class="list-group-item d-flex justify-content-between">
+                <span>@status</span>
+                <span class="badge bg-primary rounded-pill">@count</span>
+            </li>
+        }
+    </ul>
+}

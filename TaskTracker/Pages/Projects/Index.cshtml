@@ -1,0 +1,130 @@
+﻿@page
+@model TaskTracker.Pages.Projects.IndexModel
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<h1>Projects</h1>
+
+@if (Model.IsEmployeeView)
+{
+    <p class="text-muted">Showing projects you are assigned to.</p>
+
+    @if (Model.AssignedProjects.Count == 0)
+    {
+        <p>You are not currently assigned to any projects.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Tasks</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model.AssignedProjects)
+                {
+                    <tr>
+                        <td>@project.Name</td>
+                        <td>@project.Status</td>
+                        <td>@project.CompletedTasks / @project.TotalTasks</td>
+                        <td>
+                            <a asp-page="/Projects/Details" asp-route-id="@project.Id" class="btn btn-sm btn-outline-primary">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    <a asp-page="/Projects/Create" class="btn btn-primary mb-3">Create Project</a>
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-auto">
+            <input asp-for="Filter.SearchTerm" class="form-control" placeholder="Search by name" />
+        </div>
+        <div class="col-auto">
+            <select asp-for="Filter.Status" class="form-select">
+                <option value="">All Statuses</option>
+                @foreach (var status in Enum.GetValues<TaskTrackerDAL.Models.Enums.ProjectStatus>())
+                {
+                    <option value="@((int)status)">@status</option>
+                }
+            </select>
+        </div>
+        <input type="hidden" asp-for="Filter.PageNumber" value="1" />
+        <div class="col-auto">
+            <button type="submit" class="btn btn-secondary">Search</button>
+        </div>
+    </form>
+
+    @if (Model.PagedProjects is null)
+    {
+        <p class="text-danger">Unable to load projects.</p>
+    }
+    else if (Model.PagedProjects.Items.Count == 0)
+    {
+        <p>No projects match your search.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Team</th>
+                    <th>Tasks</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model.PagedProjects.Items)
+                {
+                    <tr>
+                        <td>@project.Name</td>
+                        <td>@project.Status</td>
+                        <td>@project.TeamMemberCount</td>
+                        <td>@project.CompletedTasks / @project.TotalTasks</td>
+                        <td>
+                            <a asp-page="/Projects/Details" asp-route-id="@project.Id" class="btn btn-sm btn-outline-primary">Details</a>
+                            <a asp-page="/Projects/Edit" asp-route-id="@project.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <nav>
+            <ul class="pagination">
+                <li class="page-item @(Model.PagedProjects.HasPreviousPage ? "" : "disabled")">
+                    <a class="page-link" asp-page="/Projects/Index"
+                       asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
+                       asp-route-Filter.Status="@Model.Filter.Status"
+                       asp-route-Filter.PageNumber="@(Model.PagedProjects.PageNumber - 1)">Previous</a>
+                </li>
+                @for (var p = 1; p <= Model.PagedProjects.TotalPages; p++)
+                {
+                    <li class="page-item @(p == Model.PagedProjects.PageNumber ? "active" : "")">
+                        <a class="page-link" asp-page="/Projects/Index"
+                           asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
+                           asp-route-Filter.Status="@Model.Filter.Status"
+                           asp-route-Filter.PageNumber="@p">@p</a>
+                    </li>
+                }
+                <li class="page-item @(Model.PagedProjects.HasNextPage ? "" : "disabled")">
+                    <a class="page-link" asp-page="/Projects/Index"
+                       asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
+                       asp-route-Filter.Status="@Model.Filter.Status"
+                       asp-route-Filter.PageNumber="@(Model.PagedProjects.PageNumber + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    }
+}

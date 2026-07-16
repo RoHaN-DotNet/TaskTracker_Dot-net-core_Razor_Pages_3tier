@@ -1,0 +1,75 @@
+﻿:root {
+    /* Background Colors */
+    --color-bg-page: #e8e8e8; /* Outer page background (light gray) */
+    --color-bg-card: #ffffff; /* Main white card/container background */
+    --color-bg-search: #ececec; /* Search bar background */
+    --color-bg-login-form: #ffffff; /* Login form card background */
+    /* Text Colors */
+    --color-text-primary: #1a1a1a; /* Main headings (POWERED BY...) */
+    --color-text-secondary: #6b6b6b; /* Nav links (Home, About, Forum) */
+    --color-text-muted: #9a9a9a; /* Placeholder text, secondary labels */
+    --color-text-label: #8a8a8a; /* Form labels (Username, Password) */
+    --color-text-dark: #111111; /* Bold text (Username value, Create account) */
+    
+    /* Accent / Brand Colors */
+    --color-accent-lime: #c4e86d; /* Highlight underline, gradient dots, login button */
+    --color-accent-lime-dark: #4a5c2f; /* Darkest dot in gradient */
+    --color-accent-lime-mid: #7a9a4a; /* Mid-tone dot in gradient */
+    --color-accent-lime-light: #a8d95f; /* Lighter dot in gradient */
+    /* Button Colors */
+    --color-btn-login-bg: #c4e86d; /* Top-right "Login" pill button */
+    --color-btn-submit-bg: #1a1a1a; /* Black "login" submit button */
+    --color-btn-submit-text: #ffffff; /* Text on black button */
+    /* Border / Divider Colors */
+    --color-border-light: #e0e0e0; /* Input field underline/border */
+    --color-border-checkbox: #c4e86d; /* "Remember me" checkbox border */
+    /* Overlay / Image Section */
+    --color-overlay-dark: #3a3a3a; /* Dark overlay on car image sections */
+    --color-overlay-darker: #2a2a2a; /* "About us" section dark overlay */
+    /* Shadow */
+    --color-shadow: rgba(0, 0, 0, 0.08); /* Card drop shadow */
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--color-bg-page);
+    font-family: "Inter", sans-serif;
+    color: var(--color-text-primary);
+    padding: 40px;
+}
+/*================
+--Main Container--
+=================*/
+.wrapper{
+    max-width:1320px;
+    background-color:var(--color-bg-card);
+    border-radius:30px;
+    padding:25px 35px;
+    box-shadow:0 15px 35px var(--color-shadow);
+    height:300px;
+
+}
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+}
+.logo-box {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
