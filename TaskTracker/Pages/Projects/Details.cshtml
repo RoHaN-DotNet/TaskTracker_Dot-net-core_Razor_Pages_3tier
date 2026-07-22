@@ -34,7 +34,7 @@
     <div class="mb-4">
         <a asp-page="/Projects/Edit" asp-route-id="@Model.Project.Id" class="btn btn-secondary">Edit</a>
 
-        @if (Model.Project.Status != CompanyManagementSystem.Core.Enums.ProjectStatus.Archived)
+        @if (Model.Project.Status != TaskTrackerDAL.Models.Enums.ProjectStatus.Archived)
         {
             <form method="post" asp-page="/Projects/Archive" asp-route-id="@Model.Project.Id" class="d-inline">
                 <button type="submit" class="btn btn-warning"

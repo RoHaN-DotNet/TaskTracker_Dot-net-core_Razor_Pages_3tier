@@ -100,6 +100,58 @@ namespace TaskTrackerDAL.Repositories
 
             return (items, totalCount);
         }
+        public async Task<(IReadOnlyList<Project>Items, int TotalCount)> FilterAsync(
+            int? companyId,
+    ProjectStatus? status,
+    TaskPriority? priority,
+    DateTime? deadlineFrom,
+    DateTime? deadlineTo,
+    int? enforcedCompanyId,
+    int pageNumber,
+    int pageSize)
+        {
+            var query=_context.Projects.AsNoTracking().AsQueryable();
+            // Authorization boundary — applied first, always, regardless of the
+            // person's own filter selection.
+            if (enforcedCompanyId.HasValue)
+            {
+                query = query.Where(p => p.CompanyId == enforcedCompanyId.Value);
+            }
+            // User-chosen filters — narrow further within whatever the boundary above allows.
+            if (companyId.HasValue)
+            {
+                query = query.Where(p => p.Status == status!.Value); 
+
+            }
+            if (status.HasValue) 
+            {
+                query = query.Where(p => p.Status == status.Value);
+            }
+            if (priority.HasValue)
+            {
+                query = query.Where(p => p.Priority == priority.Value);
+            }
+            if(deadlineFrom.HasValue)
+            {
+                query = query.Where(p => p.EndDate != null && p.EndDate >= deadlineFrom.Value.Date);
+            }
+            if (deadlineTo.HasValue)
+            {
+                query = query.Where(p => p.EndDate != null && p.EndDate <= deadlineTo.Value.Date);
+            }
+            var totalCount = await query.CountAsync();
+
+            var items = await query
+                .OrderBy(p => p.EndDate ?? DateTime.MaxValue)
+                .ThenByDescending(p => p.Priority)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (items, totalCount);
+        }
+
+
 
     }
 }

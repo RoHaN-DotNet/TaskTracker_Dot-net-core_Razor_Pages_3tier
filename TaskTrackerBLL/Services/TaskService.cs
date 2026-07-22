@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TaskTrackerBLL.Common;
 using TaskTrackerBLL.DTOs.Task;
+using TaskTrackerBLL.DTOs.Tasks;
 using TaskTrackerBLL.Interfaces;
 using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerDAL.Models;
@@ -13,10 +14,12 @@ namespace TaskTrackerBLL.Services
     public class TaskService:ITaskService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IAuditService _auditService;
 
-        public TaskService(IUnitOfWork unitOfWork)
+        public TaskService(IUnitOfWork unitOfWork, IAuditService auditService)
         {
             _unitOfWork = unitOfWork;
+            _auditService = auditService;
         }
 
         public async Task<Result<TaskDto>> GetByIdAsync(int id)
@@ -28,9 +31,7 @@ namespace TaskTrackerBLL.Services
                 return Result<TaskDto>.Failure($"Task with ID {id} was not found.");
             }
 
-            var dto = await MapToDtoAsync(task);
-
-            return Result<TaskDto>.Success(dto);
+            return Result<TaskDto>.Success(await MapToDtoAsync(task));
         }
 
         public async Task<Result<IReadOnlyList<TaskDto>>> GetByProjectIdAsync(int projectId)
@@ -72,12 +73,18 @@ namespace TaskTrackerBLL.Services
             return Result<IReadOnlyList<TaskDto>>.Success(dtos);
         }
 
-        public async Task<Result<TaskDto>> CreateAsync(CreateTaskDto dto, int createdByUserId)
+        public async Task<Result<TaskDto>> CreateAsync(
+            CreateTaskDto dto, int createdByUserId, int? actingManagerCompanyId)
         {
             var project = await _unitOfWork.Projects.GetByIdAsync(dto.ProjectId);
             if (project is null)
             {
                 return Result<TaskDto>.Failure($"Project with ID {dto.ProjectId} was not found.");
+            }
+
+            if (actingManagerCompanyId.HasValue && project.CompanyId != actingManagerCompanyId.Value)
+            {
+                return Result<TaskDto>.Failure("You are not authorized to create tasks for this project.");
             }
 
             if (dto.AssignedToUserId.HasValue)
@@ -107,53 +114,151 @@ namespace TaskTrackerBLL.Services
             await _unitOfWork.Tasks.AddAsync(task);
             await _unitOfWork.SaveChangesAsync();
 
-            var resultDto = await MapToDtoAsync(task);
-
-            return Result<TaskDto>.Success(resultDto);
+            return Result<TaskDto>.Success(await MapToDtoAsync(task));
         }
 
-        public async Task<Result> UpdateAsync(UpdateTaskDto dto)
+        public async Task<Result> DeleteAsync(int id, int actingUserId, int? actingManagerCompanyId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(id);
+            if (task is null)
+            {
+                return Result.Failure($"Task with ID {id} was not found.");
+            }
+
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
+            if (!scopeResult.Succeeded) return scopeResult;
+
+            var snapshot = $"{task.Title} (Project #{task.ProjectId})";
+
+            _unitOfWork.Tasks.Remove(task);
+            await _unitOfWork.SaveChangesAsync();
+
+            await _auditService.LogDeletedAsync("ProjectTask", id, actingUserId, snapshot);
+
+            return Result.Success();
+        }
+
+        public async Task<Result> AssignAsync(AssignTaskDto dto, int? actingManagerCompanyId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
+            if (task is null)
+            {
+                return Result.Failure($"Task with ID {dto.TaskId} was not found.");
+            }
+
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
+            if (!scopeResult.Succeeded)
+            {
+                return scopeResult;
+            }
+
+            if (task.AssignedToUserId.HasValue)
+            {
+                return Result.Failure(
+                    "This task is already assigned. Use Reassign to change the assignee.");
+            }
+
+            return await SetAssigneeAsync(task, dto.AssignedToUserId);
+        }
+
+        public async Task<Result> ReassignAsync(AssignTaskDto dto, int? actingManagerCompanyId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
+            if (task is null)
+            {
+                return Result.Failure($"Task with ID {dto.TaskId} was not found.");
+            }
+
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
+            if (!scopeResult.Succeeded)
+            {
+                return scopeResult;
+            }
+
+            if (!task.AssignedToUserId.HasValue)
+            {
+                return Result.Failure("This task has no current assignee. Use Assign instead.");
+            }
+
+            if (task.AssignedToUserId.Value == dto.AssignedToUserId)
+            {
+                return Result.Failure("This task is already assigned to that employee.");
+            }
+
+            return await SetAssigneeAsync(task, dto.AssignedToUserId);
+        }
+
+        public async Task<Result> ChangeDeadlineAsync(ChangeDeadlineDto dto, int? actingManagerCompanyId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
+            if (task is null)
+            {
+                return Result.Failure($"Task with ID {dto.TaskId} was not found.");
+            }
+
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
+            if (!scopeResult.Succeeded)
+            {
+                return scopeResult;
+            }
+
+            task.DueDate = dto.NewDueDate;
+            task.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Tasks.Update(task);
+            await _unitOfWork.SaveChangesAsync();
+
+            return Result.Success();
+        }
+
+        public async Task<Result> ChangePriorityAsync(ChangePriorityDto dto, int? actingManagerCompanyId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
+            if (task is null)
+            {
+                return Result.Failure($"Task with ID {dto.TaskId} was not found.");
+            }
+
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
+            if (!scopeResult.Succeeded)
+            {
+                return scopeResult;
+            }
+
+            task.Priority = dto.NewPriority;
+            task.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Tasks.Update(task);
+            await _unitOfWork.SaveChangesAsync();
+
+            return Result.Success();
+        }
+
+        public async Task<Result> ChangeStatusAsync(UpdateTaskStatusDto dto, int actingUserId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(dto.Id);
-
             if (task is null)
             {
                 return Result.Failure($"Task with ID {dto.Id} was not found.");
             }
 
-            if (dto.AssignedToUserId.HasValue)
+            if (task.AssignedToUserId != actingUserId)
             {
-                var isMember = await _unitOfWork.Projects.IsUserProjectMemberAsync(
-                    task.ProjectId, dto.AssignedToUserId.Value);
-
-                if (!isMember)
-                {
-                    return Result.Failure(
-                        "The task can only be assigned to a member of this project's team.");
-                }
+                return Result.Failure("You can only update the status of tasks assigned to you.");
             }
 
-            var isTransitioningToDone = dto.Status == ProjectTasksStatus.Completed
-                                         && task.Status != ProjectTasksStatus.Completed;
+            if (task.Status == ProjectTasksStatus.Completed || task.Status == ProjectTasksStatus.Cancelled)
+            {
+                return Result.Failure(
+                    $"This task is already {task.Status} and its status can no longer be changed.");
+            }
 
-            var isTransitioningAwayFromDone = dto.Status != ProjectTasksStatus.Completed
-                                              && task.Status == ProjectTasksStatus.Completed;
-
-            task.Title = dto.Title;
-            task.Description = dto.Description;
-            task.AssignedToUserId = dto.AssignedToUserId;
             task.Status = dto.Status;
-            task.Priority = dto.Priority;
-            task.DueDate = dto.DueDate;
             task.UpdatedAt = DateTime.UtcNow;
 
-            if (isTransitioningToDone)
+            if (dto.Status == ProjectTasksStatus.Completed)
             {
                 task.CompletedAt = DateTime.UtcNow;
-            }
-            else if (isTransitioningAwayFromDone)
-            {
-                task.CompletedAt = null;
             }
 
             _unitOfWork.Tasks.Update(task);
@@ -162,16 +267,111 @@ namespace TaskTrackerBLL.Services
             return Result.Success();
         }
 
-        public async Task<Result> DeleteAsync(int id)
+        public async Task<Result<IReadOnlyList<TaskProgressNoteDto>>> GetProgressNotesAsync(int taskId)
         {
-            var task = await _unitOfWork.Tasks.GetByIdAsync(id);
+            var notes = await _unitOfWork.Tasks.GetProgressNotesAsync(taskId);
 
+            var dtos = notes.Select(n => new TaskProgressNoteDto
+            {
+                Id = n.Id,
+                AuthorName = n.AuthorUser.FullName,
+                Note = n.Note,
+                IsCompletionComment = n.IsCompletionComment,
+                CreatedAt = n.CreatedAt
+            }).ToList();
+
+            return Result<IReadOnlyList<TaskProgressNoteDto>>.Success(dtos);
+        }
+
+        public async Task<Result> AddProgressNoteAsync(AddProgressNoteDto dto, int authorUserId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
             if (task is null)
             {
-                return Result.Failure($"Task with ID {id} was not found.");
+                return Result.Failure($"Task with ID {dto.TaskId} was not found.");
             }
 
-            _unitOfWork.Tasks.Remove(task);
+            if (task.AssignedToUserId != authorUserId)
+            {
+                return Result.Failure("You can only add notes to tasks assigned to you.");
+            }
+
+            var note = new TaskProgressNote
+            {
+                TaskId = dto.TaskId,
+                AuthorUserId = authorUserId,
+                Note = dto.Note,
+                IsCompletionComment = false
+            };
+
+            await _unitOfWork.Tasks.AddProgressNoteAsync(note);
+            await _unitOfWork.SaveChangesAsync();
+
+            return Result.Success();
+        }
+
+        public async Task<Result> AddCompletionCommentAsync(AddCompletionCommentDto dto, int authorUserId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
+            if (task is null)
+            {
+                return Result.Failure($"Task with ID {dto.TaskId} was not found.");
+            }
+
+            if (task.AssignedToUserId != authorUserId)
+            {
+                return Result.Failure("You can only comment on tasks assigned to you.");
+            }
+
+            if (task.Status != ProjectTasksStatus.Completed)
+            {
+                return Result.Failure("A completion comment can only be added once the task is marked Completed.");
+            }
+
+            var note = new TaskProgressNote
+            {
+                TaskId = dto.TaskId,
+                AuthorUserId = authorUserId,
+                Note = dto.Comment,
+                IsCompletionComment = true
+            };
+
+            await _unitOfWork.Tasks.AddProgressNoteAsync(note);
+            await _unitOfWork.SaveChangesAsync();
+
+            return Result.Success();
+        }
+
+        private async Task<Result> ValidateManagerScopeAsync(ProjectTask task, int? actingManagerCompanyId)
+        {
+            if (!actingManagerCompanyId.HasValue)
+            {
+                return Result.Success();
+            }
+
+            var project = await _unitOfWork.Projects.GetByIdAsync(task.ProjectId);
+
+            if (project is null || project.CompanyId != actingManagerCompanyId.Value)
+            {
+                return Result.Failure("You are not authorized to manage this task.");
+            }
+
+            return Result.Success();
+        }
+
+        private async Task<Result> SetAssigneeAsync(ProjectTask task, int newAssignedToUserId)
+        {
+            var isMember = await _unitOfWork.Projects.IsUserProjectMemberAsync(task.ProjectId, newAssignedToUserId);
+
+            if (!isMember)
+            {
+                return Result.Failure("The task can only be assigned to a member of this project's team.");
+            }
+
+            task.AssignedToUserId = newAssignedToUserId;
+            task.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Tasks.Update(task);
             await _unitOfWork.SaveChangesAsync();
 
             return Result.Success();
@@ -190,7 +390,8 @@ namespace TaskTrackerBLL.Services
 
             var isOverdue = task.DueDate.HasValue
                              && task.DueDate.Value.Date < DateTime.UtcNow.Date
-                             && task.Status != ProjectTasksStatus.Completed;
+                             && task.Status != ProjectTasksStatus.Completed
+                             && task.Status != ProjectTasksStatus.Cancelled;
 
             return new TaskDto
             {
@@ -208,6 +409,30 @@ namespace TaskTrackerBLL.Services
                 CompletedAt = task.CompletedAt,
                 CreatedAt = task.CreatedAt
             };
+        }
+        public async Task<Result<PagedResult<TaskDto>>> FilterAsync(
+    TaskFilterDto filter, int? actingManagerCompanyId)
+        {
+            var pageNumber = filter.PageNumber < 1 ? 1 : filter.PageNumber;
+            var pageSize = filter.PageSize is < 1 or > 100 ? 10 : filter.PageSize;
+
+            var (items, totalCount) = await _unitOfWork.Tasks.FilterAsync(
+                filter.AssignedToUserId,
+                filter.Priority,
+                filter.Status,
+                filter.ProjectId,
+                filter.CompanyId,
+                actingManagerCompanyId,
+                pageNumber,
+                pageSize);
+
+            var dtos = new List<TaskDto>();
+            foreach (var task in items)
+            {
+                dtos.Add(await MapToDtoAsync(task));
+            }
+
+            return Result<PagedResult<TaskDto>>.Success(new PagedResult<TaskDto>(dtos, pageNumber, pageSize, totalCount));
         }
     }
 }

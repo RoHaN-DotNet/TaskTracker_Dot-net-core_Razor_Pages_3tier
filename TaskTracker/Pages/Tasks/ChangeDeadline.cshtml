@@ -1,0 +1,29 @@
+﻿@page "{id:int}"
+@model TaskTracker.Pages.Tasks.ChangeDeadlineModel
+@{
+    ViewData["Title"] = "Change Deadline";
+}
+
+<h1>Change Deadline: @Model.TaskTitle</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <input type="hidden" asp-for="Input.TaskId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Input.NewDueDate" class="form-label"></label>
+                <input asp-for="Input.NewDueDate" class="form-control" />
+                <span asp-validation-for="Input.NewDueDate" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Deadline</button>
+            <a asp-page="/Tasks/Details" asp-route-id="@Model.Input.TaskId" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

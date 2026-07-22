@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 using TaskTrackerBLL.DTOs.Company;
 using TaskTrackerBLL.Interfaces.Services;
 
@@ -28,7 +29,8 @@ namespace TaskTracker.Pages.Companies
                 return Page();
             }
 
-            var result = await _companyService.CreateAsync(Input);
+            var actingUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await _companyService.CreateAsync(Input, actingUserId);
 
             if (!result.Succeeded)
             {

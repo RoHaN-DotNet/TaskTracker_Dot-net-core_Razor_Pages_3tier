@@ -1,4 +1,126 @@
-﻿@page
+﻿@page "{id:int}"
 @model TaskTracker.Pages.Tasks.DetailsModel
 @{
+    ViewData["Title"] = "Task Details";
 }
+
+<h1>@Model.Task.Title</h1>
+
+@if (TempData["TaskActionError"] is string actionError)
+{
+    <div class="alert alert-danger">@actionError</div>
+}
+
+<dl class="row">
+    <dt class="col-sm-3">Project</dt>
+    <dd class="col-sm-9">@Model.Task.ProjectName</dd>
+
+    <dt class="col-sm-3">Description</dt>
+    <dd class="col-sm-9">@Model.Task.Description</dd>
+
+    <dt class="col-sm-3">Assigned To</dt>
+    <dd class="col-sm-9">@(Model.Task.AssignedToUserName ?? "Unassigned")</dd>
+
+    <dt class="col-sm-3">Priority</dt>
+    <dd class="col-sm-9">@Model.Task.Priority</dd>
+
+    <dt class="col-sm-3">Due Date</dt>
+    <dd class="col-sm-9">
+        @(Model.Task.DueDate?.ToString("d") ?? "—")
+        @if (Model.Task.IsOverdue)
+        {
+            <span class="badge bg-danger">Overdue</span>
+        }
+    </dd>
+
+    <dt class="col-sm-3">Status</dt>
+    <dd class="col-sm-9">@Model.Task.Status</dd>
+</dl>
+
+@if (Model.IsAssignedToMe)
+{
+    <h3>Change Status</h3>
+    <div class="mb-4">
+        @foreach (var status in Enum.GetValues<TaskTrackerDAL.Models.Enums.ProjectTasksStatus>())
+        {
+            @if (status != Model.Task.Status
+                 && Model.Task.Status != TaskTrackerDAL.Models.Enums.ProjectTasksStatus.Completed
+                 && Model.Task.Status != TaskTrackerDAL.Models.Enums.ProjectTasksStatus.Cancelled)
+            {
+                <form method="post" asp-page-handler="ChangeStatus" class="d-inline">
+                    <input type="hidden" name="id" value="@Model.Task.Id" />
+                    <input type="hidden" name="newStatus" value="@((int)status)" />
+                    <button type="submit" class="btn btn-outline-primary btn-sm">Mark as @status</button>
+                </form>
+            }
+        }
+    </div>
+
+    @if (Model.Task.Status == TaskTrackerDAL.Models.Enums.ProjectTasksStatus.Completed)
+    {
+        <h3>Completion Comment</h3>
+        <form method="post" asp-page-handler="AddCompletionComment">
+            <input type="hidden" asp-for="CompletionInput.TaskId" value="@Model.Task.Id" />
+            <div class="form-group mb-2">
+                <textarea asp-for="CompletionInput.Comment" class="form-control" rows="2"
+                          placeholder="Describe what was completed..."></textarea>
+                <span asp-validation-for="CompletionInput.Comment" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Submit Completion Comment</button>
+        </form>
+    }
+
+    <h3 class="mt-4">Add Progress Note</h3>
+    <form method="post" asp-page-handler="AddNote">
+        <input type="hidden" asp-for="NoteInput.TaskId" value="@Model.Task.Id" />
+        <div class="form-group mb-2">
+            <textarea asp-for="NoteInput.Note" class="form-control" rows="2"
+                      placeholder="What's the latest update?"></textarea>
+            <span asp-validation-for="NoteInput.Note" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Add Note</button>
+    </form>
+}
+
+@if (Model.CanManage)
+{
+    <div class="mb-4 mt-3">
+        <a asp-page="/Tasks/ChangeDeadline" asp-route-id="@Model.Task.Id" class="btn btn-secondary btn-sm">Change Deadline</a>
+        <a asp-page="/Tasks/ChangePriority" asp-route-id="@Model.Task.Id" class="btn btn-secondary btn-sm">Change Priority</a>
+        @if (Model.Task.AssignedToUserId.HasValue)
+        {
+            <a asp-page="/Tasks/Reassign" asp-route-id="@Model.Task.Id" class="btn btn-secondary btn-sm">Reassign</a>
+        }
+        else
+        {
+            <a asp-page="/Tasks/Assign" asp-route-id="@Model.Task.Id" class="btn btn-secondary btn-sm">Assign</a>
+        }
+    </div>
+}
+
+<h3>Progress Log</h3>
+@if (Model.ProgressNotes.Count == 0)
+{
+    <p class="text-muted">No progress notes yet.</p>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var note in Model.ProgressNotes)
+        {
+            <li class="list-group-item @(note.IsCompletionComment ? "list-group-item-success" : "")">
+                <strong>@note.AuthorName</strong>
+                @if (note.IsCompletionComment)
+                {
+                    <span class="badge bg-success">Completion Comment</span>
+                }
+                <span class="text-muted small">@note.CreatedAt.ToString("g")</span>
+                <p class="mb-0">@note.Note</p>
+            </li>
+        }
+    </ul>
+}
+{
+}
+<a href="d:\practicewebproject\tasktracker\tasktracker\pages\tasks\details.cshtml.cs">d:\practicewebproject\tasktracker\tasktracker\pages\tasks\details.cshtml.cs</a>
+<a href="d:\practicewebproject\tasktracker\tasktracker\pages\tasks\details.cshtml">d:\practicewebproject\tasktracker\tasktracker\pages\tasks\details.cshtml</a>

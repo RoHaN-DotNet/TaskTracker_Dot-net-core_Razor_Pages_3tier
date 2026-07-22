@@ -4,5 +4,6 @@ namespace TaskTrackerBLL.Authorization
 {
     public class DataAccessRequirement:IAuthorizationRequirement
     {
+
     }
 }

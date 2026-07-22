@@ -63,6 +63,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGFuaWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Employees/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -85,6 +89,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/LandingPage/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZGluZ1BhZ2VcSG9tZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Privacy.cshtml]
@@ -111,6 +119,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/Filter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcRmlsdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -119,16 +131,40 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9sZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Shared/_AuthLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9BdXRoTGF5b3V0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Tasks/Assign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcQXNzaWduLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Tasks/ChangeDeadline.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcQ2hhbmdlRGVhZGxpbmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Tasks/ChangePriority.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcQ2hhbmdlUHJpb3JpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Tasks/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Tasks/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Tasks/Filter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcRmlsdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Tasks/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Tasks/Reassign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3NcUmVhc3NpZ24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/_ViewImports.cshtml]

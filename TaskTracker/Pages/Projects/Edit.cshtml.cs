@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using TaskTrackerBLL.DTOs.Project;
 using TaskTrackerBLL.Interfaces.Services;
+using TaskTrackerBLL.Services;
 using TaskTrackerDAL.Constants;
 
 namespace TaskTracker.Pages.Projects
@@ -10,7 +11,6 @@ namespace TaskTracker.Pages.Projects
     public class EditModel : PageModel
     {
         private readonly IProjectService _projectService;
-
         public EditModel(IProjectService projectService)
         {
             _projectService = projectService;
@@ -51,8 +51,10 @@ namespace TaskTracker.Pages.Projects
                 return Page();
             }
 
+            var actingUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             var scopeCompanyId = GetScopeCompanyId();
-            var result = await _projectService.UpdateAsync(Input, scopeCompanyId);
+
+            var result = await _projectService.UpdateAsync(Input, actingUserId, scopeCompanyId);
 
             if (!result.Succeeded)
             {

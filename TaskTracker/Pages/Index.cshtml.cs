@@ -5,8 +5,9 @@ namespace TaskTracker.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return RedirectToPage("/LandingPage/Home");
 
         }
     }

@@ -7,6 +7,7 @@ D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTracke
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.AssemblyInfoInputs.cache
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.AssemblyInfo.cs
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.csproj.CoreCompileInputs.cache
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.sourcelink.json
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.dll
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\refint\TaskTrackerShared.dll
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.pdb

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using TaskTrackerDAL.Models;
 
 
@@ -10,19 +12,25 @@ namespace TaskTrackerDAL.Data
         {
 
         }
-        public DbSet<Company> Companies => Set<Company>();
+        public DbSet<Company> Companies => Set<Company>();//1
 
-        public DbSet<User> Users => Set<User>();
+        public DbSet<User> Users => Set<User>();//2
 
-        public DbSet<Role> Roles => Set<Role>();
+        public DbSet<Role> Roles => Set<Role>();//3
 
-        public DbSet<UserRole> UserRoles => Set<UserRole>();
+        public DbSet<UserRole> UserRoles => Set<UserRole>();//4
 
-        public DbSet<Project> Projects => Set<Project>();
+        public DbSet<Project> Projects => Set<Project>();//5
 
-        public DbSet<ProjectMember> ProjectMembers => Set<ProjectMember>();
+        public DbSet<ProjectMember> ProjectMembers => Set<ProjectMember>();//6
 
-        public DbSet<ProjectTask> Tasks => Set<ProjectTask>();
+        public DbSet<ProjectTask> Tasks => Set<ProjectTask>();//7
+
+        public DbSet<TaskProgressNote> Notes=> Set<TaskProgressNote>();//8
+
+        public DbSet<Notification> Notifications => Set<Notification>();//9
+
+        public DbSet<AuditLog> AuditLogs => Set<AuditLog>();//10
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -89,6 +97,7 @@ namespace TaskTrackerDAL.Data
                 entity.Property(p => p.Name).IsRequired().HasMaxLength(200);
                 entity.Property(p => p.Description).HasMaxLength(1000);
                 entity.Property(p => p.Status).HasConversion<int>();
+                entity.Property(p => p.Status).HasConversion<int>();
 
                 // Company (1) --< (many) Project
                 entity.HasOne(p => p.Company)
@@ -146,6 +155,69 @@ namespace TaskTrackerDAL.Data
                       .WithMany(u => u.CreatedTasks)
                       .HasForeignKey(t => t.CreatedByUserId)
                       .OnDelete(DeleteBehavior.Restrict);
+            });
+            //Project Task Notes
+            modelBuilder.Entity<TaskProgressNote>(entity =>
+            {
+                entity.HasKey(n => n.Id);
+                entity.Property(n => n.Note).IsRequired().HasMaxLength(2000);
+
+                entity.HasOne(n => n.Task)
+                      .WithMany()
+                      .HasForeignKey(n => n.TaskId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(n => n.AuthorUser)
+                      .WithMany()
+                      .HasForeignKey(n => n.AuthorUserId)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+            
+
+
+// ---------- Notification ----------
+modelBuilder.Entity<Notification>(entity =>
+{
+    entity.HasKey(n => n.Id);
+    entity.Property(n => n.Message).IsRequired().HasMaxLength(500);
+    entity.Property(n => n.Type).HasConversion<int>();
+
+    entity.HasOne(n => n.RecipientUser)
+          .WithMany()
+          .HasForeignKey(n => n.RecipientUserId)
+          .OnDelete(DeleteBehavior.Cascade);
+
+    entity.HasOne(n => n.RelatedTask)
+          .WithMany()
+          .HasForeignKey(n => n.RelatedTaskId)
+          .OnDelete(DeleteBehavior.SetNull)
+          .IsRequired(false);
+
+    entity.HasOne(n => n.RelatedProject)
+          .WithMany()
+          .HasForeignKey(n => n.RelatedProjectId)
+          .OnDelete(DeleteBehavior.SetNull)
+          .IsRequired(false);
+
+    entity.HasIndex(n => new { n.RecipientUserId, n.IsRead });
+});
+
+            // ---------- AuditLog ----------
+            modelBuilder.Entity<AuditLog>(entity =>
+            {
+                entity.HasKey(a => a.Id);
+                entity.Property(a => a.ModelName).IsRequired().HasMaxLength(100);
+                entity.Property(a => a.ActionType).HasConversion<int>();
+                entity.Property(a => a.FieldName).HasMaxLength(100);
+                entity.Property(a => a.OldValue).HasMaxLength(2000);
+                entity.Property(a => a.NewValue).HasMaxLength(2000);
+
+                entity.HasOne(a => a.PerformedByUser)
+                      .WithMany()
+                      .HasForeignKey(a => a.PerformedByUserId)
+                      .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasIndex(a => new { a.ModelName, a.ModelId });
             });
 
         }

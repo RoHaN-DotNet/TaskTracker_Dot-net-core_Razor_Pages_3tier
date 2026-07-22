@@ -23,6 +23,7 @@ namespace TaskTracker.Pages.Projects
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var actingUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             var scopeCompanyId = User.IsInRole(AppRoles.Admin)
                 ? null
                 : (int?)int.Parse(User.FindFirstValue("CompanyId")!);
@@ -33,7 +34,7 @@ namespace TaskTracker.Pages.Projects
                 return RedirectToPage("/Projects/Details", new { id = Input.ProjectId });
             }
 
-            var result = await _projectService.AddMemberAsync(Input, scopeCompanyId);
+            var result = await _projectService.AddMemberAsync(Input, actingUserId,scopeCompanyId);
 
             if (!result.Succeeded)
             {

@@ -27,6 +27,17 @@ namespace TaskTrackerDAL.Interfaces
             ProjectStatus? status,
             int pageNumber,
             int pageSize);
+        Task<(IReadOnlyList<Project> Items, int TotalCount)> FilterAsync(
+            int? companyId,
+            ProjectStatus? status,
+            TaskPriority? priority,
+            DateTime? deadlineFreom,
+            DateTime? deadlineTo,
+            int? enforcedCompanyId,
+            int pageNumber,
+            int pageSize
+
+            );
 
     }
 }

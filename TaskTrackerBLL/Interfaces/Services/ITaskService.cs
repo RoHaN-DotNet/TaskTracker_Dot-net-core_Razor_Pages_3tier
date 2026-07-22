@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TaskTrackerBLL.Common;
 using TaskTrackerBLL.DTOs.Task;
+using TaskTrackerBLL.DTOs.Tasks;
 
 namespace TaskTrackerBLL.Interfaces.Services
 {
@@ -16,10 +17,27 @@ namespace TaskTrackerBLL.Interfaces.Services
 
         Task<Result<IReadOnlyList<TaskDto>>> GetOverdueTasksAsync(int companyId);
 
-        Task<Result<TaskDto>> CreateAsync(CreateTaskDto dto, int createdByUserId);
+        Task<Result<TaskDto>> CreateAsync(
+            CreateTaskDto dto, int createdByUserId, int? actingManagerCompanyId);
 
-        Task<Result> UpdateAsync(UpdateTaskDto dto);
+        Task<Result> DeleteAsync(int id, int actingUserId, int? actingManagerCompanyId);
+        Task<Result> AssignAsync(AssignTaskDto dto, int? actingManagerCompanyId);
 
-        Task<Result> DeleteAsync(int id);
+        Task<Result> ReassignAsync(AssignTaskDto dto, int? actingManagerCompanyId);
+
+        Task<Result> ChangeDeadlineAsync(ChangeDeadlineDto dto, int? actingManagerCompanyId);
+
+        Task<Result> ChangePriorityAsync(ChangePriorityDto dto, int? actingManagerCompanyId);
+
+        Task<Result> ChangeStatusAsync(UpdateTaskStatusDto dto, int actingUserId);
+
+        Task<Result<IReadOnlyList<TaskProgressNoteDto>>> GetProgressNotesAsync(int taskId);
+
+        Task<Result> AddProgressNoteAsync(AddProgressNoteDto dto, int authorUserId);
+
+        Task<Result> AddCompletionCommentAsync(AddCompletionCommentDto dto, int authorUserId);
+
+            Task<Result<PagedResult<TaskDto>>> FilterAsync(
+    TaskFilterDto filter, int? actingManagerCompanyId);
     }
 }

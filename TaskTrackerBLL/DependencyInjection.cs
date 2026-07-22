@@ -23,7 +23,9 @@ namespace TaskTrackerBLL
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IRoleAssignmentService, RoleAssignmentService>();
-
+            services.AddScoped<IReportingService, ReportingService>();
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<IAuditService, AuditService>();
 
             return services;
         }

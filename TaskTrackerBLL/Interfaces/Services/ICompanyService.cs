@@ -14,13 +14,13 @@ namespace TaskTrackerBLL.Interfaces.Services
 
         Task<Result<PagedResult<CompanyDto>>> SearchAsync(CompanySearchFilterDto filter);
 
-        Task<Result<CompanyDto>> CreateAsync(CreateCompanyDto dto);
+        Task<Result<CompanyDto>> CreateAsync(CreateCompanyDto dto,int actingUserId);
 
-        Task<Result> UpdateAsync(UpdateCompanyDto dto);
+        Task<Result> UpdateAsync(UpdateCompanyDto dto,int actingUserId);
 
-        Task<Result> DeactivateAsync(int id);
+        Task<Result> DeactivateAsync(int id, int actingUserId);
 
-        Task<Result> DeleteAsync(int id);
+        Task<Result> DeleteAsync(int id, int actingUserId);
 
         Task<Result<CompanyStatisticsDto>> GetStatisticsAsync(int id);
 

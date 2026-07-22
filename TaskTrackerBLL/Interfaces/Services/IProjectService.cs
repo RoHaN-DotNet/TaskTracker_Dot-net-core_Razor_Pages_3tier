@@ -12,22 +12,19 @@ namespace TaskTrackerBLL.Interfaces.Services
 
         Task<Result<IReadOnlyList<ProjectDto>>> GetByMemberUserIdAsync(int userId);
 
-        Task<Result<PagedResult<ProjectDto>>> SearchAsync(
-            ProjectSearchFilterDto filter,
-            int? actingManagerCompanyId);
+        Task<Result<PagedResult<ProjectDto>>> SearchAsync(ProjectSearchFilterDto filter,int? actingManagerCompanyId);
 
-        Task<Result<ProjectDto>> CreateAsync(
-            CreateProjectDto dto,
-            int createdByUserId,
-            int? actingManagerCompanyId);
+        Task<Result<ProjectDto>> CreateAsync(CreateProjectDto dto,int createdByUserId,int? actingManagerCompanyId);
 
-        Task<Result> UpdateAsync(UpdateProjectDto dto, int? actingManagerCompanyId);
+        Task<Result> UpdateAsync(UpdateProjectDto dto,int actingUserId, int? actingManagerCompanyId);
 
-        Task<Result> ArchiveAsync(int projectId, int? actingManagerCompanyId);
+        Task<Result> ArchiveAsync(int projectId,int actingUserId, int? actingManagerCompanyId);
 
-        Task<Result> AddMemberAsync(AssignProjectMemberDto dto, int? actingManagerCompanyId);
+        Task<Result> AddMemberAsync(AssignProjectMemberDto dto,int actingUserId, int? actingManagerCompanyId);
 
         Task<Result> RemoveMemberAsync(int projectId, int userId, int? actingManagerCompanyId);
+        Task<Result<PagedResult<ProjectDto>>> FilterAsync(
+        ProjectFilterDto filter, int? actingManagerCompanyId);
 
     }
 }

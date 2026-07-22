@@ -1,0 +1,25 @@
+﻿@page "{id:int}"
+@model TaskTracker.Pages.Tasks.ChangePriorityModel
+@{
+    ViewData["Title"] = "Change Priority";
+}
+
+<h1>Change Priority: @Model.TaskTitle</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <input type="hidden" asp-for="Input.TaskId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Input.NewPriority" class="form-label"></label>
+                <select asp-for="Input.NewPriority" asp-items="Html.GetEnumSelectList<TaskTrackerDAL.Models.Enums.TaskPriority>()" class="form-select"></select>
+                <span asp-validation-for="Input.NewPriority" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Priority</button>
+            <a asp-page="/Tasks/Details" asp-route-id="@Model.Input.TaskId" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

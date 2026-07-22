@@ -1,4 +1,95 @@
 ﻿@page
 @model TaskTracker.Pages.Account.LoginModel
 @{
+    Layout = null;
+    ViewData["title"] = "Login"; 
 }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+</head>
+
+<body class="login-page">
+
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+
+    <div class="card shadow-lg border-0 login-card">
+
+        <div class="card-body p-5">
+
+            <div class="text-center mb-4">
+
+                <img src="~/images/logo/TTlogo.png"
+                     class="img-fluid login-logo"
+                     alt="TaskTracker Logo" />
+
+            </div>
+
+            <h2 class="text-center fw-bold mb-2">
+                Welcome Back
+            </h2>
+
+            <p class="text-center text-secondary mb-4">
+                Login to your TaskTracker account
+            </p>
+
+            <form method="post">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Email
+                    </label>
+
+                    <input type="email"
+                           class="form-control"
+                           placeholder="Enter your email" />
+
+                </div>
+
+                <div class="mb-2">
+
+                    <label class="form-label">
+                        Password
+                    </label>
+
+                    <input type="password"
+                           class="form-control"
+                           placeholder="Enter password" />
+
+                </div>
+
+                <div class="text-end mb-4">
+
+                    <a asp-page="/Account/ForgotPassword"
+                       class="forgot-link">
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+                <button class="btn login-btn w-100">
+                    Login
+                </button>
+
+                
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

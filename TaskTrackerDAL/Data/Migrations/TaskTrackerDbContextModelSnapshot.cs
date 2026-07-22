@@ -22,6 +22,55 @@ namespace TaskTrackerDAL.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("TaskTrackerDAL.Models.AuditLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ActionType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FieldName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModelName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("NewValue")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("OldValue")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<int>("PerformedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PerformedByUserId");
+
+                    b.HasIndex("ModelName", "ModelId");
+
+                    b.ToTable("AuditLogs");
+                });
+
             modelBuilder.Entity("TaskTrackerDAL.Models.Company", b =>
                 {
                     b.Property<int>("Id")
@@ -61,6 +110,54 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("TaskTrackerDAL.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("ReadAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecipientUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RelatedProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RelatedTaskId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RelatedProjectId");
+
+                    b.HasIndex("RelatedTaskId");
+
+                    b.HasIndex("RecipientUserId", "IsRead");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("TaskTrackerDAL.Models.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -89,6 +186,9 @@ namespace TaskTrackerDAL.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -212,6 +312,43 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskProgressNote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AuthorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCompletionComment")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorUserId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("Notes");
+                });
+
             modelBuilder.Entity("TaskTrackerDAL.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -285,6 +422,42 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("TaskTrackerDAL.Models.AuditLog", b =>
+                {
+                    b.HasOne("TaskTrackerDAL.Models.User", "PerformedByUser")
+                        .WithMany()
+                        .HasForeignKey("PerformedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("PerformedByUser");
+                });
+
+            modelBuilder.Entity("TaskTrackerDAL.Models.Notification", b =>
+                {
+                    b.HasOne("TaskTrackerDAL.Models.User", "RecipientUser")
+                        .WithMany()
+                        .HasForeignKey("RecipientUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TaskTrackerDAL.Models.Project", "RelatedProject")
+                        .WithMany()
+                        .HasForeignKey("RelatedProjectId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("TaskTrackerDAL.Models.ProjectTask", "RelatedTask")
+                        .WithMany()
+                        .HasForeignKey("RelatedTaskId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("RecipientUser");
+
+                    b.Navigation("RelatedProject");
+
+                    b.Navigation("RelatedTask");
+                });
+
             modelBuilder.Entity("TaskTrackerDAL.Models.Project", b =>
                 {
                     b.HasOne("TaskTrackerDAL.Models.Company", "Company")
@@ -347,6 +520,25 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.Navigation("CreatedByUser");
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskProgressNote", b =>
+                {
+                    b.HasOne("TaskTrackerDAL.Models.User", "AuthorUser")
+                        .WithMany()
+                        .HasForeignKey("AuthorUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TaskTrackerDAL.Models.ProjectTask", "Task")
+                        .WithMany()
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AuthorUser");
+
+                    b.Navigation("Task");
                 });
 
             modelBuilder.Entity("TaskTrackerDAL.Models.User", b =>

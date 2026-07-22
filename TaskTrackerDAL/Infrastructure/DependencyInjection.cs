@@ -13,7 +13,7 @@ namespace TaskTrackerDAL.Infrastructure
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection")
                 ?? throw new InvalidOperationException(
-                    "Connection string 'DefaultConnection' was not found in configuration.");
+                    "Connection string 'DefaultConnection' was not found in configuration."); 
 
             services.AddDbContext<TaskTrackerDbContext>(options =>
                 options.UseSqlServer(connectionString, sqlOptions =>

@@ -19,11 +19,13 @@ namespace TaskTracker.Pages.Projects
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
+            var actingUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
             var scopeCompanyId = User.IsInRole(AppRoles.Admin)
                 ? null
                 : (int?)int.Parse(User.FindFirstValue("CompanyId")!);
 
-            var result = await _projectService.ArchiveAsync(id, scopeCompanyId);
+            var result = await _projectService.ArchiveAsync(id, actingUserId, scopeCompanyId);
 
             if (!result.Succeeded)
             {

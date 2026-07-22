@@ -10,10 +10,15 @@ namespace TaskTrackerBLL.Services
     public class ProjectService:IProjectService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly INotificationService _notificationService;
+        private readonly IAuditService _auditService;
 
-        public ProjectService(IUnitOfWork unitOfWork)
+        public ProjectService(IUnitOfWork unitOfWork, INotificationService notificationService, IAuditService auditService)
+
         {
             _unitOfWork = unitOfWork;
+            _notificationService = notificationService;
+            _auditService = auditService;
         }
 
         public async Task<Result<ProjectDto>> GetByIdAsync(int id, int? actingManagerCompanyId)
@@ -99,6 +104,7 @@ namespace TaskTrackerBLL.Services
                 StartDate = dto.StartDate,
                 EndDate = dto.EndDate,
                 Status = ProjectStatus.NotStarted,
+                Priority = TaskPriority.Medium,
                 CreatedByUserId = createdByUserId
             };
 
@@ -119,7 +125,7 @@ namespace TaskTrackerBLL.Services
             return Result<ProjectDto>.Success(resultDto);
         }
 
-        public async Task<Result> UpdateAsync(UpdateProjectDto dto, int? actingManagerCompanyId)
+        public async Task<Result> UpdateAsync(UpdateProjectDto dto, int actingUserId, int? actingManagerCompanyId)
         {
             var project = await _unitOfWork.Projects.GetByIdAsync(dto.Id);
 
@@ -148,6 +154,10 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure("Use the Archive action to archive a project.");
             }
 
+            var oldName = project.Name;
+            var oldStatus = project.Status;
+            var oldEndDate = project.EndDate;
+
             project.Name = dto.Name;
             project.Description = dto.Description;
             project.StartDate = dto.StartDate;
@@ -158,10 +168,16 @@ namespace TaskTrackerBLL.Services
             _unitOfWork.Projects.Update(project);
             await _unitOfWork.SaveChangesAsync();
 
+            await _auditService.LogUpdatedAsync("Project", project.Id, actingUserId, "Name", oldName, dto.Name);
+            await _auditService.LogUpdatedAsync(
+                "Project", project.Id, actingUserId, "Status", oldStatus.ToString(), dto.Status.ToString());
+            await _auditService.LogUpdatedAsync(
+                "Project", project.Id, actingUserId, "EndDate", oldEndDate?.ToString("d"), dto.EndDate?.ToString("d"));
+
             return Result.Success();
         }
 
-        public async Task<Result> ArchiveAsync(int projectId, int? actingManagerCompanyId)
+        public async Task<Result> ArchiveAsync(int projectId, int actingUserId, int? actingManagerCompanyId)
         {
             var project = await _unitOfWork.Projects.GetByIdAsync(projectId);
 
@@ -180,16 +196,21 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure($"'{project.Name}' is already archived.");
             }
 
+            var oldStatus = project.Status;
+
             project.Status = ProjectStatus.Archived;
             project.UpdatedAt = DateTime.UtcNow;
 
             _unitOfWork.Projects.Update(project);
             await _unitOfWork.SaveChangesAsync();
 
+            await _auditService.LogUpdatedAsync(
+                "Project", project.Id, actingUserId, "Status", oldStatus.ToString(), "Archived");
+
             return Result.Success();
         }
 
-        public async Task<Result> AddMemberAsync(AssignProjectMemberDto dto, int? actingManagerCompanyId)
+        public async Task<Result> AddMemberAsync(AssignProjectMemberDto dto, int actingUserId, int? actingManagerCompanyId)
         {
             var project = await _unitOfWork.Projects.GetByIdAsync(dto.ProjectId);
             if (project is null)
@@ -210,8 +231,7 @@ namespace TaskTrackerBLL.Services
 
             if (user.CompanyId != project.CompanyId)
             {
-                return Result.Failure(
-                    $"{user.FullName} does not belong to the same company as this project.");
+                return Result.Failure($"{user.FullName} does not belong to the same company as this project.");
             }
 
             var alreadyMember = await _unitOfWork.Projects.IsUserProjectMemberAsync(dto.ProjectId, dto.UserId);
@@ -220,14 +240,15 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure($"{user.FullName} is already a member of this project.");
             }
 
-            project.ProjectMembers.Add(new ProjectMember
-            {
-                ProjectId = dto.ProjectId,
-                UserId = dto.UserId
-            });
+            project.ProjectMembers.Add(new ProjectMember { ProjectId = dto.ProjectId, UserId = dto.UserId });
 
             _unitOfWork.Projects.Update(project);
             await _unitOfWork.SaveChangesAsync();
+
+            await _auditService.LogAssignedAsync(
+                "Project", project.Id, actingUserId, oldValue: null, newValue: user.FullName);
+
+            await _notificationService.NotifyProjectCreatedAsync(project.Id, project.Name, new[] { dto.UserId });
 
             return Result.Success();
         }
@@ -282,6 +303,30 @@ namespace TaskTrackerBLL.Services
                 TeamMemberCount = project.ProjectMembers.Count,
                 CreatedAt = project.CreatedAt
             };
+        }
+        public async Task<Result<PagedResult<ProjectDto>>> FilterAsync(
+    ProjectFilterDto filter, int? actingManagerCompanyId)
+        {
+            var pageNumber = filter.PageNumber < 1 ? 1 : filter.PageNumber;
+            var pageSize = filter.PageSize is < 1 or > 100 ? 10 : filter.PageSize;
+
+            var (items, totalCount) = await _unitOfWork.Projects.FilterAsync(
+                filter.CompanyId,
+                filter.Status,
+                filter.Priority,
+                filter.DeadlineFrom,
+                filter.DeadlineTo,
+                actingManagerCompanyId,
+                pageNumber,
+                pageSize);
+
+            var dtos = new List<ProjectDto>();
+            foreach (var project in items)
+            {
+                dtos.Add(await BuildDtoAsync(project));
+            }
+
+            return Result<PagedResult<ProjectDto>>.Success(new PagedResult<ProjectDto>(dtos, pageNumber, pageSize, totalCount));
         }
     }
 }

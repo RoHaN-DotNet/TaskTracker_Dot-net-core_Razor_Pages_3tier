@@ -1,34 +1,140 @@
 ﻿:root {
-    /* Background Colors */
-    --color-bg-page: #e8e8e8; /* Outer page background (light gray) */
-    --color-bg-card: #ffffff; /* Main white card/container background */
-    --color-bg-search: #ececec; /* Search bar background */
-    --color-bg-login-form: #ffffff; /* Login form card background */
-    /* Text Colors */
-    --color-text-primary: #1a1a1a; /* Main headings (POWERED BY...) */
-    --color-text-secondary: #6b6b6b; /* Nav links (Home, About, Forum) */
-    --color-text-muted: #9a9a9a; /* Placeholder text, secondary labels */
-    --color-text-label: #8a8a8a; /* Form labels (Username, Password) */
-    --color-text-dark: #111111; /* Bold text (Username value, Create account) */
-    
-    /* Accent / Brand Colors */
-    --color-accent-lime: #c4e86d; /* Highlight underline, gradient dots, login button */
-    --color-accent-lime-dark: #4a5c2f; /* Darkest dot in gradient */
-    --color-accent-lime-mid: #7a9a4a; /* Mid-tone dot in gradient */
-    --color-accent-lime-light: #a8d95f; /* Lighter dot in gradient */
-    /* Button Colors */
-    --color-btn-login-bg: #c4e86d; /* Top-right "Login" pill button */
-    --color-btn-submit-bg: #1a1a1a; /* Black "login" submit button */
-    --color-btn-submit-text: #ffffff; /* Text on black button */
-    /* Border / Divider Colors */
-    --color-border-light: #e0e0e0; /* Input field underline/border */
-    --color-border-checkbox: #c4e86d; /* "Remember me" checkbox border */
-    /* Overlay / Image Section */
-    --color-overlay-dark: #3a3a3a; /* Dark overlay on car image sections */
-    --color-overlay-darker: #2a2a2a; /* "About us" section dark overlay */
-    /* Shadow */
-    --color-shadow: rgba(0, 0, 0, 0.08); /* Card drop shadow */
+    /*Navbar color*/
+    --color-bg-navbar: #ffffff;
+    --color-button-navbar: #111111;
+    --bg-page: #e8e8e8;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #6b6b6b;
+    --accent: #c4e86d;
 }
+    
+
+    
+/*================
+--Main Container--
+=================*/
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+   
+    z-index: 999;
+    background: transparent;
+    padding: 20px;
+}
+.wrapper {
+    
+    background-color:var(--color-bg-navbar);
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    box-shadow: .5px;
+    border-bottom-color: gray;
+    border-radius:8px;
+}
+.navbar {
+    height: 80px;
+    display:flex;
+    justify-content: space-between;
+    align-content: center;
+   
+}
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+    .logo img {
+        height: 60px;
+        width: auto;
+        display: block;
+    }
+
+.navbar-nav {
+    display:flex;
+    flex-direction:row;
+    gap: 20px;
+    align-items: center;
+    list-style: none;
+    margin-left:200px;
+   
+}
+
+
+.nav-link {
+    color: #1b1b1b !important;
+    text-decoration: none !important;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 18px;
+    transition: .3s;
+    
+}
+
+    .nav-link:hover {
+        color: #b8e43d !important;
+        text-decoration: none !important;
+    }
+
+.login-link {
+    margin-left: 70px;
+}
+
+/*===Login page===*/
+body.login-page {
+    background: var(--bg-page);
+}
+
+.login-card {
+    width: 420px;
+    border-radius: 20px;
+    background: var(--bg-card);
+}
+
+.login-logo {
+    width: 120px;
+}
+
+.form-control {
+    border-radius: 12px;
+    height: 50px;
+}
+
+    .form-control:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 .2rem rgba(196,232,109,.35);
+    }
+
+.login-btn {
+    background: var(--accent);
+    color: #111;
+    font-weight: 600;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+}
+
+    .login-btn:hover {
+        background: #b6da61;
+    }
+
+.signup-link,
+.forgot-link {
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    .signup-link:hover,
+    .forgot-link:hover {
+        color: #6b6b6b;
+    }
+
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -41,35 +147,3 @@ body {
     color: var(--color-text-primary);
     padding: 40px;
 }
-/*================
---Main Container--
-=================*/
-.wrapper{
-    max-width:1320px;
-    background-color:var(--color-bg-card);
-    border-radius:30px;
-    padding:25px 35px;
-    box-shadow:0 15px 35px var(--color-shadow);
-    height:300px;
-
-}
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:40px;
-}
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    
-}
-.logo-box {
-    width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-

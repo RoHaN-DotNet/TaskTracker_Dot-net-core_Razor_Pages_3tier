@@ -1,0 +1,28 @@
+﻿@page "{id:int}"
+@model TaskTracker.Pages.Tasks.ReassignModel
+@{
+    ViewData["Title"] = "Reassign Task";
+}
+
+<h1>Reassign Task: @Model.TaskTitle</h1>
+<p>Currently assigned to: <strong>@Model.CurrentAssigneeName</strong></p>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <input type="hidden" asp-for="Input.TaskId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Input.AssignedToUserId" class="form-label">New Employee</label>
+                <select asp-for="Input.AssignedToUserId" asp-items="Model.EmployeeOptions" class="form-select">
+                    <option value="">-- Select Employee --</option>
+                </select>
+                <span asp-validation-for="Input.AssignedToUserId" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Reassign</button>
+            <a asp-page="/Tasks/Details" asp-route-id="@Model.Input.TaskId" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

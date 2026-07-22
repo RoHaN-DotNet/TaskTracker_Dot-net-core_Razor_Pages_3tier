@@ -19,5 +19,24 @@ namespace TaskTrackerDAL.Interfaces
         Task<int> CountByStatusAsync(int companyId, ProjectTasksStatus status);
 
         Task<Dictionary<int, int>> GetOpenTaskCountsByUserAsync(int companyId);
+        Task<IReadOnlyList<TaskProgressNote>> GetProgressNotesAsync(int taskId);
+
+        Task AddProgressNoteAsync(TaskProgressNote note);
+
+        Task<int> CountOverdueAsync(int? companyId);
+        Task<IReadOnlyList<ProjectTask>> GetDueTodayAsync(int? companyId, int? userId);
+        Task<IReadOnlyList<ProjectTask>> GetRecentAsync(int companyId, int count);
+
+        Task<(IReadOnlyList<ProjectTask> Items, int TotalCount)> FilterAsync(
+      int? assignedToUserId,
+      TaskPriority? priority,
+      ProjectTasksStatus? status,
+      int? projectId,
+      int? companyId,
+      int? enforcedCompanyId,
+      int pageNumber,
+      int pageSize);
+
+        Task<IReadOnlyList<(int UserId, int TotalAssigned, int Completed)>> GetEmployeePerformanceAsync(int companyId);
     }
 }

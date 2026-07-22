@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace TaskTracker.Pages.Shared
+namespace TaskTracker.Pages.LandingPage
 {
-    public class _AuthLayoutModel : PageModel
+    public class HomeModel : PageModel
     {
         public void OnGet()
         {

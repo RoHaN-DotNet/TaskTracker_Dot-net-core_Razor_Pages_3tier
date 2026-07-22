@@ -6,7 +6,7 @@ using TaskTrackerDAL.Models.Enums;
 
 namespace TaskTrackerBLL.DTOs.Task
 {
-    public class UpdateTaskDto
+    public class UpdateTaskStatusDto
     {
         [Required]
         public int Id { get; set; }

@@ -19,6 +19,10 @@ namespace TaskTrackerBLL.Interfaces
 
         ITaskFeature Tasks { get; }
 
+        INotificationFeature Notifications { get; }
+
+        IAuditLogFeature AuditLogs { get; }
+
         Task<int> SaveChangesAsync();
     }
 }

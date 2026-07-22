@@ -18,6 +18,8 @@ namespace TaskTrackerBLL.Infrastucture
         private IRoleFeature? _roles;
         private IProjectFeature? _projects;
         private ITaskFeature? _tasks;
+        private INotificationFeature? _notifications;
+        private IAuditLogFeature? _auditLogs;
 
         public UnitOfWork(TaskTrackerDbContext context)
         {
@@ -32,6 +34,10 @@ namespace TaskTrackerBLL.Infrastucture
         public IProjectFeature Projects => _projects ??= new ProjectRepository(_context);
 
         public ITaskFeature Tasks => _tasks ??= new TaskRepository(_context);
+
+        public INotificationFeature Notifications => _notifications ??= new NotificationRepository(_context);
+
+        public IAuditLogFeature AuditLogs => _auditLogs ??= new AuditLogRepository(_context);
 
         public async Task<int> SaveChangesAsync()
         {

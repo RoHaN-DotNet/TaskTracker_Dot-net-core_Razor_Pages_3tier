@@ -35,16 +35,16 @@ namespace TaskTracker.Pages.Companies
             return Page();
         }
 
-        public async Task<IActionResult> OnPostDeactivateAsync(int id)
+        public async Task<IActionResult> OnPostDeactivateAsync(int id, int actingUserId)
         {
-            await _companyService.DeactivateAsync(id);
+            await _companyService.DeactivateAsync(id,actingUserId);
 
             return RedirectToPage("/Companies/Details", new { id });
         }
 
-        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        public async Task<IActionResult> OnPostDeleteAsync(int id, int actingUserId)
         {
-            var result = await _companyService.DeleteAsync(id);
+            var result = await _companyService.DeleteAsync(id,actingUserId);
 
             if (!result.Succeeded)
             {

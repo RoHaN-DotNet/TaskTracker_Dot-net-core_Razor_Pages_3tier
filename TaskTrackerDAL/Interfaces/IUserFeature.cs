@@ -22,5 +22,6 @@ namespace TaskTrackerDAL.Interfaces
             string? searchTerm,
             string? roleName,
             bool? isActive);
+        Task<int> CountByRoleNamesAsync(IEnumerable<string> roleNames);
     }
 }

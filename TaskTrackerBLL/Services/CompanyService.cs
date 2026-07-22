@@ -11,10 +11,12 @@ namespace TaskTrackerBLL.Services
     public class CompanyService : ICompanyService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IAuditService _auditService;
 
-        public CompanyService(IUnitOfWork unitOfWork)
+        public CompanyService(IUnitOfWork unitOfWork, IAuditService auditService)
         {
             _unitOfWork = unitOfWork;
+            _auditService = auditService;
         }
 
         public async Task<Result<CompanyDto>> GetByIdAsync(int id)
@@ -72,7 +74,7 @@ namespace TaskTrackerBLL.Services
             return Result<PagedResult<CompanyDto>>.Success(pagedResult);
         }
 
-        public async Task<Result<CompanyDto>> CreateAsync(CreateCompanyDto dto)
+        public async Task<Result<CompanyDto>> CreateAsync(CreateCompanyDto dto, int actingUserId)
         {
             var isUnique = await _unitOfWork.Companies.IsNameUniqueAsync(dto.Name);
 
@@ -89,14 +91,16 @@ namespace TaskTrackerBLL.Services
                 Address = dto.Address,
                 IsActive = true
             };
+            
 
             await _unitOfWork.Companies.AddAsync(company);
             await _unitOfWork.SaveChangesAsync();
+            await _auditService.LogCreatedAsync("Company", company.Id, actingUserId);
 
             return Result<CompanyDto>.Success(MapToDto(company, 0, 0));
         }
 
-        public async Task<Result> UpdateAsync(UpdateCompanyDto dto)
+        public async Task<Result> UpdateAsync(UpdateCompanyDto dto, int actingUserId)
         {
             var company = await _unitOfWork.Companies.GetByIdAsync(dto.Id);
 
@@ -111,6 +115,12 @@ namespace TaskTrackerBLL.Services
             {
                 return Result.Failure($"A company named '{dto.Name}' already exists.");
             }
+            // Capture old values before overwriting, so each changed field can be audited individually.
+            var oldName = company.Name;
+            var oldEmail = company.Email;
+            var oldPhone = company.Phone;
+            var oldAddress = company.Address;
+            var oldIsActive = company.IsActive;
 
             company.Name = dto.Name;
             company.Email = dto.Email;
@@ -121,11 +131,17 @@ namespace TaskTrackerBLL.Services
 
             _unitOfWork.Companies.Update(company);
             await _unitOfWork.SaveChangesAsync();
+            await _auditService.LogUpdatedAsync("Company", company.Id, actingUserId, "Name", oldName, dto.Name);
+            await _auditService.LogUpdatedAsync("Company", company.Id, actingUserId, "Email", oldEmail, dto.Email);
+            await _auditService.LogUpdatedAsync("Company", company.Id, actingUserId, "Phone", oldPhone, dto.Phone);
+            await _auditService.LogUpdatedAsync("Company", company.Id, actingUserId, "Address", oldAddress, dto.Address);
+            await _auditService.LogUpdatedAsync(
+                "Company", company.Id, actingUserId, "IsActive", oldIsActive.ToString(), dto.IsActive.ToString());
 
             return Result.Success();
         }
 
-        public async Task<Result> DeactivateAsync(int id)
+        public async Task<Result> DeactivateAsync(int id, int actingUserId)
         {
             var company = await _unitOfWork.Companies.GetByIdAsync(id);
 
@@ -143,7 +159,7 @@ namespace TaskTrackerBLL.Services
             return Result.Success();
         }
 
-        public async Task<Result> DeleteAsync(int id)
+        public async Task<Result> DeleteAsync(int id,int actingUserId)
         {
             var company = await _unitOfWork.Companies.GetByIdAsync(id);
 
@@ -160,9 +176,12 @@ namespace TaskTrackerBLL.Services
                     $"Cannot delete '{company.Name}' because it still has users or projects. " +
                     "Remove or reassign them first, or deactivate the company instead.");
             }
+            var snapshot = $"{company.Name} ({company.Email})";
 
             _unitOfWork.Companies.Remove(company);
             await _unitOfWork.SaveChangesAsync();
+            await _auditService.LogDeletedAsync("Company", id, actingUserId, snapshot);
+
 
             return Result.Success();
         }

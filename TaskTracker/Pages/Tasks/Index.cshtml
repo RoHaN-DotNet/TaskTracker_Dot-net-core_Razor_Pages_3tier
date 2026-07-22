@@ -1,0 +1,42 @@
+﻿@page
+@model TaskTracker.Pages.Tasks.IndexModel
+@{
+    ViewData["Title"] = "My Tasks";
+}
+
+<h1>My Tasks</h1>
+
+@if (Model.AssignedTasks.Count == 0)
+{
+    <p>You have no assigned tasks.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Project</th>
+                <th>Priority</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model.AssignedTasks)
+            {
+                <tr class="@(task.IsOverdue ? "table-danger" : "")">
+                    <td>@task.Title</td>
+                    <td>@task.ProjectName</td>
+                    <td>@task.Priority</td>
+                    <td>@(task.DueDate?.ToString("d") ?? "—")</td>
+                    <td>@task.Status</td>
+                    <td>
+                        <a asp-page="/Tasks/Details" asp-route-id="@task.Id" class="btn btn-sm btn-outline-primary">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

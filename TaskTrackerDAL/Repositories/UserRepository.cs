@@ -115,7 +115,15 @@ namespace TaskTrackerDAL.Repositories
                 .OrderBy(u => u.FullName)
                 .ToListAsync();
         }
+        public async Task<int> CountByRoleNamesAsync(IEnumerable<string> roleNames)
+        {
+            var names = roleNames.ToList();
 
+            return await _context.Users
+                .AsNoTracking()
+                .CountAsync(u => u.UserRoles.Any(Uri => names.Contains(Uri.Role.Name)));
+
+        }
 
     }
 

@@ -1,19 +1,19 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using TaskTracker.Middlewares;
 using TaskTrackerBLL;
 using TaskTrackerBLL.Authorization;
 using TaskTrackerDAL.Constants;
 using TaskTrackerDAL.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddInfrastructureServices(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
 {
     // Every page in these folders requires at least authentication by default;
     // specific policies narrow that further where the whole folder shares one rule.
-    options.Conventions.AuthorizeFolder("/Dashboard");
+    //options.Conventions.AuthorizeFolder("/Dashboard");
     options.Conventions.AuthorizeFolder("/Companies", AppPolicies.ManagerOrAdmin);
     options.Conventions.AuthorizeFolder("/Users", AppPolicies.ManagerOrAdmin);
     options.Conventions.AuthorizeFolder("/Roles", AppPolicies.AdminOnly);
@@ -26,6 +26,8 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AuthorizeFolder("/Projects");
     options.Conventions.AuthorizeFolder("/Tasks");
 
+    options.Conventions.AllowAnonymousToPage("/Dashboard");
+    options.Conventions.AllowAnonymousToPage("/LandingPage");
     options.Conventions.AllowAnonymousToPage("/Account/Login");
     options.Conventions.AllowAnonymousToPage("/Account/Register");
     options.Conventions.AllowAnonymousToPage("/Account/AccessDenied");
@@ -34,6 +36,7 @@ builder.Services.AddRazorPages(options =>
 });
 //
 builder.Services.AddInfrastructureServices(builder.Configuration);
+
 builder.Services.AddApplicationServices();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -74,10 +77,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

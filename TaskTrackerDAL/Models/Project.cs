@@ -16,6 +16,7 @@ namespace TaskTrackerDAL.Models
         public DateTime? EndDate { get; set; }
 
         public ProjectStatus Status { get; set; } = ProjectStatus.NotStarted;
+        public TaskPriority Priority { get; set; } = TaskPriority.Medium;
 
         public int CreatedByUserId { get; set; }
 

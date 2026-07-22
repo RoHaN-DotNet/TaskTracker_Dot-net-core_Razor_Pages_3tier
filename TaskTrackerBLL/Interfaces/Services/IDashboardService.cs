@@ -8,6 +8,9 @@ namespace TaskTrackerBLL.Interfaces.Services
 {
     public interface IDashboardService
     {
-        Task<Result<DashboardDto>> GetDashboardAsync(int companyId);
+        Task<Result<AdminDashboardDto>> GetAdminDashboardAsync();
+
+        Task<Result<ManagerDashboardDto>> GetManagerDashboardAsync(int companyId);
+        Task<Result<EmployeeDashboardDto>> GetEmployeeDashboardAsync(int userId);
     }
 }
