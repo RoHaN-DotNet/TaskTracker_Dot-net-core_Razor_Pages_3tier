@@ -1,10 +1,47 @@
 ﻿@page
 @model TaskTracker.Pages.Dashboard.IndexModel
+@using TaskTrackerDAL.Constants
 @{
     Layout = "_Layout";
 }
-<div class="text-center py-5">
-    <h1 class="display-4">Manage Companies, Projects, and Tasks — All in One Place</h1>
-    <p class="lead">TaskTracker helps Admins, Managers, and teams stay organized.</p>
-    <a asp-page="/Account/Login" class="btn btn-primary btn-lg mt-3">Get Started — Login</a>
-</div>
+
+@if (User.IsInRole(AppRoles.Admin))
+{
+    <div class="container mt-xxl-5">
+        <h2>Admin Dashboard</h2>
+        <hr />
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <h5>Total Companies</h5>
+                    <h2>@Model.AdminDashboard?.TotalCompanies</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <h5>Total Users</h5>
+                    <h2>@Model.AdminDashboard?.TotalUsers</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <h5>Total Projects</h5>
+                    <h2>@Model.AdminDashboard?.TotalProjects</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3">
+                    <h5>Total Tasks</h5>
+                    <h2>@Model.AdminDashboard?.TotalTasks</h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}

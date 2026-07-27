@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using TaskTrackerDAL.Constants
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TaskTracker.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <header>
@@ -18,9 +20,13 @@
                 <a asp-page="Dashboard/Index" class="logo">
                     <img src="~/images/logo/TTlogo.png" />
                 </a>
-                <!--Menu items-->
+
                 
-                <ul class="navbar-nav">
+
+                <!--Menu items-->
+                @if (!User.IsInRole(AppRoles.Admin) && !User.IsInRole(AppRoles.Manager))
+                    {
+                        <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" asp-page="/Dashboard/Index">Home</a></li>
                     <li class="nav-item"><a class="nav-link" asp-page="/About">About</a></li>
                     <li class="nav-item"><a class="nav-link" asp-page="/Contact">Contact</a></li>
@@ -33,6 +39,24 @@
                         <a class="nav-link login-link" asp-page="/Account/Login">Login</a>
                     </li>
                 </ul>
+                }
+                @if(User.IsInRole(AppRoles.Admin))
+                {
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" asp-page="/Dashboard/Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Companies/Index">Companies</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Employees/Index">Employees</a></li>
+                    </ul>
+
+                
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link login-link" asp-page="/Account/Logout">Logout</a>
+                        </li>
+                    </ul>
+                }
+                
 
             </nav>
 
@@ -55,5 +79,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+    
 </body>
 </html>

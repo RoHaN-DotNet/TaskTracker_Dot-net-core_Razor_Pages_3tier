@@ -1,78 +1,181 @@
-﻿@page
+﻿
+@page
 @model TaskTracker.Pages.Employee.IndexModel
 @{
     ViewData["Title"] = "Employees";
 }
-<!DOCTYPE html>
-    <head>
-       
-    </head>
-    <body>
-    <h1>Employees</h1>
-
-    <a asp-page="/Employees/Create" class="btn btn-primary mb-3">Register Employee</a>
-
-    <form method="get" class="row g-2 mb-4">
-        <div class="col-auto">
-            <input asp-for="Filter.SearchTerm" class="form-control" placeholder="Search name, email, username" />
-        </div>
-        <div class="col-auto">
-            <select asp-for="Filter.RoleName" class="form-select">
-                <option value="">All Roles</option>
-                @foreach (var role in Model.RoleOptions)
-                {
-                    <option value="@role">@role</option>
-                }
-            </select>
-        </div>
-        <div class="col-auto">
-            <select asp-for="Filter.IsActive" class="form-select">
-                <option value="">All Statuses</option>
-                <option value="true">Active</option>
-                <option value="false">Disabled</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-secondary">Filter</button>
-        </div>
-    </form>
-
+@if (TempData["Debug"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Debug"]
+    </div>
+}
+<div class="first d-flex justify-content-between mt-lg-5"> 
+    <div>
+        <h1>Employee List</h1>
+    </div>
+    <div class=" ">
+        <button asp-for="/Employees/Create" class="lbtn btn-primary">+ Add Employee</button>
+    </div>
+</div>
+<div class="d-flex justify-content-between">
+    <div>
+        <form method="get" id="searchForm" class="search col-lg-4 border-opacity-50 mt-3">
+            <input asp-for="Filter.SearchTerm" placeholder="Search by Name or Email"/>
+        </form>
+    </div>
+    <div>
+        <form method="get" id="searchForm" class="">
+            <div class="">
+                <select asp-for="Filter.IsActive" class="dropdown">
+                    <option value="">All Employees</option>
+                    <option value="True">Active</option>
+                    <option value="False">Deactive</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+<div class=" table-responsive overflow-auto" style="max-height:500px;">
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Company</th>
-                <th>Role(s)</th>
+                <th>Full Name</th>
+                <th>Company Name</th>
+                <th>Position</th>
                 <th>Status</th>
-                <th></th>
+                <th>Email</th>
+                <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (var employee in Model.Employees)
-            {
-                <tr>
-                    <td>@employee.FullName</td>
-                    <td>@employee.Email</td>
-                    <td>@employee.CompanyName</td>
-                    <td>@string.Join(", ", employee.Roles)</td>
-                    <td>
-                        @if (employee.IsActive)
-                        {
-                            <span class="badge bg-success">Active</span>
-                        }
-                        else
-                        {
-                            <span class="badge bg-secondary">Disabled</span>
-                        }
-                    </td>
-                    <td>
-                        <a asp-page="/Employees/Details" asp-route-id="@employee.Id" class="btn btn-sm btn-outline-primary">Details</a>
-                        <a asp-page="/Employees/Edit" asp-route-id="@employee.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        @if(Model.Employees is null)
+        {
+            <p class="text-danger">Unable to load Employees</p>
+        }
+        else if(Model.Employees.Count==0)
+        {
+            <p class="text-danger">No employee found</p>
+        }
+        else
+        {
+            <tbody>
+                @foreach(var Employee in Model.Employees)
+                {
+                    <tr>
+                        <td>@Employee.FullName</td>
+                        <td>@Employee.CompanyName</td>
+                        <td>@string.Join(",",Employee.Roles)</td>
+                        <td>@Employee.Email</td>
+                        <td >
+                            <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-sm btn-outline-secondary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editModal"
+                                    data-id="@Employee.Id"
+                                    data-name="@Employee.FullName"
+                                    data-email="@Employee.Email"
+                                    data-username="@Employee.UserName"
+                                    data-rolename="@Employee.Roles.FirstOrDefault()">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            </div>
+                        </td>
+                        <td>
+                            <form method="post" asp-page-handler="ChangeStatus">
+                                <input type="hidden" name="id" value="@Employee.Id" />
+                                <input type="hidden" name="isActive" value="@(Employee.IsActive ? "false" : "true")" />
+                                @if (Employee.IsActive)
+                                {
+                                    
+                                    <button type="submit"
+                                            class="btn p-0 border-0 bg-transparent"
+                                            title="Deactivate Employee">
+                                        <i class="bi bi-toggle-on fs-4 text-success"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                   
+                                    <button type="submit"
+                                            class="btn p-0 border-0 bg-transparent"
+                                            title="Activate Employee">
+                                        <i class="bi bi-toggle-off fs-4"></i>
+                                    </button>
+                                }
+                            </form>
 
-    </body>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        }
+    </table>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="model-header">
+                <h5>Edit Employee</h5>
+            </div>
+            <form method="post" asp-page-handler="update">
+
+
+            <div class="modal-body">
+                <input asp-for=EditEmployee.Id type="hidden" id="Id" />
+
+                <div>
+                    <label>Full Name</label><br />
+                    <input asp-for="EditEmployee.FullName" placeholder="" id="FullName"/>
+                </div>
+                <div>
+                    <label>Email</label><br />
+                    <input asp-for="EditEmployee.Email" id="Email" />
+                </div>
+                <div>
+                        <input asp-for="EditEmployee.UserName" type="hidden" id="UserName" />
+                </div>
+                <div>
+                        <select asp-for="EditEmployee.RoleName"
+                                asp-items="Model.Role"
+                                class="form-select"
+                                id="RoleName">
+                        </select>
+                </div>
+                
+
+                
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        const modal = document.getElementById('editModal');
+
+        modal.addEventListener('show.bs.modal', function (event) {
+
+            const button = event.relatedTarget;
+
+            document.getElementById("Id").value =
+                button.getAttribute("data-id");
+
+            document.getElementById("FullName").value =
+                button.getAttribute("data-name");
+
+            document.getElementById("Email").value =
+                button.getAttribute("data-email");
+
+            document.getElementById("UserName").value =
+                button.getAttribute("data-username");
+
+            document.getElementById("RoleName").value =
+                button.getAttribute("data-rolename");
+
+        });
+    </script>
+}

@@ -8,7 +8,7 @@ using TaskTrackerDAL.Constants;
 
 namespace TaskTracker.Pages.Dashboard
 {
-    [AllowAnonymous]
+    //[Authorize]
     public class IndexModel : PageModel
     {
         private readonly IDashboardService _dashboardService;
@@ -20,7 +20,7 @@ namespace TaskTracker.Pages.Dashboard
         public AdminDashboardDto? AdminDashboard { get; set; }
         public ManagerDashboardDto? ManagerDashboard { get; set; }
         public EmployeeDashboardDto? EmployeeDashboard { get; set; }
-
+        
         public async Task<IActionResult> OnGetAsync()
         {
             if (User.IsInRole(AppRoles.Admin))

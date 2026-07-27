@@ -24,6 +24,9 @@ header {
     background: transparent;
     padding: 20px;
 }
+main{
+    padding-top:50px;
+}
 .wrapper {
     
     background-color:var(--color-bg-navbar);
@@ -146,4 +149,39 @@ body {
     font-family: "Inter", sans-serif;
     color: var(--color-text-primary);
     padding: 40px;
+}
+.llbtn {
+    height: 52px;
+    width: 150px;
+    background: #b6da61;
+    border-radius:5px;
+    border:1px;
+}
+    .llbtn:hover {
+        background: none;
+        border: 1px;
+        border-color: #b6da61;
+    }
+.lbtn {
+    color: var(--text) ;
+    border: 1px;
+    border-color: #b8e43d;
+    text-decoration: none;
+    font-size: large;
+    height:50px;
+    border-radius:5px;
+}
+
+    .lbtn:hover {
+        color: #b8e43d;
+        background: #fff;
+        border: 1px;
+        border-color: #b8e43d;
+    }
+
+/*Employee Index*/
+.dropdown {
+    height: 30px;
+    width: 143px;
+    margin-top: 15px;
 }

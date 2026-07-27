@@ -34,11 +34,11 @@ namespace TaskTracker.Pages.Employee
             return Page();
         }
 
-        public async Task<IActionResult> OnPostDisableAsync(int id)
+        /*public async Task<IActionResult> OnPostDisableAsync(int id)
         {
             var scopeCompanyId = GetScopeCompanyId();
 
-            var result = await _employeeService.DisableAsync(id, scopeCompanyId);
+           var result = await _employeeService.DisableAsync(id, scopeCompanyId);
 
             if (!result.Succeeded)
             {
@@ -51,7 +51,7 @@ namespace TaskTracker.Pages.Employee
             }
 
             return RedirectToPage("/Employees/Index");
-        }
+        }*/
 
         private int? GetScopeCompanyId()
         {

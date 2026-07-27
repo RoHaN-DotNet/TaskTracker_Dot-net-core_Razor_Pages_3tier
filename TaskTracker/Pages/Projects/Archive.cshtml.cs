@@ -7,7 +7,7 @@ using TaskTrackerDAL.Constants;
 
 namespace TaskTracker.Pages.Projects
 {
-    [Authorize(Roles = $"{AppRoles.Admin},{AppRoles.Manager}")]
+    //[Authorize(Roles = $"{AppRoles.Admin},{AppRoles.Manager}")]
     public class ArchiveModel : PageModel
     {
         private readonly IProjectService _projectService;

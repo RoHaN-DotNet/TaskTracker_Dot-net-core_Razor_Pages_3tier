@@ -44,13 +44,13 @@ namespace TaskTracker.Pages.Companies
 
         public async Task<IActionResult> OnPostAsync()
         {
+            
+
             var actingUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
-
             var result = await _companyService.UpdateAsync(Input,actingUserId);
 
             if (!result.Succeeded)

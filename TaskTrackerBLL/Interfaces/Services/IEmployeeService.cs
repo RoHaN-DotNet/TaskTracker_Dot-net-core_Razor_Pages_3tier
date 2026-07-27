@@ -11,13 +11,12 @@ namespace TaskTrackerBLL.Interfaces.Services
         Task<Result<EmployeeDto>> GetByIdAsync(int id, int? actingManagerCompanyId);
 
         Task<Result<IReadOnlyList<EmployeeDto>>> SearchAsync(
-            EmployeeSearchFilterDto filter,
-            int? actingManagerCompanyId);
+            EmployeeSearchFilterDto filter,int? actingManagerCompanyId);
 
         Task<Result<EmployeeDto>> RegisterAsync(SignupEmployeeDto dto, int actingUserCompanyId);
 
         Task<Result> UpdateAsync(EditEmployeeDto dto, int? actingManagerCompanyId);
 
-        Task<Result> DisableAsync(int id, int? actingManagerCompanyId);
+        Task<Result> DisableAsync(int id,bool isActive);
     }
 }

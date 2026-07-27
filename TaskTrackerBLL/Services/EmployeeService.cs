@@ -43,8 +43,7 @@ namespace TaskTrackerBLL.Services
         }
 
         public async Task<Result<IReadOnlyList<EmployeeDto>>> SearchAsync(
-            EmployeeSearchFilterDto filter,
-            int? actingManagerCompanyId)
+            EmployeeSearchFilterDto filter, int? actingManagerCompanyId)
         {
             var employees = await _unitOfWork.Users.SearchEmployeesAsync(
                 companyId: actingManagerCompanyId,
@@ -171,6 +170,7 @@ namespace TaskTrackerBLL.Services
             {
                 employee.UserRoles.Add(new UserRole { UserId = employee.Id, RoleId = newRole.Id });
             }
+           
 
             _unitOfWork.Users.Update(employee);
             await _unitOfWork.SaveChangesAsync();
@@ -178,7 +178,7 @@ namespace TaskTrackerBLL.Services
             return Result.Success();
         }
 
-        public async Task<Result> DisableAsync(int id, int? actingManagerCompanyId)
+        public async Task<Result> DisableAsync(int id,bool isActive)
         {
             var employee = await _unitOfWork.Users.GetByIdWithRolesAsync(id);
 
@@ -186,7 +186,7 @@ namespace TaskTrackerBLL.Services
             {
                 return Result.Failure($"Employee with ID {id} was not found.");
             }
-
+            /*
             if (actingManagerCompanyId.HasValue && employee.CompanyId != actingManagerCompanyId.Value)
             {
                 return Result.Failure("You are not authorized to disable this employee.");
@@ -196,8 +196,8 @@ namespace TaskTrackerBLL.Services
             {
                 return Result.Failure($"{employee.FullName} is already disabled.");
             }
-
-            employee.IsActive = false;
+            */
+            employee.IsActive = isActive;
             employee.UpdatedAt = DateTime.UtcNow;
 
             _unitOfWork.Users.Update(employee);

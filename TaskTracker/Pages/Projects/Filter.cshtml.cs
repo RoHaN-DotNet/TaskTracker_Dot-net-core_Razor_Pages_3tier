@@ -10,7 +10,7 @@ using TaskTrackerDAL.Constants;
 
 namespace TaskTracker.Pages.Projects
 {
-    [Authorize(Roles = $"{AppRoles.Admin},{AppRoles.Manager}")]
+    //[Authorize(Roles = $"{AppRoles.Admin},{AppRoles.Manager}")]
     public class FilterModel : PageModel
     {
         private readonly IProjectService _projectService;

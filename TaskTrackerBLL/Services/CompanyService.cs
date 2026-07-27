@@ -19,6 +19,7 @@ namespace TaskTrackerBLL.Services
             _auditService = auditService;
         }
 
+        //Gets All the information of a company(Name, Users,UserCount,Projects,ProjectCount) 
         public async Task<Result<CompanyDto>> GetByIdAsync(int id)
         {
             var company = await _unitOfWork.Companies.GetByIdWithUsersAsync(id);
@@ -34,7 +35,7 @@ namespace TaskTrackerBLL.Services
 
             return Result<CompanyDto>.Success(dto);
         }
-
+        //Brings all the Companys from db as a list
         public async Task<Result<IReadOnlyList<CompanyDto>>> GetAllAsync()
         {
             var companies = await _unitOfWork.Companies.GetAllAsync();
@@ -51,7 +52,7 @@ namespace TaskTrackerBLL.Services
 
             return Result<IReadOnlyList<CompanyDto>>.Success(dtos);
         }
-
+        //Search, Filter
         public async Task<Result<PagedResult<CompanyDto>>> SearchAsync(CompanySearchFilterDto filter)
         {
             var pageNumber = filter.PageNumber < 1 ? 1 : filter.PageNumber;
@@ -73,7 +74,7 @@ namespace TaskTrackerBLL.Services
 
             return Result<PagedResult<CompanyDto>>.Success(pagedResult);
         }
-
+        //Create Company and store the user Id of admin
         public async Task<Result<CompanyDto>> CreateAsync(CreateCompanyDto dto, int actingUserId)
         {
             var isUnique = await _unitOfWork.Companies.IsNameUniqueAsync(dto.Name);
@@ -99,7 +100,7 @@ namespace TaskTrackerBLL.Services
 
             return Result<CompanyDto>.Success(MapToDto(company, 0, 0));
         }
-
+        //Update Company and store the user id of admin
         public async Task<Result> UpdateAsync(UpdateCompanyDto dto, int actingUserId)
         {
             var company = await _unitOfWork.Companies.GetByIdAsync(dto.Id);
@@ -140,7 +141,7 @@ namespace TaskTrackerBLL.Services
 
             return Result.Success();
         }
-
+        //Deactive the company and store the id of the admin
         public async Task<Result> DeactivateAsync(int id, int actingUserId)
         {
             var company = await _unitOfWork.Companies.GetByIdAsync(id);
@@ -158,7 +159,7 @@ namespace TaskTrackerBLL.Services
 
             return Result.Success();
         }
-
+        //Delete the company with no users and projects and store the admin id
         public async Task<Result> DeleteAsync(int id,int actingUserId)
         {
             var company = await _unitOfWork.Companies.GetByIdAsync(id);
@@ -185,7 +186,7 @@ namespace TaskTrackerBLL.Services
 
             return Result.Success();
         }
-
+        //Get company information like completed tasks, inprogress tasks etc
         public async Task<Result<CompanyStatisticsDto>> GetStatisticsAsync(int id)
         {
             var company = await _unitOfWork.Companies.GetByIdAsync(id);
@@ -233,7 +234,7 @@ namespace TaskTrackerBLL.Services
 
             return Result<CompanyStatisticsDto>.Success(dto);
         }
-
+        //converts company model into CompanyDto
         private static CompanyDto MapToDto(Company company, int totalUsers, int totalProjects)
         {
             return new CompanyDto

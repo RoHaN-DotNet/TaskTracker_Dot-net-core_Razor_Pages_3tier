@@ -3,27 +3,41 @@
 @{
     ViewData["Title"] = "Companies";
 }
-
+<div class="d-flex justify-content-between mt-lg-3">
+    <div>
         <h1>Companies</h1>
-
-<a asp-page="/Companies/Create" class="btn btn-primary mb-3">Create Company</a>
-
-<form method="get" class="row g-2 mb-4">
-    <div class="col-auto">
-        <input asp-for="Filter.SearchTerm" class="form-control" placeholder="Search name or email" />
     </div>
-    <div class="col-auto">
-        <select asp-for="Filter.IsActive" class="form-select">
-            <option value="">All Statuses</option>
-            <option value="true">Active</option>
-            <option value="false">Inactive</option>
-        </select>
+    <div class="ps-md-2">
+        <form method="get" id="searchForm" class="column-gap-2 m-2">
+           <div class="">
+              <select asp-for="Filter.IsActive" class="form-select">
+              <option value="">All Statuses</option>
+              <option value="true">Active</option>
+              <option value="false">Inactive</option>
+              </select>
+           </div>
+           <input type="hidden" asp-for="Filter.PageNumber" value="1" />
+        </form>
     </div>
-    <input type="hidden" asp-for="Filter.PageNumber" value="1" />
-    <div class="col-auto">
-        <button type="submit" class="btn btn-secondary">Search</button>
-    </div>
-</form>
+</div>
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <form method="get" id="searchForm" class="column-gap-2">
+                        <div class="col-auto">
+                            <input asp-for="Filter.SearchTerm" id="searchBox"class="form-control"placeholder="Search name or email" />
+                        </div>
+                        <input type="hidden" asp-for="Filter.PageNumber" value="1" />
+                    </form>
+                </th>
+                <th>Email</th>
+                <th>Users</th>
+                <th>Projects</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
 
 @if (Model.Result is null)
 {
@@ -35,18 +49,7 @@ else if (Model.Result.Items.Count == 0)
 }
 else
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Users</th>
-                <th>Projects</th>
-                <th>Status</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+     <tbody>
             @foreach (var company in Model.Result.Items)
             {
                 <tr>
@@ -71,7 +74,8 @@ else
                 </tr>
             }
         </tbody>
-    </table>
+}
+</table>
 
     <nav>
         <ul class="pagination">
@@ -106,8 +110,33 @@ else
                     Next
                 </a>
             </li>
+            
         </ul>
     </nav>
+    <div class="d-flex justify-content-end mb-3">
+    <a asp-page="/Companies/Create" class="btn btn-primary">
+        Create Company
+    </a>
+    </div>
+    
+@section Scripts
+{
+    <script>
+        let timer;
+
+        const form = document.getElementById("searchForm");
+        const searchBox = document.getElementById("searchBox");
+        const status = document.querySelector("select[name='Filter.IsActive']");
+
+        searchBox.addEventListener("input", function () {
+            clearTimeout(timer);
+            timer = setTimeout(() => form.submit(), 1000);
+        });
+
+        status.addEventListener("change", function () {
+            form.submit();
+        });
+    </script>
 }
 
  

@@ -8,7 +8,7 @@ namespace TaskTracker.Pages.Account
 {
     public class SignupModel : PageModel
     {
-        /*private readonly IAuthService _authService;
+        private readonly IAuthService _authService;
         private readonly IPasswordHasher _passwordHasher;
 
         public SignupModel(IAuthService authService, IPasswordHasher passwordHasher)
@@ -36,7 +36,7 @@ namespace TaskTracker.Pages.Account
             }
 
             return RedirectToPage("/Account/Login");
-        }*/
+        }
 
     }
 }
