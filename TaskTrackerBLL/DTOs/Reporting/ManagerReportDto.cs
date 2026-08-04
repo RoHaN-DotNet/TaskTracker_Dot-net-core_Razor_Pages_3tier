@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TaskTrackerBLL.DTOs.Task;
+
 using TaskTrackerBLL.DTOs.Tasks;
 
 namespace TaskTrackerBLL.DTOs.Reporting

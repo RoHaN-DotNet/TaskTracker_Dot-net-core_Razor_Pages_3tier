@@ -159,9 +159,9 @@ namespace TaskTrackerBLL.Services
             return result;
         }
 
-        private async Task<IReadOnlyList<TaskTrackerBLL.DTOs.Task.TaskDto>> MapTasksAsync(IEnumerable<int> taskIds)
+        private async Task<IReadOnlyList<TaskTrackerBLL.DTOs.Tasks.TaskDto>> MapTasksAsync(IEnumerable<int> taskIds)
         {
-            var dtos = new List<TaskTrackerBLL.DTOs.Task.TaskDto>();
+            var dtos = new List<TaskTrackerBLL.DTOs.Tasks.TaskDto>();
             foreach (var id in taskIds)
             {
                 var result = await _taskService.GetByIdAsync(id);

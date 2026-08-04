@@ -10,7 +10,7 @@ using TaskTrackerDAL.Constants;
 
 namespace TaskTracker.Pages.Tasks
 {
-    [Authorize(Roles = $"{AppRoles.Admin},{AppRoles.Manager}")]
+    //[Authorize(Roles = $"{AppRoles.Admin},{AppRoles.Manager}")]
     public class AssignModel : PageModel
     {
         private readonly ITaskService _taskService;

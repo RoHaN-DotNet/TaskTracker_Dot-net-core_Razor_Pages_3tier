@@ -9,11 +9,11 @@ namespace TaskTrackerBLL.Interfaces.Services
     public interface IEmployeeService
     {
         Task<Result<EmployeeDto>> GetByIdAsync(int id, int? actingManagerCompanyId);
-
+        Task<Result<IReadOnlyList<EmployeeDto>>> GetAllAsync(int? companyId);
         Task<Result<IReadOnlyList<EmployeeDto>>> SearchAsync(
             EmployeeSearchFilterDto filter,int? actingManagerCompanyId);
 
-        Task<Result<EmployeeDto>> RegisterAsync(SignupEmployeeDto dto, int actingUserCompanyId);
+        Task<Result<EmployeeDto>> RegisterAsync(SignupEmployeeDto dto, int? actingUserCompanyId);
 
         Task<Result> UpdateAsync(EditEmployeeDto dto, int? actingManagerCompanyId);
 

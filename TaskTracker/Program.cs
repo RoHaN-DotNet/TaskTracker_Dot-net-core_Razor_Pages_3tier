@@ -8,7 +8,7 @@ using TaskTrackerDAL.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
-
+builder.Services.AddControllers();
 //Add services to the container.
 /*builder.Services.AddRazorPages(options =>
 {
@@ -88,5 +88,5 @@ app.UseAuthorization();
 app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
-
+app.MapControllers();
 app.Run();

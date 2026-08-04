@@ -4,7 +4,7 @@ using System.Text;
 using TaskTrackerBLL.DTOs.Company;
 using TaskTrackerBLL.DTOs.Employee;
 using TaskTrackerBLL.DTOs.Project;
-using TaskTrackerBLL.DTOs.Task;
+using TaskTrackerBLL.DTOs.Tasks;
 
 namespace TaskTrackerBLL.DTOs.Dashboard
 {

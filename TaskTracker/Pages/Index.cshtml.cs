@@ -7,7 +7,7 @@ namespace TaskTracker.Pages
     {
         public IActionResult OnGet()
         {
-            return RedirectToPage("/Employees/Index");
+            return RedirectToPage("/LandingPage/Home");
 
         }
     }

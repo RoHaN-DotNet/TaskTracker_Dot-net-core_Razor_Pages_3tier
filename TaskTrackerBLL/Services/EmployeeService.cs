@@ -41,7 +41,24 @@ namespace TaskTrackerBLL.Services
 
             return Result<EmployeeDto>.Success(dto);
         }
+        public async Task<Result<IReadOnlyList<EmployeeDto>>> GetAllAsync(int? companyId)
+        {
+            IReadOnlyList<User> employees;
 
+            if (companyId.HasValue)
+                employees = await _unitOfWork.Users.GetByCompanyIdAsync(companyId.Value);
+            else
+                employees = await _unitOfWork.Users.GetAllAsync();
+
+            var dtos = new List<EmployeeDto>();
+
+            foreach (var employee in employees)
+            {
+                dtos.Add(await MapToDtoAsync(employee));
+            }
+
+            return Result<IReadOnlyList<EmployeeDto>>.Success(dtos);
+        }
         public async Task<Result<IReadOnlyList<EmployeeDto>>> SearchAsync(
             EmployeeSearchFilterDto filter, int? actingManagerCompanyId)
         {
@@ -60,20 +77,20 @@ namespace TaskTrackerBLL.Services
             return Result<IReadOnlyList<EmployeeDto>>.Success(dtos);
         }
 
-        public async Task<Result<EmployeeDto>> RegisterAsync(SignupEmployeeDto dto, int actingUserCompanyId)
+        public async Task<Result<EmployeeDto>> RegisterAsync(SignupEmployeeDto dto, int? actingUserCompanyId)
         {
             if (!AppRoles.EmployeeRoles.Contains(dto.RoleName))
             {
                 return Result<EmployeeDto>.Failure(
                     $"'{dto.RoleName}' is not a valid employee role.");
             }
-
+            /*
             var company = await _unitOfWork.Companies.GetByIdAsync(actingUserCompanyId);
             if (company is null)
             {
                 return Result<EmployeeDto>.Failure("Your company could not be found.");
             }
-
+            */
             var isEmailUnique = await _unitOfWork.Users.IsEmailUniqueAsync(dto.Email);
             if (!isEmailUnique)
             {
@@ -95,12 +112,16 @@ namespace TaskTrackerBLL.Services
 
             var employee = new User
             {
-                CompanyId = actingUserCompanyId,
+                CompanyId = dto.CompanyId,
                 FullName = dto.FullName,
                 Email = dto.Email,
-                UserName = dto.UserName,
+                UserName = dto.FullName
+                           .Trim()
+                           .ToLower(),
+
+
                 PasswordHash = _passwordHasher.HashPassword(dto.Password),
-                IsActive = true
+                IsActive = dto.isActive
             };
 
             employee.UserRoles.Add(new UserRole
@@ -110,8 +131,10 @@ namespace TaskTrackerBLL.Services
 
             await _unitOfWork.Users.AddAsync(employee);
             await _unitOfWork.SaveChangesAsync();
+            //new line
+            var savedEmployee = await _unitOfWork.Users.GetByIdWithRolesAsync(employee.Id);
 
-            var dtoResult = await MapToDtoAsync(employee);
+            var dtoResult = await MapToDtoAsync(savedEmployee);
 
             return Result<EmployeeDto>.Success(dtoResult);
         }
@@ -124,11 +147,11 @@ namespace TaskTrackerBLL.Services
             {
                 return Result.Failure($"Employee with ID {dto.Id} was not found.");
             }
-
+            /*
             if (actingManagerCompanyId.HasValue && employee.CompanyId != actingManagerCompanyId.Value)
             {
                 return Result.Failure("You are not authorized to edit this employee.");
-            }
+            }*/
 
             if (!AppRoles.EmployeeRoles.Contains(dto.RoleName))
             {

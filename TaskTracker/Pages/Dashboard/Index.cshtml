@@ -7,41 +7,43 @@
 
 @if (User.IsInRole(AppRoles.Admin))
 {
-    <div class="container mt-xxl-5">
+    <div class="container-fluid h-100 mt-5 px-4">
+
         <h2>Admin Dashboard</h2>
         <hr />
 
-        <div class="row">
+        <div class="row g-4">
 
-            <div class="col-md-3">
-                <div class="card p-3">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card h-100 p-4">
                     <h5>Total Companies</h5>
                     <h2>@Model.AdminDashboard?.TotalCompanies</h2>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="card p-3">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card h-100 p-4">
                     <h5>Total Users</h5>
                     <h2>@Model.AdminDashboard?.TotalUsers</h2>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="card p-3">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card h-100 p-4">
                     <h5>Total Projects</h5>
                     <h2>@Model.AdminDashboard?.TotalProjects</h2>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="card p-3">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card h-100 p-4">
                     <h5>Total Tasks</h5>
                     <h2>@Model.AdminDashboard?.TotalTasks</h2>
                 </div>
             </div>
 
         </div>
+
     </div>
 
 }

@@ -21,7 +21,7 @@ namespace TaskTrackerDAL.Repositories
             return await _context.Projects
                 .Include(p => p.ProjectMembers)
                     .ThenInclude(pm => pm.User)
-                .AsNoTracking()
+                //.AsNoTracking()
                 .SingleOrDefaultAsync(p => p.Id == projectId);
         }
 
@@ -45,10 +45,12 @@ namespace TaskTrackerDAL.Repositories
         public async Task<IReadOnlyList<Project>> GetByMemberUserIdAsync(int userId)
         {
             return await _context.Projects
-                .AsNoTracking()
-                .Where(p => p.ProjectMembers.Any(pm => pm.UserId == userId))
-                .OrderByDescending(p => p.CreatedAt)
-                .ToListAsync();
+    .Include(p => p.ProjectMembers)
+        .ThenInclude(pm => pm.User)
+    .AsNoTracking()
+    .Where(p => p.ProjectMembers.Any(pm => pm.UserId == userId))
+    .OrderByDescending(p => p.CreatedAt)
+    .ToListAsync();
         }
 
         public async Task<int> CountByStatusAsync(int companyId, ProjectStatus status)
@@ -72,7 +74,11 @@ namespace TaskTrackerDAL.Repositories
             int pageNumber,
             int pageSize)
         {
-            var query = _context.Projects.AsNoTracking().AsQueryable();
+            var query = _context.Projects
+    .Include(p => p.ProjectMembers)
+        .ThenInclude(pm => pm.User)
+    .AsNoTracking()
+    .AsQueryable();
 
             if (companyId.HasValue)
             {
@@ -116,6 +122,10 @@ namespace TaskTrackerDAL.Repositories
             if (enforcedCompanyId.HasValue)
             {
                 query = query.Where(p => p.CompanyId == enforcedCompanyId.Value);
+            }
+            if (companyId.HasValue)
+            {
+                query = query.Where(p => p.CompanyId == companyId.Value);
             }
             // User-chosen filters — narrow further within whatever the boundary above allows.
             if (companyId.HasValue)

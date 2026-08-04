@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using TaskTrackerDAL.Models.Enums;
 
-namespace TaskTrackerBLL.DTOs.Task
+namespace TaskTrackerBLL.DTOs.Tasks
 {
-    public class UpdateTaskStatusDto
+    public class UpdateTaskDto
     {
         [Required]
         public int Id { get; set; }

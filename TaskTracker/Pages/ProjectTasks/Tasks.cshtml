@@ -1,0 +1,528 @@
+﻿@page
+@model TaskTracker.Pages.ProjectTasks.TasksModel
+@{
+}
+<form id="antiForgeryForm" method="post">
+    @Html.AntiForgeryToken()
+</form>
+@using TaskTrackerDAL.Models.Enums
+
+@{
+    ViewData["Title"] = "Tasks";
+}
+<div class="container-fluid">
+    <!--Header-->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold mb-0">Task Board</h2>
+            <small class="text-muted">Drag tasks between columns</small>
+        </div>
+        <button type="button"
+                class="btn btn-success create-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#createTaskModal">
+            <i class="bi bi-plus-circle"></i>
+            Create Task
+        </button>
+
+    </div>
+    <!--Filter Remaining-->
+    <div>
+
+    </div>
+    <!--Kanbar Board-->
+    <div class="row g-3 justify-content-around">
+        <!-- NOT STARTED -->
+        <div class="col-lg-2" style="width:250px;">
+            <div class="kanban-column">
+                <div class="kanban-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <span class="status-dot"></span>
+                            <h5 class="ms-2 mb-0">
+                                Not Started
+                            </h5>
+                        </div>
+                        <span class="task-count">
+                            @Model.NotStartedTasks.Count
+                        </span>
+                    </div>
+                </div>
+                <div class="kanban-body"
+                     id="NotStarted"
+                     data-status="@((int)ProjectTasksStatus.NotStarted)">
+                    @foreach (var task in Model.NotStartedTasks)
+                    {
+                        <partial name="_TaskCard" model="task" />
+                    }
+                </div>
+            </div>
+        </div>
+        @if (Model.IsManager || Model.IsEmployee)
+        {
+            <!--In Progress-->
+            <div class="col-lg-2" style="width:250px;">
+                <div class="kanban-column">
+                    <div class="kanban-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <span class="status-dot"></span>
+                                <h5 class="ms-2 mb-0">
+                                    In Progress
+                                </h5>
+                            </div>
+                            <span class="task-count">
+                                @Model.InProgressTasks.Count
+                            </span>
+                        </div>
+                    </div>
+                    <div class="kanban-body"
+                    id="InProgress"
+                    data-status="@((int)ProjectTasksStatus.InProgress)">
+                        @foreach (var task in Model.InProgressTasks)
+                        {
+                            <partial name="_TaskCard" model="task" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <!--On Hold-->
+            <div class="col-lg-2" style="width:250px;">
+                <div class="kanban-column">
+                    <div class="kanban-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <span class="status-dot"></span>
+                                <h5 class="ms-2 mb-0">
+                                    On Hold
+                                </h5>
+                            </div>
+                            <span class="task-count">
+                                @Model.OnHoldTasks.Count
+                            </span>
+                        </div>
+                    </div>
+                    <div class="kanban-body"
+                    id="OnHold"
+                    data-status="@((int)ProjectTasksStatus.OnHold)">
+                        @foreach (var task in Model.OnHoldTasks)
+                        {
+                            <partial name="_TaskCard" model="task" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <!--Completed-->
+            <div class="col-lg-2" style="width:250px;">
+                <div class="kanban-column">
+                    <div class="kanban-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <span class="status-dot"></span>
+                                <h5 class="ms-2 mb-0">
+                                    Completed
+                                </h5>
+                            </div>
+                            <span class="task-count">
+                                @Model.CompletedTasks.Count
+                            </span>
+                        </div>
+                    </div>
+                    <div class="kanban-body"
+                    id="Completed"
+                    data-status="@((int)ProjectTasksStatus.Completed)">
+                        @foreach (var task in Model.CompletedTasks)
+                        {
+                            <partial name="_TaskCard" model="task" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <!--Cancelled-->
+            <div class="col-lg-2" style="width:250px;">
+                <div class="kanban-column">
+                    <div class="kanban-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <span class="status-dot"></span>
+                                <h5 class="ms-2 mb-0">
+                                    Cancelled
+                                </h5>
+                            </div>
+                            <span class="task-count">
+                                @Model.CancelledTasks.Count
+                            </span>
+                        </div>
+                    </div>
+                    <div class="kanban-body"
+                         id="Cancelled"
+                         data-status="@((int)ProjectTasksStatus.Cancelled)">
+                        @foreach (var task in Model.CancelledTasks)
+                        {
+                            <partial name="_TaskCard" model="task" />
+                        }
+                    </div>
+                </div>
+            </div>
+            @if (Model.IsManager)
+            {
+                <!--Archived-->
+                <div class="" style="width:250px;">
+                    <div class="kanban-column">
+                        <div class="kanban-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <span class="status-dot"></span>
+                                    <h5 class="ms-2 mb-0">
+                                        Archived
+                                    </h5>
+                                </div>
+                                <span class="task-count">
+                                    @Model.ArchivedTasks.Count
+                                </span>
+                            </div>
+                        </div>
+                        <div class="kanban-body"
+                             id="Archived"
+                             data-status="@((int)ProjectTasksStatus.Archived)">
+                            @foreach (var task in Model.ArchivedTasks)
+                            {
+                                <partial name="_TaskCard" model="task" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <!---->
+    </div>
+</div>
+<!--Create Task Modal-->
+<div class="modal fade" id="createTaskModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Create Task</h4>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" asp-page-handler="CreateTask">
+                <div class="modal-body">             
+                    <div class="mt-3">                
+                        <label class="form-label fw-bold">
+                            Project
+                        </label>
+                        <select asp-for="createTask.ProjectId"
+                                class="form-select"
+                                id="projectSelect">
+
+                            <option value="">-- Select Project --</option>
+
+                            @foreach (var project in Model.Projects)
+                            {
+                                <option value="@project.Id">
+                                    @project.Name
+                                </option>
+                            }
+
+                        </select>
+
+                        <span asp-validation-for="createTask.ProjectId" class="text-danger"></span>
+                    </div>   
+                    <div class="mb-3">
+                        <label asp-for="createTask.Title"></label>
+                        <input asp-for="createTask.Title" class="form-control" />
+                        <span asp-validation-for="createTask.Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="createTask.Description"></label>
+                        <textarea asp-for="createTask.Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="createTask.Description" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="createTask.DueDate"></label>
+                        <input asp-for="createTask.DueDate" type="date" class="form-control"/>
+                        <span asp-validation-for="createTask.DueDate" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <input asp-for="createTask.Priority" type="hidden" />
+                    </div>
+                    <div class="mt-3">
+                        <label class="form-label fw-bold">Assign To</label>
+                        <div class="border-rounded-3 p-3" style="max-height:200px; overflow-y:auto;">
+                        @foreach(var employee in Model.AllEmployees)
+                            {
+                              <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="createTask.AssignedToUserId" value="@employee.Id" id="create_emp_@employee.Id" />
+                                <label class="form-check-label" for="create_emp_@employee.Id">
+                                    <strong>@employee.FullName</strong>
+                                    <span class="text-secondary">[@string.Join(", ",employee.Roles)]</span>
+                                </label>
+                              </div>  
+                            }
+                         </div>
+                    </div>
+                </div>
+            
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    
+    <script>
+/*
+let draggedCard = null;
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Make cards draggable
+    document.querySelectorAll(".task-card").forEach(card => {
+
+        card.addEventListener("dragstart", function (e) {
+
+            draggedCard = this;
+
+            e.dataTransfer.setData("taskId", this.dataset.id);
+
+            setTimeout(() => {
+                this.classList.add("dragging");
+            }, 0);
+
+        });
+
+        card.addEventListener("dragend", function () {
+
+            this.classList.remove("dragging");
+
+            draggedCard = null;
+
+        });
+
+    });
+
+    // Every Column
+    document.querySelectorAll(".kanban-body").forEach(column => {
+
+        column.addEventListener("dragover", function (e) {
+
+            e.preventDefault();
+
+            this.classList.add("drag-over");
+
+        });
+
+        column.addEventListener("dragleave", function () {
+
+            this.classList.remove("drag-over");
+
+        });
+
+        column.addEventListener("drop", function (e) {
+
+            e.preventDefault();
+
+            this.classList.remove("drag-over");
+
+            const taskId = parseInt(e.dataTransfer.getData("taskId"));
+
+            const newStatus = parseInt(this.dataset.status);
+
+            fetch("?handler=UpdateTaskStatus", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "RequestVerificationToken":
+                        document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+
+                body: JSON.stringify({
+
+                    taskId: taskId,
+                    newStatus: newStatus
+
+                })
+
+            })
+
+            .then(response => {
+
+                if (!response.ok) {
+                    throw new Error("Server Error");
+                }
+
+                return response.json();
+
+            })
+
+            .then(result => {
+
+                if (result.success) {
+
+                    this.appendChild(draggedCard);
+
+                }
+                else {
+
+                    alert(result.message);
+
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+                alert("Something went wrong.");
+
+            });
+
+        });
+
+    });
+
+});
+*/
+        
+            let draggedCard = null;
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Make every task card draggable
+            document.querySelectorAll(".task-card").forEach(card => {
+
+                card.addEventListener("dragstart", function (e) {
+
+                    draggedCard = this;
+
+                    e.dataTransfer.setData("taskId", this.dataset.id);
+
+                    setTimeout(() => {
+                        this.classList.add("dragging");
+                    }, 0);
+                });
+
+                card.addEventListener("dragend", function () {
+
+                    this.classList.remove("dragging");
+                    draggedCard = null;
+
+                });
+
+            });
+
+            // Make every column droppable
+            document.querySelectorAll(".kanban-body").forEach(column => {
+
+                column.addEventListener("dragover", function (e) {
+
+                    e.preventDefault();
+                    this.classList.add("drag-over");
+
+                });
+
+                column.addEventListener("dragleave", function () {
+
+                    this.classList.remove("drag-over");
+
+                });
+
+                column.addEventListener("drop", function (e) {
+
+                    e.preventDefault();
+                    this.classList.remove("drag-over");
+
+                    const taskId = parseInt(e.dataTransfer.getData("taskId"));
+                    const newStatus = parseInt(this.dataset.status);
+
+                    const token = document.querySelector('input[name="__RequestVerificationToken"]');
+
+                    fetch("?handler=UpdateTaskStatus", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json",
+                            ...(token && {
+                                "RequestVerificationToken": token.value
+                            })
+                        },
+
+                        body: JSON.stringify({
+                            taskId: taskId,
+                            newStatus: newStatus
+                        })
+
+                    })
+                        .then(response => {
+
+                            if (!response.ok) {
+                                throw new Error("Server Error");
+                            }
+
+                            return response.json();
+
+                        })
+                        .then(result => {
+
+                            if (result.success) {
+
+                                // Reload page so the new status and counts come from DB
+                                window.location.reload();
+
+                            }
+                            else {
+
+                                alert(result.message);
+
+                            }
+
+                        })
+                        .catch(error => {
+
+                            console.error(error);
+                            alert("Something went wrong.");
+
+                        });
+
+                });
+
+            });
+
+        });
+
+        //create task
+        document.querySelector("#createTaskModal form")
+            .addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                const form = this;
+
+                const formData = new FormData(form);
+
+                fetch("?handler=CreateTask", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "RequestVerificationToken":
+                            document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                    .then(r => r.text())
+                    .then(() => {
+                        location.reload();
+                    });
+
+            });
+    </script>
+
+}

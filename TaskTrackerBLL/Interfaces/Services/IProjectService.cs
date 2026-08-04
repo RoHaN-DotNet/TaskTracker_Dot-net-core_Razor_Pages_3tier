@@ -9,7 +9,7 @@ namespace TaskTrackerBLL.Interfaces.Services
     public interface IProjectService
     {
         Task<Result<ProjectDto>> GetByIdAsync(int id, int? actingManagerCompanyId);
-
+        Task<Result<IReadOnlyList<ProjectDto>>> GetAllAsync(int? companyId);
         Task<Result<IReadOnlyList<ProjectDto>>> GetByMemberUserIdAsync(int userId);
 
         Task<Result<PagedResult<ProjectDto>>> SearchAsync(ProjectSearchFilterDto filter,int? actingManagerCompanyId);

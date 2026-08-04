@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TaskTrackerDAL.Models;
 using TaskTrackerDAL.Models.Enums;
 
 namespace TaskTrackerBLL.DTOs.Project
@@ -30,5 +31,6 @@ namespace TaskTrackerBLL.DTOs.Project
         public int TeamMemberCount { get; set; }
 
         public DateTime CreatedAt { get; set; }
+        public List<ProjectMemberDto> Members { get; set; } = new();
     }
 }

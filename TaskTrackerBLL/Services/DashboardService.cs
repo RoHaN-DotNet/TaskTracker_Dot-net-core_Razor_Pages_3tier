@@ -118,7 +118,7 @@ namespace TaskTrackerBLL.Services
             var dueTodayEntities = await _unitOfWork.Tasks.GetDueTodayAsync(companyId, userId: null);
             var recentEntities = await _unitOfWork.Tasks.GetRecentAsync(companyId, count: 10);
 
-            var dueToday = new List<TaskTrackerBLL.DTOs.Task.TaskDto>();
+            var dueToday = new List<TaskTrackerBLL.DTOs.Tasks.TaskDto>();
             foreach (var task in dueTodayEntities)
             {
                 var taskResult = await _taskService.GetByIdAsync(task.Id);
@@ -128,7 +128,7 @@ namespace TaskTrackerBLL.Services
                 }
 
             }
-            var recent = new List<TaskTrackerBLL.DTOs.Task.TaskDto>();
+            var recent = new List<TaskTrackerBLL.DTOs.Tasks.TaskDto>();
             foreach(var task in recentEntities)
             {
                 var taskResult = await _taskService.GetByIdAsync(task.Id);
@@ -153,7 +153,7 @@ namespace TaskTrackerBLL.Services
             var projects = projectsResult.Succeeded ? projectsResult.Value! : Array.Empty<TaskTrackerBLL.DTOs.Project.ProjectDto>();
 
             var tasksResult = await _taskService.GetByAssignedUserIdAsync(userId);
-            var allTasks = tasksResult.Succeeded ? tasksResult.Value! : Array.Empty<TaskTrackerBLL.DTOs.Task.TaskDto>();
+            var allTasks = tasksResult.Succeeded ? tasksResult.Value! : Array.Empty<TaskTrackerBLL.DTOs.Tasks.TaskDto>();
 
             var completedTasks = allTasks.Where(t => t.Status == ProjectTasksStatus.Completed).ToList();
             var pendingTasks = allTasks.Where(t => t.Status == ProjectTasksStatus.NotStarted).ToList();

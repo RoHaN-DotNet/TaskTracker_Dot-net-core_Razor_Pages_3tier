@@ -22,7 +22,7 @@ namespace TaskTracker.Middlewares
             catch(Exception ex)
             {
                 _logger.LogError(ex, "Unhandled exception occured");
-                //throw;
+                throw;
                 context.Response.StatusCode = 500;
                 context.Response.ContentType = "text/html";
                 await context.Response.WriteAsync("<h2>Something went wrong. Please try again later.</h2>");

@@ -39,6 +39,24 @@ namespace TaskTrackerBLL.Services
 
             return Result<ProjectDto>.Success(dto);
         }
+        public async Task<Result<IReadOnlyList<ProjectDto>>> GetAllAsync(int? companyId)
+        {
+            IReadOnlyList<Project> projects;
+
+            if (companyId.HasValue)
+                projects = await _unitOfWork.Projects.GetByCompanyIdAsync(companyId.Value);
+            else
+                projects = await _unitOfWork.Projects.GetAllAsync();
+
+            var dtos = new List<ProjectDto>();
+
+            foreach (var project in projects)
+            {
+                dtos.Add(await BuildDtoAsync(project));
+            }
+
+            return Result<IReadOnlyList<ProjectDto>>.Success(dtos);
+        }
 
         public async Task<Result<IReadOnlyList<ProjectDto>>> GetByMemberUserIdAsync(int userId)
         {
@@ -212,7 +230,7 @@ namespace TaskTrackerBLL.Services
 
         public async Task<Result> AddMemberAsync(AssignProjectMemberDto dto, int actingUserId, int? actingManagerCompanyId)
         {
-            var project = await _unitOfWork.Projects.GetByIdAsync(dto.ProjectId);
+            var project = await _unitOfWork.Projects.GetByIdWithMembersAsync(dto.ProjectId);
             if (project is null)
             {
                 return Result.Failure($"Project with ID {dto.ProjectId} was not found.");
@@ -242,7 +260,7 @@ namespace TaskTrackerBLL.Services
 
             project.ProjectMembers.Add(new ProjectMember { ProjectId = dto.ProjectId, UserId = dto.UserId });
 
-            _unitOfWork.Projects.Update(project);
+            //_unitOfWork.Projects.Update(project);
             await _unitOfWork.SaveChangesAsync();
 
             await _auditService.LogAssignedAsync(
@@ -301,7 +319,14 @@ namespace TaskTrackerBLL.Services
                 TotalTasks = totalTasks,
                 CompletedTasks = completedTasks,
                 TeamMemberCount = project.ProjectMembers.Count,
-                CreatedAt = project.CreatedAt
+                CreatedAt = project.CreatedAt,
+                Members=project.ProjectMembers.Select(pm=> new ProjectMemberDto
+                {
+                    UserId = pm.UserId,
+                    FullName = pm.User.FullName
+
+                }).ToList()
+                
             };
         }
         public async Task<Result<PagedResult<ProjectDto>>> FilterAsync(

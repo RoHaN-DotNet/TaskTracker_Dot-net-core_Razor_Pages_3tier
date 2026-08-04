@@ -6,7 +6,7 @@ namespace TaskTrackerDAL.Interfaces.Generic
 {
     public interface IGenericFeature<T> where T : class
     {
-        Task<T?> GetByIdAsync(int id);
+        Task<T?> GetByIdAsync(int? id);
 
         Task<IReadOnlyList<T>> GetAllAsync();
 

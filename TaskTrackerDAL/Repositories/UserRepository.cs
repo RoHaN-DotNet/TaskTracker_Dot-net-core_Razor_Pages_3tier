@@ -34,7 +34,8 @@ namespace TaskTrackerDAL.Repositories
             return await _context.Users
                 .Include(u => u.UserRoles)
                     .ThenInclude(ur => ur.Role)
-                
+                    .AsNoTracking()
+
                 .SingleOrDefaultAsync(u => u.Id == userId);
         }
 
@@ -85,6 +86,9 @@ namespace TaskTrackerDAL.Repositories
                     ur.Role.Name == "Developer" ||
                     ur.Role.Name == "Tester" ||
                     ur.Role.Name == "Debugger" ||
+                    ur.Role.Name == "UI/UX" ||
+                    ur.Role.Name == "Team Lead"||
+                    ur.Role.Name == "Manager" ||
                     ur.Role.Name == "Designer"));
 
             if (companyId.HasValue)

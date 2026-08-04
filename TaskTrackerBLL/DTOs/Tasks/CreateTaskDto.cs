@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using TaskTrackerDAL.Models.Enums;
 
-namespace TaskTrackerBLL.DTOs.Task
+namespace TaskTrackerBLL.DTOs.Tasks
 {
     public class CreateTaskDto
     {

@@ -13,6 +13,7 @@ namespace TaskTrackerBLL.DTOs.Tasks
 
         public int? ProjectId {  get; set; }
         public int? CompanyId { get; set; }
+        public string? SearchTerm { get; set; }
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
     }

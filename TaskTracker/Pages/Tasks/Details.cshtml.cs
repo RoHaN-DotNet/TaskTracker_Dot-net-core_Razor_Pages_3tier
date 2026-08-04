@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using TaskTrackerBLL.Authorization;
-using TaskTrackerBLL.DTOs.Task;
+
 using TaskTrackerBLL.DTOs.Tasks;
 using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerBLL.Services;
@@ -81,9 +81,9 @@ namespace TaskTracker.Pages.Tasks
         public async Task<IActionResult> OnPostChangeStatusAsync(int id, ProjectTasksStatus newStatus)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-
-            var dto = new UpdateTaskStatusDto { Id = id, Status = newStatus };
-            var result = await _taskService.ChangeStatusAsync(dto, userId);
+            bool isManager = User.IsInRole(AppRoles.Manager);
+            var dto = new MoveTaskStatusDto { TaskId = id, NewStatus = newStatus };
+            var result = await _taskService.ChangeStatusAsync(dto, userId,isManager);
 
             if (!result.Succeeded)
             {

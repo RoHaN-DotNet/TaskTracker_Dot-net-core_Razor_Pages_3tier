@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using TaskTrackerBLL.Common;
-using TaskTrackerBLL.DTOs.Task;
 using TaskTrackerBLL.DTOs.Tasks;
 
 namespace TaskTrackerBLL.Interfaces.Services
@@ -29,7 +28,7 @@ namespace TaskTrackerBLL.Interfaces.Services
 
         Task<Result> ChangePriorityAsync(ChangePriorityDto dto, int? actingManagerCompanyId);
 
-        Task<Result> ChangeStatusAsync(UpdateTaskStatusDto dto, int actingUserId);
+        Task<Result> ChangeStatusAsync(MoveTaskStatusDto dto, int actingUserId,bool isManager);
 
         Task<Result<IReadOnlyList<TaskProgressNoteDto>>> GetProgressNotesAsync(int taskId);
 

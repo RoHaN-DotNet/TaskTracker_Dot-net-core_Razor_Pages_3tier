@@ -32,6 +32,8 @@ namespace TaskTrackerBLL.DTOs.Employee
 
         [Required(ErrorMessage = "A role is required.")]
         public string RoleName { get; set; } = string.Empty;
+        [Required]
+        public bool isActive {  get; set; }=true;
 
         // Populated by the service from the caller's own claim — never bound from
         // the form itself, so a Manager can never register an employee into a

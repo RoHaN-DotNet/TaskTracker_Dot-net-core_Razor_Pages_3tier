@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TaskTrackerBLL.Common;
-using TaskTrackerBLL.DTOs.Task;
+
 using TaskTrackerBLL.DTOs.Tasks;
 using TaskTrackerBLL.Interfaces;
 using TaskTrackerBLL.Interfaces.Services;
@@ -86,7 +86,7 @@ namespace TaskTrackerBLL.Services
             {
                 return Result<TaskDto>.Failure("You are not authorized to create tasks for this project.");
             }
-
+            /*
             if (dto.AssignedToUserId.HasValue)
             {
                 var isMember = await _unitOfWork.Projects.IsUserProjectMemberAsync(
@@ -97,7 +97,7 @@ namespace TaskTrackerBLL.Services
                     return Result<TaskDto>.Failure(
                         "The task can only be assigned to a member of this project's team.");
                 }
-            }
+            }*/
 
             var task = new ProjectTask
             {
@@ -234,29 +234,34 @@ namespace TaskTrackerBLL.Services
             return Result.Success();
         }
 
-        public async Task<Result> ChangeStatusAsync(UpdateTaskStatusDto dto, int actingUserId)
+        public async Task<Result> ChangeStatusAsync(MoveTaskStatusDto dto, int actingUserId,bool isManager)
         {
-            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.Id);
-            if (task is null)
+            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
+            
+            if (task == null)
             {
-                return Result.Failure($"Task with ID {dto.Id} was not found.");
+                return Result.Failure($"Task with ID {dto.TaskId} was not found.");
             }
-
-            if (task.AssignedToUserId != actingUserId)
+            if (!isManager)
             {
-                return Result.Failure("You can only update the status of tasks assigned to you.");
+                if (task.Status == ProjectTasksStatus.Completed || task.Status == ProjectTasksStatus.Cancelled)
+                {
+                    return Result.Failure($"This task is already {task.Status} and its status can no longer be changed.");
+                }
+                if (task.AssignedToUserId != actingUserId)
+                {
+                    return Result.Failure("You can only update the status of tasks assigned to you.");
+                }
             }
+            
+            
 
-            if (task.Status == ProjectTasksStatus.Completed || task.Status == ProjectTasksStatus.Cancelled)
-            {
-                return Result.Failure(
-                    $"This task is already {task.Status} and its status can no longer be changed.");
-            }
+            
 
-            task.Status = dto.Status;
+            task.Status = dto.NewStatus;
             task.UpdatedAt = DateTime.UtcNow;
 
-            if (dto.Status == ProjectTasksStatus.Completed)
+            if (dto.NewStatus == ProjectTasksStatus.Completed)
             {
                 task.CompletedAt = DateTime.UtcNow;
             }
