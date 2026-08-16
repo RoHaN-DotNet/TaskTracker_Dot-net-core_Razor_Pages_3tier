@@ -20,8 +20,7 @@ namespace TaskTrackerBLL.Infrastucture
         private ITaskFeature? _tasks;
         private INotificationFeature? _notifications;
         private IAuditLogFeature? _auditLogs;
-        
-
+        private ITaskFileFeature? _taskFiles;
         public UnitOfWork(TaskTrackerDbContext context)
         {
             _context = context;
@@ -40,6 +39,9 @@ namespace TaskTrackerBLL.Infrastucture
 
         public IAuditLogFeature AuditLogs => _auditLogs ??= new AuditLogRepository(_context);
 
+        
+
+        public ITaskFileFeature TaskFiles =>_taskFiles ??= new TaskFileRepository(_context);
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();

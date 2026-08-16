@@ -127,3 +127,12 @@ wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
+wwwroot\uploads\tasks\1f852eb9-11fb-467e-871e-d2096f511b51.pdf
+wwwroot\uploads\tasks\4d2e43a4-8629-4ff5-954d-27d0321c351f.pdf
+wwwroot\uploads\tasks\55f9ca37-7fd2-404c-a950-c60bd29841ac.pdf
+wwwroot\uploads\tasks\6692c0d8-8dfd-426e-a8f1-3ef354147fbb.png
+wwwroot\uploads\tasks\6857bc02-daac-47ba-9a1b-fc8f280d8163.png
+wwwroot\uploads\tasks\70e15f45-a83e-49a8-befa-8b6d84f0f1f8.pdf
+wwwroot\uploads\tasks\a35d93b6-5b7a-4f98-8034-51c6729a12e8.pdf
+wwwroot\uploads\tasks\ad7146f2-c330-460c-9b39-dbf5630a87d5.pdf
+wwwroot\uploads\tasks\ea5efc04-62f1-48a4-ba53-df3c339c0fcb.pdf

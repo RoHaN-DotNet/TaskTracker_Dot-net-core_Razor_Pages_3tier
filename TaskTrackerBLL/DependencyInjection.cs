@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using TaskTrackerBLL.Interfaces.Security;
-using TaskTrackerBLL.Infrastucture.Security;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using TaskTrackerBLL.Infrastucture;
+using TaskTrackerBLL.Infrastucture.Security;
 using TaskTrackerBLL.Interfaces;
+using TaskTrackerBLL.Interfaces.Security;
 using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerBLL.Services;
 
@@ -26,6 +27,7 @@ namespace TaskTrackerBLL
             services.AddScoped<IReportingService, ReportingService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IAuditService, AuditService>();
+            services.AddScoped<ITaskFileService, TaskFileService>();
 
             return services;
         }

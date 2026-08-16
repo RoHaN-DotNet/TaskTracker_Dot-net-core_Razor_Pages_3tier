@@ -18,11 +18,13 @@ namespace TaskTracker.Pages.ProjectTasks
         private readonly ITaskService _taskService;
         private readonly IEmployeeService _employeeService;
         private readonly IProjectService _projectService;
-        public TasksModel(ITaskService taskService, IEmployeeService employeeService, IProjectService projectService)
+        private readonly ITaskFileService _taskFileService;
+        public TasksModel(ITaskService taskService, IEmployeeService employeeService, IProjectService projectService,ITaskFileService taskFileService)
         {
             _taskService = taskService;
             _employeeService = employeeService;
             _projectService = projectService;
+            _taskFileService= taskFileService;
         }
 
         public List<TaskDto> NotStartedTasks { get; set; } = new();
@@ -39,6 +41,8 @@ namespace TaskTracker.Pages.ProjectTasks
         public CreateTaskDto createTask {  get; set; }= new();
         public MultiSelectList MemberOption { get; set; } = new(Array.Empty<object>());
         [BindProperty]
+        public IFormFile? UploadFile { get; set; }
+        [BindProperty]
         public IReadOnlyList<EmployeeDto> AllEmployees { get; set; } = new List<EmployeeDto>();
         [BindProperty]
         public MoveTaskStatusDto MoveTaskStatus { get; set; } = new();
@@ -51,7 +55,8 @@ namespace TaskTracker.Pages.ProjectTasks
 
         public bool IsManager { get; private set; }
         public bool IsAdmin { get; private set; }
-
+        [BindProperty]
+        public AddProgressNoteDto NoteInput { get; set; } = new();
         public async Task OnGetAsync()
         {
 
@@ -157,14 +162,43 @@ namespace TaskTracker.Pages.ProjectTasks
                 ? null
                 : int.Parse(User.FindFirstValue("CompanyId")!);
 
+
             
-           
-                var result = await _taskService.CreateAsync(createTask,createdByUserId,actingManagerCompanyId);  
-            
+            var result = await _taskService.CreateAsync(createTask,createdByUserId,actingManagerCompanyId);
+            var taskId = result.Value!.Id;
+
+            // 3. Upload file if user selected one
+            if (UploadFile != null && UploadFile.Length > 0)
+            {
+                var uploadFolder = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "uploads",
+                    "tasks"
+                );
+
+                await _taskFileService.UploadAsync(
+                    taskId,
+                    UploadFile,
+                    uploadFolder
+                );
+            }
             TempData["SuccessMessage"] ="Project created successfully.";
             return RedirectToPage();
         }
-
+        public async Task<IActionResult> OnPostAddNoteAsync()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (!string.IsNullOrWhiteSpace(NoteInput.Note))
+            {
+                var result = await _taskService.AddProgressNoteAsync(NoteInput,userId);
+                if (!result.Succeeded)
+                {
+                    TempData["TaskActionError"] = result.Error;
+                }
+            }
+            return RedirectToPage();
+        }
         [HttpPost("Update-TaskStatus")]
         public async Task<IActionResult> OnPostUpdateTaskStatusAsync([FromBody] MoveTaskStatusDto moveTask)
         {

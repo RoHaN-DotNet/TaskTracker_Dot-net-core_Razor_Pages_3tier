@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TaskTrackerShared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08bae54025fb8066cb71f1e0771e53093e675c08")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b723be07f650ff58cf5aae14c3ac382924b5ab2")]
 [assembly: System.Reflection.AssemblyProductAttribute("TaskTrackerShared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TaskTrackerShared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

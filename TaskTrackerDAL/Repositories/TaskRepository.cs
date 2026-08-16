@@ -76,7 +76,7 @@ namespace TaskTrackerDAL.Repositories
                 .Include(n => n.AuthorUser)
                 .AsNoTracking()
                 .Where(n => n.TaskId == taskId)
-                .OrderBy(n => n.CreatedAt)
+                .OrderByDescending(n => n.CreatedAt)
                 .ToListAsync();
         }
 

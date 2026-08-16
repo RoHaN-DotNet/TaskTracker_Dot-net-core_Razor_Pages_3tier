@@ -32,6 +32,8 @@ namespace TaskTrackerDAL.Data
 
         public DbSet<AuditLog> AuditLogs => Set<AuditLog>();//10
 
+        public DbSet<TaskFile> TaskFiles => Set<TaskFile>();//11
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -219,7 +221,28 @@ modelBuilder.Entity<Notification>(entity =>
 
                 entity.HasIndex(a => new { a.ModelName, a.ModelId });
             });
+            //------TaskFiles----------
+            modelBuilder.Entity<TaskFile>(entity =>
+            {
+                entity.HasKey(x => x.Id);
 
+                entity.Property(x => x.FileName)
+                      .HasMaxLength(255)
+                      .IsRequired();
+
+                entity.Property(x => x.StoredFileName)
+                      .HasMaxLength(255)
+                      .IsRequired();
+
+                entity.Property(x => x.FilePath)
+                      .HasMaxLength(500)
+                      .IsRequired();
+
+                entity.HasOne(x => x.Task)
+                      .WithMany(t => t.TaskFiles)
+                      .HasForeignKey(x => x.TaskId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
         }
     }
 }

@@ -68,28 +68,46 @@
             <div>
 
                 <button type="button"
-                        data-id:" @Model.Id"
-                        class="icon-btn"
-                        title="View Details">
+                        data-id="@Model.Id"
+                        class="icon-btn add-note-toggle"
+                        title="Add Comment">
                     <i class="bi bi-chat"></i>
                 </button>
-                <button type="button"
+                <a asp-page="/ProjectTasks/Details"
+                        asp-route-id="@Model.Id"
+                        type="button"
                         class="icon-btn"
                         title="View Details">
-                    <i class="bi bi-info-circle-fill"></i>
-                </button>
+                    <i class="bi bi-eye"></i>
+                </a>
 
             </div>
          </div>
+        <!-- Inline Comment Box (hidden by default, toggled by the chat icon) -->
+        <div class="comment-box"
+             id="comment-box-@Model.Id">
+            <form method="post" asp-page-handler="AddNote">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="NoteInput.TaskId" value="@Model.Id" />
+                <textarea name="NoteInput.Note"
+                          class="form-control form-control-sm comment-text"
+                          rows="2"
+                          placeholder="Write a comment..."
+                          required></textarea>
+                <div class="d-flex justify-content-end mt-1 gap-2">
+                    <button type="button"
+                            class="btn btn-sm btn-light comment-cancel mb-1">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                            class="btn btn-sm btn-primary mb-1">
+                        Post
+                    </button>
+                </div>
+            </form>
+        </div>
         <!-- Bottom Buttons -->
-        
-
-            
-
     </div>
-
-    
-
 </div>
 
 @section Scripts{

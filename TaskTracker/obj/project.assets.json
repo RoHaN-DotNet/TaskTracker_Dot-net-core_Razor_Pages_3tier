@@ -1080,7 +1080,10 @@
         },
         "runtime": {
           "bin/placeholder/TaskTrackerBLL.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "TaskTrackerDAL/1.0.0": {
         "type": "project",

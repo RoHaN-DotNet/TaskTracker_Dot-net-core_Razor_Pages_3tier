@@ -206,7 +206,7 @@
                 <h4>Create Task</h4>
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form method="post" asp-page-handler="CreateTask">
+            <form method="post" asp-page-handler="CreateTask" enctype="multipart/form-data" `>
                 <div class="modal-body">             
                     <div class="mt-3">                
                         <label class="form-label fw-bold">
@@ -238,6 +238,19 @@
                         <label asp-for="createTask.Description"></label>
                         <textarea asp-for="createTask.Description" class="form-control" rows="3"></textarea>
                         <span asp-validation-for="createTask.Description" class="text-danger"></span>
+                    </div>
+                    <div class="mt-3">
+                        <label class="form-label fw-bold">
+                            Attach File
+                        </label>
+
+                        <input type="file"
+                               asp-for="UploadFile"
+                               class="form-control" />
+
+                        <small class="text-muted">
+                            Select a file to attach to this task.
+                        </small>
                     </div>
                     <div class="mb-3">
                         <label asp-for="createTask.DueDate"></label>
@@ -272,169 +285,41 @@
         </div>
     </div>
 </div>
+<!-- Hidden form — shudhu anti-forgery token pawar jonno -->
+<form id="antiForgeryForm" style="display:none;">
+    @Html.AntiForgeryToken()
+</form>
 @section Scripts
 {
     
     <script>
-/*
-let draggedCard = null;
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    // Make cards draggable
-    document.querySelectorAll(".task-card").forEach(card => {
-
-        card.addEventListener("dragstart", function (e) {
-
-            draggedCard = this;
-
-            e.dataTransfer.setData("taskId", this.dataset.id);
-
-            setTimeout(() => {
-                this.classList.add("dragging");
-            }, 0);
-
-        });
-
-        card.addEventListener("dragend", function () {
-
-            this.classList.remove("dragging");
-
-            draggedCard = null;
-
-        });
-
-    });
-
-    // Every Column
-    document.querySelectorAll(".kanban-body").forEach(column => {
-
-        column.addEventListener("dragover", function (e) {
-
-            e.preventDefault();
-
-            this.classList.add("drag-over");
-
-        });
-
-        column.addEventListener("dragleave", function () {
-
-            this.classList.remove("drag-over");
-
-        });
-
-        column.addEventListener("drop", function (e) {
-
-            e.preventDefault();
-
-            this.classList.remove("drag-over");
-
-            const taskId = parseInt(e.dataTransfer.getData("taskId"));
-
-            const newStatus = parseInt(this.dataset.status);
-
-            fetch("?handler=UpdateTaskStatus", {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json",
-                    "RequestVerificationToken":
-                        document.querySelector('input[name="__RequestVerificationToken"]').value
-                },
-
-                body: JSON.stringify({
-
-                    taskId: taskId,
-                    newStatus: newStatus
-
-                })
-
-            })
-
-            .then(response => {
-
-                if (!response.ok) {
-                    throw new Error("Server Error");
-                }
-
-                return response.json();
-
-            })
-
-            .then(result => {
-
-                if (result.success) {
-
-                    this.appendChild(draggedCard);
-
-                }
-                else {
-
-                    alert(result.message);
-
-                }
-
-            })
-
-            .catch(error => {
-
-                console.error(error);
-
-                alert("Something went wrong.");
-
-            });
-
-        });
-
-    });
-
-});
-*/
         
             let draggedCard = null;
-
         document.addEventListener("DOMContentLoaded", function () {
-
             // Make every task card draggable
             document.querySelectorAll(".task-card").forEach(card => {
-
                 card.addEventListener("dragstart", function (e) {
-
                     draggedCard = this;
-
                     e.dataTransfer.setData("taskId", this.dataset.id);
-
                     setTimeout(() => {
                         this.classList.add("dragging");
                     }, 0);
                 });
-
                 card.addEventListener("dragend", function () {
 
                     this.classList.remove("dragging");
                     draggedCard = null;
-
                 });
-
             });
-
             // Make every column droppable
             document.querySelectorAll(".kanban-body").forEach(column => {
-
                 column.addEventListener("dragover", function (e) {
-
                     e.preventDefault();
                     this.classList.add("drag-over");
-
                 });
-
                 column.addEventListener("dragleave", function () {
-
                     this.classList.remove("drag-over");
-
                 });
-
                 column.addEventListener("drop", function (e) {
 
                     e.preventDefault();
@@ -523,6 +408,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
             });
+            //comment box 
+        // Open comment box
+        $(document).on("click", ".add-note-toggle", function () {
+
+            const taskId = $(this).data("id");
+
+            $("#comment-box-" + taskId).addClass("show");
+        });
+
+
+        // Cancel comment
+        $(document).on("click", ".comment-cancel", function () {
+
+            const box = $(this).closest(".comment-box");
+
+            box.find(".comment-text").val("");
+
+            box.removeClass("show");
+        });
     </script>
 
 }

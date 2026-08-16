@@ -30,9 +30,7 @@ namespace TaskTrackerDAL.Models
         public User? AssignedToUser { get; set; }
 
         public User CreatedByUser { get; set; } = null!;
-
-
-
+        public ICollection<TaskFile> TaskFiles { get; set; } = new List<TaskFile>();
 
     }
 }

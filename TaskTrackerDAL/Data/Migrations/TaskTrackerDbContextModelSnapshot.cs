@@ -312,6 +312,45 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StoredFileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UploadedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("TaskFiles");
+                });
+
             modelBuilder.Entity("TaskTrackerDAL.Models.TaskProgressNote", b =>
                 {
                     b.Property<int>("Id")
@@ -522,6 +561,17 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.Navigation("Project");
                 });
 
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskFile", b =>
+                {
+                    b.HasOne("TaskTrackerDAL.Models.ProjectTask", "Task")
+                        .WithMany("TaskFiles")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Task");
+                });
+
             modelBuilder.Entity("TaskTrackerDAL.Models.TaskProgressNote", b =>
                 {
                     b.HasOne("TaskTrackerDAL.Models.User", "AuthorUser")
@@ -583,6 +633,11 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.Navigation("ProjectMembers");
 
                     b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("TaskTrackerDAL.Models.ProjectTask", b =>
+                {
+                    b.Navigation("TaskFiles");
                 });
 
             modelBuilder.Entity("TaskTrackerDAL.Models.Role", b =>

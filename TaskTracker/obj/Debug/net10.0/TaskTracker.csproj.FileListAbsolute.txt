@@ -218,6 +218,8 @@ D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\valuw
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\mef0jo0cdj-{0}-muycvpuwrr-muycvpuwrr.gz
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\fw9jq3ei2u-{0}-87fc7y1x7t-87fc7y1x7t.gz
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\3k7ywnjf6z-{0}-mlv21k5csn-mlv21k5csn.gz
+D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\wy2n1iqywi-{0}-adtoruxuhb-adtoruxuhb.gz
+D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\pcwqho65v5-{0}-adtoruxuhb-adtoruxuhb.gz
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.build.json
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.build.json.cache
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.development.json
@@ -230,6 +232,4 @@ D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\refint\TaskTrack
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.pdb
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.genruntimeconfig.cache
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\ref\TaskTracker.dll
-D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\wy2n1iqywi-{0}-adtoruxuhb-adtoruxuhb.gz
-D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\pcwqho65v5-{0}-adtoruxuhb-adtoruxuhb.gz
-D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\jy0w8wr226-{0}-zvucdbze0s-zvucdbze0s.gz
+D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\jy0w8wr226-{0}-xsj0lf07gg-xsj0lf07gg.gz

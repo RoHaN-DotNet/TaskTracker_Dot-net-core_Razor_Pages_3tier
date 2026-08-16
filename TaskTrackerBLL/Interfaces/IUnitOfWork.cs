@@ -22,7 +22,7 @@ namespace TaskTrackerBLL.Interfaces
         INotificationFeature Notifications { get; }
 
         IAuditLogFeature AuditLogs { get; }
-
+        ITaskFileFeature TaskFiles { get; }
         Task<int> SaveChangesAsync();
     }
 }

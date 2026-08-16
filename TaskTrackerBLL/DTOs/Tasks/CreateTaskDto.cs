@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -25,5 +26,7 @@ namespace TaskTrackerBLL.DTOs.Tasks
 
         [DataType(DataType.Date)]
         public DateTime? DueDate { get; set; }
+        public IFormFile? File { get; set; }
     }
 }
+
