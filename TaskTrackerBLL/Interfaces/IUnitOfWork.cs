@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TaskTrackerBLL.Infrastucture;
+﻿using TaskTrackerBLL.Interfaces.Security;
 using TaskTrackerDAL.Interfaces;
-using TaskTrackerDAL.Repositories;
-
 namespace TaskTrackerBLL.Interfaces
 {
     public interface IUnitOfWork:IDisposable
@@ -15,14 +10,17 @@ namespace TaskTrackerBLL.Interfaces
 
         IRoleFeature Roles { get; }
 
-        IProjectFeature Projects { get; }
+        IProjectFeature Projects { get; }//
 
-        ITaskFeature Tasks { get; }
+        ITaskFeature Tasks { get; }//
 
-        INotificationFeature Notifications { get; }
+        INotificationFeature Notifications { get; }//
 
-        IAuditLogFeature AuditLogs { get; }
-        ITaskFileFeature TaskFiles { get; }
+        IAuditLogFeature AuditLogs { get; }//
+        ITaskFileFeature TaskFiles { get; }//
+        ITaskMemberFeature TaskMembers { get; }
+       
+        
         Task<int> SaveChangesAsync();
     }
 }

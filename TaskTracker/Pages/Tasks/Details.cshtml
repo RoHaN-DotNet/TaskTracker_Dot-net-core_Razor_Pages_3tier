@@ -19,7 +19,19 @@
     <dd class="col-sm-9">@Model.Task.Description</dd>
 
     <dt class="col-sm-3">Assigned To</dt>
-    <dd class="col-sm-9">@(Model.Task.AssignedToUserName ?? "Unassigned")</dd>
+    <dd class="col-sm-9">
+        @if (Model.Task.AssignedToUserNames.Any())
+        {
+            @foreach (var userName in Model.Task.AssignedToUserNames)
+            {
+                <div>@userName</div>
+            }
+        }
+        else
+        {
+            <span>Unassigned</span>
+        }
+    </dd>
 
     <dt class="col-sm-3">Priority</dt>
     <dd class="col-sm-9">@Model.Task.Priority</dd>
@@ -87,7 +99,7 @@
     <div class="mb-4 mt-3">
         <a asp-page="/Tasks/ChangeDeadline" asp-route-id="@Model.Task.Id" class="btn btn-secondary btn-sm">Change Deadline</a>
         <a asp-page="/Tasks/ChangePriority" asp-route-id="@Model.Task.Id" class="btn btn-secondary btn-sm">Change Priority</a>
-        @if (Model.Task.AssignedToUserId.HasValue)
+        @if (Model.Task.AssignedToUserIds.Any())
         {
             <a asp-page="/Tasks/Reassign" asp-route-id="@Model.Task.Id" class="btn btn-secondary btn-sm">Reassign</a>
         }

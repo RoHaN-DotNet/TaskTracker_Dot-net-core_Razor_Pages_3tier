@@ -32,5 +32,6 @@ namespace TaskTrackerDAL.Models
         public ICollection<ProjectTask> AssignedTasks { get; set; } = new List<ProjectTask>();
 
         public ICollection<ProjectTask> CreatedTasks { get; set; } = new List<ProjectTask>();
+        public ICollection<TaskMember> TaskMemberships { get; set; } = new List<TaskMember>();
     }
 }

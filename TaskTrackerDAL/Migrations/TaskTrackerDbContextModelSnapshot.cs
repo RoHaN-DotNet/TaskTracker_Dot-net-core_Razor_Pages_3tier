@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskTrackerDAL.Data;
 
 #nullable disable
 
-namespace TaskTrackerDAL.Data.Migrations
+namespace TaskTrackerDAL.Migrations
 {
     [DbContext(typeof(TaskTrackerDbContext))]
-    [Migration("20260720062650_AdNewModels")]
-    partial class AdNewModels
+    partial class TaskTrackerDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,9 +234,6 @@ namespace TaskTrackerDAL.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AssignedToUserId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("CompletedAt")
                         .HasColumnType("datetime2");
 
@@ -273,13 +267,16 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AssignedToUserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CreatedByUserId");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tasks");
                 });
@@ -313,6 +310,63 @@ namespace TaskTrackerDAL.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StoredFileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UploadedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("TaskFiles");
+                });
+
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskMember", b =>
+                {
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("JoinedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TaskId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TaskMembers");
                 });
 
             modelBuilder.Entity("TaskTrackerDAL.Models.TaskProgressNote", b =>
@@ -501,11 +555,6 @@ namespace TaskTrackerDAL.Data.Migrations
 
             modelBuilder.Entity("TaskTrackerDAL.Models.ProjectTask", b =>
                 {
-                    b.HasOne("TaskTrackerDAL.Models.User", "AssignedToUser")
-                        .WithMany("AssignedTasks")
-                        .HasForeignKey("AssignedToUserId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.HasOne("TaskTrackerDAL.Models.User", "CreatedByUser")
                         .WithMany("CreatedTasks")
                         .HasForeignKey("CreatedByUserId")
@@ -518,11 +567,43 @@ namespace TaskTrackerDAL.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("AssignedToUser");
+                    b.HasOne("TaskTrackerDAL.Models.User", null)
+                        .WithMany("AssignedTasks")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("CreatedByUser");
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskFile", b =>
+                {
+                    b.HasOne("TaskTrackerDAL.Models.ProjectTask", "Task")
+                        .WithMany("TaskFiles")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Task");
+                });
+
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskMember", b =>
+                {
+                    b.HasOne("TaskTrackerDAL.Models.ProjectTask", "Task")
+                        .WithMany("TaskMembers")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TaskTrackerDAL.Models.User", "User")
+                        .WithMany("TaskMemberships")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Task");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TaskTrackerDAL.Models.TaskProgressNote", b =>
@@ -588,6 +669,13 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.Navigation("Tasks");
                 });
 
+            modelBuilder.Entity("TaskTrackerDAL.Models.ProjectTask", b =>
+                {
+                    b.Navigation("TaskFiles");
+
+                    b.Navigation("TaskMembers");
+                });
+
             modelBuilder.Entity("TaskTrackerDAL.Models.Role", b =>
                 {
                     b.Navigation("UserRoles");
@@ -602,6 +690,8 @@ namespace TaskTrackerDAL.Data.Migrations
                     b.Navigation("CreatedTasks");
 
                     b.Navigation("ProjectMemberships");
+
+                    b.Navigation("TaskMemberships");
 
                     b.Navigation("UserRoles");
                 });

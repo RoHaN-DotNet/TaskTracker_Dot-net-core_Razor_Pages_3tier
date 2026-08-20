@@ -9,24 +9,20 @@ namespace TaskTrackerBLL.DTOs.Tasks
 {
     public class CreateTaskDto
     {
-        [Required(ErrorMessage = "Project is required.")]
-        public int ProjectId { get; set; }
+            public int ProjectId { get; set; }
 
-        [Required(ErrorMessage = "Task title is required.")]
-        [StringLength(200, MinimumLength = 2)]
-        public string Title { get; set; } = string.Empty;
+            public string Title { get; set; } = string.Empty;
 
-        [StringLength(1000)]
-        public string? Description { get; set; }
+            public string? Description { get; set; }
 
-        public int? AssignedToUserId { get; set; }
+            public List<int> AssignedToUserIds { get; set; }= new();
 
-        [Required]
-        public TaskPriority Priority { get; set; } = TaskPriority.Medium;
+            public ProjectTasksStatus Status { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime? DueDate { get; set; }
-        public IFormFile? File { get; set; }
+            public TaskPriority Priority { get; set; }
+
+            public DateTime? DueDate { get; set; }
+        
     }
 }
 

@@ -25,6 +25,6 @@ namespace TaskTrackerBLL.Interfaces.Services
         Task<Result> RemoveMemberAsync(int projectId, int userId, int? actingManagerCompanyId);
         Task<Result<PagedResult<ProjectDto>>> FilterAsync(
         ProjectFilterDto filter, int? actingManagerCompanyId);
-
+        Task<Result<ProjectDto>> GetByIdWithMembersAsync(int projectId);
     }
 }

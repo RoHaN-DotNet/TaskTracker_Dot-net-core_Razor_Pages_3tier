@@ -225,11 +225,11 @@ D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.development.json
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\swae.build.ex.cache
-D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTrac.2CCAFB19.Up2Date
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.dll
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\refint\TaskTracker.dll
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.pdb
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.genruntimeconfig.cache
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\ref\TaskTracker.dll
-D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\jy0w8wr226-{0}-xsj0lf07gg-xsj0lf07gg.gz
+D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\jy0w8wr226-{0}-vsrebq0z39-vsrebq0z39.gz

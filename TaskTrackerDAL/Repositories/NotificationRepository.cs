@@ -32,8 +32,9 @@ namespace TaskTrackerDAL.Repositories
         {
             return await _context.Set<Notification>()
                 .AsNoTracking()
-                .CountAsync(n => n.RelatedProjectId == userId && !n.IsRead);
-
+                .CountAsync(n =>
+                    n.RecipientUserId == userId &&
+                    !n.IsRead);
         }
         public async Task<bool> DeadlineNotificationExistsAsync(int taskId, TaskTrackerDAL.Models.Enums.NotificationType type)
         {

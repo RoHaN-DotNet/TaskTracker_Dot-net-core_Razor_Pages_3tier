@@ -9,5 +9,7 @@ namespace TaskTrackerBLL.DTOs.Project
         public int UserId { get; set; }
 
         public string FullName { get; set; } = string.Empty;
+
+        public List<string> Roles { get; set; } = new();
     }
 }

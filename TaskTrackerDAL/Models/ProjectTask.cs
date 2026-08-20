@@ -12,7 +12,7 @@ namespace TaskTrackerDAL.Models
 
         public string? Description { get; set; }
 
-        public int? AssignedToUserId { get; set; }
+        //public int? AssignedToUserId { get; set; }
 
         public ProjectTasksStatus Status { get; set; } = ProjectTasksStatus.NotStarted;
 
@@ -27,10 +27,11 @@ namespace TaskTrackerDAL.Models
         // Navigation properties
         public Project Project { get; set; } = null!;
 
-        public User? AssignedToUser { get; set; }
+        //public User? AssignedToUser { get; set; }
 
         public User CreatedByUser { get; set; } = null!;
         public ICollection<TaskFile> TaskFiles { get; set; } = new List<TaskFile>();
 
+        public ICollection<TaskMember> TaskMembers { get; set; }= new List<TaskMember>();
     }
 }

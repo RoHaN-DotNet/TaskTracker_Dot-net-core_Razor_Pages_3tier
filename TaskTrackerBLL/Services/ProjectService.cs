@@ -4,6 +4,7 @@ using TaskTrackerBLL.Interfaces;
 using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerDAL.Models;
 using TaskTrackerDAL.Models.Enums;
+using TaskTrackerDAL.Repositories;
 
 namespace TaskTrackerBLL.Services
 {
@@ -298,7 +299,38 @@ namespace TaskTrackerBLL.Services
 
             return Result.Success();
         }
+        public async Task<Result<ProjectDto>> GetByIdWithMembersAsync(int projectId)
+        {
+            var project =await _unitOfWork.Projects.GetByIdWithMembersAsync(projectId);
 
+            if (project == null)
+            {
+                return Result<ProjectDto>.Failure("Project not found.");
+            }
+
+            var dto = new ProjectDto
+            {
+                Id = project.Id,
+                CompanyId = project.CompanyId,
+                Name = project.Name,
+                Description = project.Description,
+                StartDate = project.StartDate,
+                EndDate = project.EndDate,
+                Status = project.Status,
+                CreatedAt = project.CreatedAt,
+
+                Members = project.ProjectMembers
+    .Where(pm => pm.User != null)
+    .Select(pm => new ProjectMemberDto
+    {
+        UserId = pm.UserId,
+        FullName = pm.User.FullName
+    })
+    .ToList()
+            };
+
+            return Result<ProjectDto>.Success(dto);
+        }
         private async Task<ProjectDto> BuildDtoAsync(Project project)
         {
             var createdByUser = await _unitOfWork.Users.GetByIdAsync(project.CreatedByUserId);
@@ -329,6 +361,7 @@ namespace TaskTrackerBLL.Services
                 
             };
         }
+        
         public async Task<Result<PagedResult<ProjectDto>>> FilterAsync(
     ProjectFilterDto filter, int? actingManagerCompanyId)
         {

@@ -6,6 +6,7 @@ using TaskTrackerBLL.Interfaces;
 using TaskTrackerBLL.Interfaces.Security;
 using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerBLL.Services;
+using TaskTrackerDAL.Models;
 
 namespace TaskTrackerBLL
 {
@@ -28,6 +29,7 @@ namespace TaskTrackerBLL
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IAuditService, AuditService>();
             services.AddScoped<ITaskFileService, TaskFileService>();
+            
 
             return services;
         }

@@ -44,7 +44,9 @@ namespace TaskTracker.Pages.Tasks
 
             Input.TaskId = id;
             TaskTitle = taskResult.Value!.Title;
-            CurrentAssigneeName = taskResult.Value!.AssignedToUserName ?? "Unassigned";
+            CurrentAssigneeName = taskResult.Value!.AssignedToUserNames.Any()
+            ? string.Join(", ", taskResult.Value.AssignedToUserNames)
+            : "Unassigned";
 
             await PopulateEmployeeOptionsAsync(taskResult.Value!.ProjectId);
 
@@ -69,7 +71,9 @@ namespace TaskTracker.Pages.Tasks
                 if (taskResult.Succeeded)
                 {
                     TaskTitle = taskResult.Value!.Title;
-                    CurrentAssigneeName = taskResult.Value!.AssignedToUserName ?? "Unassigned";
+                    CurrentAssigneeName = CurrentAssigneeName = taskResult.Value!.AssignedToUserNames.Any()
+                    ? string.Join(", ", taskResult.Value.AssignedToUserNames)
+                    : "Unassigned";
                     await PopulateEmployeeOptionsAsync(taskResult.Value!.ProjectId);
                 }
                 return Page();

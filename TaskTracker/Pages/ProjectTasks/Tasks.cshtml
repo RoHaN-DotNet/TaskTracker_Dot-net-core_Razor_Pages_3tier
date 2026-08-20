@@ -2,29 +2,119 @@
 @model TaskTracker.Pages.ProjectTasks.TasksModel
 @{
 }
+
 <form id="antiForgeryForm" method="post">
     @Html.AntiForgeryToken()
 </form>
 @using TaskTrackerDAL.Models.Enums
+@using TaskTrackerDAL.Constants
 
 @{
     ViewData["Title"] = "Tasks";
 }
-<div class="container-fluid">
-    <!--Header-->
+<!-- =========================
+     Toast Notification
+========================= -->
+
+<div class="toast-container position-fixed top-0 end-0 p-3"
+     style="z-index: 9999;">
+
+    <div id="appToast"
+         class="toast border-0 shadow-lg"
+         role="alert"
+         aria-live="assertive"
+         aria-atomic="true">
+
+        <div class="toast-header border-0">
+            <div id="toastIcon"
+                 class="me-2">
+            </div>
+
+            <strong id="toastTitle" class="me-auto">
+                Notification
+            </strong>
+
+            <small class="text-muted">
+                Now
+            </small>
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="toast"
+                    aria-label="Close">
+            </button>
+        </div>
+
+        <div id="toastMessage"
+             class="toast-body">
+        </div>
+
+    </div>
+
+</div>
+<div class="container-fluid mt-0">
+    <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
 
+        <!-- Left: Title -->
         <div>
             <h2 class="fw-bold mb-0">Task Board</h2>
-            <small class="text-muted">Drag tasks between columns</small>
+
+            <small class="text-muted">
+                Drag tasks between columns
+            </small>
         </div>
-        <button type="button"
-                class="btn btn-success create-btn"
-                data-bs-toggle="modal"
-                data-bs-target="#createTaskModal">
-            <i class="bi bi-plus-circle"></i>
-            Create Task
-        </button>
+
+
+        <!-- Right: Actions -->
+        <div class="d-flex align-items-center gap-3">
+
+            <!-- Employee: Task Toggle -->
+            @if (Model.IsEmployee)
+            {
+                <div class="task-filter-toggle">
+
+                    <!-- Dynamic Label -->
+                    <span id="taskViewLabel"
+                          class="task-view-label">
+
+                        @(Model.ShowMyTasks
+                            ? "My Tasks"
+                            : "All Tasks")
+
+                    </span>
+
+
+                    <!-- Toggle -->
+                    <div class="form-check form-switch mb-0">
+
+                        <input class="form-check-input"
+                               type="checkbox"
+                               role="switch"
+                               id="myTasksToggle"
+                        @(Model.ShowMyTasks ? "checked" : "") />
+
+                    </div>
+
+                </div>
+            }
+
+
+            <!-- Manager: Create Task -->
+            @if (Model.IsManager)
+            {
+                <button type="button"
+                        class="btn btn-success create-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#createTaskModal">
+
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Create Task
+
+                </button>
+            }
+
+        </div>
 
     </div>
     <!--Filter Remaining-->
@@ -261,20 +351,22 @@
                         <input asp-for="createTask.Priority" type="hidden" />
                     </div>
                     <div class="mt-3">
-                        <label class="form-label fw-bold">Assign To</label>
-                        <div class="border-rounded-3 p-3" style="max-height:200px; overflow-y:auto;">
-                        @foreach(var employee in Model.AllEmployees)
-                            {
-                              <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" name="createTask.AssignedToUserId" value="@employee.Id" id="create_emp_@employee.Id" />
-                                <label class="form-check-label" for="create_emp_@employee.Id">
-                                    <strong>@employee.FullName</strong>
-                                    <span class="text-secondary">[@string.Join(", ",employee.Roles)]</span>
-                                </label>
-                              </div>  
-                            }
-                         </div>
-                    </div>
+                        
+    <label class="form-label fw-bold">Assign To</label>
+
+    <div id="projectMembersContainer"
+         class="border rounded-3 p-3"
+         style="max-height:200px; overflow-y:auto;">
+
+        <div class="text-muted">
+            Please select a project first.
+        </div>
+
+    </div>
+</div>
+
+                       
+                    
                 </div>
             
                 <div class="modal-footer">
@@ -285,148 +377,1280 @@
         </div>
     </div>
 </div>
+
 <!-- Hidden form — shudhu anti-forgery token pawar jonno -->
 <form id="antiForgeryForm" style="display:none;">
     @Html.AntiForgeryToken()
 </form>
 @section Scripts
 {
-    
     <script>
-        
-            let draggedCard = null;
-        document.addEventListener("DOMContentLoaded", function () {
-            // Make every task card draggable
-            document.querySelectorAll(".task-card").forEach(card => {
-                card.addEventListener("dragstart", function (e) {
-                    draggedCard = this;
-                    e.dataTransfer.setData("taskId", this.dataset.id);
-                    setTimeout(() => {
-                        this.classList.add("dragging");
-                    }, 0);
-                });
-                card.addEventListener("dragend", function () {
 
-                    this.classList.remove("dragging");
-                    draggedCard = null;
-                });
+        // =========================================================
+        // GLOBAL VARIABLES
+        // =========================================================
+
+        let draggedCard = null;
+
+
+        // =========================================================
+        // TOAST NOTIFICATION
+        // =========================================================
+
+        function createToastContainer() {
+
+            // Already exists
+            if (document.getElementById("appToast")) {
+                return;
+            }
+
+            // Add CSS
+            if (!document.getElementById("appToastStyle")) {
+
+                const style = document.createElement("style");
+
+                style.id = "appToastStyle";
+
+                style.innerHTML = `
+
+                            #appToast {
+                                min-width: 340px;
+                                max-width: 420px;
+                                border-radius: 14px;
+                                overflow: hidden;
+                            }
+
+                            #appToast .toast-header {
+                                padding: 12px 15px;
+                                background: white;
+                            }
+
+                            #appToast .toast-body {
+                                padding: 12px 15px 15px;
+                                font-size: 14px;
+                                font-weight: 500;
+                                background: white;
+                            }
+
+                            #toastIcon {
+                                width: 30px;
+                                height: 30px;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+
+                            #appToast.toast-success {
+                                border-left: 5px solid #198754 !important;
+                            }
+
+                            #appToast.toast-success #toastIcon {
+                                background-color: rgba(25, 135, 84, 0.12);
+                                color: #198754;
+                            }
+
+                            #appToast.toast-error {
+                                border-left: 5px solid #dc3545 !important;
+                            }
+
+                            #appToast.toast-error #toastIcon {
+                                background-color: rgba(220, 53, 69, 0.12);
+                                color: #dc3545;
+                            }
+
+                            #appToast.toast-warning {
+                                border-left: 5px solid #ffc107 !important;
+                            }
+
+                            #appToast.toast-warning #toastIcon {
+                                background-color: rgba(255, 193, 7, 0.15);
+                                color: #856404;
+                            }
+
+                            #appToast.toast-info {
+                                border-left: 5px solid #0d6efd !important;
+                            }
+
+                            #appToast.toast-info #toastIcon {
+                                background-color: rgba(13, 110, 253, 0.12);
+                                color: #0d6efd;
+                            }
+
+                        `;
+
+                document.head.appendChild(style);
+            }
+
+
+            // Add Toast HTML
+
+            const container = document.createElement("div");
+
+            container.className =
+                "toast-container position-fixed top-0 end-0 p-3";
+
+            container.style.zIndex = "9999";
+
+            container.innerHTML = `
+
+                        <div id="appToast"
+                             class="toast border-0 shadow-lg"
+                             role="alert"
+                             aria-live="assertive"
+                             aria-atomic="true">
+
+                            <div class="toast-header border-0">
+
+                                <div id="toastIcon" class="me-2">
+                                </div>
+
+                                <strong id="toastTitle" class="me-auto">
+                                    Notification
+                                </strong>
+
+                                <small class="text-muted">
+                                    Now
+                                </small>
+
+                                <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="toast"
+                                        aria-label="Close">
+                                </button>
+
+                            </div>
+
+                            <div id="toastMessage"
+                                 class="toast-body">
+                            </div>
+
+                        </div>
+
+                    `;
+
+            document.body.appendChild(container);
+        }
+
+
+        function showToast(message, type = "success", title = null) {
+
+            createToastContainer();
+
+
+            const toastElement =
+                document.getElementById("appToast");
+
+            const toastMessage =
+                document.getElementById("toastMessage");
+
+            const toastTitle =
+                document.getElementById("toastTitle");
+
+            const toastIcon =
+                document.getElementById("toastIcon");
+
+
+            // Remove old classes
+
+            toastElement.classList.remove(
+                "toast-success",
+                "toast-error",
+                "toast-warning",
+                "toast-info"
+            );
+
+
+            // Add current type
+
+            toastElement.classList.add(
+                "toast-" + type
+            );
+
+
+            // Message
+
+            toastMessage.textContent =
+                message || "Something happened.";
+
+
+            // Title
+
+            if (!title) {
+
+                if (type === "success") {
+                    title = "Success";
+                }
+                else if (type === "error") {
+                    title = "Error";
+                }
+                else if (type === "warning") {
+                    title = "Warning";
+                }
+                else {
+                    title = "Information";
+                }
+            }
+
+
+            toastTitle.textContent = title;
+
+
+            // Icon
+
+            if (type === "success") {
+
+                toastIcon.innerHTML =
+                    '<i class="bi bi-check-lg"></i>';
+
+            }
+            else if (type === "error") {
+
+                toastIcon.innerHTML =
+                    '<i class="bi bi-x-lg"></i>';
+
+            }
+            else if (type === "warning") {
+
+                toastIcon.innerHTML =
+                    '<i class="bi bi-exclamation-lg"></i>';
+
+            }
+            else {
+
+                toastIcon.innerHTML =
+                    '<i class="bi bi-info-lg"></i>';
+            }
+
+
+            // Bootstrap Toast
+
+            const toast =
+                bootstrap.Toast.getOrCreateInstance(
+                    toastElement,
+                    {
+                        delay: 3500
+                    }
+                );
+
+            toast.show();
+        }
+
+
+
+        // =========================================================
+        // GET ANTI FORGERY TOKEN
+        // =========================================================
+
+        function getAntiForgeryToken() {
+
+            const token =
+                document.querySelector(
+                    'input[name="__RequestVerificationToken"]'
+                );
+
+            return token ? token.value : "";
+        }
+
+
+
+        // =========================================================
+        // DRAG & DROP
+        // =========================================================
+
+        function initializeDragAndDrop() {
+
+            // -----------------------------------------------------
+            // TASK CARDS
+            // -----------------------------------------------------
+
+            const taskCards =
+                document.querySelectorAll(".task-card");
+
+
+            taskCards.forEach(card => {
+
+                // Prevent duplicate listeners
+                if (card.dataset.dragInitialized === "true") {
+                    return;
+                }
+
+                card.dataset.dragInitialized = "true";
+
+
+                // Make draggable
+
+                card.setAttribute(
+                    "draggable",
+                    "true"
+                );
+
+
+                // -------------------------------------------------
+                // DRAG START
+                // -------------------------------------------------
+
+                card.addEventListener(
+                    "dragstart",
+                    function(e) {
+
+                        draggedCard = this;
+
+                        const taskId =
+                            this.dataset.id;
+
+                        e.dataTransfer.effectAllowed =
+                            "move";
+
+                        e.dataTransfer.setData(
+                            "text/plain",
+                            taskId
+                        );
+
+                        // Some browsers need this
+                        e.dataTransfer.setData(
+                            "taskId",
+                            taskId
+                        );
+
+
+                        setTimeout(() => {
+
+                            this.classList.add(
+                                "dragging"
+                            );
+
+                        }, 0);
+
+                    }
+                );
+
+
+                // -------------------------------------------------
+                // DRAG END
+                // -------------------------------------------------
+
+                card.addEventListener(
+                    "dragend",
+                    function() {
+
+                        this.classList.remove(
+                            "dragging"
+                        );
+
+                        draggedCard = null;
+
+
+                        // Remove drag-over from all columns
+
+                        document
+                            .querySelectorAll(".kanban-body")
+                            .forEach(column => {
+
+                                column.classList.remove(
+                                    "drag-over"
+                                );
+
+                            });
+
+                    }
+                );
+
             });
-            // Make every column droppable
-            document.querySelectorAll(".kanban-body").forEach(column => {
-                column.addEventListener("dragover", function (e) {
-                    e.preventDefault();
-                    this.classList.add("drag-over");
-                });
-                column.addEventListener("dragleave", function () {
-                    this.classList.remove("drag-over");
-                });
-                column.addEventListener("drop", function (e) {
 
-                    e.preventDefault();
-                    this.classList.remove("drag-over");
 
-                    const taskId = parseInt(e.dataTransfer.getData("taskId"));
-                    const newStatus = parseInt(this.dataset.status);
 
-                    const token = document.querySelector('input[name="__RequestVerificationToken"]');
+            // -----------------------------------------------------
+            // KANBAN COLUMNS
+            // -----------------------------------------------------
 
-                    fetch("?handler=UpdateTaskStatus", {
+            const columns =
+                document.querySelectorAll(
+                    ".kanban-body"
+                );
 
-                        method: "POST",
 
-                        headers: {
-                            "Content-Type": "application/json",
-                            ...(token && {
-                                "RequestVerificationToken": token.value
-                            })
-                        },
+            columns.forEach(column => {
 
-                        body: JSON.stringify({
-                            taskId: taskId,
-                            newStatus: newStatus
-                        })
+                if (
+                    column.dataset.dropInitialized === "true"
+                ) {
+                    return;
+                }
 
-                    })
-                        .then(response => {
+                column.dataset.dropInitialized = "true";
 
-                            if (!response.ok) {
-                                throw new Error("Server Error");
+
+                // -------------------------------------------------
+                // DRAG OVER
+                // -------------------------------------------------
+
+                column.addEventListener(
+                    "dragover",
+                    function(e) {
+
+                        e.preventDefault();
+
+                        e.dataTransfer.dropEffect =
+                            "move";
+
+                        this.classList.add(
+                            "drag-over"
+                        );
+
+                    }
+                );
+
+
+                // -------------------------------------------------
+                // DRAG LEAVE
+                // -------------------------------------------------
+
+                column.addEventListener(
+                    "dragleave",
+                    function(e) {
+
+                        // Only remove when actually leaving column
+
+                        if (
+                            e.relatedTarget &&
+                            this.contains(e.relatedTarget)
+                        ) {
+                            return;
+                        }
+
+                        this.classList.remove(
+                            "drag-over"
+                        );
+
+                    }
+                );
+
+
+                // -------------------------------------------------
+                // DROP
+                // -------------------------------------------------
+
+                column.addEventListener(
+                    "drop",
+                    async function(e) {
+
+                        e.preventDefault();
+
+
+                        this.classList.remove(
+                            "drag-over"
+                        );
+
+
+                        // Get task ID
+
+                        let taskId =
+                            e.dataTransfer.getData(
+                                "text/plain"
+                            );
+
+
+                        if (!taskId) {
+
+                            taskId =
+                                e.dataTransfer.getData(
+                                    "taskId"
+                                );
+
+                        }
+
+
+                        // Validate task ID
+
+                        if (!taskId) {
+
+                            showToast(
+                                "Unable to identify the task.",
+                                "error",
+                                "Update Failed"
+                            );
+
+                            return;
+                        }
+
+
+                        taskId =
+                            parseInt(taskId);
+
+
+                        // Get new status
+
+                        const newStatus =
+                            parseInt(
+                                this.dataset.status
+                            );
+
+
+                        if (isNaN(taskId) ||
+                            isNaN(newStatus)) {
+
+                            showToast(
+                                "Invalid task or status.",
+                                "error",
+                                "Update Failed"
+                            );
+
+                            return;
+                        }
+
+
+                        // Token
+
+                        const token =
+                            getAntiForgeryToken();
+
+
+                        try {
+
+                            const response =
+                                await fetch(
+                                    "?handler=UpdateTaskStatus",
+                                    {
+                                        method: "POST",
+
+                                        headers: {
+
+                                            "Content-Type":
+                                                "application/json",
+
+                                            "RequestVerificationToken":
+                                                token
+
+                                        },
+
+                                        body: JSON.stringify({
+
+                                            taskId: taskId,
+
+                                            newStatus: newStatus
+
+                                        })
+                                    }
+                                );
+
+
+                            // -------------------------------------
+                            // RESPONSE
+                            // -------------------------------------
+
+                            let result;
+
+
+                            try {
+
+                                result =
+                                    await response.json();
+
+                            }
+                            catch {
+
+                                result = {
+
+                                    success: false,
+
+                                    message:
+                                        "Invalid server response."
+
+                                };
+
                             }
 
-                            return response.json();
 
-                        })
-                        .then(result => {
+                            // -------------------------------------
+                            // SUCCESS
+                            // -------------------------------------
 
-                            if (result.success) {
+                            if (
+                                response.ok &&
+                                result.success
+                            ) {
 
-                                // Reload page so the new status and counts come from DB
-                                window.location.reload();
+                                showToast(
+
+                                    result.message ||
+                                    "Task status updated successfully.",
+
+                                    "success",
+
+                                    "Status Updated"
+
+                                );
+
+
+                                // Reload after toast
+
+                                setTimeout(
+                                    () => {
+
+                                        window.location.reload();
+
+                                    },
+                                    1000
+                                );
 
                             }
+
+                            // -------------------------------------
+                            // SERVER ERROR / PERMISSION ERROR
+                            // -------------------------------------
+
                             else {
 
-                                alert(result.message);
+                                showToast(
+
+                                    result.message ||
+                                    "You are not allowed to update this task.",
+
+                                    "warning",
+
+                                    "Action Not Allowed"
+
+                                );
 
                             }
 
-                        })
-                        .catch(error => {
+                        }
+                        catch (error) {
 
-                            console.error(error);
-                            alert("Something went wrong.");
+                            console.error(
+                                "UpdateTaskStatus Error:",
+                                error
+                            );
 
-                        });
 
-                });
+                            showToast(
 
-            });
+                                "Something went wrong while updating the task.",
 
-        });
+                                "error",
 
-        //create task
-        document.querySelector("#createTaskModal form")
-            .addEventListener("submit", function (e) {
+                                "Server Error"
 
-                e.preventDefault();
+                            );
 
-                const form = this;
+                        }
 
-                const formData = new FormData(form);
-
-                fetch("?handler=CreateTask", {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        "RequestVerificationToken":
-                            document.querySelector('input[name="__RequestVerificationToken"]').value
                     }
-                })
-                    .then(r => r.text())
-                    .then(() => {
-                        location.reload();
-                    });
+                );
 
             });
-            //comment box 
-        // Open comment box
-        $(document).on("click", ".add-note-toggle", function () {
 
-            const taskId = $(this).data("id");
-
-            $("#comment-box-" + taskId).addClass("show");
-        });
+        }
 
 
-        // Cancel comment
-        $(document).on("click", ".comment-cancel", function () {
 
-            const box = $(this).closest(".comment-box");
+        // =========================================================
+        // CREATE TASK
+        // =========================================================
 
-            box.find(".comment-text").val("");
+        function initializeCreateTask() {
 
-            box.removeClass("show");
-        });
+            const createForm =
+                document.querySelector(
+                    "#createTaskModal form"
+                );
+
+
+            if (!createForm) {
+                return;
+            }
+
+
+            // Prevent duplicate event
+
+            if (
+                createForm.dataset.initialized === "true"
+            ) {
+                return;
+            }
+
+            createForm.dataset.initialized = "true";
+
+
+            createForm.addEventListener(
+                "submit",
+                async function(e) {
+
+                    e.preventDefault();
+
+
+                    const form = this;
+
+
+                    const formData =
+                        new FormData(form);
+
+
+                    const token =
+                        getAntiForgeryToken();
+
+
+                    // Submit button
+
+                    const submitButton =
+                        form.querySelector(
+                            'button[type="submit"]'
+                        );
+
+
+                    const originalText =
+                        submitButton
+                            ? submitButton.innerHTML
+                            : "Create";
+
+
+                    if (submitButton) {
+
+                        submitButton.disabled =
+                            true;
+
+                        submitButton.innerHTML = `
+
+                                    <span class="spinner-border spinner-border-sm me-1">
+                                    </span>
+
+                                    Creating...
+
+                                `;
+                    }
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "?handler=CreateTask",
+                                {
+
+                                    method: "POST",
+
+                                    body: formData,
+
+                                    headers: {
+
+                                        "RequestVerificationToken":
+                                            token
+
+                                    }
+
+                                }
+                            );
+
+
+                        const responseText =
+                            await response.text();
+
+
+                        let result = null;
+
+
+                        // Try JSON
+
+                        try {
+
+                            result =
+                                JSON.parse(
+                                    responseText
+                                );
+
+                        }
+                        catch {
+
+                            // If backend returned normal response
+                            result = null;
+
+                        }
+
+
+                        // -----------------------------------------
+                        // SUCCESS
+                        // -----------------------------------------
+
+                        if (
+                            response.ok &&
+                            (
+                                result === null ||
+                                result.success !== false
+                            )
+                        ) {
+
+                            // Close modal
+
+                            const modalElement =
+                                document.getElementById(
+                                    "createTaskModal"
+                                );
+
+
+                            if (modalElement) {
+
+                                const modal =
+                                    bootstrap.Modal
+                                        .getInstance(
+                                            modalElement
+                                        );
+
+                                if (modal) {
+                                    modal.hide();
+                                }
+
+                            }
+
+
+                            showToast(
+
+                                result?.message ||
+                                "Task created successfully.",
+
+                                "success",
+
+                                "Task Created"
+
+                            );
+
+
+                            // Reload
+
+                            setTimeout(
+                                () => {
+
+                                    window.location.reload();
+
+                                },
+                                1000
+                            );
+
+                        }
+
+                        // -----------------------------------------
+                        // FAILED
+                        // -----------------------------------------
+
+                        else {
+
+                            showToast(
+
+                                result?.message ||
+                                "Unable to create task.",
+
+                                "error",
+
+                                "Create Failed"
+
+                            );
+
+                        }
+
+                    }
+                    catch (error) {
+
+                        console.error(
+                            "CreateTask Error:",
+                            error
+                        );
+
+
+                        showToast(
+
+                            "Something went wrong while creating the task.",
+
+                            "error",
+
+                            "Create Failed"
+
+                        );
+
+                    }
+                    finally {
+
+                        if (submitButton) {
+
+                            submitButton.disabled =
+                                false;
+
+                            submitButton.innerHTML =
+                                originalText;
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        // =========================================================
+        // COMMENT BOX
+        // =========================================================
+
+        function initializeComments() {
+
+
+            // -----------------------------------------------------
+            // OPEN / TOGGLE COMMENT BOX
+            // -----------------------------------------------------
+
+            $(document).off(
+                "click",
+                ".add-note-toggle"
+            );
+
+
+            $(document).on(
+                "click",
+                ".add-note-toggle",
+                function() {
+
+                    const taskId =
+                        $(this).data("id");
+
+
+                    const box =
+                        $("#comment-box-" + taskId);
+
+
+                    // Close other boxes
+
+                    $(".comment-box")
+                        .not(box)
+                        .addClass("d-none");
+
+
+                    // Toggle current box
+
+                    box.toggleClass("d-none");
+
+
+                    // Focus textarea
+
+                    if (
+                        !box.hasClass("d-none")
+                    ) {
+
+                        box.find(
+                            ".comment-text"
+                        ).focus();
+
+                    }
+
+                }
+            );
+
+
+            // -----------------------------------------------------
+            // CANCEL COMMENT
+            // -----------------------------------------------------
+
+            $(document).off(
+                "click",
+                ".comment-cancel"
+            );
+
+
+            $(document).on(
+                "click",
+                ".comment-cancel",
+                function() {
+
+                    const box =
+                        $(this).closest(
+                            ".comment-box"
+                        );
+
+
+                    box.find(
+                        ".comment-text"
+                    ).val("");
+
+
+                    box.addClass(
+                        "d-none"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        // =========================================================
+        // MY TASKS / ALL TASKS TOGGLE
+        // =========================================================
+
+        function initializeTaskToggle() {
+
+            $(document).off(
+                "change",
+                "#myTasksToggle"
+            );
+
+
+            $(document).on(
+                "change",
+                "#myTasksToggle",
+                function() {
+
+                    if (this.checked) {
+
+                        window.location.href =
+                            "?myTasks=true";
+
+                    }
+                    else {
+
+                        window.location.href =
+                            "?myTasks=false";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        // =========================================================
+        // PROJECT MEMBERS
+        // =========================================================
+
+        function initializeProjectMembers() {
+
+            const projectSelect =
+                document.getElementById(
+                    "projectSelect"
+                );
+
+
+            const membersContainer =
+                document.getElementById(
+                    "projectMembersContainer"
+                );
+
+
+            if (
+                !projectSelect ||
+                !membersContainer
+            ) {
+                return;
+            }
+
+
+            // Prevent duplicate listener
+
+            if (
+                projectSelect.dataset.initialized === "true"
+            ) {
+                return;
+            }
+
+            projectSelect.dataset.initialized =
+                "true";
+
+
+            projectSelect.addEventListener(
+                "change",
+                async function() {
+
+                    const projectId =
+                        this.value;
+
+
+                    membersContainer.innerHTML =
+                        "";
+
+
+                    // No project selected
+
+                    if (!projectId) {
+
+                        membersContainer.innerHTML = `
+
+                                    <div class="text-muted">
+
+                                        Please select a project first.
+
+                                    </div>
+
+                                `;
+
+                        return;
+                    }
+
+
+                    // Loading
+
+                    membersContainer.innerHTML = `
+
+                                <div class="text-muted">
+
+                                    <span
+                                        class="spinner-border spinner-border-sm me-2">
+                                    </span>
+
+                                    Loading members...
+
+                                </div>
+
+                            `;
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                `?handler=ProjectMembers&projectId=${projectId}`
+                            );
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Failed to load project members."
+                            );
+
+                        }
+
+
+                        const members =
+                            await response.json();
+
+
+                        membersContainer.innerHTML =
+                            "";
+
+
+                        // No members
+
+                        if (
+                            !members ||
+                            members.length === 0
+                        ) {
+
+                            membersContainer.innerHTML = `
+
+                                        <div class="text-muted">
+
+                                            No members found in this project.
+
+                                        </div>
+
+                                    `;
+
+                            return;
+                        }
+
+
+                        // Members
+
+                        members.forEach(
+                            member => {
+
+                                const div =
+                                    document.createElement(
+                                        "div"
+                                    );
+
+
+                                div.className =
+                                    "form-check mb-2";
+
+
+                                const roles =
+                                    member.roles &&
+                                        member.roles.length > 0
+
+                                        ? member.roles.join(", ")
+
+                                        : "";
+
+
+                                div.innerHTML = `
+
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="createTask.AssignedToUserIds"
+                                                value="${member.id}"
+                                                id="create_emp_${member.id}"
+                                            />
+
+                                            <label
+                                                class="form-check-label"
+                                                for="create_emp_${member.id}"
+                                            >
+
+                                                <strong>
+                                                    ${member.name}
+                                                </strong>
+
+                                                ${roles
+                                        ? `
+                                                            <span class="text-secondary">
+                                                                [${roles}]
+                                                            </span>
+                                                          `
+                                        : ""
+                                    }
+                                            </label>
+                                        `;
+                                membersContainer.appendChild(
+                                    div
+                                );
+                            }
+                        );
+                    }
+                    catch (error) {
+                        console.error(
+                            "ProjectMembers Error:",
+                            error
+                        );
+                        membersContainer.innerHTML = `
+                                    <div class="text-danger">
+                                       Failed to load project members.
+                                    </div>
+                                `;
+                        showToast(
+                            "Failed to load project members.",
+                            "error",
+                            "Loading Failed"
+                        );
+                    }
+                }
+            );
+        }
+        // =========================================================
+        // PAGE INITIALIZATION
+        // =========================================================
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+                // Toast
+                createToastContainer();
+                // Drag & Drop
+                initializeDragAndDrop();
+                // Create Task
+                initializeCreateTask();
+                // Comments
+                initializeComments();
+                // My Tasks / All Tasks
+                initializeTaskToggle();
+                // Project Members
+                initializeProjectMembers();
+
+            }
+        );
+
+
     </script>
-
 }

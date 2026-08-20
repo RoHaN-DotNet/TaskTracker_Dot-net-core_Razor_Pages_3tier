@@ -26,7 +26,8 @@ namespace TaskTrackerDAL.Interfaces
         Task<int> CountOverdueAsync(int? companyId);
         Task<IReadOnlyList<ProjectTask>> GetDueTodayAsync(int? companyId, int? userId);
         Task<IReadOnlyList<ProjectTask>> GetRecentAsync(int companyId, int count);
-
+        Task<Dictionary<int, int>> GetOverdueTaskCountsByUserAsync(
+    int companyId);
         Task<(IReadOnlyList<ProjectTask> Items, int TotalCount)> FilterAsync(
       int? assignedToUserId,
       TaskPriority? priority,

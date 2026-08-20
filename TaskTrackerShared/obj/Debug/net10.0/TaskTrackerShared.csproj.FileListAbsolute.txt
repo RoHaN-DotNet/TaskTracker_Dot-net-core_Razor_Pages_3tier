@@ -13,3 +13,4 @@ D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\refint\Tas
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.pdb
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrackerShared.genruntimeconfig.cache
 D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\ref\TaskTrackerShared.dll
+D:\PracticeWebProject\TaskTracker\TaskTrackerShared\obj\Debug\net10.0\TaskTrac.ED34EE60.Up2Date

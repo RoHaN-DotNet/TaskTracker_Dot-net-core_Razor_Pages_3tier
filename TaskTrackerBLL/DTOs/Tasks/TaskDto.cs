@@ -17,9 +17,9 @@ namespace TaskTrackerBLL.DTOs.Tasks
 
         public string? Description { get; set; }
 
-        public int? AssignedToUserId { get; set; }
+        public List<int> AssignedToUserIds { get; set; }
 
-        public string? AssignedToUserName { get; set; }
+        public List<string> AssignedToUserNames { get; set; }
 
         public ProjectTasksStatus Status { get; set; }
 

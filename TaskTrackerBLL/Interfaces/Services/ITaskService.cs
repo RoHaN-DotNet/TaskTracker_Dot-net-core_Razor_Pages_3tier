@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TaskTrackerBLL.Common;
+using TaskTrackerBLL.DTOs.Project;
 using TaskTrackerBLL.DTOs.Tasks;
 
 namespace TaskTrackerBLL.Interfaces.Services
@@ -36,7 +37,10 @@ namespace TaskTrackerBLL.Interfaces.Services
 
         Task<Result> AddCompletionCommentAsync(AddCompletionCommentDto dto, int authorUserId);
 
-            Task<Result<PagedResult<TaskDto>>> FilterAsync(
-    TaskFilterDto filter, int? actingManagerCompanyId);
+        Task<Result<PagedResult<TaskDto>>> FilterAsync(TaskFilterDto filter, int? actingManagerCompanyId);
+        Task<Result> AssignMembersAsync(
+    int taskId,
+    List<int> assignedToUserIds,
+    int actingUserId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TaskTrackerBLL.Interfaces;
@@ -21,6 +22,9 @@ namespace TaskTrackerBLL.Infrastucture
         private INotificationFeature? _notifications;
         private IAuditLogFeature? _auditLogs;
         private ITaskFileFeature? _taskFiles;
+        private ITaskMemberFeature? _taskMembers;
+        
+        
         public UnitOfWork(TaskTrackerDbContext context)
         {
             _context = context;
@@ -42,6 +46,7 @@ namespace TaskTrackerBLL.Infrastucture
         
 
         public ITaskFileFeature TaskFiles =>_taskFiles ??= new TaskFileRepository(_context);
+        public ITaskMemberFeature TaskMembers => _taskMembers ??= new TaskMemberRepository(_context);
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();

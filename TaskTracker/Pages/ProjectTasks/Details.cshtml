@@ -1,124 +1,254 @@
 ﻿@page
 @model TaskTracker.Pages.ProjectTasks.DetailsModel
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-}
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-}
+
+@using TaskTrackerDAL.Models.Enums
+
 @{
+    ViewData["Title"] = "Task Details";
+
     var priorityClass = Model.Task.Priority switch
     {
-        TaskTrackerDAL.Models.Enums.TaskPriority.High => "bg-danger",
-        TaskTrackerDAL.Models.Enums.TaskPriority.Medium => "bg-warning text-dark",
-        TaskTrackerDAL.Models.Enums.TaskPriority.Low => "bg-success",
+        TaskPriority.High => "bg-danger",
+        TaskPriority.Medium => "bg-warning text-dark",
+        TaskPriority.Low => "bg-success",
         _ => "bg-secondary"
     };
 
     var statusClass = Model.Task.Status switch
     {
-        TaskTrackerDAL.Models.Enums.ProjectTasksStatus.Completed => "bg-success",
-        TaskTrackerDAL.Models.Enums.ProjectTasksStatus.InProgress => "bg-primary",
-        TaskTrackerDAL.Models.Enums.ProjectTasksStatus.OnHold => "bg-warning text-dark",
-        TaskTrackerDAL.Models.Enums.ProjectTasksStatus.Cancelled => "bg-danger",
+        ProjectTasksStatus.Completed => "bg-success",
+        ProjectTasksStatus.InProgress => "bg-primary",
+        ProjectTasksStatus.OnHold => "bg-warning text-dark",
+        ProjectTasksStatus.Cancelled => "bg-danger",
+        ProjectTasksStatus.Archived => "bg-secondary",
         _ => "bg-secondary"
     };
 }
 
-<div class="container-fluid py-4 mt-lg-5">
 
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="container-fluid py-4 task-details-page">
+
+    <!-- ===================================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
 
         <div>
-            <!--<a asp-page="/ProjectTasks/Tasks"
-               class="text-decoration-none text-muted small">
-                <i class="bi bi-arrow-left"></i> Back to Tasks
-            </a>-->
-            
 
-            <h2 class="fw-bold mt-2 mb-1">
+            <div class="d-flex align-items-center gap-2 mb-1">
+
+                <span class="task-page-icon">
+                    <i class="bi bi-check2-square"></i>
+                </span>
+
+                <span class="text-muted small fw-semibold">
+                    TASK DETAILS
+                </span>
+
+            </div>
+
+            <h2 class="fw-bold mb-1">
                 @Model.Task.Title
             </h2>
 
-            <!--<span class="text-muted">
-                Task #@Model.Task.Id
-            </span>-->
-        </div>
-        <!--
-        <div class="d-flex gap-2">
+            <div class="text-muted small">
+                <i class="bi bi-folder2-open me-1"></i>
+                @Model.Task.ProjectName
+            </div>
 
-            <span class="badge @statusClass px-3 py-2">
+        </div>
+
+
+        <div class="d-flex align-items-center gap-2">
+
+            <span class="badge @statusClass task-status-badge px-3 py-2">
                 @Model.Task.Status
             </span>
 
-            <span class="badge @priorityClass px-3 py-2">
+            <span class="badge @priorityClass task-status-badge px-3 py-2">
                 @Model.Task.Priority
             </span>
 
         </div>
-        -->
+
     </div>
 
 
-    @if (TempData["TaskActionError"] is string actionError)
+    <!-- ===================================================== -->
+    <!-- ALERTS -->
+    <!-- ===================================================== -->
+    @if (TempData["SuccessMessage"] != null)
     {
-        <div class="alert alert-danger alert-dismissible fade show shadow-sm">
-            <i class="bi bi-exclamation-triangle me-2"></i>
-            @actionError
+        <div class="alert alert-success alert-dismissible fade show shadow-sm border-0 rounded-3 mb-3"
+             role="alert">
+
+            <div class="d-flex align-items-center">
+
+                <i class="bi bi-check-circle-fill fs-5 me-2"></i>
+
+                <div>
+                    @TempData["SuccessMessage"]
+                </div>
+
+            </div>
 
             <button type="button"
                     class="btn-close"
                     data-bs-dismiss="alert">
             </button>
+
         </div>
     }
 
 
-    <div class="row g-4">
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0 rounded-3 mb-3"
+             role="alert">
 
-        <!-- LEFT SIDE -->
-        <div class="col-lg-8">
+            <div class="d-flex align-items-center">
 
-            <!-- Task Information -->
-            <div class="card border-0 rounded-4 mb-4 task-detail-card">
+                <i class="bi bi-exclamation-circle-fill fs-5 me-2"></i>
 
-                <div class="card-header bg-white border-0 pt-4 px-4">
-                    <h5 class="fw-bold mb-0">
-                        <i class="bi bi-info-circle me-2"></i>
-                        Task Details
-                    </h5>
+                <div>
+                    @TempData["ErrorMessage"]
                 </div>
 
-                <div class="card-body px-4">
+            </div>
 
-                    <!-- Project -->
-                    <div class="mb-4">
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
 
-                        <label class="text-muted small fw-semibold">
+        </div>
+    }
+
+
+    @if (TempData["TaskActionError"] is string actionError)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0 rounded-3 mb-3"
+             role="alert">
+
+            <div class="d-flex align-items-center">
+
+                <i class="bi bi-exclamation-triangle-fill fs-5 me-2"></i>
+
+                <div>
+                    @actionError
+                </div>
+
+            </div>
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    }
+
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN CONTENT -->
+    <!-- ===================================================== -->
+
+    <div class="row g-3">
+
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDE -->
+        <!-- ================================================= -->
+
+        <div class="col-lg-8">
+
+
+            <!-- ================================================= -->
+            <!-- TASK DETAILS CARD -->
+            <!-- ================================================= -->
+
+            <div class="card border-0 rounded-4 shadow-sm task-fixed-card mb-3">
+
+                <div class="card-header bg-white border-0 px-4 pt-3 pb-1">
+
+                    <div class="d-flex align-items-center gap-2">
+
+                        <span class="section-icon">
+                            <i class="bi bi-info-circle"></i>
+                        </span>
+
+                        <div>
+
+                            <h5 class="fw-bold mb-0">
+                                Task Details
+                            </h5>
+
+                            <small class="text-muted">
+                                Project and task description
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-body px-4 pb-3 task-details-body">
+
+
+                    <!-- PROJECT -->
+
+                    <div class="mb-3">
+
+                        <label class="text-muted small fw-semibold d-block mb-2">
                             PROJECT
                         </label>
 
-                        <div class="mt-1">
-                            <span class="fw-semibold">
-                                <i class="bi bi-folder me-2 text-primary"></i>
-                                @Model.Task.ProjectName
-                            </span>
+
+                        <div class="border rounded-3 p-1 bg-light project-box">
+
+                            <div class="d-flex align-items-center">
+
+                                <div class="project-icon me-3">
+
+                                    <i class="bi bi-folder fs-5"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="fw-semibold">
+                                        @Model.Task.ProjectName
+                                    </div>
+
+                                    <small class="text-muted">
+                                        Project
+                                    </small>
+
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>
 
 
-                    <!-- Description -->
-                    <div class="mb-4">
+                    <!-- DESCRIPTION -->
 
-                        <label class="text-muted small fw-semibold">
+                    <div>
+
+                        <label class="text-muted small fw-semibold d-block mb-2">
                             DESCRIPTION
                         </label>
 
-                        <div class="mt-2 p-3 bg-light rounded-3">
+
+                        <div class="border rounded-3 bg-light pt-1 ps-2 description-box">
+
                             @if (string.IsNullOrWhiteSpace(Model.Task.Description))
                             {
                                 <span class="text-muted">
@@ -127,94 +257,95 @@
                             }
                             else
                             {
-                                @Model.Task.Description
+                                <div class="description-content">
+                                    @Model.Task.Description
+                                </div>
                             }
+
                         </div>
 
                     </div>
 
-
-                    <!-- Due Date -->
-                    <!--
-                    <div class="mb-3">
-
-                        <label class="text-muted small fw-semibold">
-                            DUE DATE
-                        </label>
-
-                        <div class="mt-1">
-
-                            @if (Model.Task.DueDate.HasValue)
-                            {
-                                <span class="fw-semibold">
-                                    <i class="bi bi-calendar-event me-2"></i>
-                                    @Model.Task.DueDate.Value.ToString("dd MMM yyyy")
-                                </span>
-
-                                @if (Model.Task.IsOverdue)
-                                {
-                                    <span class="badge bg-danger ms-2">
-                                        Overdue
-                                    </span>
-                                }
-                            }
-                            else
-                            {
-                                <span class="text-muted">
-                                    No deadline
-                                </span>
-                            }
-
-                        </div>
-                        
-
-                    </div>
-                    -->
                 </div>
 
             </div>
 
 
-            <!-- Progress Log -->
-            <div class="card border-0 rounded-4 task-detail-card">
 
-                <div class="card-header bg-white border-0 pt-4 px-4">
+            <!-- ================================================= -->
+            <!-- PROGRESS LOG CARD -->
+            <!-- ================================================= -->
 
-                    <div class="d-flex justify-content-between align-items-center">
+            <div class="card border-0 rounded-4 shadow-sm task-fixed-card">
 
-                        <h5 class="fw-bold mb-0">
-                            <i class="bi bi-chat-left-text me-2"></i>
-                            Progress Log
-                            <span class="badge bg-light text-dark">
-                                @Model.ProgressNotes.Count note(s)
+                <div class="card-header bg-white border-0 px-4 pt-3 pb-2">
+
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span class="section-icon">
+                                <i class="bi bi-chat-left-text"></i>
                             </span>
-                        </h5>
 
-                        
+
+                            <div>
+
+                                <div class="d-flex align-items-center gap-2">
+
+                                    <h5 class="fw-bold mb-0">
+                                        Progress Log
+                                    </h5>
+
+                                    <span class="badge bg-light text-dark border">
+                                        @Model.ProgressNotes.Count note(s)
+                                    </span>
+
+                                </div>
+
+                                <small class="text-muted">
+                                    Track progress and updates
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
                         <button type="button"
-                                class="btn btn-sm btn-primary"
+                                class="btn btn-task-primary btn-sm px-3"
                                 data-bs-toggle="modal"
                                 data-bs-target="#addNoteModal">
 
                             <i class="bi bi-plus-lg me-1"></i>
+
                             Add Note
 
                         </button>
+
                     </div>
 
                 </div>
 
+
                 <div class="notes-scroll">
-                    <div class="card-body px-4 pb-4">
+
+                    <div class="card-body px-4 pt-2 pb-3">
 
                         @if (Model.ProgressNotes.Count == 0)
                         {
-                            <div class="text-center py-5">
+                            <div class="empty-state py-4">
 
-                                <i class="bi bi-chat-square-text fs-1 text-muted"></i>
+                                <div class="empty-state-icon">
+                                    <i class="bi bi-chat-square-text"></i>
+                                </div>
 
-                                <p class="text-muted mt-3 mb-0">
-                                    No progress notes yet.
+                                <h6 class="fw-semibold mt-2 mb-1">
+                                    No progress notes
+                                </h6>
+
+                                <p class="text-muted mb-0">
+                                    Add a note to keep track of task progress.
                                 </p>
 
                             </div>
@@ -226,34 +357,50 @@
                                 @foreach (var note in Model.ProgressNotes)
                                 {
                                     <div class="list-group-item px-0 py-3 border-bottom
-                                        @(note.IsCompletionComment ? "bg-success bg-opacity-10" : "")">
+                                        @(note.IsCompletionComment ? "completion-note" : "")">
 
-                                        <div class="d-flex justify-content-between align-items-start">
+                                        <div class="d-flex justify-content-between align-items-start gap-3">
 
                                             <div>
 
-                                                <strong>
-                                                    @note.AuthorName
-                                                </strong>
+                                                <div class="d-flex align-items-center flex-wrap gap-2">
 
-                                                @if (note.IsCompletionComment)
-                                                {
-                                                    <span class="badge bg-success ms-2">
-                                                        Completion
-                                                    </span>
-                                                }
+                                                    <div class="fw-semibold">
+                                                        @note.AuthorName
+                                                    </div>
+
+
+                                                    @if (note.IsCompletionComment)
+                                                    {
+                                                        <span class="badge bg-success">
+
+                                                            <i class="bi bi-check-circle me-1"></i>
+
+                                                            Completion
+
+                                                        </span>
+                                                    }
+
+                                                </div>
 
                                             </div>
 
-                                            <small class="text-muted">
-                                                @note.CreatedAt.ToString("dd MMM yyyy, hh:mm tt")
+
+                                            <small class="text-muted text-nowrap">
+
+                                                <i class="bi bi-clock me-1"></i>
+
+                                                @note.CreatedAt.ToString(
+                                                    "dd MMM yyyy, hh:mm tt")
+
                                             </small>
 
                                         </div>
 
-                                        <p class="mb-0 mt-2 text-secondary">
+
+                                        <div class="mt-2 text-secondary">
                                             @note.Note
-                                        </p>
+                                        </div>
 
                                     </div>
                                 }
@@ -262,88 +409,216 @@
                         }
 
                     </div>
+
                 </div>
-                
-                
-                
+
             </div>
 
         </div>
 
 
+
+        <!-- ================================================= -->
         <!-- RIGHT SIDE -->
+        <!-- ================================================= -->
+
         <div class="col-lg-4">
 
-            <!-- Task Summary -->
-            <div class="card border-0 rounded-4 mb-4 task-detail-card">
 
-                <div class="card-header bg-white border-0 pt-4 px-4">
-                    <h5 class="fw-bold mb-0">
-                        Task Summary
-                    </h5>
+            <!-- ================================================= -->
+            <!-- TASK SUMMARY -->
+            <!-- ================================================= -->
+
+            <div class="card border-0 rounded-4 shadow-sm task-fixed-card task-summary-card mb-3">
+
+                <div class="card-header bg-white border-0 px-4 pt-3 pb-2">
+
+                    <div class="d-flex align-items-center gap-2">
+
+                        <span class="section-icon">
+                            <i class="bi bi-card-checklist"></i>
+                        </span>
+
+                        <div>
+
+                            <h5 class="fw-bold mb-0">
+                                Task Summary
+                            </h5>
+
+                            <small class="text-muted">
+                                Current task information
+                            </small>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="card-body px-4">
 
-                    <!-- Assigned To -->
-                    <div class="d-flex align-items-center mb-4">
+                <div class="card-body px-4 pt-2 pb-3">
 
-                        <div class="rounded-circle bg-primary bg-opacity-10
-                            text-primary d-flex align-items-center
-                            justify-content-center me-3"
-                             style="width:45px;height:45px;">
+
+                    <!-- ================================================= -->
+                    <!-- ASSIGNED TO -->
+                    <!-- ================================================= -->
+
+                    <div class="d-flex align-items-start mb-3">
+
+                        <div class="summary-avatar me-3">
 
                             <i class="bi bi-person"></i>
 
                         </div>
 
-                        <div>
-                            <small class="text-muted d-block">
-                                Assigned To
-                            </small>
 
-                            <strong>
-                                @(Model.Task.AssignedToUserName ?? "Unassigned")
-                            </strong>
+                        <div class="flex-grow-1">
+
+                            <div class="d-flex align-items-center gap-1 mb-1">
+
+                                <small class="text-muted">
+                                    Assigned To
+                                </small>
+
+
+                                @if (Model.CanManage)
+                                {
+                                    <button type="button"
+                                            class="summary-edit-btn"
+                                            title="Assign / Reassign Task"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#assignMemberModal">
+
+                                        <i class="bi bi-pencil"></i>
+
+                                    </button>
+                                }
+
+                            </div>
+
+
+                            <div class="fw-semibold">
+
+                                @if (Model.Task.AssignedToUserNames != null &&
+                                    Model.Task.AssignedToUserNames.Any())
+                                {
+                                    <!-- ================================================= -->
+                                    <!-- ASSIGNED MEMBERS - SCROLL AREA -->
+                                    <!-- ================================================= -->
+
+                                    <div class="d-flex flex-column gap-1 assigned-members-list">
+
+                                        @foreach (var userName in Model.Task.AssignedToUserNames)
+                                        {
+                                            <span>
+
+                                                <i class="bi bi-person me-1 text-muted"></i>
+
+                                                @userName
+
+                                            </span>
+                                        }
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">
+                                        Unassigned
+                                    </span>
+                                }
+
+                            </div>
+
                         </div>
 
                     </div>
 
 
-                    <!-- Priority -->
-                    <div class="d-flex justify-content-between mb-3">
 
-                        <span class="text-muted">
-                            Priority
-                        </span>
+                    <!-- ================================================= -->
+                    <!-- PRIORITY -->
+                    <!-- ================================================= -->
 
-                        <span class="badge @priorityClass">
+                    <div class="summary-row">
+
+                        <div class="d-flex align-items-center gap-1">
+
+                            <span class="text-muted">
+                                Priority
+                            </span>
+
+
+                            @if (Model.CanManage)
+                            {
+                                <a asp-page="/Tasks/ChangePriority"
+                                   asp-route-id="@Model.Task.Id"
+                                   class="summary-edit-btn"
+                                   title="Change Priority">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </a>
+                            }
+
+                        </div>
+
+
+                        <span class="badge @priorityClass px-2 py-1">
                             @Model.Task.Priority
                         </span>
 
                     </div>
 
 
-                    <!-- Status -->
-                    <div class="d-flex justify-content-between mb-3">
+
+                    <!-- ================================================= -->
+                    <!-- STATUS -->
+                    <!-- ================================================= -->
+
+                    <div class="summary-row">
 
                         <span class="text-muted">
                             Status
                         </span>
 
-                        <span class="badge @statusClass">
+
+                        <span class="badge @statusClass px-2 py-1">
                             @Model.Task.Status
                         </span>
 
                     </div>
 
 
-                    <!-- Deadline -->
-                    <div class="d-flex justify-content-between">
 
-                        <span class="text-muted">
-                            Deadline
-                        </span>
+                    <!-- ================================================= -->
+                    <!-- DEADLINE -->
+                    <!-- ================================================= -->
+
+                    <div class="summary-row mb-0">
+
+                        <div class="d-flex align-items-center gap-1">
+
+                            <span class="text-muted">
+                                Deadline
+                            </span>
+
+
+                            @if (Model.CanManage)
+                            {
+                                <button type="button"
+                                        class="summary-edit-btn border-0 bg-transparent p-0"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#changeDeadlineModal"
+                                        title="Change Deadline">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </button>
+                            }
+
+                        </div>
+
 
                         <strong>
                             @(Model.Task.DueDate?.ToString("dd MMM yyyy") ?? "None")
@@ -354,263 +629,196 @@
                 </div>
 
             </div>
-            <!--Files-->
-            
-            <div class="card border-0 mt-4 task-detail-card">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold mb-0">
-                        <i class="bi bi-paperclip me-1"></i>
-                        Attachments
-                        <span class="badge bg-light text-dark">
-                            @Model.TaskFiles.Count files(s)
-                        </span>
-                    </h5>
 
-                        
-                    <button type="button"
-                            class="btn btn-sm btn-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addFilesModal">
-                        <i class="bi bi-plus-lg me-1"></i>
-                        Add File
-                    </button>
+
+
+            <!-- ================================================= -->
+            <!-- ATTACHMENTS -->
+            <!-- ================================================= -->
+
+            <div class="card border-0 rounded-4 shadow-sm task-fixed-card">
+
+                <div class="card-header bg-white border-0 px-4 pt-3 pb-2">
+
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <span class="section-icon">
+                                <i class="bi bi-paperclip"></i>
+                            </span>
+
+
+                            <div>
+
+                                <div class="d-flex align-items-center gap-2">
+
+                                    <h5 class="fw-bold mb-0">
+                                        Attachments
+                                    </h5>
+
+                                    <span class="badge bg-light text-dark border">
+                                        @Model.TaskFiles.Count file(s)
+                                    </span>
+
+                                </div>
+
+                                <small class="text-muted">
+                                    Task related files
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <button type="button"
+                                class="btn btn-task-primary btn-sm px-3"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addFilesModal">
+
+                            <i class="bi bi-plus-lg me-1"></i>
+
+                            Add File
+
+                        </button>
+
+                    </div>
+
                 </div>
-             <div class="files-scroll">
-                <div class="card-body">
-                    
-                    @if (Model.TaskFiles.Any())
-                    {
-                        <div class="list-group">
 
-                            @foreach (var file in Model.TaskFiles)
-                            {
-                                
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
 
-                                    <div class="d-flex align-items-center gap-3">
+                <div class="files-scroll">
 
-                                        <i class="bi bi-file-earmark fs-4"></i>
+                    <div class="card-body px-4 pt-2 pb-3">
 
-                                        <div>
-                                            <div class="fw-semibold">
-                                                @file.FileName
+                        @if (Model.TaskFiles.Any())
+                        {
+                            <div class="list-group">
+
+                                @foreach (var file in Model.TaskFiles)
+                                {
+                                    <div class="list-group-item border rounded-3 mb-2 px-3 py-3">
+
+                                        <div class="d-flex justify-content-between align-items-center gap-3">
+
+                                            <div class="d-flex align-items-center gap-3 overflow-hidden">
+
+                                                <div class="file-icon">
+
+                                                    <i class="bi bi-file-earmark"></i>
+
+                                                </div>
+
+
+                                                <div class="overflow-hidden">
+
+                                                    <div class="fw-semibold text-truncate">
+                                                        @file.FileName
+                                                    </div>
+
+
+                                                    <small class="text-muted">
+
+                                                        <i class="bi bi-clock me-1"></i>
+
+                                                        @file.UploadedAt.ToString(
+                                                            "dd MMM yyyy, hh:mm tt")
+
+                                                    </small>
+
+                                                </div>
+
                                             </div>
 
-                                            <small class="text-muted">
-                                                @file.UploadedAt.ToString("dd MMM yyyy, hh:mm tt")
-                                            </small>
+
+                                            <a href="@file.FilePath"
+                                               target="_blank"
+                                               class="btn btn-sm btn-outline-primary text-nowrap">
+
+                                                <i class="bi bi-download me-1"></i>
+
+                                                Download
+
+                                            </a>
+
                                         </div>
 
                                     </div>
+                                }
 
-                                    <a href="@file.FilePath"
-                                       target="_blank"
-                                       class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-download me-1"></i>
-                                        Download
-                                    </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="empty-state py-4">
+
+                                <div class="empty-state-icon">
+
+                                    <i class="bi bi-paperclip"></i>
 
                                 </div>
-                               
-                            }
 
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="text-muted text-center py-3">
-                            <i class="bi bi-paperclip fs-4 d-block mb-2"></i>
-                            No files attached to this task.
-                        </div>
-                    }
+
+                                <h6 class="fw-semibold mt-2 mb-1">
+                                    No attachments
+                                </h6>
+
+
+                                <p class="text-muted mb-0">
+                                    No files attached to this task.
+                                </p>
+
+                            </div>
+                        }
+
+                    </div>
 
                 </div>
-             </div>
+
             </div>
-            <!-- Management Actions -->
-            @if (Model.CanManage)
-            {
-                <div class="card border-0 rounded-4 task-detail-card">
-
-                    <div class="card-header bg-white border-0 pt-4 px-4">
-                        <h5 class="fw-bold mb-0">
-                            Manage Task
-                        </h5>
-                    </div>
-
-                    <div class="card-body px-4 pb-4">
-
-                        <div class="d-grid gap-2">
-
-                            <button type="button"
-                                    class="btn btn-outline-secondary"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#changeDeadlineModal">
-                                <i class="bi bi-calendar-event me-2"></i>
-                                Change Deadline
-                            </button>
-
-
-                            <a asp-page="/Tasks/ChangePriority"
-                               asp-route-id="@Model.Task.Id"
-                               class="btn btn-outline-secondary">
-
-                                <i class="bi bi-flag me-2"></i>
-                                Change Priority
-
-                            </a>
-
-
-                            @if (Model.Task.AssignedToUserId.HasValue)
-                            {
-                                <a asp-page="/Tasks/Reassign"
-                                   asp-route-id="@Model.Task.Id"
-                                   class="btn btn-outline-secondary">
-
-                                    <i class="bi bi-person-gear me-2"></i>
-                                    Reassign
-
-                                </a>
-                            }
-                            else
-                            {
-                                <a asp-page="/Tasks/Assign"
-                                   asp-route-id="@Model.Task.Id"
-                                   class="btn btn-outline-primary">
-
-                                    <i class="bi bi-person-plus me-2"></i>
-                                    Assign Task
-
-                                </a>
-                            }
-
-                        </div>
-
-                    </div>
-
-                </div>
-            }
 
         </div>
 
     </div>
 
 </div>
-<!-- Change Deadline Modal -->
-<div class="modal fade" id="changeDeadlineModal" tabindex="-1" aria-labelledby="changeDeadlineModalLabel" aria-hidden="true">
+
+
+
+<!-- ============================================================= -->
+<!-- CHANGE DEADLINE MODAL -->
+<!-- ============================================================= -->
+
+<div class="modal fade"
+     id="changeDeadlineModal"
+     tabindex="-1"
+     aria-labelledby="changeDeadlineModalLabel"
+     aria-hidden="true">
+
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow-sm rounded-4">
+
+        <div class="modal-content border-0 shadow rounded-4">
+
             <div class="modal-header border-0 px-4 pt-4">
+
                 <div>
-                    <h5 class="modal-title fw-bold" id="changeDeadlineModalLabel">
+
+                    <h5 class="modal-title fw-bold"
+                        id="changeDeadlineModalLabel">
+
+                        <i class="bi bi-calendar-event me-2 task-accent-text"></i>
+
                         Change Deadline
+
                     </h5>
+
                     <small class="text-muted">
                         @Model.Task.Title
                     </small>
+
                 </div>
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close">
-                </button>
-            </div>
-            <form method="post" asp-page-handler="ChangeDeadline">
-                <div asp-validation-summary="ModelOnly" class="text-danger px-4"></div>
 
-                <div class="modal-body px-4">
-                    <input type="hidden" name="Input.TaskId" value="@Model.Task.Id" />
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">New Deadline</label>
-                        <input type="date"
-                               name="Input.NewDueDate"
-                               class="form-control"
-                               value="@(Model.Task.DueDate?.ToString("yyyy-MM-dd"))"
-                               required />
-                    </div>
-                </div>
-                <div class="modal-footer border-0 px-4 pb-4">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-check-lg me-1"></i>Save Deadline
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!--Add Files Modal-->
-<div class="modal fade" id="addFilesModal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Add File</h4>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <form method="post"
-      asp-page-handler="AddFiles"
-      enctype="multipart/form-data">
-
-    <div class="modal-body">
-
-        <div class="mt-3">
-
-            <input type="hidden"
-                   name="id"
-                   value="@Model.Task.Id" />
-
-            <label class="form-label fw-bold">
-                Attach File
-            </label>
-
-            <input type="file"
-                   asp-for="UploadFile"
-                   class="form-control"
-                   required />
-
-            <small class="text-muted">
-                Select a file to attach to this task.
-            </small>
-
-        </div>
-
-    </div>
-
-    <div class="modal-footer">
-
-        <button type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal">
-            Cancel
-        </button>
-
-        <button type="submit"
-                class="btn btn-primary">
-            Add File
-        </button>
-
-    </div>
-
-</form>
-            
-        </div>
-
-    </div>
-</div>
-<!-- Add Note Modal -->
-<div class="modal fade" id="addNoteModal" tabindex="-1" aria-hidden="true">
-
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-
-        <div class="modal-content">
-
-            <div class="modal-header">
-
-                <h5 class="modal-title">
-                    <i class="bi bi-chat-left-text me-2"></i>
-                    Add Progress Note
-                </h5>
 
                 <button type="button"
                         class="btn-close"
@@ -619,21 +827,233 @@
 
             </div>
 
+
+            <form method="post"
+                  asp-page-handler="ChangeDeadline">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger px-4">
+                </div>
+
+
+                <div class="modal-body px-4">
+
+                    <input type="hidden"
+                           name="Input.TaskId"
+                           value="@Model.Task.Id" />
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            New Deadline
+                        </label>
+
+
+                        <input type="date"
+                               name="Input.NewDueDate"
+                               class="form-control"
+                               value="@(Model.Task.DueDate?.ToString("yyyy-MM-dd"))"
+                               required />
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer border-0 px-4 pb-4">
+
+                    <button type="button"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit"
+                            class="btn btn-task-primary">
+
+                        <i class="bi bi-check-lg me-1"></i>
+
+                        Save Deadline
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ============================================================= -->
+<!-- ADD FILE MODAL -->
+<!-- ============================================================= -->
+
+<div class="modal fade"
+     id="addFilesModal"
+     tabindex="-1">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow rounded-4">
+
+            <div class="modal-header border-0 px-4 pt-4">
+
+                <div>
+
+                    <h5 class="modal-title fw-bold">
+
+                        <i class="bi bi-paperclip me-2 task-accent-text"></i>
+
+                        Add File
+
+                    </h5>
+
+                    <small class="text-muted">
+                        Attach a file to this task
+                    </small>
+
+                </div>
+
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <form method="post"
+                  asp-page-handler="AddFiles"
+                  enctype="multipart/form-data">
+
+                <div class="modal-body px-4">
+
+                    <input type="hidden"
+                           name="id"
+                           value="@Model.Task.Id" />
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Attach File
+                        </label>
+
+
+                        <input type="file"
+                               asp-for="UploadFile"
+                               class="form-control"
+                               required />
+
+
+                        <small class="text-muted">
+                            Select a file to attach to this task.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer border-0 px-4 pb-4">
+
+                    <button type="button"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit"
+                            class="btn btn-task-primary">
+
+                        <i class="bi bi-plus-lg me-1"></i>
+
+                        Add File
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ============================================================= -->
+<!-- ADD NOTE MODAL -->
+<!-- ============================================================= -->
+
+<div class="modal fade"
+     id="addNoteModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow rounded-4">
+
+            <div class="modal-header border-0 px-4 pt-4">
+
+                <div>
+
+                    <h5 class="modal-title fw-bold">
+
+                        <i class="bi bi-chat-left-text me-2 task-accent-text"></i>
+
+                        Add Progress Note
+
+                    </h5>
+
+
+                    <small class="text-muted">
+                        Add an update for this task
+                    </small>
+
+                </div>
+
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
             <form method="post"
                   asp-page-handler="AddNote">
 
-                <div class="modal-body">
+                <div class="modal-body px-4">
 
-                    <!-- Task ID -->
                     <input type="hidden"
                            name="NoteInput.TaskId"
                            value="@Model.Task.Id" />
 
+
                     <div class="mb-3">
 
-                        <label class="form-label fw-bold">
+                        <label class="form-label fw-semibold">
                             Note
                         </label>
+
 
                         <textarea name="NoteInput.Note"
                                   class="form-control"
@@ -645,18 +1065,25 @@
 
                 </div>
 
-                <div class="modal-footer">
+
+                <div class="modal-footer border-0 px-4 pb-4">
 
                     <button type="button"
-                            class="btn btn-secondary"
+                            class="btn btn-light"
                             data-bs-dismiss="modal">
+
                         Cancel
+
                     </button>
 
+
                     <button type="submit"
-                            class="btn btn-primary">
+                            class="btn btn-task-primary">
+
                         <i class="bi bi-plus-lg me-1"></i>
+
                         Add Note
+
                     </button>
 
                 </div>
@@ -668,3 +1095,663 @@
     </div>
 
 </div>
+
+
+
+<!-- ============================================================= -->
+<!-- ASSIGN / REASSIGN TASK MEMBERS MODAL -->
+<!-- ============================================================= -->
+
+<div class="modal fade"
+     id="assignMemberModal"
+     tabindex="-1"
+     aria-labelledby="assignMemberModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow rounded-4">
+
+
+            <!-- HEADER -->
+
+            <div class="modal-header border-0 px-4 pt-4">
+
+                <div>
+
+                    <h5 class="modal-title fw-bold"
+                        id="assignMemberModalLabel">
+
+                        <i class="bi bi-person-plus me-2"></i>
+
+                        Assign Members
+
+                    </h5>
+
+
+                    <small class="text-muted">
+
+                        Select members for this task
+
+                    </small>
+
+                </div>
+
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form id="assignMemberForm">
+
+                @Html.AntiForgeryToken()
+
+
+                <div class="modal-body px-4">
+
+
+                    <input type="hidden"
+                           id="assignTaskId"
+                           value="@Model.Task.Id" />
+
+
+                    <label class="form-label fw-bold">
+
+                        Project Members
+
+                    </label>
+
+
+                    <div id="taskProjectMembersContainer"
+                         class="border rounded-3 p-3"
+                         style="max-height:250px; overflow-y:auto;">
+
+                        <div class="text-muted text-center py-3">
+
+                            Click the pencil icon to load members.
+
+                        </div>
+
+                    </div>
+
+
+                    <small class="text-muted d-block mt-2">
+
+                        You can select multiple project members.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- FOOTER -->
+
+                <div class="modal-footer border-0 px-4 pb-4">
+
+                    <button type="button"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit"
+                            id="saveTaskMembersBtn"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-check-lg me-1"></i>
+
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // =========================================================
+            // ELEMENTS
+            // =========================================================
+
+            const assignModal =
+                document.getElementById("assignMemberModal");
+
+            const assignForm =
+                document.getElementById("assignMemberForm");
+
+            const container =
+                document.getElementById(
+                    "taskProjectMembersContainer"
+                );
+
+            const taskIdInput =
+                document.getElementById("assignTaskId");
+
+            const saveButton =
+                document.getElementById("saveTaskMembersBtn");
+
+
+            if (!assignModal ||
+                !assignForm ||
+                !container ||
+                !taskIdInput ||
+                !saveButton) {
+
+                return;
+            }
+
+
+
+            // =========================================================
+            // MODAL OPEN
+            // =========================================================
+
+            assignModal.addEventListener(
+                "show.bs.modal",
+                async function() {
+
+                    await loadTaskMembers();
+
+                }
+            );
+
+
+
+            // =========================================================
+            // LOAD CURRENT TASK MEMBERS
+            // =========================================================
+
+            async function loadTaskMembers() {
+
+                const taskId =
+                    taskIdInput.value;
+
+
+                if (!taskId) {
+
+                    container.innerHTML = `
+                                <div class="text-danger">
+                                    Invalid task.
+                                </div>
+                            `;
+
+                    return;
+                }
+
+
+                container.innerHTML = `
+                            <div class="text-muted text-center py-3">
+
+                                <div class="spinner-border spinner-border-sm me-2">
+                                </div>
+
+                                Loading members...
+
+                            </div>
+                        `;
+
+
+                try {
+
+                    // -------------------------------------------------
+                    // GET CURRENT TASK MEMBERS
+                    // -------------------------------------------------
+
+                    const taskResponse =
+                        await fetch(
+                            `?handler=TaskMembers&taskId=${encodeURIComponent(taskId)}`
+                        );
+
+
+                    if (!taskResponse.ok) {
+
+                        throw new Error(
+                            "Unable to load task members."
+                        );
+                    }
+
+
+                    const taskData =
+                        await taskResponse.json();
+
+
+                    if (!taskData.success) {
+
+                        container.innerHTML = `
+                                    <div class="text-danger">
+                                        ${escapeHtml(
+                            taskData.message ||
+                            "Unable to load task members."
+                        )}
+                                    </div>
+                                `;
+
+                        return;
+                    }
+
+
+                    const projectId =
+                        taskData.projectId;
+
+
+                    const assignedUserIds =
+                        taskData.assignedUserIds || [];
+
+
+                    // -------------------------------------------------
+                    // GET PROJECT MEMBERS
+                    // -------------------------------------------------
+
+                    const membersResponse =
+                        await fetch(
+                            `?handler=ProjectMembers&projectId=${encodeURIComponent(projectId)}`
+                        );
+
+
+                    if (!membersResponse.ok) {
+
+                        throw new Error(
+                            "Unable to load project members."
+                        );
+                    }
+
+
+                    const members =
+                        await membersResponse.json();
+
+
+                    renderMembers(
+                        members,
+                        assignedUserIds
+                    );
+
+                }
+                catch (error) {
+
+                    console.error(
+                        "LoadTaskMembers Error:",
+                        error
+                    );
+
+
+                    container.innerHTML = `
+                                <div class="text-danger">
+                                    Something went wrong while loading members.
+                                </div>
+                            `;
+                }
+            }
+
+
+
+            // =========================================================
+            // RENDER MEMBERS
+            // =========================================================
+
+            function renderMembers(
+                members,
+                assignedUserIds
+            ) {
+
+                if (!members ||
+                    members.length === 0) {
+
+                    container.innerHTML = `
+                                <div class="text-muted text-center py-3">
+                                    No project members found.
+                                </div>
+                            `;
+
+                    return;
+                }
+
+
+                container.innerHTML = "";
+
+
+                members.forEach(function(member) {
+
+                    const isChecked =
+                        assignedUserIds.includes(
+                            Number(member.id)
+                        );
+
+
+                    const wrapper =
+                        document.createElement("div");
+
+                    wrapper.className =
+                        "form-check mb-2";
+
+
+                    wrapper.innerHTML = `
+
+                                <input
+                                    class="form-check-input task-member-checkbox"
+                                    type="checkbox"
+                                    value="${member.id}"
+                                    id="taskMember_${member.id}"
+                                    ${isChecked ? "checked" : ""}
+                                >
+
+                                <label
+                                    class="form-check-label"
+                                    for="taskMember_${member.id}">
+
+                                    <i class="bi bi-person me-1 text-muted"></i>
+
+                                    ${escapeHtml(member.name)}
+
+                                </label>
+
+                            `;
+
+
+                    container.appendChild(wrapper);
+
+                });
+            }
+
+
+
+            // =========================================================
+            // SAVE MEMBERS
+            // =========================================================
+
+            assignForm.addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const taskId =
+                        taskIdInput.value;
+
+
+                    if (!taskId) {
+
+                        showError(
+                            "Invalid task."
+                        );
+
+                        return;
+                    }
+
+
+                    const checkboxes =
+                        document.querySelectorAll(
+                            "#taskProjectMembersContainer .task-member-checkbox:checked"
+                        );
+
+
+                    const assignedToUserIds =
+                        Array.from(checkboxes)
+                            .map(function(checkbox) {
+
+                                return parseInt(
+                                    checkbox.value
+                                );
+
+                            })
+                            .filter(function(id) {
+
+                                return !isNaN(id);
+
+                            });
+
+
+                    // -------------------------------------------------
+                    // TOKEN
+                    // -------------------------------------------------
+
+                    const tokenInput =
+                        assignForm.querySelector(
+                            'input[name="__RequestVerificationToken"]'
+                        );
+
+
+                    if (!tokenInput) {
+
+                        showError(
+                            "Security token was not found. Please refresh the page."
+                        );
+
+                        return;
+                    }
+
+
+                    const token =
+                        tokenInput.value;
+
+
+                    // -------------------------------------------------
+                    // BUTTON STATE
+                    // -------------------------------------------------
+
+                    const originalText =
+                        saveButton.innerHTML;
+
+
+                    saveButton.disabled = true;
+
+
+                    saveButton.innerHTML = `
+
+                                <span class="spinner-border spinner-border-sm me-1">
+                                </span>
+
+                                Saving...
+
+                            `;
+
+
+                    try {
+
+                        const formData =
+                            new FormData();
+
+
+                        formData.append(
+                            "taskId",
+                            taskId
+                        );
+
+
+                        assignedToUserIds.forEach(
+                            function(userId) {
+
+                                formData.append(
+                                    "assignedToUserIds",
+                                    userId
+                                );
+
+                            }
+                        );
+
+
+                        // -------------------------------------------------
+                        // POST
+                        // -------------------------------------------------
+
+                        const response =
+                            await fetch(
+                                "?handler=AssignMembers",
+                                {
+                                    method: "POST",
+
+                                    body: formData,
+
+                                    headers: {
+                                        "RequestVerificationToken":
+                                            token
+                                    }
+                                }
+                            );
+
+
+                        const result =
+                            await response.json();
+
+
+                        if (response.ok &&
+                            result.success) {
+
+                            // ---------------------------------------------
+                            // CLOSE MODAL
+                            // ---------------------------------------------
+
+                            const modal =
+                                bootstrap.Modal.getInstance(
+                                    assignModal
+                                );
+
+
+                            if (modal) {
+
+                                modal.hide();
+
+                            }
+
+
+                            // ---------------------------------------------
+                            // TOAST
+                            // ---------------------------------------------
+
+                            if (typeof showToast === "function") {
+
+                                showToast(
+                                    result.message ||
+                                    "Task members updated successfully.",
+                                    "success",
+                                    "Members Updated"
+                                );
+
+                            }
+
+
+                            // ---------------------------------------------
+                            // RELOAD
+                            // ---------------------------------------------
+
+                            setTimeout(
+                                function() {
+
+                                    window.location.reload();
+
+                                },
+                                600
+                            );
+
+                        }
+                        else {
+
+                            showError(
+                                result.message ||
+                                "Unable to update task members."
+                            );
+
+                        }
+
+                    }
+                    catch (error) {
+
+                        console.error(
+                            "AssignMembers Error:",
+                            error
+                        );
+
+
+                        showError(
+                            "Something went wrong while updating members."
+                        );
+
+                    }
+                    finally {
+
+                        saveButton.disabled = false;
+
+                        saveButton.innerHTML =
+                            originalText;
+
+                    }
+
+                }
+            );
+
+
+
+            // =========================================================
+            // ERROR MESSAGE
+            // =========================================================
+
+            function showError(message) {
+
+                if (typeof showToast === "function") {
+
+                    showToast(
+                        message,
+                        "error",
+                        "Update Failed"
+                    );
+
+                }
+                else {
+
+                    alert(message);
+
+                }
+            }
+
+
+
+            // =========================================================
+            // HTML ESCAPE
+            // =========================================================
+
+            function escapeHtml(value) {
+
+                if (value === null ||
+                    value === undefined) {
+
+                    return "";
+                }
+
+
+                return String(value)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+        });
+
+    </script>
+
+}

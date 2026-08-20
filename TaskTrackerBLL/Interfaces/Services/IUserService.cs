@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TaskTrackerBLL.DTOs.User;
 using TaskTrackerBLL.Common;
+using TaskTrackerBLL.DTOs.Profile;
+using TaskTrackerBLL.DTOs.User;
 
 namespace TaskTrackerBLL.Interfaces.Services
 {
@@ -19,5 +20,13 @@ namespace TaskTrackerBLL.Interfaces.Services
         Task<Result> AssignRoleAsync(int userId, int roleId);
 
         Task<Result> RemoveRoleAsync(int userId, int roleId);
+
+        Task<Result<ProfileDto>> GetProfileAsync(int id);
+        Task<Result> UpdateProfileAsync(UpdateProfileDto input);
+
+        Task<Result> ChangePasswordAsync(
+            int userId,
+            string currentPassword,
+            string newPassword);
     }
 }

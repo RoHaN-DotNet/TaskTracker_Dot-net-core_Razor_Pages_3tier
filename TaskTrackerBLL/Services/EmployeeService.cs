@@ -153,7 +153,7 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure("You are not authorized to edit this employee.");
             }*/
 
-            if (!AppRoles.EmployeeRoles.Contains(dto.RoleName))
+            if (!AppRoles.All.Contains(dto.RoleName))
             {
                 return Result.Failure($"'{dto.RoleName}' is not a valid employee role.");
             }

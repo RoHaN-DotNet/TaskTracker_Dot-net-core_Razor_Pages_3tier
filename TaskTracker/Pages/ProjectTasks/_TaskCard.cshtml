@@ -3,8 +3,8 @@
 
 <div class="task-card card shadow-sm border-0 mb-3"
      draggable="true"
-     data-id="@Model.Id">
-
+     data-id="@Model.Id"
+     data-assigned-user-id="@Model.AssignedToUserIds">
     <div class="card-body">
 
         <!-- Header -->
@@ -46,9 +46,9 @@
         <p class="assigned-user mb-2">
             Assigned:
             <strong>
-                @(string.IsNullOrWhiteSpace(Model.AssignedToUserName)
+                @string.Join(", ", Model.AssignedToUserNames)
                     ? "Unassigned"
-                    : Model.AssignedToUserName)
+                    : Model.AssignedToUserNames)
             </strong>
         </p>
 
@@ -66,23 +66,41 @@
                 }
             </div>
             <div>
-
-                <button type="button"
-                        data-id="@Model.Id"
-                        class="icon-btn add-note-toggle"
-                        title="Add Comment">
-                    <i class="bi bi-chat"></i>
-                </button>
-                <a asp-page="/ProjectTasks/Details"
-                        asp-route-id="@Model.Id"
-                        type="button"
-                        class="icon-btn"
-                        title="View Details">
-                    <i class="bi bi-eye"></i>
-                </a>
-
             </div>
          </div>
+        <!-- ⭐ NEW: Task Actions -->
+        <div class="task-actions d-flex justify-content-between mb-2">
+            <!-- Comment -->
+            <button type="button"
+                    data-id="@Model.Id"
+                    class="icon-btn action-comment add-note-toggle"
+                    title="Add Comment">
+                <i class="bi bi-chat"></i>
+            </button>
+            <!-- File -->
+            <button type="button"
+                    class="icon-btn action-file"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addFileModal-@Model.Id"
+                    title="Add File">
+                <i class="bi bi-paperclip"></i>
+            </button>
+            <!-- Deadline -->
+            <button type="button"
+                    class="icon-btn action-deadline"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deadlineModal-@Model.Id"
+                    title="Change Deadline">
+                <i class="bi bi-calendar-event"></i>
+            </button>
+            <!-- Details -->
+            <a asp-page="/ProjectTasks/Details"
+               asp-route-id="@Model.Id"
+               class="icon-btn action-details"
+               title="View Details">
+                <i class="bi bi-eye"></i>
+            </a>
+        </div>
         <!-- Inline Comment Box (hidden by default, toggled by the chat icon) -->
         <div class="comment-box"
              id="comment-box-@Model.Id">
@@ -109,7 +127,162 @@
         <!-- Bottom Buttons -->
     </div>
 </div>
+<!-- Add File Modal -->
+<div class="modal fade"
+     id="addFileModal-@Model.Id"
+     tabindex="-1"
+     aria-hidden="true">
 
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    <i class="bi bi-paperclip me-2"></i>
+                    Attach File
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <form method="post"
+                  asp-page-handler="AddFiles"
+                  enctype="multipart/form-data">
+
+                @Html.AntiForgeryToken()
+
+                <div class="modal-body">
+
+                    <!-- Task ID -->
+                    <input type="hidden"
+                           name="id"
+                           value="@Model.Id" />
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Select File
+                        </label>
+
+                        <input type="file"
+                               name="UploadFile"
+                               class="form-control"
+                               required />
+
+                        <small class="text-muted">
+                            Select a file to attach to this task.
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-upload me-1"></i>
+                        Upload File
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- Change Deadline Modal -->
+<div class="modal fade"
+     id="deadlineModal-@Model.Id"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    <i class="bi bi-calendar-event me-2"></i>
+                    Change Deadline
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <form method="post"
+                  asp-page-handler="ChangeDeadlineFromBoard">
+
+                @Html.AntiForgeryToken()
+
+                <div class="modal-body">
+
+                    <input type="hidden"
+                           name="DeadlineInput.TaskId"
+                           value="@Model.Id" />
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            New Deadline
+                        </label>
+
+                        <input type="date"
+                               name="DeadlineInput.NewDueDate"
+                               class="form-control"
+                               required />
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-check-lg me-1"></i>
+                        Update Deadline
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
 @section Scripts{
     <script>
         $(document).on("click", ".add-note", function () {

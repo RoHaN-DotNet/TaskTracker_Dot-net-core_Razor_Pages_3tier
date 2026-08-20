@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RS639GJ99Fo=",
+  "dgSpecHash": "fZk/OgvY9kI=",
   "success": true,
   "projectFilePath": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\TaskTrackerBLL.csproj",
   "expectedPackageFiles": [
@@ -60,7 +60,7 @@
     {
       "code": "NU1510",
       "level": "Warning",
-      "message": "PackageReference Microsoft.AspNetCore.Authorization will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "message": "PackageReference Microsoft.AspNetCore.Authorization will not be pruned. This package is automatically available and does not need to be referenced explicitly. Remove the PackageReference item.",
       "projectPath": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\TaskTrackerBLL.csproj",
       "warningLevel": 1,
       "filePath": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\TaskTrackerBLL.csproj",
@@ -72,7 +72,7 @@
     {
       "code": "NU1510",
       "level": "Warning",
-      "message": "PackageReference Microsoft.Extensions.Identity.Core will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "message": "PackageReference Microsoft.Extensions.Identity.Core will not be pruned. This package is automatically available and does not need to be referenced explicitly. Remove the PackageReference item.",
       "projectPath": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\TaskTrackerBLL.csproj",
       "warningLevel": 1,
       "filePath": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\TaskTrackerBLL.csproj",

@@ -52,7 +52,7 @@ namespace TaskTracker.Pages.Tasks
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
             CanManage = User.IsInRole(AppRoles.Admin) || User.IsInRole(AppRoles.Manager);
-            IsAssignedToMe = task.AssignedToUserId == userId;
+            IsAssignedToMe = task.AssignedToUserIds.Contains(userId);
 
             if (CanManage)
             {

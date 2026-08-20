@@ -1,0 +1,777 @@
+﻿@page
+@model TaskTracker.Pages.Profile.ProfileModel
+
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container-fluid py-4 profile-page">
+
+    <!-- ========================================================= -->
+    <!-- SUCCESS MESSAGE -->
+    <!-- ========================================================= -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm border-0 rounded-3 mb-3"
+             role="alert">
+
+            <div class="d-flex align-items-center">
+
+                <i class="bi bi-check-circle-fill fs-5 me-2"></i>
+
+                <div>
+                    @TempData["SuccessMessage"]
+                </div>
+
+            </div>
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close">
+            </button>
+
+        </div>
+    }
+
+
+    <!-- ========================================================= -->
+    <!-- ERROR MESSAGE -->
+    <!-- ========================================================= -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0 rounded-3 mb-3"
+             role="alert">
+
+            <div class="d-flex align-items-center">
+
+                <i class="bi bi-exclamation-circle-fill fs-5 me-2"></i>
+
+                <div>
+                    @TempData["ErrorMessage"]
+                </div>
+
+            </div>
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close">
+            </button>
+
+        </div>
+    }
+
+
+    <!-- ========================================================= -->
+    <!-- PROFILE CARD -->
+    <!-- ========================================================= -->
+
+    <div class="row justify-content-center">
+
+        <div class="col-xl-8 col-lg-9 col-md-11">
+
+            <div class="card border-0 shadow-sm rounded-4 profile-card">
+
+
+                <!-- ================================================= -->
+                <!-- PROFILE HEADER -->
+                <!-- ================================================= -->
+
+                <div class="card-header bg-white border-0 text-center px-4 pt-4 pb-3">
+
+                    <div class="profile-avatar mx-auto mb-3">
+
+                        <i class="bi bi-person"></i>
+
+                    </div>
+
+
+                    <h3 class="fw-bold mb-1 profile-name">
+                        @Model.UserProfile.FullName
+                    </h3>
+
+
+                    <p class="text-muted mb-0">
+                        @Model.UserProfile.UserName
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PROFILE BODY -->
+                <!-- ================================================= -->
+
+                <div class="card-body px-4 pb-4">
+
+
+                    <!-- ================================================= -->
+                    <!-- ACCOUNT INFORMATION -->
+                    <!-- ================================================= -->
+
+                    <div class="profile-section mb-4">
+
+                        <div class="section-heading mb-3">
+
+                            <span class="section-icon">
+
+                                <i class="bi bi-person-vcard"></i>
+
+                            </span>
+
+
+                            <div>
+
+                                <h5 class="fw-bold mb-0">
+                                    Account Information
+                                </h5>
+
+                                <small class="text-muted">
+                                    Current account details
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row g-3">
+
+
+                            <!-- USER ID -->
+
+                            <div class="col-md-6">
+
+                                <div class="account-info-box">
+
+                                    <small class="text-muted d-block mb-1">
+                                        User ID
+                                    </small>
+
+                                    <strong>
+                                        #@Model.UserProfile.Id
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ROLE -->
+
+                            <div class="col-md-6">
+
+                                <div class="account-info-box">
+
+                                    <small class="text-muted d-block mb-1">
+                                        Role
+                                    </small>
+
+                                    <strong>
+
+                                        @(Model.UserProfile.Roles.Any()
+                                            ? string.Join(", ", Model.UserProfile.Roles)
+                                            : "No Role")
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- STATUS -->
+
+                            <div class="col-md-6">
+
+                                <div class="account-info-box">
+
+                                    <small class="text-muted d-block mb-1">
+                                        Status
+                                    </small>
+
+
+                                    @if (Model.UserProfile.IsActive)
+                                    {
+                                        <span class="badge bg-success">
+                                            Active
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            Inactive
+                                        </span>
+                                    }
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LAST LOGIN -->
+
+                            <div class="col-md-6">
+
+                                <div class="account-info-box">
+
+                                    <small class="text-muted d-block mb-1">
+                                        Last Login
+                                    </small>
+
+                                    <strong>
+
+                                        @(Model.UserProfile.LastLoginAt.HasValue
+                                            ? Model.UserProfile.LastLoginAt.Value.ToString("dd MMM yyyy, hh:mm tt")
+                                            : "Never")
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- DIVIDER -->
+                    <!-- ================================================= -->
+
+                    <div class="profile-divider"></div>
+
+
+                    <!-- ================================================= -->
+                    <!-- PROFILE ACTIONS -->
+                    <!-- ================================================= -->
+
+                    <div class="profile-section">
+
+                        <div class="section-heading mb-3">
+
+                            <span class="section-icon">
+
+                                <i class="bi bi-gear"></i>
+
+                            </span>
+
+
+                            <div>
+
+                                <h5 class="fw-bold mb-0">
+                                    Profile Settings
+                                </h5>
+
+                                <small class="text-muted">
+                                    Manage your profile and account security
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================================================= -->
+                        <!-- ACTION BUTTONS -->
+                        <!-- ================================================= -->
+
+                        <div class="row g-3">
+
+
+                            <!-- EDIT PROFILE -->
+
+                            <div class="col-md-6">
+
+                                <button type="button"
+                                        class="btn btn-profile-outline w-100 profile-setting-btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editProfileModal">
+
+                                    <span class="profile-action-icon">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                    </span>
+
+                                    <span class="text-start">
+
+                                        <span class="d-block fw-semibold">
+                                            Edit Profile
+                                        </span>
+
+                                        <small class="text-muted">
+                                            Update your name
+                                        </small>
+
+                                    </span>
+
+                                    <i class="bi bi-chevron-right ms-auto"></i>
+
+                                </button>
+
+                            </div>
+
+
+                            <!-- CHANGE PASSWORD -->
+
+                            <div class="col-md-6">
+
+                                <button type="button"
+                                        class="btn btn-profile-outline w-100 profile-setting-btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#changePasswordModal">
+
+                                    <span class="profile-action-icon">
+
+                                        <i class="bi bi-shield-lock"></i>
+
+                                    </span>
+
+                                    <span class="text-start">
+
+                                        <span class="d-block fw-semibold">
+                                            Change Password
+                                        </span>
+
+                                        <small class="text-muted">
+                                            Update your account password
+                                        </small>
+
+                                    </span>
+
+                                    <i class="bi bi-chevron-right ms-auto"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ============================================================= -->
+<!-- EDIT PROFILE MODAL -->
+<!-- ============================================================= -->
+
+<div class="modal fade"
+     id="editProfileModal"
+     tabindex="-1"
+     aria-labelledby="editProfileModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow rounded-4">
+
+
+            <!-- MODAL HEADER -->
+
+            <div class="modal-header border-0 px-4 pt-4">
+
+                <div>
+
+                    <h5 class="modal-title fw-bold"
+                        id="editProfileModalLabel">
+
+                        <i class="bi bi-pencil-square me-2 task-accent-text"></i>
+
+                        Edit Profile
+
+                    </h5>
+
+                    <small class="text-muted">
+                        Update your profile information
+                    </small>
+
+                </div>
+
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form method="post"
+                  asp-page-handler="UpdateProfile">
+
+                @Html.AntiForgeryToken()
+
+
+                <div class="modal-body px-4">
+
+                    <!-- IMPORTANT:
+                         This must be UpdateProfile.Id
+                         NOT Input.Id -->
+
+                    <input type="hidden"
+                           name="UpdateProfile.Id"
+                           value="@Model.UserProfile.Id" />
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="mb-3">
+
+                        <label for="FullName"
+                               class="form-label fw-semibold">
+
+                            Full Name
+
+                        </label>
+
+
+                        <!-- IMPORTANT:
+                             This must be UpdateProfile.FullName
+                             NOT Input.FullName -->
+
+                        <input type="text"
+                               id="FullName"
+                               name="UpdateProfile.FullName"
+                               value="@Model.UserProfile.FullName"
+                               class="form-control profile-input"
+                               placeholder="Enter your full name"
+                               required />
+
+
+                        <span asp-validation-for="UpdateProfile.FullName"
+                              class="text-danger small">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MODAL FOOTER -->
+
+                <div class="modal-footer border-0 px-4 pb-4">
+
+                    <button type="button"
+                            class="btn btn-light profile-btn"
+                            data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit"
+                            class="btn btn-profile-primary profile-btn">
+
+                        <i class="bi bi-check-lg me-1"></i>
+
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ============================================================= -->
+<!-- CHANGE PASSWORD MODAL -->
+<!-- ============================================================= -->
+
+<div class="modal fade"
+     id="changePasswordModal"
+     tabindex="-1"
+     aria-labelledby="changePasswordModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow rounded-4">
+
+
+            <!-- MODAL HEADER -->
+
+            <div class="modal-header border-0 px-4 pt-4">
+
+                <div>
+
+                    <h5 class="modal-title fw-bold"
+                        id="changePasswordModalLabel">
+
+                        <i class="bi bi-shield-lock me-2 task-accent-text"></i>
+
+                        Change Password
+
+                    </h5>
+
+                    <small class="text-muted">
+                        Update your account password securely
+                    </small>
+
+                </div>
+
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form method="post"
+                  asp-page-handler="ChangePassword">
+
+                @Html.AntiForgeryToken()
+
+
+                <div class="modal-body px-4">
+
+
+                    <!-- CURRENT PASSWORD -->
+
+                    <div class="mb-3">
+
+                        <label for="CurrentPassword"
+                               class="form-label fw-semibold">
+
+                            Current Password
+
+                        </label>
+
+
+                        <div class="password-input-wrapper">
+
+                            <input type="password"
+                                   id="CurrentPassword"
+                                   name="PasswordInput.CurrentPassword"
+                                   class="form-control profile-input password-input"
+                                   placeholder="Enter your current password"
+                                   autocomplete="current-password"
+                                   required />
+
+
+                            <button type="button"
+                                    class="password-toggle"
+                                    data-target="CurrentPassword"
+                                    title="Show password">
+
+                                <i class="bi bi-eye"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <span asp-validation-for="PasswordInput.CurrentPassword"
+                              class="text-danger small">
+                        </span>
+
+                    </div>
+
+
+                    <!-- NEW PASSWORD -->
+
+                    <div class="mb-3">
+
+                        <label for="NewPassword"
+                               class="form-label fw-semibold">
+
+                            New Password
+
+                        </label>
+
+
+                        <div class="password-input-wrapper">
+
+                            <input type="password"
+                                   id="NewPassword"
+                                   name="PasswordInput.NewPassword"
+                                   class="form-control profile-input password-input"
+                                   placeholder="Enter your new password"
+                                   autocomplete="new-password"
+                                   required />
+
+
+                            <button type="button"
+                                    class="password-toggle"
+                                    data-target="NewPassword"
+                                    title="Show password">
+
+                                <i class="bi bi-eye"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <span asp-validation-for="PasswordInput.NewPassword"
+                              class="text-danger small">
+                        </span>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="mb-2">
+
+                        <label for="ConfirmPassword"
+                               class="form-label fw-semibold">
+
+                            Confirm New Password
+
+                        </label>
+
+
+                        <div class="password-input-wrapper">
+
+                            <input type="password"
+                                   id="ConfirmPassword"
+                                   name="PasswordInput.ConfirmPassword"
+                                   class="form-control profile-input password-input"
+                                   placeholder="Confirm your new password"
+                                   autocomplete="new-password"
+                                   required />
+
+
+                            <button type="button"
+                                    class="password-toggle"
+                                    data-target="ConfirmPassword"
+                                    title="Show password">
+
+                                <i class="bi bi-eye"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <span asp-validation-for="PasswordInput.ConfirmPassword"
+                              class="text-danger small">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MODAL FOOTER -->
+
+                <div class="modal-footer border-0 px-4 pb-4">
+
+                    <button type="button"
+                            class="btn btn-light profile-btn"
+                            data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit"
+                            class="btn btn-profile-primary profile-btn">
+
+                        <i class="bi bi-shield-check me-1"></i>
+
+                        Change Password
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            document
+                .querySelectorAll(".password-toggle")
+                .forEach(function(button) {
+
+                    button.addEventListener("click", function() {
+
+                        const targetId =
+                            this.getAttribute("data-target");
+
+                        const input =
+                            document.getElementById(targetId);
+
+                        const icon =
+                            this.querySelector("i");
+
+
+                        if (input.type === "password") {
+
+                            input.type = "text";
+
+                            icon.classList.remove("bi-eye");
+
+                            icon.classList.add("bi-eye-slash");
+
+                            this.setAttribute(
+                                "title",
+                                "Hide password"
+                            );
+
+                        }
+                        else {
+
+                            input.type = "password";
+
+                            icon.classList.remove("bi-eye-slash");
+
+                            icon.classList.add("bi-eye");
+
+                            this.setAttribute(
+                                "title",
+                                "Show password"
+                            );
+                        }
+
+                    });
+
+                });
+
+        });
+
+    </script>
+
+}
