@@ -1,60 +1,100 @@
 ﻿@model TaskTrackerBLL.DTOs.Tasks.TaskDto
 @using TaskTrackerDAL.Models.Enums
+@using TaskTrackerDAL.Constants
 
 <div class="task-card card shadow-sm border-0 mb-3"
      draggable="true"
-     data-id="@Model.Id"
-     data-assigned-user-id="@Model.AssignedToUserIds">
+     data-bs-target="#taskDetailsModal-@Model.Id"
+     data-id="@Model.Id">
+
     <div class="card-body">
 
-        <!-- Header -->
-        <div class="d-flex justify-content-between align-items-start mb-2">
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <div class="d-flex justify-content-between align-items-start mb-1">
 
             <h6 class="task-title mb-0">
                 @Model.Title
             </h6>
+
             @switch (Model.Priority)
             {
                 case TaskPriority.High:
+
                     <span class="priority-dot bg-danger"
-                          title="High"></span>
+                          title="High">
+                    </span>
+
                     break;
 
                 case TaskPriority.Medium:
-                    <span class="priority-dot bg-warning"
-                          title="Medium"></span>
+
+                    <span class="priority-dot bg-warning text-dark"
+                          title="Medium">
+                    </span>
+
                     break;
 
                 case TaskPriority.Low:
+
                     <span class="priority-dot bg-success"
-                          title="Low"></span>
+                          title="Low">
+                    </span>
+
                     break;
+
                 case TaskPriority.Critical:
+
                     <span class="priority-dot bg-dark-subtle"
-                          title="Critical"></span>
+                          title="Critical">
+                    </span>
+
                     break;
             }
-            
+
         </div>
 
-        <!-- Project -->
-        <p class="project-name mb-2">
+
+        <!-- =========================
+             PROJECT
+        ========================== -->
+
+        <p class="project-name mb-1">
             @Model.ProjectName
         </p>
 
-        <!-- Assigned User -->
-        <p class="assigned-user mb-2">
+
+        <!-- =========================
+             ASSIGNED USERS
+        ========================== -->
+
+        <p class="assigned-user mb-1">
+
             Assigned:
+
             <strong>
-                @string.Join(", ", Model.AssignedToUserNames)
-                    ? "Unassigned"
-                    : Model.AssignedToUserNames)
+
+                @(
+                    Model.AssignedToUserNames != null &&
+                    Model.AssignedToUserNames.Any()
+                        ? string.Join(", ", Model.AssignedToUserNames)
+                        : "Unassigned"
+                )
+
             </strong>
+
         </p>
 
-        <!-- Due Date -->
+
+        <!-- =========================
+             DUE DATE
+        ========================== -->
+
         <div class="d-flex justify-content-between">
-            <div class="due-date mb-3">
+
+            <div class="due-date mb-1">
 
                 @if (Model.DueDate.HasValue)
                 {
@@ -64,70 +104,139 @@
                 {
                     <span>No Deadline</span>
                 }
+
             </div>
-            <div>
-            </div>
-         </div>
-        <!-- ⭐ NEW: Task Actions -->
+
+        </div>
+
+
+        <!-- =========================
+             TASK ACTIONS
+        ========================== -->
+
         <div class="task-actions d-flex justify-content-between mb-2">
-            <!-- Comment -->
+
+            <!-- COMMENT -->
+
             <button type="button"
-                    data-id="@Model.Id"
                     class="icon-btn action-comment add-note-toggle"
+                    data-task-id="@Model.Id"
                     title="Add Comment">
+
                 <i class="bi bi-chat"></i>
+
             </button>
-            <!-- File -->
+
+
+            <!-- FILE -->
+
             <button type="button"
                     class="icon-btn action-file"
                     data-bs-toggle="modal"
                     data-bs-target="#addFileModal-@Model.Id"
                     title="Add File">
+
                 <i class="bi bi-paperclip"></i>
+
             </button>
-            <!-- Deadline -->
-            <button type="button"
-                    class="icon-btn action-deadline"
-                    data-bs-toggle="modal"
-                    data-bs-target="#deadlineModal-@Model.Id"
-                    title="Change Deadline">
-                <i class="bi bi-calendar-event"></i>
-            </button>
-            <!-- Details -->
+
+
+            <!-- CHANGE DEADLINE -->
+            @if (User.IsInRole("Manager"))
+            {
+                <button type="button"
+                        class="icon-btn action-deadline"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deadlineModal-@Model.Id"
+                        title="Change Deadline">
+
+                    <i class="bi bi-calendar-event"></i>
+
+                </button>
+            }
+
+
+            <!-- DETAILS -->
+
             <a asp-page="/ProjectTasks/Details"
                asp-route-id="@Model.Id"
                class="icon-btn action-details"
                title="View Details">
+
                 <i class="bi bi-eye"></i>
+
             </a>
+
         </div>
-        <!-- Inline Comment Box (hidden by default, toggled by the chat icon) -->
-        <div class="comment-box"
-             id="comment-box-@Model.Id">
-            <form method="post" asp-page-handler="AddNote">
+
+
+        <!-- =================================================
+             COMMENT BOX
+             IMPORTANT:
+             এখানে d-none ব্যবহার করা যাবে না।
+             CSS .show class দিয়ে show/hide করবে।
+        ================================================== -->
+
+        <div id="comment-box-@Model.Id"
+             class="comment-box">
+
+            <form method="post"
+                  asp-page-handler="AddNote">
+
                 @Html.AntiForgeryToken()
-                <input type="hidden" name="NoteInput.TaskId" value="@Model.Id" />
+
+
+                <!-- Task ID -->
+
+                <input type="hidden"
+                       name="NoteInput.TaskId"
+                       value="@Model.Id" />
+
+
+                <!-- Comment -->
+
                 <textarea name="NoteInput.Note"
                           class="form-control form-control-sm comment-text"
                           rows="2"
                           placeholder="Write a comment..."
                           required></textarea>
+
+
+                <!-- Comment Buttons -->
+
                 <div class="d-flex justify-content-end mt-1 gap-2">
+
                     <button type="button"
                             class="btn btn-sm btn-light comment-cancel mb-1">
+
                         Cancel
+
                     </button>
+
+
                     <button type="submit"
                             class="btn btn-sm btn-primary mb-1">
+
                         Post
+
                     </button>
+
                 </div>
+
             </form>
+
         </div>
-        <!-- Bottom Buttons -->
+
     </div>
+
 </div>
-<!-- Add File Modal -->
+
+
+
+<!-- =========================================================
+     ADD FILE MODAL
+========================================================= -->
+
 <div class="modal fade"
      id="addFileModal-@Model.Id"
      tabindex="-1"
@@ -137,12 +246,19 @@
 
         <div class="modal-content">
 
+
+            <!-- HEADER -->
+
             <div class="modal-header">
 
                 <h5 class="modal-title">
+
                     <i class="bi bi-paperclip me-2"></i>
+
                     Attach File
+
                 </h5>
+
 
                 <button type="button"
                         class="btn-close"
@@ -151,50 +267,71 @@
 
             </div>
 
+
+            <!-- FORM -->
+
             <form method="post"
                   asp-page-handler="AddFiles"
                   enctype="multipart/form-data">
 
                 @Html.AntiForgeryToken()
 
+
+                <!-- BODY -->
+
                 <div class="modal-body">
 
                     <!-- Task ID -->
+
                     <input type="hidden"
                            name="id"
                            value="@Model.Id" />
 
+
                     <div class="mb-3">
 
                         <label class="form-label fw-semibold">
+
                             Select File
+
                         </label>
+
 
                         <input type="file"
                                name="UploadFile"
                                class="form-control"
                                required />
 
+
                         <small class="text-muted">
+
                             Select a file to attach to this task.
+
                         </small>
 
                     </div>
 
                 </div>
 
+
+                <!-- FOOTER -->
+
                 <div class="modal-footer">
 
                     <button type="button"
                             class="btn btn-secondary"
                             data-bs-dismiss="modal">
+
                         Cancel
+
                     </button>
+
 
                     <button type="submit"
                             class="btn btn-primary">
 
                         <i class="bi bi-upload me-1"></i>
+
                         Upload File
 
                     </button>
@@ -208,22 +345,143 @@
     </div>
 
 </div>
-<!-- Change Deadline Modal -->
+
+
+
+<!-- =========================================================
+     CHANGE DEADLINE MODAL
+========================================================= -->
+@if (User.IsInRole("Manager"))
+{
+    <div class="modal fade"
+         id="deadlineModal-@Model.Id"
+         tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+
+                <!-- HEADER -->
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        <i class="bi bi-calendar-event me-2"></i>
+
+                        Change Deadline
+
+                    </h5>
+
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form method="post"
+                      asp-page-handler="ChangeDeadlineFromBoard">
+
+                    @Html.AntiForgeryToken()
+
+
+                    <!-- BODY -->
+
+                    <div class="modal-body">
+
+                        <!-- Task ID -->
+
+                        <input type="hidden"
+                               name="DeadlineInput.TaskId"
+                               value="@Model.Id" />
+
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+
+                                New Deadline
+
+                            </label>
+
+
+                            <input type="date"
+                                   name="DeadlineInput.NewDueDate"
+                                   class="form-control"
+                                   required />
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOOTER -->
+
+                    <div class="modal-footer">
+
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            <i class="bi bi-check-lg me-1"></i>
+
+                            Update Deadline
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+<!-- =========================================================
+     TASK DETAILS MODAL
+========================================================= -->
+
 <div class="modal fade"
-     id="deadlineModal-@Model.Id"
+     id="taskDetailsModal-@Model.Id"
      tabindex="-1"
      aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
 
         <div class="modal-content">
 
+            <!-- HEADER -->
+
             <div class="modal-header">
 
-                <h5 class="modal-title">
-                    <i class="bi bi-calendar-event me-2"></i>
-                    Change Deadline
-                </h5>
+                <div>
+
+                    <h5 class="modal-title fw-bold mb-1">
+                        @Model.Title
+                    </h5>
+
+                    <small class="text-muted">
+                        Task Details
+                    </small>
+
+                </div>
 
                 <button type="button"
                         class="btn-close"
@@ -232,67 +490,243 @@
 
             </div>
 
-            <form method="post"
-                  asp-page-handler="ChangeDeadlineFromBoard">
 
-                @Html.AntiForgeryToken()
+            <!-- BODY -->
 
-                <div class="modal-body">
+            <div class="modal-body">
 
-                    <input type="hidden"
-                           name="DeadlineInput.TaskId"
-                           value="@Model.Id" />
+                <!-- PROJECT -->
 
-                    <div class="mb-3">
+                <div class="mb-3">
 
-                        <label class="form-label fw-semibold">
-                            New Deadline
-                        </label>
+                    <label class="fw-semibold text-muted">
+                        Project
+                    </label>
 
-                        <input type="date"
-                               name="DeadlineInput.NewDueDate"
-                               class="form-control"
-                               required />
+                    <div>
+                        @Model.ProjectName
+                    </div>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="mb-3">
+
+                    <label class="fw-semibold text-muted">
+                        Description
+                    </label>
+
+                    <div class="border rounded p-3 bg-light">
+
+                        @if (!string.IsNullOrWhiteSpace(Model.Description))
+                        {
+                            @Model.Description
+                        }
+                        else
+                        {
+                            <span class="text-muted">
+                                No description available.
+                            </span>
+                        }
 
                     </div>
 
                 </div>
 
-                <div class="modal-footer">
 
-                    <button type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal">
-                        Cancel
-                    </button>
+                <!-- STATUS + PRIORITY -->
 
-                    <button type="submit"
-                            class="btn btn-primary">
+                <div class="row mb-3">
 
-                        <i class="bi bi-check-lg me-1"></i>
-                        Update Deadline
+                    <div class="col-md-6">
 
-                    </button>
+                        <label class="fw-semibold text-muted">
+                            Status
+                        </label>
+
+                        <div>
+                            <span class="badge bg-primary">
+                                @Model.Status
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="fw-semibold text-muted">
+                            Priority
+                        </label>
+
+                        <div>
+
+                            @switch (Model.Priority)
+                            {
+                                case TaskPriority.Critical:
+
+                                    <span class="badge bg-dark">
+                                        Critical
+                                    </span>
+
+                                    break;
+
+                                case TaskPriority.High:
+
+                                    <span class="badge bg-danger">
+                                        High
+                                    </span>
+
+                                    break;
+
+                                case TaskPriority.Medium:
+
+                                    <span class="badge bg-warning text-dark">
+                                        Medium
+                                    </span>
+
+                                    break;
+
+                                case TaskPriority.Low:
+
+                                    <span class="badge bg-success">
+                                        Low
+                                    </span>
+
+                                    break;
+                            }
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </form>
+
+                <!-- ASSIGNED USERS -->
+
+                <div class="mb-3">
+
+                    <label class="fw-semibold text-muted">
+                        Assigned To
+                    </label>
+
+                    <div class="border rounded p-2">
+
+                        @if (Model.AssignedToUserNames != null &&
+                             Model.AssignedToUserNames.Any())
+                        {
+                            @foreach (var userName in Model.AssignedToUserNames)
+                            {
+                                <div class="mb-1">
+
+                                    <i class="bi bi-person me-1"></i>
+
+                                    @userName
+
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted">
+                                Unassigned
+                            </span>
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <!-- DEADLINE -->
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <label class="fw-semibold text-muted">
+                            Deadline
+                        </label>
+
+                        <div>
+
+                            @if (Model.DueDate.HasValue)
+                            {
+                                @Model.DueDate.Value.ToString("dd MMM yyyy")
+                            }
+                            else
+                            {
+                                <span class="text-muted">
+                                    No Deadline
+                                </span>
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OVERDUE -->
+
+                    <div class="col-md-6">
+
+                        <label class="fw-semibold text-muted">
+                            Deadline Status
+                        </label>
+
+                        <div>
+
+                            @if (Model.IsOverdue)
+                            {
+                                <span class="badge bg-danger">
+                                    Overdue
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">
+                                    On Track
+                                </span>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="modal-footer">
+
+                <a asp-page="/ProjectTasks/Details"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-eye me-1"></i>
+
+                    View Full Details
+
+                </a>
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+            </div>
 
         </div>
 
     </div>
 
 </div>
-@section Scripts{
-    <script>
-        $(document).on("click", ".add-note", function () {
-
-            const taskId = $(this).data("id");
-
-            $("#TaskId").val(taskId);
-
-            $("#addNoteModal").modal("show");
-        });
-    </script>
-    
-}

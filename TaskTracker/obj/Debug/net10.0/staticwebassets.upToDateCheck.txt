@@ -25,6 +25,7 @@ D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\boo
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\js\verify.min.js
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
@@ -33,6 +34,7 @@ D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\boo
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\jquery-validation\dist\jquery.validate.js
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\jquery\dist\jquery.slim.min.map
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\css\materialdesignicons.min.css
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\css\Style.css
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
@@ -62,11 +64,14 @@ D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\js\boot
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
 D:\PracticeWebProject\TaskTracker\TaskTracker\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
 wwwroot\css\Style.css
+wwwroot\css\materialdesignicons.min.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\logo\TTlogo.png
 wwwroot\images\logo\TaskTracker.png
+wwwroot\js\Downloads - Shortcut.lnk
 wwwroot\js\site.js
+wwwroot\js\verify.min.js
 wwwroot\lib\bootstrap\LICENSE
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map

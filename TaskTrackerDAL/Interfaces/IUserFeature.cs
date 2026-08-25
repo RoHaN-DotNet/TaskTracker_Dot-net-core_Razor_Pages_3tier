@@ -16,7 +16,7 @@ namespace TaskTrackerDAL.Interfaces
         Task<bool> IsEmailUniqueAsync(string email, int? excludeUserId = null);
 
         Task<bool> IsUserNameUniqueAsync(string userName, int? excludeUserId = null);
-
+        Task UpdateEmployeeAsync(User employee, int? oldRoleId,int newRoleId);
         Task<IReadOnlyList<User>> SearchEmployeesAsync(
             int? companyId,
             string? searchTerm,

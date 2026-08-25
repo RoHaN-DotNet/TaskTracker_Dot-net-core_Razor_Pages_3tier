@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using TaskTrackerBLL.Common;
 using TaskTrackerBLL.DTOs.Employee;
 using TaskTrackerBLL.Interfaces;
-using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerBLL.Interfaces.Security;
+using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerDAL.Constants;
 using TaskTrackerDAL.Models;
 
@@ -139,87 +140,214 @@ namespace TaskTrackerBLL.Services
             return Result<EmployeeDto>.Success(dtoResult);
         }
 
-        public async Task<Result> UpdateAsync(EditEmployeeDto dto, int? actingManagerCompanyId)
+        public async Task<Result> UpdateAsync(
+    EditEmployeeDto dto,
+    int? actingManagerCompanyId)
         {
-            var employee = await _unitOfWork.Users.GetByIdWithRolesAsync(dto.Id);
+            // =========================================================
+            // Get employee with roles
+            //
+            // GetByIdWithRolesAsync() uses AsNoTracking()
+            // so this employee object will NOT be tracked.
+            // =========================================================
+
+            var employee =
+                await _unitOfWork.Users.GetByIdWithRolesAsync(dto.Id);
 
             if (employee is null || !IsEmployee(employee))
             {
-                return Result.Failure($"Employee with ID {dto.Id} was not found.");
-            }
-            /*
-            if (actingManagerCompanyId.HasValue && employee.CompanyId != actingManagerCompanyId.Value)
-            {
-                return Result.Failure("You are not authorized to edit this employee.");
-            }*/
-
-            if (!AppRoles.All.Contains(dto.RoleName))
-            {
-                return Result.Failure($"'{dto.RoleName}' is not a valid employee role.");
+                return Result.Failure(
+                    $"Employee with ID {dto.Id} was not found.");
             }
 
-            var isEmailUnique = await _unitOfWork.Users.IsEmailUniqueAsync(dto.Email, dto.Id);
+
+            // =========================================================
+            // Validate role
+            // =========================================================
+
+            if (string.IsNullOrWhiteSpace(dto.RoleName))
+            {
+                return Result.Failure(
+                    "Please select a role.");
+            }
+
+            var roleName = dto.RoleName.Trim();
+
+            if (!AppRoles.EmployeeRoles.Contains(roleName))
+            {
+                return Result.Failure(
+                    $"'{roleName}' is not a valid employee role.");
+            }
+
+
+            // =========================================================
+            // Email uniqueness
+            // =========================================================
+
+            var isEmailUnique =
+                await _unitOfWork.Users.IsEmailUniqueAsync(
+                    dto.Email,
+                    dto.Id);
+
             if (!isEmailUnique)
             {
-                return Result.Failure($"Email '{dto.Email}' is already in use.");
+                return Result.Failure(
+                    $"Email '{dto.Email}' is already in use.");
             }
 
-            var isUserNameUnique = await _unitOfWork.Users.IsUserNameUniqueAsync(dto.UserName, dto.Id);
+
+            // =========================================================
+            // Username uniqueness
+            // =========================================================
+
+            var isUserNameUnique =
+                await _unitOfWork.Users.IsUserNameUniqueAsync(
+                    dto.UserName,
+                    dto.Id);
+
             if (!isUserNameUnique)
             {
-                return Result.Failure($"Username '{dto.UserName}' is already in use.");
+                return Result.Failure(
+                    $"Username '{dto.UserName}' is already in use.");
             }
 
-            var newRole = await _unitOfWork.Roles.GetByNameAsync(dto.RoleName);
+
+            // =========================================================
+            // Get selected role
+            // =========================================================
+
+            var newRole =
+                await _unitOfWork.Roles.GetByNameAsync(roleName);
+
             if (newRole is null)
             {
-                return Result.Failure($"Role '{dto.RoleName}' has not been configured.");
+                return Result.Failure(
+                    $"Role '{roleName}' has not been configured.");
             }
 
-            employee.FullName = dto.FullName;
-            employee.Email = dto.Email;
-            employee.UserName = dto.UserName;
-            employee.UpdatedAt = DateTime.UtcNow;
 
-            var currentRoleLink = employee.UserRoles.FirstOrDefault(ur =>
-                AppRoles.EmployeeRoles.Contains(ur.Role.Name));
+            // =========================================================
+            // Get TRACKED User
+            //
+            // We do NOT use the AsNoTracking employee object
+            // for User update.
+            //
+            // This prevents:
+            //
+            // "another instance with the same key value"
+            //
+            // =========================================================
 
-            if (currentRoleLink is not null && currentRoleLink.RoleId != newRole.Id)
+            var userToUpdate =
+                await _unitOfWork.Users.GetByIdAsync(dto.Id);
+
+            if (userToUpdate is null)
             {
-                employee.UserRoles.Remove(currentRoleLink);
-                employee.UserRoles.Add(new UserRole { UserId = employee.Id, RoleId = newRole.Id });
+                return Result.Failure(
+                    $"Employee with ID {dto.Id} was not found.");
             }
-            else if (currentRoleLink is null)
-            {
-                employee.UserRoles.Add(new UserRole { UserId = employee.Id, RoleId = newRole.Id });
-            }
-           
 
-            _unitOfWork.Users.Update(employee);
+
+            // =========================================================
+            // Update User table
+            // =========================================================
+
+            userToUpdate.FullName = dto.FullName;
+            userToUpdate.Email = dto.Email;
+            userToUpdate.UserName = dto.UserName;
+            userToUpdate.UpdatedAt = DateTime.UtcNow;
+
+
+            // =========================================================
+            // Get current employee roles
+            //
+            // This comes from the AsNoTracking employee object.
+            // We only use it to know which UserRole rows exist.
+            // =========================================================
+
+            var currentEmployeeRoles =
+                employee.UserRoles
+                    .Where(ur =>
+                        ur.Role != null &&
+                        AppRoles.EmployeeRoles.Contains(
+                            ur.Role.Name))
+                    .ToList();
+
+
+            // =========================================================
+            // Check whether selected role already exists
+            //
+            // Uses the UserRole repository method you created.
+            // =========================================================
+
+            var existingNewRole =
+                await _unitOfWork.UserRoles.GetAsync(
+                    dto.Id,
+                    newRole.Id);
+
+
+            // =========================================================
+            // Remove all OLD employee roles
+            //
+            // User should have ONLY ONE employee role.
+            // =========================================================
+
+            foreach (var oldRole in currentEmployeeRoles)
+            {
+                if (oldRole.RoleId != newRole.Id)
+                {
+                    await _unitOfWork.UserRoles.DeleteAsync(
+                        oldRole.UserId,
+                        oldRole.RoleId);
+                }
+            }
+
+
+            // =========================================================
+            // Add selected role if it doesn't already exist
+            // =========================================================
+
+            if (existingNewRole is null)
+            {
+                await _unitOfWork.UserRoles.AddAsync(
+                    new UserRole
+                    {
+                        UserId = dto.Id,
+                        RoleId = newRole.Id
+                    });
+            }
+
+
+            // =========================================================
+            // Save everything
+            // =========================================================
+
             await _unitOfWork.SaveChangesAsync();
+
 
             return Result.Success();
         }
-
         public async Task<Result> DisableAsync(int id,bool isActive)
         {
             var employee = await _unitOfWork.Users.GetByIdWithRolesAsync(id);
-
-            if (employee is null || !IsEmployee(employee))
+            
+            
+            if (employee is null)
             {
                 return Result.Failure($"Employee with ID {id} was not found.");
             }
+           
             /*
-            if (actingManagerCompanyId.HasValue && employee.CompanyId != actingManagerCompanyId.Value)
-            {
-                return Result.Failure("You are not authorized to disable this employee.");
-            }
+    if (actingManagerCompanyId.HasValue && employee.CompanyId != actingManagerCompanyId.Value)
+    {
+        return Result.Failure("You are not authorized to disable this employee.");
+    }
 
-            if (!employee.IsActive)
-            {
-                return Result.Failure($"{employee.FullName} is already disabled.");
-            }
-            */
+    if (!employee.IsActive)
+    {
+        return Result.Failure($"{employee.FullName} is already disabled.");
+    }*/
+
             employee.IsActive = isActive;
             employee.UpdatedAt = DateTime.UtcNow;
 
@@ -232,6 +360,10 @@ namespace TaskTrackerBLL.Services
         private static bool IsEmployee(User user)
         {
             return user.UserRoles.Any(ur => AppRoles.EmployeeRoles.Contains(ur.Role.Name));
+        }
+        private static bool IsManager(User user)
+        {
+            return user.UserRoles.Any(ur => AppRoles.Manager.Contains(ur.Role.Name));
         }
 
         private async Task<EmployeeDto> MapToDtoAsync(User employee)

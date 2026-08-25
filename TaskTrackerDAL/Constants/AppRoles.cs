@@ -14,15 +14,17 @@ namespace TaskTrackerDAL.Constants
         public const string Designer = "Designer";
         public const string UiUxDesigner = "UI/UX";
         public const string TeamLead = "Team Lead";
+        public const string Accountant = "Accountant";
+        public const string HR = "HR";
 
         public static readonly string[] EmployeeRoles =
         {
-        Developer, Tester, Debugger, Designer, UiUxDesigner, TeamLead
+        Developer, Tester, Debugger, Designer, UiUxDesigner, TeamLead, Accountant,HR
     };
 
         public static readonly string[] All =
         {
-        Admin, Manager, Developer, Tester, Debugger, Designer, UiUxDesigner, TeamLead
+        Admin, Manager, Developer, Tester, Debugger, Designer, UiUxDesigner, TeamLead, Accountant,HR
     };
     }
 }

@@ -54,7 +54,7 @@
 </div>
 <div class="container-fluid mt-0">
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-2">
 
         <!-- Left: Title -->
         <div>
@@ -64,11 +64,8 @@
                 Drag tasks between columns
             </small>
         </div>
-
-
         <!-- Right: Actions -->
         <div class="d-flex align-items-center gap-3">
-
             <!-- Employee: Task Toggle -->
             @if (Model.IsEmployee)
             {
@@ -81,10 +78,7 @@
                         @(Model.ShowMyTasks
                             ? "My Tasks"
                             : "All Tasks")
-
                     </span>
-
-
                     <!-- Toggle -->
                     <div class="form-check form-switch mb-0">
 
@@ -386,12 +380,7 @@
 {
     <script>
 
-        // =========================================================
-        // GLOBAL VARIABLES
-        // =========================================================
-
         let draggedCard = null;
-
 
         // =========================================================
         // TOAST NOTIFICATION
@@ -694,20 +683,44 @@
                     "dragstart",
                     function(e) {
 
+                        // ---------------------------------------------
+                        // DO NOT START DRAG FROM ACTION BUTTONS
+                        // ---------------------------------------------
+
+                        if (
+                            e.target.closest(".task-actions") ||
+                            e.target.closest(".comment-box") ||
+                            e.target.closest("button") ||
+                            e.target.closest("a") ||
+                            e.target.closest("input") ||
+                            e.target.closest("textarea") ||
+                            e.target.closest("select")
+                        ) {
+
+                            e.preventDefault();
+
+                            return;
+
+                        }
+
+
                         draggedCard = this;
+
 
                         const taskId =
                             this.dataset.id;
 
+
                         e.dataTransfer.effectAllowed =
                             "move";
+
 
                         e.dataTransfer.setData(
                             "text/plain",
                             taskId
                         );
 
-                        // Some browsers need this
+
                         e.dataTransfer.setData(
                             "taskId",
                             taskId
@@ -994,663 +1007,375 @@
                                     1000
                                 );
 
-                            }
+                        }
 
                             // -------------------------------------
                             // SERVER ERROR / PERMISSION ERROR
                             // -------------------------------------
-
                             else {
-
                                 showToast(
-
-                                    result.message ||
+                                   result.message ||
                                     "You are not allowed to update this task.",
-
                                     "warning",
-
                                     "Action Not Allowed"
-
                                 );
-
                             }
-
                         }
                         catch (error) {
-
                             console.error(
                                 "UpdateTaskStatus Error:",
                                 error
                             );
-
-
                             showToast(
-
                                 "Something went wrong while updating the task.",
-
                                 "error",
-
                                 "Server Error"
-
                             );
+                        }
+                    }
+                );
+            });
+        }
+        // ================= CREATE TASK =================
+        function initializeCreateTask() {
+
+            const createForm = document.querySelector("#createTaskModal form");
+
+            if (!createForm) {
+                return;
+            }
+
+            if (createForm.dataset.initialized === "true") {
+                return;
+            }
+
+            createForm.dataset.initialized = "true";
+
+            createForm.addEventListener("submit", async function(e) {
+                e.preventDefault();
+
+                const form = this;
+                const formData = new FormData(form);
+                const token = getAntiForgeryToken();
+
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton ? submitButton.innerHTML : "Create";
+
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Creating...`;
+                }
+
+                try {
+                    const response = await fetch("?handler=CreateTask", {
+                        method: "POST",
+                        body: formData,
+                        headers: { "RequestVerificationToken": token }
+                    });
+
+                    const responseText = await response.text();
+                    let result = null;
+
+                    try {
+                        result = JSON.parse(responseText);
+                    } catch {
+                        result = null;
+                    }
+
+                    if (response.ok && (result === null || result.success !== false)) {
+                        const modalElement = document.getElementById("createTaskModal");
+                        if (modalElement) {
+                            const modal = bootstrap.Modal.getInstance(modalElement);
+                            if (modal) {
+                                modal.hide();
+                            }
+                        }
+
+                        showToast(result?.message || "Task created successfully.", "success", "Task Created");
+
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        showToast(result?.message || "Unable to create task.", "error", "Create Failed");
+                    }
+                }
+                catch (error) {
+                    console.error("CreateTask Error:", error);
+                    showToast("Something went wrong while creating the task.", "error", "Create Failed");
+                }
+                finally {
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalText;
+                    }
+                }
+            });
+
+        } // ← EIKHANE initializeCreateTask() SHESH — brace ekhon thik jaygay
+
+
+        // ================= COMMENT BOX ================= (EKHON GLOBAL/TOP-LEVEL FUNCTION)
+        function initializeComments() {
+
+            document.addEventListener("click", function(event) {
+
+                // =========================================
+                // COMMENT BUTTON
+                // =========================================
+
+                const commentButton =
+                    event.target.closest(".add-note-toggle");
+
+                if (commentButton) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const taskId =
+                        commentButton.getAttribute("data-task-id");
+
+                    const currentBox =
+                        document.getElementById(
+                            "comment-box-" + taskId
+                        );
+
+                    if (!currentBox) {
+                        console.error(
+                            "Comment box not found for task:",
+                            taskId
+                        );
+                        return;
+                    }
+
+
+                    // Close all other comment boxes
+                    document
+                        .querySelectorAll(".comment-box.show")
+                        .forEach(function(box) {
+
+                            if (box !== currentBox) {
+                                box.classList.remove("show");
+                            }
+
+                        });
+
+
+                    // Toggle current comment box
+                    currentBox.classList.toggle("show");
+
+
+                    // Focus textarea
+                    if (currentBox.classList.contains("show")) {
+
+                        const textarea =
+                            currentBox.querySelector(".comment-text");
+
+                        if (textarea) {
+
+                            setTimeout(function() {
+                                textarea.focus();
+                            }, 300);
 
                         }
 
                     }
-                );
+
+                    return;
+                }
+
+
+                // =========================================
+                // CANCEL BUTTON
+                // =========================================
+
+                const cancelButton =
+                    event.target.closest(".comment-cancel");
+
+                if (cancelButton) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const currentBox =
+                        cancelButton.closest(".comment-box");
+
+                    if (!currentBox) {
+                        return;
+                    }
+
+
+                    // Clear textarea
+                    const textarea =
+                        currentBox.querySelector(".comment-text");
+
+                    if (textarea) {
+                        textarea.value = "";
+                    }
+
+
+                    // Hide comment box
+                    currentBox.classList.remove("show");
+
+                }
 
             });
 
         }
 
 
-
-        // =========================================================
-        // CREATE TASK
-        // =========================================================
-
-        function initializeCreateTask() {
-
-            const createForm =
-                document.querySelector(
-                    "#createTaskModal form"
-                );
-
-
-            if (!createForm) {
-                return;
-            }
-
-
-            // Prevent duplicate event
-
-            if (
-                createForm.dataset.initialized === "true"
-            ) {
-                return;
-            }
-
-            createForm.dataset.initialized = "true";
-
-
-            createForm.addEventListener(
-                "submit",
-                async function(e) {
-
-                    e.preventDefault();
-
-
-                    const form = this;
-
-
-                    const formData =
-                        new FormData(form);
-
-
-                    const token =
-                        getAntiForgeryToken();
-
-
-                    // Submit button
-
-                    const submitButton =
-                        form.querySelector(
-                            'button[type="submit"]'
-                        );
-
-
-                    const originalText =
-                        submitButton
-                            ? submitButton.innerHTML
-                            : "Create";
-
-
-                    if (submitButton) {
-
-                        submitButton.disabled =
-                            true;
-
-                        submitButton.innerHTML = `
-
-                                    <span class="spinner-border spinner-border-sm me-1">
-                                    </span>
-
-                                    Creating...
-
-                                `;
-                    }
-
-
-                    try {
-
-                        const response =
-                            await fetch(
-                                "?handler=CreateTask",
-                                {
-
-                                    method: "POST",
-
-                                    body: formData,
-
-                                    headers: {
-
-                                        "RequestVerificationToken":
-                                            token
-
-                                    }
-
-                                }
-                            );
-
-
-                        const responseText =
-                            await response.text();
-
-
-                        let result = null;
-
-
-                        // Try JSON
-
-                        try {
-
-                            result =
-                                JSON.parse(
-                                    responseText
-                                );
-
-                        }
-                        catch {
-
-                            // If backend returned normal response
-                            result = null;
-
-                        }
-
-
-                        // -----------------------------------------
-                        // SUCCESS
-                        // -----------------------------------------
-
-                        if (
-                            response.ok &&
-                            (
-                                result === null ||
-                                result.success !== false
-                            )
-                        ) {
-
-                            // Close modal
-
-                            const modalElement =
-                                document.getElementById(
-                                    "createTaskModal"
-                                );
-
-
-                            if (modalElement) {
-
-                                const modal =
-                                    bootstrap.Modal
-                                        .getInstance(
-                                            modalElement
-                                        );
-
-                                if (modal) {
-                                    modal.hide();
-                                }
-
-                            }
-
-
-                            showToast(
-
-                                result?.message ||
-                                "Task created successfully.",
-
-                                "success",
-
-                                "Task Created"
-
-                            );
-
-
-                            // Reload
-
-                            setTimeout(
-                                () => {
-
-                                    window.location.reload();
-
-                                },
-                                1000
-                            );
-
-                        }
-
-                        // -----------------------------------------
-                        // FAILED
-                        // -----------------------------------------
-
-                        else {
-
-                            showToast(
-
-                                result?.message ||
-                                "Unable to create task.",
-
-                                "error",
-
-                                "Create Failed"
-
-                            );
-
-                        }
-
-                    }
-                    catch (error) {
-
-                        console.error(
-                            "CreateTask Error:",
-                            error
-                        );
-
-
-                        showToast(
-
-                            "Something went wrong while creating the task.",
-
-                            "error",
-
-                            "Create Failed"
-
-                        );
-
-                    }
-                    finally {
-
-                        if (submitButton) {
-
-                            submitButton.disabled =
-                                false;
-
-                            submitButton.innerHTML =
-                                originalText;
-
-                        }
-
-                    }
-
-                }
-            );
-
-        }
-
-
-
-        // =========================================================
-        // COMMENT BOX
-        // =========================================================
-
-        function initializeComments() {
-
-
-            // -----------------------------------------------------
-            // OPEN / TOGGLE COMMENT BOX
-            // -----------------------------------------------------
-
-            $(document).off(
-                "click",
-                ".add-note-toggle"
-            );
-
-
-            $(document).on(
-                "click",
-                ".add-note-toggle",
-                function() {
-
-                    const taskId =
-                        $(this).data("id");
-
-
-                    const box =
-                        $("#comment-box-" + taskId);
-
-
-                    // Close other boxes
-
-                    $(".comment-box")
-                        .not(box)
-                        .addClass("d-none");
-
-
-                    // Toggle current box
-
-                    box.toggleClass("d-none");
-
-
-                    // Focus textarea
-
-                    if (
-                        !box.hasClass("d-none")
-                    ) {
-
-                        box.find(
-                            ".comment-text"
-                        ).focus();
-
-                    }
-
-                }
-            );
-
-
-            // -----------------------------------------------------
-            // CANCEL COMMENT
-            // -----------------------------------------------------
-
-            $(document).off(
-                "click",
-                ".comment-cancel"
-            );
-
-
-            $(document).on(
-                "click",
-                ".comment-cancel",
-                function() {
-
-                    const box =
-                        $(this).closest(
-                            ".comment-box"
-                        );
-
-
-                    box.find(
-                        ".comment-text"
-                    ).val("");
-
-
-                    box.addClass(
-                        "d-none"
-                    );
-
-                }
-            );
-
-        }
-
-
-
-        // =========================================================
-        // MY TASKS / ALL TASKS TOGGLE
-        // =========================================================
-
+        // ================= MY TASKS / ALL TASKS TOGGLE =================
         function initializeTaskToggle() {
-
-            $(document).off(
-                "change",
-                "#myTasksToggle"
-            );
-
-
-            $(document).on(
-                "change",
-                "#myTasksToggle",
-                function() {
-
-                    if (this.checked) {
-
-                        window.location.href =
-                            "?myTasks=true";
-
-                    }
-                    else {
-
-                        window.location.href =
-                            "?myTasks=false";
-
-                    }
-
+            $(document).off("change", "#myTasksToggle");
+            $(document).on("change", "#myTasksToggle", function() {
+                if (this.checked) {
+                    window.location.href = "?myTasks=true";
+                } else {
+                    window.location.href = "?myTasks=false";
                 }
-            );
-
+            });
         }
 
 
-
-        // =========================================================
-        // PROJECT MEMBERS
-        // =========================================================
-
+        // ================= PROJECT MEMBERS =================
         function initializeProjectMembers() {
+            const projectSelect = document.getElementById("projectSelect");
+            const membersContainer = document.getElementById("projectMembersContainer");
 
-            const projectSelect =
-                document.getElementById(
-                    "projectSelect"
-                );
-
-
-            const membersContainer =
-                document.getElementById(
-                    "projectMembersContainer"
-                );
-
-
-            if (
-                !projectSelect ||
-                !membersContainer
-            ) {
+            if (!projectSelect || !membersContainer) {
                 return;
             }
 
-
-            // Prevent duplicate listener
-
-            if (
-                projectSelect.dataset.initialized === "true"
-            ) {
+            if (projectSelect.dataset.initialized === "true") {
                 return;
             }
 
-            projectSelect.dataset.initialized =
-                "true";
+            projectSelect.dataset.initialized = "true";
 
+            projectSelect.addEventListener("change", async function() {
+                const projectId = this.value;
+                membersContainer.innerHTML = "";
 
-            projectSelect.addEventListener(
-                "change",
-                async function() {
+                if (!projectId) {
+                    membersContainer.innerHTML = `<div class="text-muted">Please select a project first.</div>`;
+                    return;
+                }
 
-                    const projectId =
-                        this.value;
+                membersContainer.innerHTML = `<div class="text-muted"><span class="spinner-border spinner-border-sm me-2"></span>Loading members...</div>`;
 
+                try {
+                    const response = await fetch(`?handler=ProjectMembers&projectId=${projectId}`);
 
-                    membersContainer.innerHTML =
-                        "";
+                    if (!response.ok) {
+                        throw new Error("Failed to load project members.");
+                    }
 
+                    const members = await response.json();
+                    membersContainer.innerHTML = "";
 
-                    // No project selected
-
-                    if (!projectId) {
-
-                        membersContainer.innerHTML = `
-
-                                    <div class="text-muted">
-
-                                        Please select a project first.
-
-                                    </div>
-
-                                `;
-
+                    if (!members || members.length === 0) {
+                        membersContainer.innerHTML = `<div class="text-muted">No members found in this project.</div>`;
                         return;
                     }
 
+                    members.forEach(member => {
+                        const div = document.createElement("div");
+                        div.className = "form-check mb-2";
 
-                    // Loading
+                        const roles = member.roles && member.roles.length > 0
+                            ? member.roles.join(", ")
+                            : "";
 
-                    membersContainer.innerHTML = `
-
-                                <div class="text-muted">
-
-                                    <span
-                                        class="spinner-border spinner-border-sm me-2">
-                                    </span>
-
-                                    Loading members...
-
-                                </div>
-
-                            `;
-
-
-                    try {
-
-                        const response =
-                            await fetch(
-                                `?handler=ProjectMembers&projectId=${projectId}`
-                            );
-
-
-                        if (!response.ok) {
-
-                            throw new Error(
-                                "Failed to load project members."
-                            );
-
-                        }
-
-
-                        const members =
-                            await response.json();
-
-
-                        membersContainer.innerHTML =
-                            "";
-
-
-                        // No members
-
-                        if (
-                            !members ||
-                            members.length === 0
-                        ) {
-
-                            membersContainer.innerHTML = `
-
-                                        <div class="text-muted">
-
-                                            No members found in this project.
-
-                                        </div>
-
-                                    `;
-
-                            return;
-                        }
-
-
-                        // Members
-
-                        members.forEach(
-                            member => {
-
-                                const div =
-                                    document.createElement(
-                                        "div"
-                                    );
-
-
-                                div.className =
-                                    "form-check mb-2";
-
-
-                                const roles =
-                                    member.roles &&
-                                        member.roles.length > 0
-
-                                        ? member.roles.join(", ")
-
-                                        : "";
-
-
-                                div.innerHTML = `
-
-                                            <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                name="createTask.AssignedToUserIds"
-                                                value="${member.id}"
-                                                id="create_emp_${member.id}"
-                                            />
-
-                                            <label
-                                                class="form-check-label"
-                                                for="create_emp_${member.id}"
-                                            >
-
-                                                <strong>
-                                                    ${member.name}
-                                                </strong>
-
-                                                ${roles
-                                        ? `
-                                                            <span class="text-secondary">
-                                                                [${roles}]
-                                                            </span>
-                                                          `
-                                        : ""
-                                    }
-                                            </label>
-                                        `;
-                                membersContainer.appendChild(
-                                    div
-                                );
-                            }
-                        );
-                    }
-                    catch (error) {
-                        console.error(
-                            "ProjectMembers Error:",
-                            error
-                        );
-                        membersContainer.innerHTML = `
-                                    <div class="text-danger">
-                                       Failed to load project members.
-                                    </div>
+                        div.innerHTML = `
+                                    <input class="form-check-input" type="checkbox"
+                                           name="createTask.AssignedToUserIds"
+                                           value="${member.id}" id="create_emp_${member.id}" />
+                                    <label class="form-check-label" for="create_emp_${member.id}">
+                                        <strong>${member.name}</strong>
+                                        ${roles ? `<span class="text-secondary">[${roles}]</span>` : ""}
+                                    </label>
                                 `;
-                        showToast(
-                            "Failed to load project members.",
-                            "error",
-                            "Loading Failed"
-                        );
-                    }
+
+                        membersContainer.appendChild(div);
+                    });
                 }
-            );
+                catch (error) {
+                    console.error("ProjectMembers Error:", error);
+                    membersContainer.innerHTML = `<div class="text-danger">Failed to load project members.</div>`;
+                    showToast("Failed to load project members.", "error", "Loading Failed");
+                }
+            });
         }
-        // =========================================================
-        // PAGE INITIALIZATION
-        // =========================================================
-        document.addEventListener(
-            "DOMContentLoaded",
-            function() {
-                // Toast
-                createToastContainer();
-                // Drag & Drop
-                initializeDragAndDrop();
-                // Create Task
-                initializeCreateTask();
-                // Comments
-                initializeComments();
-                // My Tasks / All Tasks
-                initializeTaskToggle();
-                // Project Members
-                initializeProjectMembers();
+        // ================= TASK CARD CLICK =================
 
+function initializeTaskCardClick() {
+
+    document.querySelectorAll(".task-card").forEach(card => {
+
+        if (card.dataset.clickInitialized === "true") {
+            return;
+        }
+
+        card.dataset.clickInitialized = "true";
+
+        card.addEventListener("click", function (e) {
+
+            // Action button / link / input থেকে click হলে
+            // task details modal open হবে না
+
+            if (
+                e.target.closest(".task-actions") ||
+                e.target.closest("button") ||
+                e.target.closest("a") ||
+                e.target.closest("input") ||
+                e.target.closest("textarea") ||
+                e.target.closest("select") ||
+                e.target.closest(".comment-box")
+            ) {
+                return;
             }
-        );
 
+            const modalId =
+                this.getAttribute("data-bs-target");
+
+            if (!modalId) {
+                return;
+            }
+
+            const modalElement =
+                document.querySelector(modalId);
+
+            if (!modalElement) {
+                return;
+            }
+
+            const modal =
+                bootstrap.Modal.getOrCreateInstance(
+                    modalElement
+                );
+
+            modal.show();
+        });
+    });
+}
+
+        // ================= PAGE INITIALIZATION =================
+        document.addEventListener("DOMContentLoaded", function() {
+            createToastContainer();
+
+            initializeDragAndDrop();
+
+            initializeCreateTask();
+
+            initializeComments();
+
+            initializeTaskToggle();
+
+            initializeProjectMembers();
+
+            initializeTaskCardClick();
+        });
 
     </script>
 }

@@ -8,9 +8,8 @@
     --text-secondary: #6b6b6b;
     --accent: #c4e86d;
 }
-    
 
-    
+
 /*================
 --Main Container--
 =================*/
@@ -79,7 +78,7 @@ main {
     .navbar .main-menu .nav-link {
         color: #1b1b1b !important;
         text-decoration: none !important;
-        font-size: 22px;
+        font-size: 16px;
         font-weight: 500;
         margin: 0;
         padding: 10px 15px;
@@ -108,7 +107,7 @@ main {
     .navbar .right-menu .nav-link {
         color: #1b1b1b !important;
         text-decoration: none !important;
-        font-size: 22px;
+        font-size: 16px;
         font-weight: 500;
         padding: 10px 15px;
     }
@@ -116,6 +115,8 @@ main {
         .navbar .right-menu .nav-link:hover {
             color: #8dbd20 !important;
         }
+
+
 /*Notification button*/
 .notification-btn {
     position: relative;
@@ -124,9 +125,11 @@ main {
 }
 
     .notification-btn i {
-        font-size: 17px;
+        font-size: 16px;
     }
-    /*noti*/
+
+
+/*noti
 .notification-btn {
     position: relative;
     width: 42px;
@@ -138,7 +141,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 19px;
+    font-size: 16px;
     cursor: pointer;
     transition: 0.2s;
 }
@@ -158,7 +161,7 @@ main {
     border-radius: 50px;
     background: #dc3545;
     color: white;
-    font-size: 11px;
+    font-size: 16px;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -178,7 +181,141 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 17px;
+    font-size: 16px;
+}
+
+.unread-dot {
+    width: 8px;
+    height: 8px;
+    background: #0d6efd;
+    border-radius: 50%;
+    margin-top: 6px;
+}*/
+/* =========================
+   ACTIVE NAVBAR LINK
+   ========================= */
+
+.navbar .main-menu .nav-link.active {
+    color: #8dbd20 !important;
+    font-weight: 600;
+}
+
+.navbar .main-menu .nav-link:hover {
+    color: #8dbd20 !important;
+}
+
+
+/* =========================
+   RIGHT SIDE
+   ========================= */
+
+.navbar .right-menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+
+    /* Profile + Logout */
+
+    .navbar .right-menu .icon-link {
+        width: 42px;
+        height: 42px;
+        padding: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #1b1b1b !important;
+        transition: 0.3s;
+    }
+
+        .navbar .right-menu .icon-link i {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .navbar .right-menu .icon-link:hover,
+        .navbar .right-menu .icon-link.active {
+            color: #8dbd20 !important;
+        }
+
+
+/* =========================
+   NOTIFICATION
+   ========================= */
+
+.notification-btn {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    padding: 0 !important;
+    border-radius: 50%;
+    border: 1px solid #dee2e6;
+    background: white;
+    color: #212529;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .notification-btn:hover {
+        background: #f8f9fa;
+        color: #8dbd20;
+    }
+
+    .notification-btn i {
+        font-size: 18px;
+        line-height: 1;
+    }
+
+
+/* Notification badge */
+
+.notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    border-radius: 50px;
+    background: #dc3545;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================
+   NOTIFICATION MODAL
+   ========================= */
+
+.notification-unread {
+    background-color: #f8f9ff;
+}
+
+.notification-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #f1f3f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
 }
 
 .unread-dot {
@@ -188,6 +325,17 @@ main {
     border-radius: 50%;
     margin-top: 6px;
 }
+
+
+/* =========================
+   LOGOUT FORM
+   ========================= */
+
+.logout-form {
+    margin: 0;
+    padding: 0;
+}
+
 /*===Login page===*/
 body.login-page {
     background: var(--bg-page);
@@ -225,6 +373,8 @@ body.login-page {
     .login-btn:hover {
         background: #b6da61;
     }
+
+
 /*login page*/
 .signup-link,
 .forgot-link {
@@ -239,6 +389,7 @@ body.login-page {
     }
 
 * {
+    
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -250,26 +401,29 @@ body {
     color: var(--color-text-primary);
     padding: 40px;
 }
+
 .llbtn {
     height: 52px;
     width: 150px;
     background: #b6da61;
-    border-radius:5px;
-    border:1px;
+    border-radius: 5px;
+    border: 1px;
 }
+
     .llbtn:hover {
         background: none;
         border: 1px;
         border-color: #b6da61;
     }
+
 .lbtn {
-    color: var(--text) ;
+    color: var(--text);
     border: 1px;
     border-color: #b8e43d;
     text-decoration: none;
-    font-size: large;
-    height:50px;
-    border-radius:5px;
+    font-size: 16px;
+    height: 50px;
+    border-radius: 5px;
 }
 
     .lbtn:hover {
@@ -278,13 +432,771 @@ body {
         border: 1px;
         border-color: #b8e43d;
     }
+/* =========================================================
+   EMPLOYEE PAGE
+   ========================================================= */
+
+:root {
+    --employee-primary: #8dbd20;
+    --employee-primary-dark: #729b12;
+    --employee-primary-light: #f3f8e6;
+    --employee-text: #343a40;
+    --employee-muted: #858c91;
+    --employee-border: #edf0e8;
+    --employee-background: #fafbf8;
+}
+
+
+/* =========================================================
+   ALERT
+   ========================================================= */
+
+.employee-alert {
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.employee-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.employee-page-title {
+    margin: 0;
+    color: var(--employee-text);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.employee-page-subtitle {
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: #92989c;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   TABLE CARD
+   ========================================================= */
+
+.employee-table-card {
+    background: #ffffff;
+    border: 1px solid var(--employee-border);
+    border-radius: 14px;
+    overflow: visible;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.employee-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 10px 0px;
+    background: #ffffff;
+    border-radius: 14px 14px 0 0;
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.employee-search {
+    position: relative;
+    width: 300px;
+}
+
+.employee-search-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a6adb1;
+    font-size: 15px;
+    pointer-events: none;
+}
+
+.employee-search input {
+    width: 100%;
+    height: 40px;
+    padding: 0 15px 0 38px;
+    border: 1px solid #e2e6e9;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: var(--employee-text);
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .employee-search input::placeholder {
+        color: #adb4b8;
+    }
+
+    .employee-search input:focus {
+        border-color: var(--employee-primary);
+        box-shadow: 0 0 0 3px rgba(141, 189, 32, 0.12);
+    }
+
+
+/* =========================================================
+   TOOLBAR RIGHT
+   ========================================================= */
+
+.employee-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   FILTER
+   ========================================================= */
+
+.employee-filter-wrapper {
+    position: relative;
+}
+
+.employee-filter-button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    height: 40px;
+    padding: 0 14px;
+    border: 1px solid #e2e6e9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #60676c;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .employee-filter-button:hover,
+    .employee-filter-button.active {
+        border-color: var(--employee-primary);
+        background: var(--employee-primary-light);
+        color: var(--employee-primary-dark);
+    }
+
+    .employee-filter-button i {
+        color: var(--employee-primary);
+    }
+
+
+/* =========================================================
+   FILTER PANEL
+   ========================================================= */
+
+.employee-filter-panel {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    top: 48px;
+    right: 0;
+    width: 230px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid var(--employee-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+    .employee-filter-panel.show {
+        display: block;
+    }
+
+.employee-filter-title {
+    margin-bottom: 8px;
+    color: #555c61;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.employee-filter-select {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #e2e6e9;
+    border-radius: 7px;
+    outline: none;
+    background: #ffffff;
+    color: #555c61;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+    .employee-filter-select:focus {
+        border-color: var(--employee-primary);
+        box-shadow: 0 0 0 3px rgba(141, 189, 32, 0.10);
+    }
+
+.employee-filter-clear {
+    width: 100%;
+    height: 35px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 7px;
+    background: var(--employee-primary-light);
+    color: var(--employee-primary-dark);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .employee-filter-clear:hover {
+        background: #e8f1d1;
+    }
+
+
+/* =========================================================
+   SORT
+   ========================================================= */
+
+.employee-sort {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.employee-sort-label {
+    color: #858c91;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.employee-sort-select {
+    height: 40px;
+    min-width: 145px;
+    padding: 0 30px 0 12px;
+    border: 1px solid #e2e6e9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #555c61;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+    .employee-sort-select:focus {
+        border-color: var(--employee-primary);
+        box-shadow: 0 0 0 3px rgba(141, 189, 32, 0.10);
+    }
+
+
+/* =========================================================
+   ADD EMPLOYEE
+   ========================================================= */
+
+.employee-add-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 40px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 8px;
+    background: var(--employee-primary);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .employee-add-button:hover {
+        background: var(--employee-primary-dark);
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.employee-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   DATATABLE
+   ========================================================= */
+
+.employee-datatable {
+    width: 100% !important;
+    margin: 0 !important;
+    border-collapse: collapse !important;
+}
+
+
+    /* =========================================================
+   DATATABLE HEADER
+   ========================================================= */
+
+    .employee-datatable thead th {
+        padding: 15px 18px !important;
+        background: var(--employee-background) !important;
+        border-top: 1px solid var(--employee-border) !important;
+        border-bottom: 1px solid var(--employee-border) !important;
+        color: #777f85 !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        white-space: nowrap;
+    }
+
+
+        /* DataTables ordering */
+
+        .employee-datatable thead th.dt-orderable-asc,
+        .employee-datatable thead th.dt-orderable-desc {
+            cursor: pointer;
+        }
+
+
+    /* =========================================================
+   DATATABLE BODY
+   ========================================================= */
+
+    .employee-datatable tbody td {
+        padding: 6px 18px !important;
+        border-bottom: 1px solid var(--employee-border) !important;
+        color: #555c61;
+        font-size: 14px;
+        vertical-align: middle;
+    }
+
+    .employee-datatable tbody tr {
+        background: #ffffff !important;
+        transition: background 0.15s ease;
+        
+    }
+
+        .employee-datatable tbody tr:hover {
+            background: #fafcf7 !important;
+        }
+
+        .employee-datatable tbody tr:last-child td {
+            border-bottom: none !important;
+        }
+
+
+/* =========================================================
+   EMPLOYEE NAME
+   ========================================================= */
+
+.employee-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 210px;
+}
+
+.employee-avatar {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--employee-primary-light);
+    color: var(--employee-primary-dark);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.employee-name {
+    color: #30363a;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.employee-username {
+    margin-top: 2px;
+    color: #a0a6aa;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   COMPANY
+   ========================================================= */
+
+.employee-company {
+    color: #555c61;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   POSITION
+   ========================================================= */
+
+.employee-position {
+    color: #555c61;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   EMAIL
+   ========================================================= */
+
+.employee-email {
+    color: #777f85;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   EDIT BUTTON
+   ========================================================= */
+
+.employee-edit-button {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e2e7df;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #81888d;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .employee-edit-button:hover {
+        border-color: var(--employee-primary);
+        background: var(--employee-primary-light);
+        color: var(--employee-primary-dark);
+    }
+
+
+/* =========================================================
+   EMPLOYEE STATUS TOGGLE
+   ========================================================= */
+
+.employee-status-form {
+    margin: 0;
+}
+
+
+/* Main toggle button */
+
+.employee-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+
+/* Toggle track */
+
+.employee-toggle-track {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+    border-radius: 20px;
+    background: #c9ced2;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+
+/* Toggle circle */
+
+.employee-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+}
+
+
+/* =========================================================
+   ACTIVE
+   ========================================================= */
+
+.employee-toggle.active .employee-toggle-track {
+    background: #8dbd20;
+}
+
+
+.employee-toggle.active .employee-toggle-thumb {
+    transform: translateX(18px);
+}
+
+
+.employee-toggle.active .employee-status-text {
+    color: #729b12;
+}
+
+
+/* =========================================================
+   INACTIVE
+   ========================================================= */
+
+.employee-toggle.inactive .employee-toggle-track {
+    background: #c9ced2;
+}
+
+
+.employee-toggle.inactive .employee-toggle-thumb {
+    transform: translateX(0);
+}
+
+
+.employee-toggle.inactive .employee-status-text {
+    color: #92989c;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.employee-toggle:hover .employee-toggle-track {
+    box-shadow: 0 0 0 3px rgba(141, 189, 32, 0.10);
+}
+
+
+.employee-toggle.inactive:hover .employee-toggle-track {
+    box-shadow: 0 0 0 3px rgba(150, 157, 161, 0.12);
+}
+
+
+/* =========================================================
+   STATUS TEXT
+   ========================================================= */
+
+.employee-status-text {
+    min-width: 55px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+}
+
+
+/* =========================================================
+   DATATABLES CONTAINER
+   ========================================================= */
+
+.dt-container {
+    width: 100%;
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   DATATABLE PAGE LENGTH
+   ========================================================= */
+
+.dt-length {
+    display: flex !important;
+    align-items: center;
+    gap: 7px;
+    padding: 15px 22px !important;
+    color: #858c91 !important;
+    font-size: 13px !important;
+}
+
+    .dt-length select {
+        min-width: 65px !important;
+        height: 34px !important;
+        padding: 0 8px !important;
+        border: 1px solid #e1e5e7 !important;
+        border-radius: 7px !important;
+        background: #ffffff !important;
+        color: #555c61 !important;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+        .dt-length select:focus {
+            border-color: var(--employee-primary) !important;
+            box-shadow: 0 0 0 3px rgba(141, 189, 32, 0.10) !important;
+        }
+
+
+/* =========================================================
+   DATATABLE INFO
+   ========================================================= */
+
+.dt-info {
+    padding: 15px 22px !important;
+    color: #92989c !important;
+    font-size: 13px !important;
+}
+
+
+/* =========================================================
+   DATATABLE BOTTOM LAYOUT
+   ========================================================= */
+
+.dt-layout-row:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--employee-border);
+}
+
+.dt-layout-cell {
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   DATATABLE PAGINATION
+   ========================================================= */
+
+.dt-paging {
+    padding: 10px 22px !important;
+}
+
+    .dt-paging .dt-paging-button {
+        min-width: 34px !important;
+        height: 34px !important;
+        margin: 0 2px !important;
+        padding: 0 9px !important;
+        border: 1px solid transparent !important;
+        border-radius: 7px !important;
+        background: transparent !important;
+        color: #777f85 !important;
+        font-size: 13px !important;
+        transition: all 0.2s ease;
+    }
+
+        .dt-paging .dt-paging-button:hover {
+            border-color: #dce8c7 !important;
+            background: var(--employee-primary-light) !important;
+            color: var(--employee-primary-dark) !important;
+        }
+
+        .dt-paging .dt-paging-button.current {
+            border-color: var(--employee-primary) !important;
+            background: var(--employee-primary) !important;
+            color: #ffffff !important;
+        }
+
+        .dt-paging .dt-paging-button.disabled {
+            opacity: 0.4 !important;
+        }
+
+
+/* =========================================================
+   DATATABLE SORTING ICONS
+   ========================================================= */
+
+.employee-datatable thead th.dt-orderable-asc:hover,
+.employee-datatable thead th.dt-orderable-desc:hover {
+    color: var(--employee-primary-dark) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .employee-toolbar {
+        flex-wrap: wrap;
+    }
+
+    .employee-toolbar-right {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .employee-page-title {
+        font-size: 24px;
+    }
+
+    .employee-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+    }
+
+    .employee-search {
+        width: 100%;
+    }
+
+    .employee-toolbar-right {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .employee-sort {
+        width: 100%;
+    }
+
+    .employee-sort-select {
+        flex: 1;
+    }
+
+    .dt-layout-row:last-child {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dt-length {
+        justify-content: center;
+    }
+
+    .dt-info {
+        text-align: center;
+        padding: 10px !important;
+    }
+
+    .dt-paging {
+        text-align: center;
+    }
+}
 
 /*Employee Index*/
 .dropdown {
     height: 30px;
-    width: 143px;
-    margin-top: 15px;
+    /*width: 143px;*/
+    margin-top: 10px;
+    
 }
+
 .btn-custom {
     color: white;
     Background: #b6da61;
@@ -299,8 +1211,8 @@ body {
         background: white;
         border-color: #b6da61;
     }
+
 .task-card {
-    
     border-radius: 15px;
     transition: .2s;
     cursor: grab;
@@ -310,35 +1222,38 @@ body {
         display: flex;
         flex-direction: column;
         height: 100%;
-        padding: 14px 14px 0px 14px;
+        padding: 10px 10px 0px 10px;
     }
+
 
 /* Title */
 .task-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.2;
-    height: 38px;
+    height: 36px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
+
 /* Project */
 .project-name {
-    font-size: 14px;
+    font-size: 13px;
     color: #666;
-    height: 18px;
+    height: 15px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
+
 /* Assigned User */
 .assigned-user {
-    font-size: 14px;
-    height: 20px;
+    font-size: 13px;
+    height: 17px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -348,12 +1263,14 @@ body {
         color: #111;
     }
 
+
 /* Due Date */
 .due-date {
-    font-size: 14px;
+    font-size: 13px;
     color: #555;
     margin-top: 3px;
 }
+
 
 /* Buttons */
 .task-buttons {
@@ -361,14 +1278,15 @@ body {
     display: flex;
     gap: 8px;
 }
+
 .icon-btn {
     background: transparent;
     border: none;
     padding: 0;
     margin: 0;
     cursor: pointer;
-    color: #198754; /* Bootstrap success color */
-    font-size: 1.2rem;
+    color: #198754;
+    font-size: 16px;
 }
 
     .icon-btn:hover {
@@ -379,13 +1297,15 @@ body {
         outline: none;
         box-shadow: none;
     }
-    .task-buttons .btn {
-        height: 4px;
-        font-size: 13px;
-        border-radius: 8px;
-        padding: 0;
-        background: #b6da61;
-    }
+
+.task-buttons .btn {
+    height: 4px;
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 0;
+    background: #b6da61;
+}
+
 
 /* Priority Dot */
 .priority-dot {
@@ -395,11 +1315,13 @@ body {
     flex-shrink: 0;
 }
 
+
 /* Hover */
 .task-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 .4rem .8rem rgba(0,0,0,.12);
 }
+
 .kanban-board {
     display: flex;
     gap: 20px;
@@ -425,7 +1347,7 @@ body {
 }
 
 .kanban-body {
-    height: 70vh; /* adjust as needed */
+    height: 70vh;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 15px;
@@ -444,7 +1366,11 @@ body {
         background: #ececec;
     }
 
-/*Task Card Buttons*/
+/*********************
+        Task Card
+**********************/
+
+/***********Task Card Buttons*/
 .task-actions {
     display: flex;
     gap: 6px;
@@ -461,6 +1387,7 @@ body {
     transition: all 0.2s ease;
     text-decoration: none;
 }
+
 
 /* Comment - Blue */
 .action-comment {
@@ -508,23 +1435,23 @@ body {
         background-color: #495057;
         color: white;
     }
+
+
 /*All Task vs My Task*/
 .task-filter-toggle {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
-
     min-width: 145px;
     padding: 8px 12px;
-
     background: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 10px;
 }
 
 .task-view-label {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #212529;
     white-space: nowrap;
@@ -534,15 +1461,18 @@ body {
     width: 42px;
     height: 22px;
     margin: 0;
-
     cursor: pointer;
 }
 
-.task-filter-toggle .form-check-input:checked {
-    background-color: #198754;
-    border-color: #198754;
-}
-/*Comment box kanban board*/
+    .task-filter-toggle .form-check-input:checked {
+        background-color: #198754;
+        border-color: #198754;
+    }
+
+
+
+/* Comment box - Kanban board */
+
 .comment-box {
     max-height: 0;
     opacity: 0;
@@ -558,6 +1488,59 @@ body {
     }
 
 
+/* =====================================================
+   TASK ACTION BUTTONS
+   ===================================================== */
+
+.task-actions {
+    position: relative;
+    z-index: 20;
+}
+
+
+    .task-actions .icon-btn {
+        position: relative;
+        z-index: 21;
+        cursor: pointer;
+        pointer-events: auto;
+    }
+
+
+/* =====================================================
+   COMMENT BOX
+   ===================================================== */
+
+.comment-box {
+    position: relative;
+    z-index: 30;
+}
+
+
+    .comment-box textarea {
+        position: relative;
+        z-index: 31;
+        pointer-events: auto;
+    }
+
+
+/* =====================================================
+   ACTION BUTTON
+   ===================================================== */
+
+.add-note-toggle {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+
+/* =====================================================
+   WHEN CARD IS DRAGGING
+   ===================================================== */
+
+.task-card.dragging .task-actions,
+.task-card.dragging .comment-box {
+    pointer-events: auto;
+}
 
 /* =========================================================
    TASK DETAILS PAGE
@@ -565,6 +1548,7 @@ body {
 
 .task-details-page {
     background-color: #f8f9fa;
+    font-size: 13px;
 }
 
 
@@ -581,12 +1565,13 @@ body {
     border-radius: 8px;
     background-color: rgba(182, 218, 97, 0.18);
     color: #7ca52d;
+    font-size: 13px;
 }
-
 
 .task-status-badge {
     border-radius: 7px;
     font-weight: 600;
+    font-size: 12px;
 }
 
 
@@ -595,23 +1580,26 @@ body {
    ========================================================= */
 
 .task-fixed-card {
-    height: 320px;
+    height: 280px;
     background-color: #ffffff;
     border: 1px solid #e9ecef !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), 0 8px 20px rgba(0, 0, 0, 0.05) !important;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    font-size: 13px;
+    border-radius: 14px !important;
+    margin-bottom: 12px !important;
 }
-
 
     .task-fixed-card .card-header {
         flex-shrink: 0;
+        padding: 12px 16px 6px !important;
     }
-
 
     .task-fixed-card .card-body {
         min-height: 0;
+        padding: 8px 16px 12px !important;
     }
 
 
@@ -620,15 +1608,16 @@ body {
    ========================================================= */
 
 .section-icon {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 9px;
     background-color: rgba(182, 218, 97, 0.18);
     color: #7ca52d;
     flex-shrink: 0;
+    font-size: 13px;
 }
 
 
@@ -638,17 +1627,18 @@ body {
 
 .task-details-body {
     overflow: hidden;
+    font-size: 13px;
 }
-
 
 .project-box {
     border-color: #e5e8eb !important;
+    font-size: 13px;
+    padding: 6px !important;
 }
 
-
 .project-icon {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -656,36 +1646,38 @@ body {
     background-color: rgba(182, 218, 97, 0.18);
     color: #7ca52d;
     flex-shrink: 0;
+    font-size: 13px;
+    margin-right: 10px !important;
 }
 
 
 /* =========================================================
    DESCRIPTION
-   IMPORTANT:
-   FIXED 125px HEIGHT
-   CONTENT WILL SCROLL INSIDE
    ========================================================= */
 
 .description-box {
-    height: 90px;
+    height: 85px;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #f8f9fa !important;
     border-color: #e5e8eb !important;
-    line-height: 1.6;
+    line-height: 1.5;
     color: #495057;
     word-break: break-word;
+    font-size: 13px;
+    padding: 7px 9px !important;
 }
 
 
-    /* Scrollbar */
+    /* =========================================================
+   SCROLLBAR
+   ========================================================= */
 
     .description-box::-webkit-scrollbar,
     .notes-scroll::-webkit-scrollbar,
     .files-scroll::-webkit-scrollbar {
         width: 6px;
     }
-
 
     .description-box::-webkit-scrollbar-track,
     .notes-scroll::-webkit-scrollbar-track,
@@ -694,14 +1686,12 @@ body {
         border-radius: 10px;
     }
 
-
     .description-box::-webkit-scrollbar-thumb,
     .notes-scroll::-webkit-scrollbar-thumb,
     .files-scroll::-webkit-scrollbar-thumb {
         background-color: #c5d89a;
         border-radius: 10px;
     }
-
 
         .description-box::-webkit-scrollbar-thumb:hover,
         .notes-scroll::-webkit-scrollbar-thumb:hover,
@@ -719,29 +1709,40 @@ body {
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
+    font-size: 13px;
 }
-
 
     .notes-scroll .card-body {
         min-height: 100%;
+        font-size: 13px;
     }
 
+    .notes-scroll .list-group-item {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+
+    .notes-scroll .mt-2 {
+        margin-top: 5px !important;
+    }
 
 .completion-note {
     background-color: rgba(182, 218, 97, 0.10) !important;
     border-left: 3px solid #b6da61 !important;
-    padding-left: 12px !important;
+    padding-left: 10px !important;
+    font-size: 13px;
 }
-
 
 .empty-state {
     text-align: center;
+    font-size: 13px;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
 }
 
-
 .empty-state-icon {
-    width: 52px;
-    height: 52px;
+    width: 45px;
+    height: 45px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -749,7 +1750,7 @@ body {
     border-radius: 14px;
     background-color: #f1f3f5;
     color: #868e96;
-    font-size: 22px;
+    font-size: 13px;
 }
 
 
@@ -762,9 +1763,9 @@ body {
     border-color: #b6da61 !important;
     color: #26320f !important;
     font-weight: 600;
+    font-size: 13px;
     transition: all 0.2s ease;
 }
-
 
     .btn-task-primary:hover,
     .btn-task-primary:focus,
@@ -775,14 +1776,19 @@ body {
         box-shadow: 0 3px 8px rgba(182, 218, 97, 0.30) !important;
     }
 
+.btn {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
 
 /* =========================================================
    TASK SUMMARY
    ========================================================= */
 
 .summary-avatar {
-    width: 42px;
-    height: 42px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -790,34 +1796,97 @@ body {
     background-color: rgba(182, 218, 97, 0.18);
     color: #7ca52d;
     flex-shrink: 0;
+    font-size: 13px;
+    margin-right: 10px !important;
 }
-
 
 .summary-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 11px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #f0f1f2;
+    font-size: 13px;
 }
-
 
     .summary-row:last-child {
         border-bottom: none;
     }
 
 
+/* =========================================================
+   EDIT BUTTON
+   ========================================================= */
+
 .summary-edit-btn {
     color: #7ca52d;
     text-decoration: none;
     font-size: 13px;
     transition: color 0.2s ease;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
 }
-
 
     .summary-edit-btn:hover {
         color: #5f801d;
+        border: none;
+        outline: none;
     }
+
+    .summary-edit-btn:focus,
+    .summary-edit-btn:active {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+
+/* =========================================================
+   ASSIGNED MEMBERS SCROLL BOX
+   ========================================================= */
+
+.assigned-members-box {
+    border: 1px solid #e8ecef;
+    border-radius: 10px;
+    background: #f8f9fa;
+    padding: 5px;
+    margin-top: 2px;
+    font-size: 13px;
+}
+
+.assigned-members-list {
+    max-height: 70px;
+    overflow-y: auto;
+    padding-right: 4px;
+    font-size: 13px;
+}
+
+.assigned-member-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 2px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+
+/* Nice scrollbar */
+
+.assigned-members-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.assigned-members-list::-webkit-scrollbar-thumb {
+    background: #c8c8c8;
+    border-radius: 20px;
+}
+
+.assigned-members-list::-webkit-scrollbar-track {
+    background: transparent;
+}
 
 
 /* =========================================================
@@ -829,8 +1898,8 @@ body {
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
+    font-size: 13px;
 }
-
 
 .file-icon {
     width: 30px;
@@ -842,14 +1911,16 @@ body {
     background-color: rgba(182, 218, 97, 0.15);
     color: #7ca52d;
     flex-shrink: 0;
+    font-size: 13px;
 }
-
 
 .files-scroll .list-group-item {
     border-color: #e9ecef !important;
     transition: background-color 0.2s ease, border-color 0.2s ease;
+    font-size: 13px;
+    padding: 7px 10px !important;
+    margin-bottom: 6px !important;
 }
-
 
     .files-scroll .list-group-item:hover {
         background-color: #fafcf6;
@@ -857,11 +1928,15 @@ body {
     }
 
 
+/* =========================================================
+   OUTLINE BUTTON
+   ========================================================= */
+
 .btn-outline-primary {
     color: #6f9125 !important;
     border-color: #b6da61 !important;
+    font-size: 13px;
 }
-
 
     .btn-outline-primary:hover {
         background-color: #b6da61 !important;
@@ -877,90 +1952,167 @@ body {
 .modal-content {
     border: 1px solid #e9ecef !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10) !important;
+    font-size: 13px;
+    border-radius: 14px !important;
 }
 
+.modal-header {
+    padding: 14px 18px 8px !important;
+}
+
+.modal-body {
+    padding: 8px 18px !important;
+}
+
+.modal-footer {
+    padding: 8px 18px 14px !important;
+}
 
 .task-accent-text {
     color: #7ca52d !important;
+    font-size: 13px;
 }
 
+.form-control {
+    font-size: 13px;
+}
 
-.form-control:focus {
-    border-color: #b6da61 !important;
-    box-shadow: 0 0 0 0.2rem rgba(182, 218, 97, 0.20) !important;
+    .form-control:focus {
+        border-color: #b6da61 !important;
+        box-shadow: 0 0 0 0.2rem rgba(182, 218, 97, 0.20) !important;
+    }
+
+.form-label {
+    margin-bottom: 4px !important;
+    font-size: 13px !important;
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   ALERTS
    ========================================================= */
 
-@media (max-width: 991.98px) {
-
-    .task-fixed-card {
-        height: 380px;
-    }
+.task-details-page .alert {
+    margin-bottom: 10px !important;
+    padding: 8px 12px !important;
+    font-size: 13px;
 }
 
 
-@media (max-width: 575.98px) {
+/* =========================================================
+   HEADINGS
+   SAME 13px — ONLY BOLD
+   ========================================================= */
 
-    .task-details-page {
-        padding-left: 12px !important;
-        padding-right: 12px !important;
-    }
-
-
-    .task-fixed-card {
-        height: 380px;
-    }
-
-
-    .task-status-badge {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-
-
-    .section-icon {
-        width: 34px;
-        height: 34px;
-    }
-
-
-    .card-header,
-    .card-body {
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-    }
-
-
-    .btn-task-primary {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-}
-   /*Task Details Page
-.description-scroll {
-    height: 100px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    
+.task-details-page h1,
+.task-details-page h2,
+.task-details-page h3,
+.task-details-page h4,
+.task-details-page h5,
+.task-details-page h6,
+.task-details-page .fw-bold,
+.task-details-page .fw-semibold,
+.modal-content h1,
+.modal-content h2,
+.modal-content h3,
+.modal-content h4,
+.modal-content h5,
+.modal-content h6 {
+    font-size: 14px !important;
+    font-weight: 700 !important;
 }
 
-.notes-scroll,
-.files-scroll {
-    max-height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
+
+/* =========================================================
+   FORCE ALL PAGE TEXT TO 13px
+   ========================================================= */
+
+.task-details-page *,
+.modal-content * {
+    font-size: 13px !important;
 }
 
-.task-detail-card {
-    max-height: 300px;
-    border: 0;
-    border-radius: 16px;
-    box-shadow:0px 2px 8px rgba(0, 0, 0, 0.10);
-}*/
+
+/* =========================================================
+   REDUCE BOOTSTRAP SPACING
+   ========================================================= */
+
+.task-details-page .mb-1 {
+    margin-bottom: 3px !important;
+}
+
+.task-details-page .mb-2 {
+    margin-bottom: 5px !important;
+}
+
+.task-details-page .mb-3 {
+    margin-bottom: 8px !important;
+}
+
+.task-details-page .mt-1 {
+    margin-top: 3px !important;
+}
+
+.task-details-page .mt-2 {
+    margin-top: 5px !important;
+}
+
+.task-details-page .mt-3 {
+    margin-top: 8px !important;
+}
+
+.task-details-page .gap-1 {
+    gap: 4px !important;
+}
+
+.task-details-page .gap-2 {
+    gap: 6px !important;
+}
+
+.task-details-page .gap-3 {
+    gap: 8px !important;
+}
+
+
+/* =========================================================
+   MAIN GRID GAP
+   ========================================================= */
+
+.task-details-page .row.g-3 {
+    --bs-gutter-x: 12px;
+    --bs-gutter-y: 12px;
+}
+
+
+/* =========================================================
+   PARAGRAPH SPACING
+   ========================================================= */
+
+.task-details-page p {
+    margin-bottom: 6px;
+}
+
+
+/* =========================================================
+   BOOTSTRAP FONT SIZE CLASSES OVERRIDE
+   ========================================================= */
+
+.task-details-page .fs-1,
+.task-details-page .fs-2,
+.task-details-page .fs-3,
+.task-details-page .fs-4,
+.task-details-page .fs-5,
+.task-details-page .fs-6,
+.modal-content .fs-1,
+.modal-content .fs-2,
+.modal-content .fs-3,
+.modal-content .fs-4,
+.modal-content .fs-5,
+.modal-content .fs-6 {
+    font-size: 13px !important;
+}
+
+
 /* =========================================================
    PROFILE PAGE
    ========================================================= */
@@ -982,15 +2134,14 @@ body {
     overflow: hidden;
 }
 
-
-    /* =========================================================
-   PROFILE HEADER
-   ========================================================= */
-
     .profile-card .card-header {
         background-color: #ffffff !important;
     }
 
+
+/* =========================================================
+   PROFILE HEADER
+   ========================================================= */
 
 .profile-avatar {
     width: 82px;
@@ -1001,9 +2152,8 @@ body {
     border-radius: 50%;
     background-color: #f0f2f3;
     color: #405a70;
-    font-size: 34px;
+    font-size: 16px;
 }
-
 
 .profile-name {
     color: #17212b;
@@ -1020,11 +2170,9 @@ body {
     gap: 10px;
 }
 
-
     .section-heading h5 {
         color: #17212b;
     }
-
 
 .section-icon {
     width: 34px;
@@ -1055,15 +2203,13 @@ body {
     justify-content: center;
 }
 
-
     .account-info-box strong {
         color: #17212b;
-        font-size: 15px;
+        font-size: 16px;
     }
 
-
     .account-info-box small {
-        font-size: 13px;
+        font-size: 16px;
     }
 
 
@@ -1095,7 +2241,6 @@ body {
     color: #17212b;
 }
 
-
     .profile-setting-btn:hover {
         background-color: #f9fbf7;
         border-color: #b6da61;
@@ -1104,12 +2249,10 @@ body {
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     }
 
-
     .profile-setting-btn:focus {
         border-color: #b6da61;
         box-shadow: 0 0 0 0.2rem rgba(182, 218, 97, 0.18);
     }
-
 
 .profile-action-icon {
     width: 40px;
@@ -1121,12 +2264,11 @@ body {
     border-radius: 10px;
     background-color: rgba(182, 218, 97, 0.18);
     color: #7ca52d;
-    font-size: 18px;
+    font-size: 16px;
 }
 
-
 .profile-setting-btn small {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 
@@ -1143,13 +2285,11 @@ body {
     background-color: #ffffff;
 }
 
-
     .profile-input:focus {
         border-color: #b6da61;
         box-shadow: 0 0 0 0.2rem rgba(182, 218, 97, 0.18);
         background-color: #ffffff;
     }
-
 
     .profile-input::placeholder {
         color: #8b96a0;
@@ -1164,11 +2304,9 @@ body {
     position: relative;
 }
 
-
 .password-input {
     padding-right: 45px;
 }
-
 
 .password-toggle {
     position: absolute;
@@ -1183,11 +2321,9 @@ body {
     cursor: pointer;
 }
 
-
     .password-toggle:hover {
         color: #405a70;
     }
-
 
     .password-toggle:focus {
         outline: none;
@@ -1215,13 +2351,11 @@ body {
     font-weight: 600;
 }
 
-
     .btn-profile-primary:hover {
         background-color: #a8cd50;
         border-color: #a8cd50;
         color: #17212b;
     }
-
 
     .btn-profile-primary:focus {
         background-color: #a8cd50;
@@ -1240,7 +2374,6 @@ body {
     border-color: #e1e5e8;
     color: #17212b;
 }
-
 
     .btn-profile-outline:hover {
         background-color: #f9fbf7;
@@ -1266,7 +2399,7 @@ body {
    ========================================================= */
 
 .profile-page .badge {
-    font-size: 12px;
+    font-size: 16px;
     padding: 5px 9px;
     border-radius: 6px;
 }
@@ -1289,16 +2422,89 @@ body {
     background-color: #ffffff;
 }
 
-
 .profile-page .modal-header {
     background-color: #ffffff;
 }
-
 
 .profile-page .modal-footer {
     background-color: #ffffff;
 }
 
+
+
+
+/* =========================================================
+   ASSIGNED MEMBERS BOX
+   ========================================================= */
+
+.assigned-members-box {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #f8f9fa;
+    padding: 4px 5px;
+    margin-top: 2px;
+}
+
+/* Scroll only inside the members box */
+.assigned-members-scroll {
+    max-height: 50px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Individual member */
+.assigned-member-item {
+    display: flex;
+    align-items: center;
+    padding: 2px 2px;
+    line-height: 1.4;
+}
+
+
+/* Scrollbar */
+.assigned-members-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.assigned-members-scroll::-webkit-scrollbar-thumb {
+    background: #cfcfcf;
+    border-radius: 10px;
+}
+
+.assigned-members-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+/* =====================================================
+   PRIORITY DROPDOWN
+===================================================== */
+
+.priority-dropdown-btn {
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+    .priority-dropdown-btn:hover {
+        transform: translateY(-1px);
+        opacity: 0.9;
+    }
+
+    .priority-dropdown-btn:focus {
+        box-shadow: none !important;
+    }
+
+.priority-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 130px;
+}
+
+.priority-option-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+}
 
 /* =========================================================
    RESPONSIVE
@@ -1311,99 +2517,48 @@ body {
         padding-bottom: 20px !important;
     }
 
-
     .profile-card .card-body {
         padding: 20px !important;
     }
-
 
     .profile-card .card-header {
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
 
-
     .account-info-box {
         min-height: 70px;
     }
 
-
     .profile-avatar {
         width: 72px;
         height: 72px;
-        font-size: 30px;
+        font-size: 16px;
     }
-
 
     .profile-name {
-        font-size: 24px;
+        font-size: 16px;
     }
-
 
     .profile-divider {
         margin: 20px 0;
     }
 
-
     .profile-setting-btn {
         min-height: 70px;
     }
-
 
     .profile-btn {
         padding-left: 13px;
         padding-right: 13px;
     }
 }
-/* =========================================================
-   TASK SUMMARY - ASSIGNED MEMBERS SCROLL
-   ========================================================= */
-
-.task-summary-card {
-    overflow: hidden;
-}
-
-.assigned-members-list {
-    max-height: 105px;
-    overflow-y: auto;
-    padding-right: 6px;
-}
-
-    .assigned-members-list::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .assigned-members-list::-webkit-scrollbar-thumb {
-        background: #cfcfcf;
-        border-radius: 10px;
-    }
-
-    .assigned-members-list::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* =========================
        Toast Notification
     ========================= */
+
 #appToast {
     min-width: 340px;
     max-width: 420px;
@@ -1412,15 +2567,15 @@ body {
     animation: toastSlideIn 0.3s ease;
 }
 
-#appToast .toast-header {
-    padding: 12px 15px;
-}
+    #appToast .toast-header {
+        padding: 12px 15px;
+    }
 
-#appToast .toast-body {
-    padding: 12px 15px 15px;
-    font-size: 14px;
-    font-weight: 500;
-}
+    #appToast .toast-body {
+        padding: 12px 15px 15px;
+        font-size: 16px;
+        font-weight: 500;
+    }
 
 #toastIcon {
     width: 30px;
@@ -1430,6 +2585,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 
 /* Success */
 
@@ -1443,6 +2599,7 @@ body {
         color: #198754;
     }
 
+
 /* Error */
 
 #appToast.toast-error {
@@ -1454,6 +2611,7 @@ body {
         background-color: rgba(220, 53, 69, 0.12);
         color: #dc3545;
     }
+
 
 /* Warning */
 
@@ -1467,6 +2625,7 @@ body {
         color: #856404;
     }
 
+
 /* Info */
 
 #appToast.toast-info {
@@ -1478,6 +2637,7 @@ body {
         background-color: rgba(13, 110, 253, 0.12);
         color: #0d6efd;
     }
+
 
 @keyframes toastSlideIn {
 
@@ -1491,5 +2651,6 @@ body {
         opacity: 1;
     }
 }
+
 
 /*Toast End*/

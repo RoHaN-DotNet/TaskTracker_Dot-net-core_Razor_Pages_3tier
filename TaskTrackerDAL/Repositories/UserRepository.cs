@@ -32,10 +32,9 @@ namespace TaskTrackerDAL.Repositories
         public async Task<User?> GetByIdWithRolesAsync(int userId)
         {
             return await _context.Users
+                .AsNoTracking()
                 .Include(u => u.UserRoles)
                     .ThenInclude(ur => ur.Role)
-                    .AsNoTracking()
-
                 .SingleOrDefaultAsync(u => u.Id == userId);
         }
 
@@ -48,13 +47,18 @@ namespace TaskTrackerDAL.Repositories
                 .ToListAsync();
         }
 
-        public async Task<bool> IsEmailUniqueAsync(string email, int? excludeUserId = null)
+        public async Task<bool> IsEmailUniqueAsync(
+    string email,
+    int? excludeUserId = null)
         {
-            var query = _context.Users.AsNoTracking().Where(u => u.Email == email);
+            var query = _context.Users
+                .AsNoTracking()
+                .Where(u => u.Email == email);
 
             if (excludeUserId.HasValue)
             {
-                query = query.Where(u => u.Id != excludeUserId.Value);
+                query = query.Where(
+                    u => u.Id != excludeUserId.Value);
             }
 
             return !await query.AnyAsync();
@@ -128,7 +132,85 @@ namespace TaskTrackerDAL.Repositories
                 .CountAsync(u => u.UserRoles.Any(Uri => names.Contains(Uri.Role.Name)));
 
         }
+        public async Task UpdateEmployeeAsync(
+    User employee,
+    int? oldRoleId,
+    int newRoleId)
+        {
+            // =========================================================
+            // IMPORTANT:
+            // Do NOT use:
+            //
+            // _context.Users.Update(employee);
+            // _context.Users.Attach(employee);
+            //
+            // because employee contains UserRoles navigation.
+            // =========================================================
 
+
+            // =========================================================
+            // Attach ONLY the User entity
+            // =========================================================
+
+            _context.Entry(employee).State = EntityState.Unchanged;
+
+            _context.Entry(employee)
+                .Property(u => u.FullName)
+                .IsModified = true;
+
+            _context.Entry(employee)
+                .Property(u => u.Email)
+                .IsModified = true;
+
+            _context.Entry(employee)
+                .Property(u => u.UserName)
+                .IsModified = true;
+
+            _context.Entry(employee)
+                .Property(u => u.UpdatedAt)
+                .IsModified = true;
+
+
+            // =========================================================
+            // Role changed
+            // =========================================================
+
+            if (oldRoleId.HasValue &&
+                oldRoleId.Value != newRoleId)
+            {
+                // Delete old UserRole directly from database.
+                // We don't Attach the old UserRole.
+                await _context.UserRoles
+                    .Where(ur =>
+                        ur.UserId == employee.Id &&
+                        ur.RoleId == oldRoleId.Value)
+                    .ExecuteDeleteAsync();
+
+
+                // Add new UserRole
+                await _context.UserRoles.AddAsync(
+                    new UserRole
+                    {
+                        UserId = employee.Id,
+                        RoleId = newRoleId
+                    });
+            }
+
+
+            // =========================================================
+            // Employee has no role
+            // =========================================================
+
+            else if (!oldRoleId.HasValue)
+            {
+                await _context.UserRoles.AddAsync(
+                    new UserRole
+                    {
+                        UserId = employee.Id,
+                        RoleId = newRoleId
+                    });
+            }
+        }
     }
 
 }

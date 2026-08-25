@@ -23,6 +23,7 @@ namespace TaskTrackerBLL.Infrastucture
         private IAuditLogFeature? _auditLogs;
         private ITaskFileFeature? _taskFiles;
         private ITaskMemberFeature? _taskMembers;
+        private IUserRoleFeature? _userRoles;
         
         
         public UnitOfWork(TaskTrackerDbContext context)
@@ -43,7 +44,7 @@ namespace TaskTrackerBLL.Infrastucture
 
         public IAuditLogFeature AuditLogs => _auditLogs ??= new AuditLogRepository(_context);
 
-        
+        public IUserRoleFeature UserRoles => _userRoles ??= new UserRoleRepository(_context);
 
         public ITaskFileFeature TaskFiles =>_taskFiles ??= new TaskFileRepository(_context);
         public ITaskMemberFeature TaskMembers => _taskMembers ??= new TaskMemberRepository(_context);

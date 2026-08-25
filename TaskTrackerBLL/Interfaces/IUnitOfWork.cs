@@ -19,8 +19,8 @@ namespace TaskTrackerBLL.Interfaces
         IAuditLogFeature AuditLogs { get; }//
         ITaskFileFeature TaskFiles { get; }//
         ITaskMemberFeature TaskMembers { get; }
-       
-        
+        IUserRoleFeature UserRoles { get; }
+
         Task<int> SaveChangesAsync();
     }
 }

@@ -1,23 +1,34 @@
 ﻿@using System.Security.Claims
 @using TaskTrackerBLL.Interfaces.Services
 @using TaskTrackerBLL.DTOs.Notification
+@using TaskTrackerDAL.Constants
 
 @inject INotificationService NotificationService
-@using TaskTrackerDAL.Constants
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - TaskTracker</title>
+
     <script type="importmap"></script>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TaskTracker.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet"href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css" />
+    <link rel="stylesheet" href="~/css/materialdesignicons.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css" />
 </head>
+
+
 @if (User.Identity?.IsAuthenticated == true)
 {
     var currentUserIdClaim =
@@ -40,6 +51,10 @@
             ? notificationsResult.Value
             : Array.Empty<NotificationDto>();
 
+
+    <!-- =========================
+         NOTIFICATION MODAL
+         ========================= -->
 
     <div class="modal fade"
          id="notificationModal"
@@ -75,8 +90,8 @@
                             {
                                 <div class="list-group-item
                                     @(notification.IsRead
-                                         ? ""
-                                         : "notification-unread")">
+                                        ? ""
+                                        : "notification-unread")">
 
                                     <div class="d-flex gap-3">
 
@@ -85,27 +100,39 @@
                                             @switch (notification.Type)
                                             {
                                                 case TaskTrackerDAL.Models.Enums.NotificationType.TaskAssigned:
+
                                                     <i class="bi bi-clipboard-check"></i>
+
                                                     break;
 
                                                 case TaskTrackerDAL.Models.Enums.NotificationType.TaskCompleted:
+
                                                     <i class="bi bi-check-circle"></i>
+
                                                     break;
 
                                                 case TaskTrackerDAL.Models.Enums.NotificationType.ProjectCreated:
+
                                                     <i class="bi bi-folder-plus"></i>
+
                                                     break;
 
                                                 case TaskTrackerDAL.Models.Enums.NotificationType.DeadlineToday:
+
                                                     <i class="bi bi-exclamation-circle"></i>
+
                                                     break;
 
                                                 case TaskTrackerDAL.Models.Enums.NotificationType.DeadlineTomorrow:
+
                                                     <i class="bi bi-clock"></i>
+
                                                     break;
 
                                                 default:
+
                                                     <i class="bi bi-bell"></i>
+
                                                     break;
                                             }
 
@@ -120,7 +147,6 @@
 
                                             <small class="text-muted">
                                                 @notification.CreatedAt.ToLocalTime()
-                                                
                                             </small>
 
                                         </div>
@@ -171,139 +197,219 @@
 
     </div>
 }
+
+
 <body>
+
     <header>
+
         <div class="wrapper">
+
             <nav class="navbar navbar-expand-lg">
-                <!--Logo-->
-                <a asp-page="Dashboard/Index" class="logo">
-                    <img src="~/images/logo/TTlogo.png" />
-                </a>
 
                 @{
-                    bool isAllEmployee = AppRoles.All.Any(role => User.IsInRole(role));
-                    bool isEmployee = AppRoles.EmployeeRoles.Any(role => User.IsInRole(role));
+                    var currentPage =
+                        ViewContext.RouteData.Values["page"]?.ToString();
+
+                    bool isAllEmployee =
+                        AppRoles.All.Any(role => User.IsInRole(role));
+
+                    bool isEmployee =
+                        AppRoles.EmployeeRoles.Any(role => User.IsInRole(role));
                 }
 
 
-                <!--Menu items-->
+                <!-- =========================
+                     LOGO
+                     ========================= -->
+
+                <a asp-page="/Dashboard/Index"
+                   class="logo">
+
+                    <img src="~/images/logo/TTlogo.png" />
+
+                </a>
+
+
+                <!-- =====================================================
+                     GENERAL / GUEST MENU
+                     ===================================================== -->
                 @if (!User.IsInRole(AppRoles.Admin) && !isAllEmployee)
                 {
                     <!-- CENTER MENU -->
+
                     <ul class="navbar-nav main-menu">
 
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Dashboard/Index" ? "active" : "")"
                                asp-page="/Dashboard/Index">
+
                                 Home
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/About" ? "active" : "")"
                                asp-page="/About">
+
                                 About
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Contact" ? "active" : "")"
                                asp-page="/Contact">
+
                                 Contact
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Faqs" ? "active" : "")"
                                asp-page="/Faqs">
+
                                 FAQs
+
                             </a>
+
                         </li>
 
                     </ul>
 
 
                     <!-- RIGHT SIDE -->
+
                     <ul class="navbar-nav right-menu">
 
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Account/Login" ? "active" : "")"
                                asp-page="/Account/Login">
+
                                 Login
+
                             </a>
+
                         </li>
 
                     </ul>
                 }
-                
+
+
+                <!-- =====================================================
+                     MANAGER MENU
+                     ===================================================== -->
                 @if (User.IsInRole(AppRoles.Manager))
                 {
                     <!-- CENTER MENU -->
+
                     <ul class="navbar-nav main-menu">
 
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Dashboard/Index" ? "active" : "")"
                                asp-page="/Dashboard/Index">
+
                                 Manager Home
+
                             </a>
+
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-page="/Companies/Index">
-                                Companies
-                            </a>
-                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Employees/Index" ? "active" : "")"
+                               asp-page="/Employees/Index">
+
+                                Employees
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a class="nav-link @(currentPage == "/Projects/Index" ? "active" : "")"
                                asp-page="/Projects/Index">
+
                                 Projects
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/ProjectTasks/Tasks" ? "active" : "")"
                                asp-page="/ProjectTasks/Tasks">
+
                                 Tasks
+
                             </a>
+
                         </li>
 
                     </ul>
 
 
                     <!-- RIGHT SIDE -->
+
                     <ul class="navbar-nav right-menu">
 
                         <!-- Profile -->
+
                         <li class="nav-item">
-                            <a class="nav-link profile-btn"
+
+                            <a class="nav-link icon-link @(currentPage == "/Profile/Profile" ? "active" : "")"
                                asp-page="/Profile/Profile"
                                title="Profile">
-                                @User.Identity?.Name
-                                <i class="bi bi-person-circle me-1"></i>
+                                Profile
+                                <i class="bi bi-person-circle"></i>
+
                             </a>
+
                         </li>
+
+
                         <!-- Notification -->
                         @{
-                            var currentUserIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                            int currentUserId = 0;
+                            var managerUserIdClaim =
+                                User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                            if (!string.IsNullOrEmpty(currentUserIdClaim))
+                            int managerUserId = 0;
+
+                            if (!string.IsNullOrEmpty(managerUserIdClaim))
                             {
-                                int.TryParse(currentUserIdClaim, out currentUserId);
+                                int.TryParse(managerUserIdClaim, out managerUserId);
                             }
 
-                            var notificationCountResult =
-                                currentUserId > 0
-                                    ? await NotificationService.GetUnreadCountAsync(currentUserId)
+                            var managerNotificationCountResult =
+                                managerUserId > 0
+                                    ? await NotificationService.GetUnreadCountAsync(managerUserId)
                                     : null;
 
-                            var unreadNotificationCount =
-                                notificationCountResult?.Succeeded == true
-                                    ? notificationCountResult.Value
+                            var managerUnreadNotificationCount =
+                                managerNotificationCountResult?.Succeeded == true
+                                    ? managerNotificationCountResult.Value
                                     : 0;
                         }
+
 
                         @if (User.Identity?.IsAuthenticated == true)
                         {
@@ -317,12 +423,14 @@
 
                                     <i class="bi bi-bell"></i>
 
-                                    @if (unreadNotificationCount > 0)
+                                    @if (managerUnreadNotificationCount > 0)
                                     {
                                         <span class="notification-badge">
-                                            @(unreadNotificationCount > 99
+
+                                            @(managerUnreadNotificationCount > 99
                                                 ? "99+"
-                                                : unreadNotificationCount.ToString())
+                                                : managerUnreadNotificationCount.ToString())
+
                                         </span>
                                     }
 
@@ -330,90 +438,134 @@
 
                             </li>
                         }
+
+
                         <!-- Logout -->
+
                         <li class="nav-item">
+
                             <form method="post"
                                   asp-page="/Account/Logout"
                                   asp-page-handler="Logout"
                                   class="logout-form">
 
                                 <button type="submit"
-                                        class="nav-link logout-btn"
+                                        class="nav-link icon-link logout-btn"
                                         title="Logout">
-                                    Logout
+                                        Logout
                                     <i class="bi bi-power"></i>
+
                                 </button>
+
                             </form>
+
                         </li>
+
                     </ul>
                 }
+
+
+                <!-- =====================================================
+                     ADMIN MENU
+                     ===================================================== -->
                 @if (User.IsInRole(AppRoles.Admin))
                 {
+                    <!-- CENTER MENU -->
+
                     <ul class="navbar-nav main-menu">
 
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Dashboard/Index" ? "active" : "")"
                                asp-page="/Dashboard/Index">
+
                                 Admin Home
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Companies/Index" ? "active" : "")"
                                asp-page="/Companies/Index">
+
                                 Companies
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Projects/Index" ? "active" : "")"
                                asp-page="/Projects/Index">
+
                                 Projects
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Employees/Index" ? "active" : "")"
                                asp-page="/Employees/Index">
+
                                 Employees
+
                             </a>
+
                         </li>
 
                     </ul>
 
+
                     <!-- RIGHT SIDE -->
-                    <!-- RIGHT SIDE -->
+
                     <ul class="navbar-nav right-menu">
 
                         <!-- Profile -->
+
                         <li class="nav-item">
-                            <a class="nav-link profile-btn"
+
+                            <a class="nav-link icon-link @(currentPage == "/Profile/Profile" ? "active" : "")"
                                asp-page="/Profile/Profile"
                                title="Profile">
-                                @User.Identity?.Name
-                                <i class="bi bi-person-circle me-1"></i>
+                               Profile
+                                <i class="bi bi-person-circle"></i>
+
                             </a>
+
                         </li>
+
+
                         <!-- Notification -->
                         @{
-                            var currentUserIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                            int currentUserId = 0;
+                            var adminUserIdClaim =
+                                User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                            if (!string.IsNullOrEmpty(currentUserIdClaim))
+                            int adminUserId = 0;
+
+                            if (!string.IsNullOrEmpty(adminUserIdClaim))
                             {
-                                int.TryParse(currentUserIdClaim, out currentUserId);
+                                int.TryParse(adminUserIdClaim, out adminUserId);
                             }
 
-                            var notificationCountResult =
-                                currentUserId > 0
-                                    ? await NotificationService.GetUnreadCountAsync(currentUserId)
+                            var adminNotificationCountResult =
+                                adminUserId > 0
+                                    ? await NotificationService.GetUnreadCountAsync(adminUserId)
                                     : null;
 
-                            var unreadNotificationCount =
-                                notificationCountResult?.Succeeded == true
-                                    ? notificationCountResult.Value
+                            var adminUnreadNotificationCount =
+                                adminNotificationCountResult?.Succeeded == true
+                                    ? adminNotificationCountResult.Value
                                     : 0;
                         }
+
 
                         @if (User.Identity?.IsAuthenticated == true)
                         {
@@ -427,106 +579,151 @@
 
                                     <i class="bi bi-bell"></i>
 
-                                    @if (unreadNotificationCount > 0)
+                                    @if (adminUnreadNotificationCount > 0)
                                     {
                                         <span class="notification-badge">
-                                            @(unreadNotificationCount > 99
+
+                                            @(adminUnreadNotificationCount > 99
                                                 ? "99+"
-                                                : unreadNotificationCount.ToString())
+                                                : adminUnreadNotificationCount.ToString())
+
                                         </span>
+
                                     }
 
                                 </button>
 
                             </li>
                         }
+
+
                         <!-- Logout -->
+
                         <li class="nav-item">
+
                             <form method="post"
                                   asp-page="/Account/Logout"
                                   asp-page-handler="Logout"
                                   class="logout-form">
 
                                 <button type="submit"
-                                        class="nav-link logout-btn"
+                                        class="nav-link icon-link logout-btn"
                                         title="Logout">
-                                    Logout
+                                        Logout
+
                                     <i class="bi bi-power"></i>
+
                                 </button>
+
                             </form>
+
                         </li>
-                    
 
                     </ul>
                 }
+
+
+                <!-- =====================================================
+                     EMPLOYEE MENU
+                     ===================================================== -->
                 @if (isEmployee)
                 {
                     <!-- CENTER MENU -->
+
                     <ul class="navbar-nav main-menu">
 
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Dashboard/Index" ? "active" : "")"
                                asp-page="/Dashboard/Index">
+
                                 Emp Home
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Companies/Index" ? "active" : "")"
                                asp-page="/Companies/Index">
+
                                 Companies
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/Projects/Index" ? "active" : "")"
                                asp-page="/Projects/Index">
+
                                 Projects
+
                             </a>
+
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link"
+
+                            <a class="nav-link @(currentPage == "/ProjectTasks/Tasks" ? "active" : "")"
                                asp-page="/ProjectTasks/Tasks">
+
                                 Tasks
+
                             </a>
+
                         </li>
 
                     </ul>
 
 
                     <!-- RIGHT SIDE -->
+
                     <ul class="navbar-nav right-menu">
 
                         <!-- Profile -->
+
                         <li class="nav-item">
-                            <a class="nav-link profile-btn"
+
+                            <a class="nav-link icon-link @(currentPage == "/Profile/Profile" ? "active" : "")"
                                asp-page="/Profile/Profile"
                                title="Profile">
-                                @User.Identity?.Name
-                                <i class="bi bi-person-circle me-1"></i>
+                                Profile
+                                <i class="bi bi-person-circle"></i>
+
                             </a>
+
                         </li>
+
+
                         <!-- Notification -->
                         @{
-                            var currentUserIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                            int currentUserId = 0;
+                            var employeeUserIdClaim =
+                                User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                            if (!string.IsNullOrEmpty(currentUserIdClaim))
+                            int employeeUserId = 0;
+
+                            if (!string.IsNullOrEmpty(employeeUserIdClaim))
                             {
-                                int.TryParse(currentUserIdClaim, out currentUserId);
+                                int.TryParse(employeeUserIdClaim, out employeeUserId);
                             }
 
-                            var notificationCountResult =
-                                currentUserId > 0
-                                    ? await NotificationService.GetUnreadCountAsync(currentUserId)
+                            var employeeNotificationCountResult =
+                                employeeUserId > 0
+                                    ? await NotificationService.GetUnreadCountAsync(employeeUserId)
                                     : null;
 
-                            var unreadNotificationCount =
-                                notificationCountResult?.Succeeded == true
-                                    ? notificationCountResult.Value
+                            var employeeUnreadNotificationCount =
+                                employeeNotificationCountResult?.Succeeded == true
+                                    ? employeeNotificationCountResult.Value
                                     : 0;
                         }
+
 
                         @if (User.Identity?.IsAuthenticated == true)
                         {
@@ -540,12 +737,14 @@
 
                                     <i class="bi bi-bell"></i>
 
-                                    @if (unreadNotificationCount > 0)
+                                    @if (employeeUnreadNotificationCount > 0)
                                     {
                                         <span class="notification-badge">
-                                            @(unreadNotificationCount > 99
+
+                                            @(employeeUnreadNotificationCount > 99
                                                 ? "99+"
-                                                : unreadNotificationCount.ToString())
+                                                : employeeUnreadNotificationCount.ToString())
+
                                         </span>
                                     }
 
@@ -553,47 +752,93 @@
 
                             </li>
                         }
+
+
                         <!-- Logout -->
+
                         <li class="nav-item">
+
                             <form method="post"
                                   asp-page="/Account/Logout"
                                   asp-page-handler="Logout"
                                   class="logout-form">
 
                                 <button type="submit"
-                                        class="nav-link logout-btn"
+                                        class="nav-link icon-link logout-btn"
                                         title="Logout">
                                     Logout
                                     <i class="bi bi-power"></i>
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
 
-                    
+                                </button>
+
+                            </form>
+
+                        </li>
+
+                    </ul>
                 }
 
             </nav>
 
         </div>
+
     </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+         ========================= -->
+
     <div class="container-fluid px-4">
+
         <main role="main" class="pb-3">
+
             @RenderBody()
+
         </main>
+
     </div>
 
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
     <footer class="border-top footer text-muted">
+
         <div class="container">
-            &copy; 2026 - TaskTracker - <a asp-area="" asp-page="/Privacy">Privacy</a>
+
+            &copy; 2026 - TaskTracker -
+
+            <a asp-area=""
+               asp-page="/Privacy">
+
+                Privacy
+
+            </a>
+
         </div>
+
     </footer>
 
+
+    <!-- =========================
+         SCRIPTS
+         ========================= -->
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true">
+    </script>
+    <script src="~/js/verify.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js">
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
-    
+
 </body>
+
 </html>

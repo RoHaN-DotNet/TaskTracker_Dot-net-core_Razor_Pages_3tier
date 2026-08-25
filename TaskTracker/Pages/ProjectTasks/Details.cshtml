@@ -26,7 +26,7 @@
 }
 
 
-<div class="container-fluid py-4 task-details-page">
+<div class="container-fluid py-2 task-details-page">
 
     <!-- ===================================================== -->
     <!-- PAGE HEADER -->
@@ -42,15 +42,15 @@
                     <i class="bi bi-check2-square"></i>
                 </span>
 
-                <span class="text-muted small fw-semibold">
+                <span class="text-muted small fs-semibold">
                     TASK DETAILS
                 </span>
 
             </div>
 
-            <h2 class="fw-bold mb-1">
+            <h4 class="fw-bold mb-1">
                 @Model.Task.Title
-            </h2>
+            </h4>
 
             <div class="text-muted small">
                 <i class="bi bi-folder2-open me-1"></i>
@@ -59,7 +59,7 @@
 
         </div>
 
-
+        <!--
         <div class="d-flex align-items-center gap-2">
 
             <span class="badge @statusClass task-status-badge px-3 py-2">
@@ -71,7 +71,7 @@
             </span>
 
         </div>
-
+        -->
     </div>
 
 
@@ -181,9 +181,9 @@
 
                         <div>
 
-                            <h5 class="fw-bold mb-0">
+                            <h6 class="fs-1 mb-0">
                                 Task Details
-                            </h5>
+                            </h6>
 
                             <small class="text-muted">
                                 Project and task description
@@ -293,9 +293,9 @@
 
                                 <div class="d-flex align-items-center gap-2">
 
-                                    <h5 class="fw-bold mb-0">
+                                    <h6 class="fw-bold mb-0">
                                         Progress Log
-                                    </h5>
+                                    </h6>
 
                                     <span class="badge bg-light text-dark border">
                                         @Model.ProgressNotes.Count note(s)
@@ -441,9 +441,9 @@
 
                         <div>
 
-                            <h5 class="fw-bold mb-0">
+                            <h6 class="fw-bold mb-0">
                                 Task Summary
-                            </h5>
+                            </h6>
 
                             <small class="text-muted">
                                 Current task information
@@ -500,32 +500,29 @@
                             <div class="fw-semibold">
 
                                 @if (Model.Task.AssignedToUserNames != null &&
-                                    Model.Task.AssignedToUserNames.Any())
+                                     Model.Task.AssignedToUserNames.Any())
                                 {
-                                    <!-- ================================================= -->
-                                    <!-- ASSIGNED MEMBERS - SCROLL AREA -->
-                                    <!-- ================================================= -->
+                                    <div class="assigned-members-box">
 
-                                    <div class="d-flex flex-column gap-1 assigned-members-list">
+                                        <div class="assigned-members-list">
 
-                                        @foreach (var userName in Model.Task.AssignedToUserNames)
-                                        {
-                                            <span>
+                                            @foreach (var userName in Model.Task.AssignedToUserNames)
+                                            {
+                                                <div class="assigned-member-item">
+                                                    <i class="bi bi-person text-muted me-2"></i>
+                                                    <span>@userName</span>
+                                                </div>
+                                            }
 
-                                                <i class="bi bi-person me-1 text-muted"></i>
-
-                                                @userName
-
-                                            </span>
-                                        }
+                                        </div>
 
                                     </div>
                                 }
                                 else
                                 {
-                                    <span class="text-muted">
+                                    <div class="assigned-members-box text-muted">
                                         Unassigned
-                                    </span>
+                                    </div>
                                 }
 
                             </div>
@@ -539,7 +536,7 @@
                     <!-- ================================================= -->
                     <!-- PRIORITY -->
                     <!-- ================================================= -->
-
+                   
                     <div class="summary-row">
 
                         <div class="d-flex align-items-center gap-1">
@@ -548,28 +545,104 @@
                                 Priority
                             </span>
 
-
-                            @if (Model.CanManage)
-                            {
-                                <a asp-page="/Tasks/ChangePriority"
-                                   asp-route-id="@Model.Task.Id"
-                                   class="summary-edit-btn"
-                                   title="Change Priority">
-
-                                    <i class="bi bi-pencil"></i>
-
-                                </a>
-                            }
-
                         </div>
 
 
-                        <span class="badge @priorityClass px-2 py-1">
-                            @Model.Task.Priority
-                        </span>
+                        @if (Model.CanManage)
+                        {
+                            <div class="dropdown pe-lg-1">
 
-                    </div>
+                                <button type="button"
+                                        id="priorityButton-@Model.Task.Id"
+                                        class="badge @priorityClass px-2 py-1 border-0 priority-dropdown-btn"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false">
 
+                                    <span id="priorityText-@Model.Task.Id">
+                                        @Model.Task.Priority
+                                    </span>
+
+                                    <i class="bi bi-chevron-down ms-1"
+                                       style="font-size: 0.65rem;">
+                                    </i>
+
+                                </button>
+
+
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+
+                                    <li>
+                                        <button type="button"
+                                                class="dropdown-item priority-option"
+                                                data-task-id="@Model.Task.Id"
+                                                data-priority="Critical"
+                                                data-priority-value="3">
+
+                                            <span class="priority-option-dot bg-dark-subtle"></span>
+                                            Critical
+
+                                        </button>
+                                    </li>
+
+
+                                    <li>
+                                        <button type="button"
+                                                class="dropdown-item priority-option"
+                                                data-task-id="@Model.Task.Id"
+                                                data-priority="High"
+                                                data-priority-value="2">
+
+                                            <span class="priority-option-dot bg-danger"></span>
+                                            High
+
+                                        </button>
+                                    </li>
+
+
+                                    <li>
+                                        <button type="button"
+                                                class="dropdown-item priority-option"
+                                                data-task-id="@Model.Task.Id"
+                                                data-priority="Medium"
+                                                data-priority-value="1">
+
+                                            <span class="priority-option-dot bg-warning"></span>
+                                            Medium
+
+                                        </button>
+                                    </li>
+
+
+                                    <li>
+                                        <button type="button"
+                                                class="dropdown-item priority-option"
+                                                data-task-id="@Model.Task.Id"
+                                                data-priority="Low"
+                                                data-priority-value="0">
+
+                                            <span class="priority-option-dot bg-success"></span>
+                                            Low
+
+                                        </button>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <!-- Read-only priority -->
+
+                            <span id="priorityText-@Model.Task.Id"
+                                  class="badge @priorityClass px-2 py-1">
+
+                                @Model.Task.Priority
+
+                            </span>
+                        }
+
+                  </div> 
 
 
                     <!-- ================================================= -->
@@ -653,9 +726,9 @@
 
                                 <div class="d-flex align-items-center gap-2">
 
-                                    <h5 class="fw-bold mb-0">
+                                    <h6 class="fw-bold mb-0">
                                         Attachments
-                                    </h5>
+                                    </h6>
 
                                     <span class="badge bg-light text-dark border">
                                         @Model.TaskFiles.Count file(s)
@@ -1652,8 +1725,6 @@
                                 );
 
                             }
-
-
                             // ---------------------------------------------
                             // RELOAD
                             // ---------------------------------------------
@@ -1740,8 +1811,6 @@
 
                     return "";
                 }
-
-
                 return String(value)
                     .replace(/&/g, "&amp;")
                     .replace(/</g, "&lt;")
@@ -1749,9 +1818,374 @@
                     .replace(/"/g, "&quot;")
                     .replace(/'/g, "&#039;");
             }
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // =====================================================
+            // PRIORITY UPDATE
+            // =====================================================
+
+            document.addEventListener("click", async function(event) {
+
+                const option =
+                    event.target.closest(".priority-option");
+
+
+                // Not a priority option
+                if (!option) {
+                    return;
+                }
+
+
+                // =================================================
+                // GET DATA
+                // =================================================
+
+                const taskId =
+                    option.dataset.taskId;
+
+                const priority =
+                    option.dataset.priority;
+
+                const priorityValue =
+                    option.dataset.priorityValue;
+
+
+                if (!taskId ||
+                    !priority ||
+                    !priorityValue) {
+
+                    console.error(
+                        "Priority data missing.",
+                        {
+                            taskId,
+                            priority,
+                            priorityValue
+                        }
+                    );
+
+                    return;
+                }
+
+
+                // =================================================
+                // ELEMENTS
+                // =================================================
+
+                const priorityButton =
+                    document.getElementById(
+                        "priorityButton-" + taskId
+                    );
+
+                const priorityText =
+                    document.getElementById(
+                        "priorityText-" + taskId
+                    );
+
+
+                if (!priorityButton ||
+                    !priorityText) {
+
+                    console.error(
+                        "Priority elements not found.",
+                        taskId
+                    );
+
+                    return;
+                }
+
+
+                // =================================================
+                // ANTI FORGERY TOKEN
+                // =================================================
+
+                const tokenInput =
+                    document.querySelector(
+                        'input[name="__RequestVerificationToken"]'
+                    );
+
+
+                if (!tokenInput) {
+
+                    alert(
+                        "Security token not found."
+                    );
+
+                    return;
+                }
+
+
+                const token =
+                    tokenInput.value;
+
+
+                // =================================================
+                // OLD VALUE
+                // =================================================
+
+                const oldPriority =
+                    priorityText.textContent.trim();
+
+
+                // =================================================
+                // DISABLE
+                // =================================================
+
+                priorityButton.disabled = true;
+
+                priorityText.textContent =
+                    "Updating...";
+
+
+                try {
+
+                    // =================================================
+                    // FORM DATA
+                    // =================================================
+
+                    const formData =
+                        new URLSearchParams();
+
+
+                    formData.append(
+                        "__RequestVerificationToken",
+                        token
+                    );
+
+
+                    formData.append(
+                        "TaskId",
+                        taskId
+                    );
+
+
+                    formData.append(
+                        "NewPriority",
+                        priorityValue
+                    );
+
+
+                    // =================================================
+                    // URL
+                    // =================================================
+
+                    const url =
+                        "@Url.Page("/ProjectTasks/Details", "ChangePriority")";
+
+
+                    console.log(
+                        "Updating priority:",
+                        {
+                            url: url,
+                            taskId: taskId,
+                            priority: priority,
+                            priorityValue: priorityValue
+                        }
+                    );
+
+
+                    // =================================================
+                    // FETCH
+                    // =================================================
+
+                    const response =
+                        await fetch(
+                            url,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/x-www-form-urlencoded; charset=UTF-8"
+                                },
+
+                                body:
+                                    formData.toString()
+                            }
+                        );
+
+
+                    // =================================================
+                    // GET RESPONSE TEXT FIRST
+                    // =================================================
+
+                    const responseText =
+                        await response.text();
+
+
+                    console.log(
+                        "Server response:",
+                        response.status,
+                        responseText
+                    );
+
+
+                    // =================================================
+                    // PARSE JSON
+                    // =================================================
+
+                    let result;
+
+                    try {
+
+                        result =
+                            JSON.parse(responseText);
+
+                    }
+                    catch {
+
+                        throw new Error(
+                            "Server returned an invalid response."
+                        );
+
+                    }
+
+
+                    // =================================================
+                    // SERVER ERROR
+                    // =================================================
+
+                    if (!response.ok ||
+                        !result.success) {
+
+                        throw new Error(
+                            result.message ||
+                            "Failed to update priority."
+                        );
+                    }
+
+
+                    // =================================================
+                    // UPDATE TEXT
+                    // =================================================
+
+                    priorityText.textContent =
+                        result.priority;
+
+
+                    // =================================================
+                    // REMOVE OLD COLORS
+                    // =================================================
+
+                    priorityButton.classList.remove(
+                        "bg-danger",
+                        "bg-warning",
+                        "bg-success",
+                        "bg-dark-subtle",
+                        "text-dark"
+                    );
+
+
+                    // =================================================
+                    // APPLY NEW COLOR
+                    // =================================================
+
+                    switch (result.priority) {
+
+                        case "Critical":
+
+                            priorityButton.classList.add(
+                                "bg-dark-subtle"
+                            );
+
+                            break;
+
+
+                        case "High":
+
+                            priorityButton.classList.add(
+                                "bg-danger"
+                            );
+
+                            break;
+
+
+                        case "Medium":
+
+                            priorityButton.classList.add(
+                                "bg-warning",
+                                "text-dark"
+                            );
+
+                            break;
+
+
+                        case "Low":
+
+                            priorityButton.classList.add(
+                                "bg-success"
+                            );
+
+                            break;
+                    }
+
+
+                    // =================================================
+                    // CLOSE DROPDOWN
+                    // =================================================
+
+                    const dropdown =
+                        bootstrap.Dropdown.getInstance(
+                            priorityButton
+                        );
+
+
+                    if (dropdown) {
+
+                        dropdown.hide();
+
+                    }
+
+
+                    // =================================================
+                    // SUCCESS MESSAGE
+                    // =================================================
+
+                    console.log(
+                        "Priority updated successfully:",
+                        result.priority
+                    );
+
+
+                }
+                catch (error) {
+
+                    // =================================================
+                    // ERROR
+                    // =================================================
+
+                    console.error(
+                        "Priority update failed:",
+                        error
+                    );
+
+
+                    // Restore old value
+
+                    priorityText.textContent =
+                        oldPriority;
+
+
+                    alert(
+                        error.message ||
+                        "Failed to update priority."
+                    );
+
+                }
+                finally {
+
+                    // =================================================
+                    // ENABLE BUTTON
+                    // =================================================
+
+                    priorityButton.disabled =
+                        false;
+
+                }
+
+            });
 
         });
-
     </script>
 
 }

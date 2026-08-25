@@ -232,4 +232,6 @@ D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.pdb
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\TaskTracker.genruntimeconfig.cache
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\ref\TaskTracker.dll
 D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
-D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\jy0w8wr226-{0}-vsrebq0z39-vsrebq0z39.gz
+D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\j10psnlz5x-{0}-f1tsg7fw2m-f1tsg7fw2m.gz
+D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\c9t4jio4ln-{0}-eiw8avzd54-eiw8avzd54.gz
+D:\PracticeWebProject\TaskTracker\TaskTracker\obj\Debug\net10.0\compressed\jy0w8wr226-{0}-qe4eegu2nc-qe4eegu2nc.gz

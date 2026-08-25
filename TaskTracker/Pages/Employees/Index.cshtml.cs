@@ -47,7 +47,7 @@ namespace TaskTracker.Pages.Employee
                     .Select(r => new SelectListItem
                     {
                         Value = r.Name,
-                        Text = r.Description
+                        Text = r.Name
                     })
                     .ToList();
             }
@@ -108,10 +108,7 @@ namespace TaskTracker.Pages.Employee
             ModelState.Clear();
             if (!TryValidateModel(EditEmployee, nameof(EditEmployee)))
             {
-                TempData["ErrorMessage"] = string.Join("</br>",
-                    ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage));
+                TempData["ErrorMessage"] = string.Join("</br>",ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
                 return RedirectToPage();
             }
             var result=await _employeeService.UpdateAsync(EditEmployee,null);
