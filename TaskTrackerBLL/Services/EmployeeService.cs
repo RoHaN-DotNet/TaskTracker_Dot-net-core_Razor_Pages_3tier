@@ -61,7 +61,9 @@ namespace TaskTrackerBLL.Services
             return Result<IReadOnlyList<EmployeeDto>>.Success(dtos);
         }
         public async Task<Result<IReadOnlyList<EmployeeDto>>> SearchAsync(
-            EmployeeSearchFilterDto filter, int? actingManagerCompanyId)
+    EmployeeSearchFilterDto filter,
+    int? actingManagerCompanyId,
+    int? actingManagerUserId = null)
         {
             var employees = await _unitOfWork.Users.SearchEmployeesAsync(
                 companyId: actingManagerCompanyId,
@@ -70,72 +72,167 @@ namespace TaskTrackerBLL.Services
                 isActive: filter.IsActive);
 
             var dtos = new List<EmployeeDto>();
+
             foreach (var employee in employees)
             {
-                dtos.Add(await MapToDtoAsync(employee));
+                var dto = await MapToDtoAsync(employee);
+
+                // ============================================
+                // MANAGER CANNOT SEE:
+                // 1. Himself
+                // 2. Other Managers
+                // ============================================
+
+                if (actingManagerUserId.HasValue)
+                {
+                    // Hide himself
+                    if (dto.Id == actingManagerUserId.Value)
+                    {
+                        continue;
+                    }
+
+                    // Hide all Managers
+                    if (dto.Roles != null &&
+                        dto.Roles.Any(r =>
+                            r.Equals(AppRoles.Manager,
+                                StringComparison.OrdinalIgnoreCase)))
+                    {
+                        continue;
+                    }
+                }
+
+                dtos.Add(dto);
             }
 
             return Result<IReadOnlyList<EmployeeDto>>.Success(dtos);
         }
 
-        public async Task<Result<EmployeeDto>> RegisterAsync(SignupEmployeeDto dto, int? actingUserCompanyId)
+        public async Task<Result<EmployeeDto>> RegisterAsync(
+    SignupEmployeeDto dto,
+    int? actingUserCompanyId)
         {
+            // -------------------------------------------------
+            // 1. Validate Role
+            // -------------------------------------------------
             if (!AppRoles.EmployeeRoles.Contains(dto.RoleName))
             {
                 return Result<EmployeeDto>.Failure(
                     $"'{dto.RoleName}' is not a valid employee role.");
             }
-            /*
-            var company = await _unitOfWork.Companies.GetByIdAsync(actingUserCompanyId);
+
+            // -------------------------------------------------
+            // 2. Determine Company
+            // -------------------------------------------------
+            int companyId;
+
+            if (actingUserCompanyId.HasValue)
+            {
+                // MANAGER
+                // Manager's company is ALWAYS used.
+                // dto.CompanyId is completely ignored.
+                companyId = actingUserCompanyId.Value;
+            }
+            else
+            {
+                // ADMIN
+                // Admin selects the company from dropdown.
+                companyId = dto.CompanyId;
+            }
+
+            // -------------------------------------------------
+            // 3. Check Company exists
+            // -------------------------------------------------
+            var company = await _unitOfWork.Companies.GetByIdAsync(companyId);
+
             if (company is null)
             {
-                return Result<EmployeeDto>.Failure("Your company could not be found.");
+                return Result<EmployeeDto>.Failure(
+                    "The selected company could not be found.");
             }
-            */
-            var isEmailUnique = await _unitOfWork.Users.IsEmailUniqueAsync(dto.Email);
+
+            // -------------------------------------------------
+            // 4. Check Email
+            // -------------------------------------------------
+            var isEmailUnique =
+                await _unitOfWork.Users.IsEmailUniqueAsync(dto.Email);
+
             if (!isEmailUnique)
             {
-                return Result<EmployeeDto>.Failure($"Email '{dto.Email}' is already registered.");
+                return Result<EmployeeDto>.Failure(
+                    $"Email '{dto.Email}' is already registered.");
             }
 
-            var isUserNameUnique = await _unitOfWork.Users.IsUserNameUniqueAsync(dto.UserName);
+            // -------------------------------------------------
+            // 5. Check Username
+            // -------------------------------------------------
+            var isUserNameUnique =
+                await _unitOfWork.Users.IsUserNameUniqueAsync(dto.UserName);
+
             if (!isUserNameUnique)
             {
-                return Result<EmployeeDto>.Failure($"Username '{dto.UserName}' is already taken.");
+                return Result<EmployeeDto>.Failure(
+                    $"Username '{dto.UserName}' is already taken.");
             }
 
-            var role = await _unitOfWork.Roles.GetByNameAsync(dto.RoleName);
+            // -------------------------------------------------
+            // 6. Get Role
+            // -------------------------------------------------
+            var role =
+                await _unitOfWork.Roles.GetByNameAsync(dto.RoleName);
+
             if (role is null)
             {
                 return Result<EmployeeDto>.Failure(
                     $"Role '{dto.RoleName}' has not been configured. Contact an administrator.");
             }
 
+            // -------------------------------------------------
+            // 7. Create Employee
+            // -------------------------------------------------
             var employee = new User
             {
-                CompanyId = dto.CompanyId,
+                // IMPORTANT:
+                // Manager -> his own company
+                // Admin   -> selected company
+                CompanyId = companyId,
+
                 FullName = dto.FullName,
+
                 Email = dto.Email,
+
                 UserName = dto.FullName
                            .Trim()
                            .ToLower(),
 
+                PasswordHash =
+                    _passwordHasher.HashPassword(dto.Password),
 
-                PasswordHash = _passwordHasher.HashPassword(dto.Password),
                 IsActive = dto.isActive
             };
 
+            // -------------------------------------------------
+            // 8. Assign Role
+            // -------------------------------------------------
             employee.UserRoles.Add(new UserRole
             {
                 RoleId = role.Id
             });
 
+            // -------------------------------------------------
+            // 9. Save
+            // -------------------------------------------------
             await _unitOfWork.Users.AddAsync(employee);
-            await _unitOfWork.SaveChangesAsync();
-            //new line
-            var savedEmployee = await _unitOfWork.Users.GetByIdWithRolesAsync(employee.Id);
 
-            var dtoResult = await MapToDtoAsync(savedEmployee);
+            await _unitOfWork.SaveChangesAsync();
+
+            // -------------------------------------------------
+            // 10. Get saved employee with roles
+            // -------------------------------------------------
+            var savedEmployee =
+                await _unitOfWork.Users.GetByIdWithRolesAsync(employee.Id);
+
+            var dtoResult =
+                await MapToDtoAsync(savedEmployee);
 
             return Result<EmployeeDto>.Success(dtoResult);
         }
@@ -154,7 +251,7 @@ namespace TaskTrackerBLL.Services
             var employee =
                 await _unitOfWork.Users.GetByIdWithRolesAsync(dto.Id);
 
-            if (employee is null || !IsEmployee(employee))
+            if (employee is null ||!IsEmployee(employee))
             {
                 return Result.Failure(
                     $"Employee with ID {dto.Id} was not found.");
@@ -327,6 +424,7 @@ namespace TaskTrackerBLL.Services
 
             return Result.Success();
         }
+
         public async Task<Result> DisableAsync(int id,bool isActive)
         {
             var employee = await _unitOfWork.Users.GetByIdWithRolesAsync(id);

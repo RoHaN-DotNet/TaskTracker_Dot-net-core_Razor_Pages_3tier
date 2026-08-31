@@ -75,14 +75,23 @@ namespace TaskTrackerBLL.Services
 
             if (role is null)
             {
-                return Result.Failure($"Role with ID {dto.Id} was not found.");
+                return Result.Failure(
+                    $"Role with ID {dto.Id} was not found.");
             }
 
-            var isUnique = await _unitOfWork.Roles.IsNameUniqueAsync(dto.Name, dto.Id);
+            if (role.Name == "Admin" || role.Name == "Manager")
+            {
+                return Result.Failure(
+                    $"The '{role.Name}' role is protected and cannot be modified.");
+            }
+
+            var isUnique =
+                await _unitOfWork.Roles.IsNameUniqueAsync(dto.Name, dto.Id);
 
             if (!isUnique)
             {
-                return Result.Failure($"A role named '{dto.Name}' already exists.");
+                return Result.Failure(
+                    $"A role named '{dto.Name}' already exists.");
             }
 
             role.Name = dto.Name;
@@ -90,6 +99,7 @@ namespace TaskTrackerBLL.Services
             role.UpdatedAt = DateTime.UtcNow;
 
             _unitOfWork.Roles.Update(role);
+
             await _unitOfWork.SaveChangesAsync();
 
             return Result.Success();
@@ -104,6 +114,12 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure($"Role with ID {id} was not found.");
             }
 
+            if (role.Name == "Admin" || role.Name == "Manager")
+            {
+                return Result.Failure(
+                    $"The '{role.Name}' role is protected and cannot be deleted.");
+            }
+
             var assignedCount = await _unitOfWork.Roles.CountAssignedUsersAsync(id);
 
             if (assignedCount > 0)
@@ -113,6 +129,7 @@ namespace TaskTrackerBLL.Services
             }
 
             _unitOfWork.Roles.Remove(role);
+
             await _unitOfWork.SaveChangesAsync();
 
             return Result.Success();

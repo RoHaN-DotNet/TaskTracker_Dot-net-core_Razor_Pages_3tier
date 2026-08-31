@@ -6,6 +6,7 @@ using System.Security.Claims;
 using TaskTrackerBLL.Common;
 using TaskTrackerBLL.DTOs.Employee;
 using TaskTrackerBLL.DTOs.Role;
+using TaskTrackerBLL.Infrastucture;
 using TaskTrackerBLL.Interfaces;
 using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerDAL.Constants;
@@ -17,12 +18,14 @@ namespace TaskTracker.Pages.Employee
         private readonly IEmployeeService _employeeService;
         private readonly IRoleService _roleService;
         private readonly ICompanyService _companyService;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public IndexModel(IEmployeeService employeeService,IRoleService roleService, ICompanyService companyService)
+        public IndexModel(IEmployeeService employeeService,IRoleService roleService, ICompanyService companyService, IUnitOfWork unitOfWork)
         {
             _employeeService = employeeService;
             _roleService = roleService;
             _companyService = companyService;
+            _unitOfWork = unitOfWork;
         }
         [BindProperty(SupportsGet = true)]
         public EmployeeSearchFilterDto Filter { get; set; } = new();
@@ -36,6 +39,7 @@ namespace TaskTracker.Pages.Employee
         public List<SelectListItem> Role { get; set; }=new();
 
         public List<SelectListItem> Companies { get; set; } = new();
+        public int? ActingUserCompanyId { get; set; }
         private async Task LoadDropdownsAsync()
         {
             var roleResult = await _roleService.GetAllAsync();
@@ -43,7 +47,9 @@ namespace TaskTracker.Pages.Employee
             if (roleResult.Succeeded)
             {
                 Role = roleResult.Value!
-                    .Where(r => r.Name != AppRoles.Admin)
+                    .Where(r =>
+                        r.Name != AppRoles.Admin &&
+                        r.Name != AppRoles.Manager)
                     .Select(r => new SelectListItem
                     {
                         Value = r.Name,
@@ -65,42 +71,50 @@ namespace TaskTracker.Pages.Employee
                     .ToList();
             }
         }
-
+        public bool IsManager;
         //get all employee info
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
-           /* 
-            * int? scopeCompanyId = User.IsInRole(AppRoles.Admin)
-           ? null
-           : int.Parse(User.FindFirstValue("CompanyId")!);*/
-            var result = await _employeeService.SearchAsync(Filter, null);//scopeCompanyId);
+             IsManager = User.IsInRole(AppRoles.Manager);
 
-            Employees = result.Succeeded ? result.Value! : Array.Empty<EmployeeDto>();
-            await LoadDropdownsAsync();
-            /*
-            var roleResult = await _roleService.GetAllAsync();
-            if (roleResult.Succeeded) 
-            { 
-                Role=roleResult.Value!
-                    .Where(r=>r.Name!=AppRoles.Admin)
-                    .Select(r=>new SelectListItem
-                    {
-                        Value=r.Name,
-                        Text=r.Description,
-                    } ).ToList();
-            }
-            var companies = await _companyService.GetAllAsync();
-            if (companies.Succeeded)
+            var userIdClaim =
+                User.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (IsManager)
             {
-
-                Companies = companies.Value.Select(
-                c => new SelectListItem
+                if (userIdClaim == null ||
+                    !int.TryParse(userIdClaim.Value, out int userId))
                 {
-                    Value = c.Id.ToString(),
-                    Text = c.Name
+                    return Forbid();
+                }
 
-                }).ToList();
-            }*/
+                var currentUser =
+                    await _unitOfWork.Users.GetByIdAsync(userId);
+
+                if (currentUser == null)
+                {
+                    return Forbid();
+                }
+
+                ActingUserCompanyId = currentUser.CompanyId;
+            }
+
+            // তোমার existing dropdown/load code এখানে থাকবে
+            await LoadDropdownsAsync();
+
+            var employees =
+                await _employeeService.SearchAsync(
+                    Filter,
+                    ActingUserCompanyId,
+                    IsManager
+                        ? int.Parse(userIdClaim!.Value)
+                        : null);
+
+            Employees = employees.Succeeded
+                ? employees.Value!
+                : Array.Empty<EmployeeDto>();
+
+            return Page();
         }
         //Update employee name ,email,role
         public async Task<IActionResult> OnPostUpdateAsync()
@@ -150,41 +164,87 @@ namespace TaskTracker.Pages.Employee
         {
             ModelState.Clear();
 
-            if (!TryValidateModel(SignupEmployee, nameof(SignupEmployee)))
-            {
-                TempData["ErrorMessage"] = string.Join("<br/>",
-                   ModelState.Values
-                        .SelectMany(v => v.Errors)
-                        .Select(e => e.ErrorMessage));
-                /*
-                await LoadDropdownsAsync();
+             IsManager = User.IsInRole(AppRoles.Manager);
 
-                var employees = await _employeeService.SearchAsync(Filter, null);
-                Employees = employees.Succeeded ? employees.Value! : Array.Empty<EmployeeDto>();*/
+            int? actingUserCompanyId = null;
+
+            // -------------------------------------------------
+            // MANAGER
+            // -------------------------------------------------
+            if (IsManager)
+            {
+                var userIdClaim =
+                    User.FindFirst(ClaimTypes.NameIdentifier);
+
+                if (userIdClaim == null ||
+                    !int.TryParse(userIdClaim.Value, out int userId))
+                {
+                    TempData["ErrorMessage"] =
+                        "Unable to identify the logged-in user.";
+
+                    return RedirectToPage();
+                }
+
+                var currentUser =
+                    await _unitOfWork.Users.GetByIdAsync(userId);
+
+                if (currentUser == null)
+                {
+                    TempData["ErrorMessage"] =
+                        "Your user account could not be found.";
+
+                    return RedirectToPage();
+                }
+
+                // Manager's company
+                actingUserCompanyId = currentUser.CompanyId;
+
+                // IMPORTANT:
+                // We set this only for server-side validation.
+                // Manager does NOT select it from the UI.
+                SignupEmployee.CompanyId =
+                    currentUser.CompanyId;
+            }
+
+            // -------------------------------------------------
+            // VALIDATION
+            // -------------------------------------------------
+            if (!TryValidateModel(
+                    SignupEmployee,
+                    nameof(SignupEmployee)))
+            {
+                TempData["ErrorMessage"] =
+                    string.Join(
+                        "<br/>",
+                        ModelState.Values
+                            .SelectMany(v => v.Errors)
+                            .Select(e => e.ErrorMessage));
 
                 return RedirectToPage();
             }
 
-            var result = await _employeeService.RegisterAsync(SignupEmployee, null);
+            // -------------------------------------------------
+            // CREATE EMPLOYEE
+            // -------------------------------------------------
+            var result =
+                await _employeeService.RegisterAsync(
+                    SignupEmployee,
+                    actingUserCompanyId);
 
             if (!result.Succeeded)
             {
+                TempData["ErrorMessage"] =
+                    result.Error;
 
-                /*
-                 * ModelState.AddModelError(string.Empty, result.Error!);
-                await LoadDropdownsAsync();*/
-
-                /*
-                 * var employees = await _employeeService.SearchAsync(Filter, null);
-                Employees = employees.Succeeded ? employees.Value! : Array.Empty<EmployeeDto>();*/
-
-                TempData["ErrorMessage"] = result.Error;
                 return RedirectToPage();
             }
-            TempData["SuccessMessage"] = $"Employee '{SignupEmployee.FullName}' was created successfully.";
+
+            TempData["SuccessMessage"] =
+                $"Employee '{SignupEmployee.FullName}' was created successfully.";
+
             return RedirectToPage();
         }
-        
+
 
     }
 }

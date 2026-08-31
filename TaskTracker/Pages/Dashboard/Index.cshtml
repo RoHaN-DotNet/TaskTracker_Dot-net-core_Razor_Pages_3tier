@@ -1,49 +1,446 @@
 ﻿@page
 @model TaskTracker.Pages.Dashboard.IndexModel
 @using TaskTrackerDAL.Constants
+@using TaskTrackerBLL.DTOs.Dashboard
+@using System.Text.Json
+
 @{
     Layout = "_Layout";
+    ViewData["Title"] = "Dashboard";
+
+    // Matches the camelCase naming policy ASP.NET Core's default JsonResult
+    // uses for the OnGetTrendsAsync handler, so the initial (server-rendered)
+    // chart payload and every later AJAX refresh share the same JS parsing code.
+    /*
+    var jsonOptions = new JsonSerializerOptions
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
+
+    var companyGrowthJson = JsonSerializer.Serialize(Model.AdminDashboard?.CompanyGrowth ?? new List<TrendPointDto>(), jsonOptions);
+    var userGrowthJson = JsonSerializer.Serialize(Model.AdminDashboard?.UserGrowth ?? new List<TrendPointDto>(), jsonOptions);
+    var projectGrowthJson = JsonSerializer.Serialize(Model.AdminDashboard?.ProjectGrowth ?? new List<TrendPointDto>(), jsonOptions);
+    var taskGrowthJson = JsonSerializer.Serialize(Model.AdminDashboard?.TaskGrowth ?? new List<TrendPointDto>(), jsonOptions);
+
+    var usersByRoleJson = JsonSerializer.Serialize(Model.AdminDashboard?.UsersByRole ?? new List<TrendPointDto>(), jsonOptions);
+    var projectsByStatusJson = JsonSerializer.Serialize(Model.AdminDashboard?.ProjectsByStatus ?? new List<TrendPointDto>(), jsonOptions);
+    var tasksByStatusJson = JsonSerializer.Serialize(Model.AdminDashboard?.TasksByStatus ?? new List<TrendPointDto>(), jsonOptions);
+
+    var currentTrendRange = Model.AdminDashboard?.TrendRange ?? "12m";*/
 }
 
 @if (User.IsInRole(AppRoles.Admin))
 {
-    <div class="container-fluid h-100 mt-5 px-4">
+    <div class="dashboard-page">
 
-        <h2>Admin Dashboard</h2>
-        <hr />
+        <!-- ========================================= -->
+        <!-- HEADER -->
+        <!-- ========================================= -->
 
-        <div class="row g-4">
+        <div class="dashboard-header">
 
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100 p-4">
-                    <h5>Total Companies</h5>
-                    <h2>@Model.AdminDashboard?.TotalCompanies</h2>
-                </div>
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Overview of your TaskTracker system</p>
             </div>
 
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100 p-4">
-                    <h5>Total Users</h5>
-                    <h2>@Model.AdminDashboard?.TotalUsers</h2>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100 p-4">
-                    <h5>Total Projects</h5>
-                    <h2>@Model.AdminDashboard?.TotalProjects</h2>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card h-100 p-4">
-                    <h5>Total Tasks</h5>
-                    <h2>@Model.AdminDashboard?.TotalTasks</h2>
-                </div>
+            <div class="dashboard-date">
+                <span>Dashboard Overview</span>
             </div>
 
         </div>
 
-    </div>
 
+        <!-- ========================================= -->
+        <!-- SUMMARY CARDS -->
+        <!-- ========================================= -->
+
+        <div class="summary-grid">
+
+            <!-- Companies -->
+            <div class="summary-card">
+
+                <div class="summary-card-top">
+
+                    <div class="summary-icon company-icon">
+                        <i class="bi bi-building"></i>
+                    </div>
+
+                    <span class="summary-label">
+                        Companies
+                    </span>
+
+                </div>
+
+                <div class="summary-number">
+                    @(Model.AdminDashboard?.TotalCompanies ?? 0)
+                </div>
+
+                <div class="summary-description">
+                    Total registered companies
+                </div>
+
+            </div>
+
+
+            <!-- Users -->
+            <div class="summary-card">
+
+                <div class="summary-card-top">
+
+                    <div class="summary-icon user-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <span class="summary-label">
+                        Users
+                    </span>
+
+                </div>
+
+                <div class="summary-number">
+                    @(Model.AdminDashboard?.TotalUsers ?? 0)
+                </div>
+
+                <div class="summary-description">
+                    Total system users
+                </div>
+
+            </div>
+
+
+            <!-- Projects -->
+            <div class="summary-card">
+
+                <div class="summary-card-top">
+
+                    <div class="summary-icon project-icon">
+                        <i class="bi bi-kanban"></i>
+                    </div>
+
+                    <span class="summary-label">
+                        Projects
+                    </span>
+
+                </div>
+
+                <div class="summary-number">
+                    @(Model.AdminDashboard?.TotalProjects ?? 0)
+                </div>
+
+                <div class="summary-description">
+                    Total projects created
+                </div>
+
+            </div>
+
+
+            <!-- Tasks -->
+            <div class="summary-card">
+
+                <div class="summary-card-top">
+
+                    <div class="summary-icon task-icon">
+                        <i class="bi bi-check2-square"></i>
+                    </div>
+
+                    <span class="summary-label">
+                        Tasks
+                    </span>
+
+                </div>
+
+                <div class="summary-number">
+                    @(Model.AdminDashboard?.TotalTasks ?? 0)
+                </div>
+
+                <div class="summary-description">
+                    Total tasks created
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- SYSTEM GROWTH / ANALYTICS -->
+        <!-- ========================================= -->
+        <!--
+        <div class="section-title trend-section-title">
+
+            <div>
+                <h2>System Growth</h2>
+                <p>How companies, users, projects and tasks are trending over time</p>
+            </div>
+
+            <div class="trend-filter">
+                <label for="trendRangeSelect">Time Range</label>
+                <select id="trendRangeSelect">
+                    <option value="7d" selected="(currentTrendRange == "7d")">Last 7 Days</option>
+                    <option value="30d" selected="(currentTrendRange == "30d")">Last 30 Days</option>
+                    <option value="6m" selected="(currentTrendRange == "6m")">Last 6 Months</option>
+                    <option value="12m" selected="(currentTrendRange == "12m")">Last 12 Months</option>
+                </select>
+            </div>
+
+        </div>
+        
+        
+        <div class="trend-grid">
+            -->
+            <!-- ===================================== -->
+            <!-- COMPANY REGISTRATION TREND -->
+            <!-- ===================================== -->
+            <!--
+            <div class="chart-card">
+
+                <div class="chart-card-header">
+
+                    <div>
+                        <h3>Company Registration Trend</h3>
+                        <p>New companies registered over time</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container trend-chart">
+                    <canvas id="companyGrowthChart"></canvas>
+                </div>
+
+            </div>
+            -->
+
+            <!-- ===================================== -->
+            <!-- USER / EMPLOYEE CREATION TREND -->
+            <!-- ===================================== -->
+            <!--
+            <div class="chart-card">
+
+                <div class="chart-card-header">
+
+                    <div>
+                        <h3>User / Employee Creation Trend</h3>
+                        <p>New users created over time</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container trend-chart">
+                    <canvas id="userGrowthChart"></canvas>
+                </div>
+
+            </div>
+            -->
+
+            <!-- ===================================== -->
+            <!-- PROJECT CREATION TREND -->
+            <!-- ===================================== -->
+            <!--
+            <div class="chart-card">
+
+                <div class="chart-card-header">
+
+                    <div>
+                        <h3>Project Creation Trend</h3>
+                        <p>New projects created over time</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container trend-chart">
+                    <canvas id="projectGrowthChart"></canvas>
+                </div>
+
+            </div>
+
+            -->
+            <!-- ===================================== -->
+            <!-- TASK CREATION TREND -->
+            <!-- ===================================== -->
+            <!--
+            <div class="chart-card">
+
+                <div class="chart-card-header">
+
+                    <div>
+                        <h3>Task Creation Trend</h3>
+                        <p>New tasks created over time</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container trend-chart">
+                    <canvas id="taskGrowthChart"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+            -->
+
+        <!-- ========================================= -->
+        <!-- BREAKDOWN CHARTS -->
+        <!-- ========================================= -->
+        <!--
+        <div class="breakdown-grid">
+        -->
+
+            <!-- ===================================== -->
+            <!-- USERS BY ROLE -->
+            <!-- ===================================== -->
+            <!--
+            <div class="chart-card">
+
+                <div class="chart-card-header">
+
+                    <div>
+                        <h3>Users by Role</h3>
+                        <p>Current distribution of users across roles</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container small-chart">
+                    <canvas id="usersByRoleChart"></canvas>
+                </div>
+
+            </div>
+
+            -->
+            <!-- ===================================== -->
+            <!-- PROJECTS BY STATUS -->
+            <!-- ===================================== -->
+            <!--
+            <div class="chart-card">
+
+                <div class="chart-card-header">
+
+                    <div>
+                        <h3>Projects by Status</h3>
+                        <p>Current projects grouped by status</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container small-chart">
+                    <canvas id="projectsByStatusChart"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+        -->
+        <!-- ========================================= -->
+        <!-- TASKS BY STATUS -->
+        <!-- ========================================= -->
+        <!--
+        <div class="large-chart-card">
+
+            <div class="large-chart-header">
+
+                <div>
+                    <h2>Tasks by Status</h2>
+                    <p>Current tasks grouped by status</p>
+                </div>
+
+            </div>
+
+            <div class="large-chart-container">
+
+                <canvas id="tasksByStatusChart"></canvas>
+
+            </div>
+
+        </div>
+        -->
+
+        <!-- ========================================= -->
+        <!-- INFORMATION BOX -->
+        <!-- ========================================= -->
+        <!--
+        <div class="dashboard-info">
+
+            <div class="info-icon">
+                <i class="bi bi-info-circle"></i>
+            </div>
+
+            <div>
+                <h4>Dashboard Overview</h4>
+
+                <p>
+                    This dashboard provides a quick overview of
+                    companies, users, projects and tasks currently
+                    available in the TaskTracker system.
+                </p>
+            </div>
+
+        </div>
+        -->
+    </div>
 }
+
+
+else if (User.IsInRole(AppRoles.Manager))
+{
+    <div class="dashboard-page">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Manager Dashboard</h1>
+                <p>Welcome to your company dashboard</p>
+            </div>
+
+        </div>
+
+        <div class="manager-dashboard-placeholder">
+
+            <i class="bi bi-speedometer2"></i>
+
+            <h2>Manager Dashboard</h2>
+
+            <p>
+                Your manager dashboard information is available here.
+            </p>
+
+        </div>
+
+    </div>
+}
+
+
+else
+{
+    <div class="dashboard-page">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h1>Employee Dashboard</h1>
+                <p>Welcome to your dashboard</p>
+            </div>
+
+        </div>
+
+        <div class="employee-dashboard-placeholder">
+
+            <i class="bi bi-person-workspace"></i>
+
+            <h2>Employee Dashboard</h2>
+
+            <p>
+                Your employee dashboard information is available here.
+            </p>
+
+        </div>
+
+    </div>
+}
+
+
+<!-- ========================================= -->
+<!-- CHART.JS -->
+<!-- ========================================= -->
+

@@ -83,17 +83,10 @@ namespace TaskTrackerDAL.Repositories
             bool? isActive)
         {
             var query = _context.Users
-                .Include(u => u.UserRoles)
-                    .ThenInclude(ur => ur.Role)
-                .AsNoTracking()
-                .Where(u => u.UserRoles.Any(ur =>
-                    ur.Role.Name == "Developer" ||
-                    ur.Role.Name == "Tester" ||
-                    ur.Role.Name == "Debugger" ||
-                    ur.Role.Name == "UI/UX" ||
-                    ur.Role.Name == "Team Lead"||
-                    ur.Role.Name == "Manager" ||
-                    ur.Role.Name == "Designer"));
+    .Include(u => u.UserRoles)
+        .ThenInclude(ur => ur.Role)
+    .AsNoTracking()
+    .Where(u => u.UserRoles.Any(ur => ur.Role.Name != "Admin"));
 
             if (companyId.HasValue)
             {

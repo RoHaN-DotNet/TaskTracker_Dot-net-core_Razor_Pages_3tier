@@ -1,467 +1,2387 @@
 ﻿@page
 @model TaskTracker.Pages.Projects.IndexModel
+
 @{
     ViewData["Title"] = "Projects";
+
+    bool isEmployee = Model.IsEmployeeView;
+    bool canManage = Model.CanManage || Model.IsAdmin;
 }
+
+
+<!-- =========================================================
+     ALERTS
+     ========================================================= -->
+@if (TempData["EditDebug"] != null)
+{
+    <div class="alert alert-info" style="white-space: pre-line;">
+        <strong>EDIT DEBUG</strong>
+        <hr />
+        @TempData["EditDebug"]
+    </div>
+}
+
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show project-alert"
+         role="alert">
+
         @TempData["SuccessMessage"]
+
         <button type="button"
                 class="btn-close"
-                data-bs-dismiss="alert">
+                data-bs-dismiss="alert"
+                aria-label="Close">
         </button>
+
     </div>
 }
+
 @if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show project-alert"
+         role="alert">
+
         @TempData["ErrorMessage"]
+
         <button type="button"
                 class="btn-close"
-                data-bs-dismiss="alert">
+                data-bs-dismiss="alert"
+                aria-label="Close">
         </button>
+
     </div>
 }
+
 @if (TempData["WarningMessage"] != null)
 {
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show project-alert"
+         role="alert">
+
         @TempData["WarningMessage"]
+
         <button type="button"
                 class="btn-close"
-                data-bs-dismiss="alert">
+                data-bs-dismiss="alert"
+                aria-label="Close">
         </button>
+
     </div>
 }
+
 @if (TempData["InfoMessage"] != null)
 {
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <div class="alert alert-info alert-dismissible fade show project-alert"
+         role="alert">
+
         @TempData["InfoMessage"]
+
         <button type="button"
                 class="btn-close"
-                data-bs-dismiss="alert">
+                data-bs-dismiss="alert"
+                aria-label="Close">
         </button>
+
     </div>
 }
-@if (Model.IsEmployeeView)
-{
-    <p class="text-muted">Showing projects you are assigned to.</p>
 
-    @if (Model.AssignedProjects.Count == 0)
+
+
+<!-- =========================================================
+     PAGE HEADER
+     ========================================================= -->
+
+<div class="project-page-header">
+
+    <div>
+
+        <h3 class="project-page-title">
+            Projects
+        </h3>
+
+
+        @if (isEmployee)
+        {
+            <p class="project-page-subtitle">
+                Showing projects you are assigned to.
+            </p>
+        }
+        else
+        {
+            <p class="project-page-subtitle">
+                Manage your projects and project activities
+            </p>
+        }
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     PROJECT TABLE CARD
+     ========================================================= -->
+
+<div class="project-table-card">
+
+
+    <!-- =====================================================
+         TOOLBAR
+         ===================================================== -->
+    @if (canManage)
     {
-        <p>You are not currently assigned to any projects.</p>
-    }
-    else
-    {
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Tasks</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var project in Model.AssignedProjects)
+        <div class="project-toolbar">
+
+
+            <!-- SEARCH -->
+
+            <div class="project-search">
+
+                <i class="mdi mdi-magnify project-search-icon"></i>
+
+                <input type="search"
+                       id="projectSearch"
+                       placeholder="Search projects..."
+                       autocomplete="off" />
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="project-toolbar-right">
+
+
+                <!-- FILTER -->
+
+                <div class="project-filter-wrapper">
+
+                    <button type="button"
+                            id="filterButton"
+                            class="project-filter-button">
+
+                        <i class="mdi mdi-filter-outline"></i>
+
+                        <span>
+                            Filter
+                        </span>
+
+                    </button>
+
+
+                    <div id="filterPanel"
+                         class="project-filter-panel">
+
+                        <div class="project-filter-title">
+                            Project Status
+                        </div>
+
+
+                        <select id="statusFilter"
+                                class="project-filter-select">
+
+                            <option value="">
+                                All Projects
+                            </option>
+
+
+                            @foreach (var status in Enum.GetValues<TaskTrackerDAL.Models.Enums.ProjectStatus>())
+                            {
+                                <option value="@status">
+                                    @status
+                                </option>
+                            }
+
+                        </select>
+
+
+                        <button type="button"
+                                id="clearFilter"
+                                class="project-filter-clear">
+
+                            Clear filter
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SORT -->
+
+                <div class="project-sort">
+
+                    <span class="project-sort-label">
+                        Sort by
+                    </span>
+
+
+                    <select id="sortProjects"
+                            class="project-sort-select">
+
+                        <option value="0-asc">
+                            Name ↑
+                        </option>
+
+                        <option value="0-desc">
+                            Name ↓
+                        </option>
+
+                        <option value="1-asc">
+                            Status ↑
+                        </option>
+
+                        <option value="1-desc">
+                            Status ↓
+                        </option>
+
+                        <option value="2-asc">
+                            Team ↑
+                        </option>
+
+                        <option value="2-desc">
+                            Team ↓
+                        </option>
+
+                        <option value="3-asc">
+                            Tasks ↑
+                        </option>
+
+                        <option value="3-desc">
+                            Tasks ↓
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ADD PROJECT -->
+                @if (Model.CanManage)
                 {
-                    <tr>
-                        <td>@project.Name</td>
-                        <td>@project.Status</td>
-                        <td>@project.CompletedTasks / @project.TotalTasks</td>
-                        <td>
-                            <a asp-page="/Projects/Details" asp-route-id="@project.Id" class="btn btn-sm btn-outline-primary">Details</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-}
-else if(Model.CanManage||Model.IsAdmin)
-{   
-    <div class="d-flex justify-content-between mt-lg-5">
-        <div>
-            <h1>Projects</h1>
-        </div>
-        <div>
-            @if(Model.CanManage)
-            {
-            <div class="d-flex justify-content-between align-items-center mb-3">      
-                <button type="button"
-                            class="btn-custom btn-primary "
+                    <button type="button"
+                            class="project-add-button"
                             data-bs-toggle="modal"
                             data-bs-target="#createModal">
-                        <i class="bi bi-plus-circle"></i>
-                        Add Project
-                </button>
-            </div>
-            }
-        </div>
-    </div>
-   
 
-    <form method="get" class="row g-2 mb-4">
-        <div class="d-flex justify-content-end style=" width:300px"">
-            <select asp-for="Filter.Status" class="form-select">
-                <option value="">All Statuses</option>
-                @foreach (var status in Enum.GetValues<TaskTrackerDAL.Models.Enums.ProjectStatus>())
-                {
-                    <option value="@((int)status)">@status</option>
+                        <i class="mdi mdi-plus-circle-outline"></i>
+
+                        <span>
+                            Add 
+                        </span>
+
+                    </button>
                 }
-            </select>
-        </div>
-        <input type="hidden" asp-for="Filter.PageNumber" value="1" />
-    </form>
 
-    @if (Model.PagedProjects is null)
-    {
-        <p class="text-danger">Unable to load projects.</p>
+            </div>
+
+        </div>
     }
-    else if (Model.PagedProjects.Items.Count == 0)
+
+
+
+    <!-- =====================================================
+         EMPTY STATE
+         ===================================================== -->
+    @if (isEmployee)
     {
-        <p>No projects match your search.</p>
+        @if (Model.AssignedProjects == null ||
+             Model.AssignedProjects.Count == 0)
+        {
+            <div class="project-empty-state">
+
+                <i class="mdi mdi-folder-open-outline"></i>
+
+                <p>
+                    You are not currently assigned to any projects.
+                </p>
+
+            </div>
+        }
     }
     else
     {
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        <form method="get" class="row g-2">
-                            <div style="width:300px">
-                                <input asp-for="Filter.SearchTerm" class="form-control" placeholder="Search by name" style="width:300px" />
-                            </div>
-                        </form>
-                    </th>
-                    <th>Status</th>
-                    <th>Team</th>
-                    <th>Tasks</th>
-                    @if (Model.CanManage)
-                    {
-                    <th>Actions</th>
-                    <th>Manage Member</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var project in Model.PagedProjects.Items)
-                {
-                    <tr>
-                        <td style="width:400px;">@project.Name</td>
-                        <td>@project.Status</td>
-                        <td>@project.TeamMemberCount</td>
-                        <td>@project.CompletedTasks / @project.TotalTasks</td>
-                        @if (Model.CanManage)
-                        {
-                        <td>
-                            <div class="d-flex justify-content-start gap-2">
-                                <button class="btn btn-sm btn-outline-secondary"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editModal"
-                                        data-id="@project.Id"
-                                        data-name="@project.Name"
-                                        data-description="@project.Description"
-                                        data-status="@((int)project.Status)"
-                                        data-startdate="@project.StartDate.ToString("yyyy-MM-dd")"
-                                        data-enddate="@(project.EndDate?.ToString("yyyy-MM-dd"))">
+        @if (Model.PagedProjects is null)
+        {
+            <div class="project-empty-state">
 
-                                    <i class="bi bi-pencil-square"></i>
+                <i class="mdi mdi-alert-circle-outline"></i>
 
-                                </button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <div class="justify-content-start">
-                                <button class="btn btn-outline-success border-0 manage-member-btn"
-                                        data-id="@project.Id"
-                                        data-name="@project.Name"
-                                        data-members="@string.Join(",", project.Members.Select(x => x.UserId))">
-                                    Manage
-                                </button>
-                            </div>
-                        </td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
+                <p>
+                    Unable to load projects.
+                </p>
 
-        <nav>
-            <ul class="pagination">
-                <li class="page-item @(Model.PagedProjects.HasPreviousPage ? "" : "disabled")">
-                    <a class="page-link" asp-page="/Projects/Index"
-                       asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
-                       asp-route-Filter.Status="@Model.Filter.Status"
-                       asp-route-Filter.PageNumber="@(Model.PagedProjects.PageNumber - 1)">Previous</a>
-                </li>
-                @for (var p = 1; p <= Model.PagedProjects.TotalPages; p++)
-                {
-                    <li class="page-item @(p == Model.PagedProjects.PageNumber ? "active" : "")">
-                        <a class="page-link" asp-page="/Projects/Index"
-                           asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
-                           asp-route-Filter.Status="@Model.Filter.Status"
-                           asp-route-Filter.PageNumber="@p">@p</a>
-                    </li>
-                }
-                <li class="page-item @(Model.PagedProjects.HasNextPage ? "" : "disabled")">
-                    <a class="page-link" asp-page="/Projects/Index"
-                       asp-route-Filter.SearchTerm="@Model.Filter.SearchTerm"
-                       asp-route-Filter.Status="@Model.Filter.Status"
-                       asp-route-Filter.PageNumber="@(Model.PagedProjects.PageNumber + 1)">Next</a>
-                </li>
-            </ul>
-        </nav>
+            </div>
+        }
+        else if (Model.PagedProjects.Items.Count == 0)
+        {
+            <div class="project-empty-state">
+
+                <i class="mdi mdi-folder-search-outline"></i>
+
+                <p>
+                    No projects match your search.
+                </p>
+
+            </div>
+        }
     }
-    <!--Edit Project Modal-->
-    <div class="modal fade" id="editModal" tabindex="-1">
+
+
+
+    <!-- =====================================================
+         SINGLE TABLE
+         ===================================================== -->
+    @if (
+            (isEmployee &&
+             Model.AssignedProjects != null &&
+             Model.AssignedProjects.Count > 0)
+            ||
+            (!isEmployee &&
+             Model.PagedProjects != null &&
+             Model.PagedProjects.Items.Count > 0)
+           )
+    {
+        <div class="project-table-wrapper">
+
+            <table id="table-main"
+                   class="project-datatable">
+
+                <thead>
+
+                    <tr>
+
+                        <!-- COLUMN 0 -->
+
+                        <th>
+                            Project
+                        </th>
+
+
+                        <!-- COLUMN 1 -->
+
+                        <th>
+                            Status
+                        </th>
+
+
+                        @if (!isEmployee)
+                        {
+                            <!-- COLUMN 2 -->
+
+                            <th>
+                                Team
+                            </th>
+                        }
+
+
+                        <!-- TASKS -->
+
+                        <th>
+                            Tasks
+                        </th>
+
+
+                        <!-- ACTION -->
+
+                        <th>
+                            Action
+                        </th>
+
+
+                        @if (!isEmployee)
+                        {
+                            <!-- COLUMN 5 -->
+
+                            <th>
+                                Members
+                            </th>
+                        }
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <!-- =================================================
+                         EMPLOYEE PROJECTS
+                         ================================================= -->
+                    @if (isEmployee)
+                    {
+                        @foreach (var project in Model.AssignedProjects)
+                        {
+                            <tr>
+
+
+                                <!-- PROJECT -->
+
+                                <td>
+
+                                    <div class="project-name-cell">
+
+                                        <div class="project-avatar">
+
+                                            <i class="mdi mdi-folder-outline"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <div class="project-name">
+                                                @project.Name
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+
+                                <!-- STATUS -->
+
+                                <td>
+
+                                    <span class="project-status">
+                                        @project.Status
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- TASKS -->
+
+                                <td>
+
+                                    <span class="project-task-count">
+
+                                        @project.CompletedTasks
+                                        /
+                                        @project.TotalTasks
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- EYE -->
+
+                                <td>
+
+                                    <button type="button"
+                                            class="project-action-button project-view-button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#projectDetailsModal"
+                                            data-id="@project.Id"
+                                            data-name="@project.Name"
+                                            data-description="@project.Description"
+                                            data-status="@project.Status"
+                                            data-team="@project.TeamMemberCount"
+                                            data-completed="@project.CompletedTasks"
+                                            data-total="@project.TotalTasks"
+                                            data-startdate="@project.StartDate.ToString("dd MMM yyyy")"
+                                            data-enddate="@(project.EndDate?.ToString("dd MMM yyyy") ?? "Not set")"
+                                            title="View Details">
+
+                                        <i class="mdi mdi-eye-outline"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+
+
+
+                    <!-- =================================================
+                         MANAGER / ADMIN PROJECTS
+                         ================================================= -->
+                    @if (!isEmployee &&
+                                             Model.PagedProjects != null)
+                    {
+                        @foreach (var project in Model.PagedProjects.Items)
+                        {
+                            <tr>
+
+
+                                <!-- PROJECT -->
+
+                                <td>
+
+                                    <div class="project-name-cell">
+
+                                        <div class="project-avatar">
+
+                                            <i class="mdi mdi-folder-outline"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <div class="project-name">
+                                                @project.Name
+                                            </div>
+
+
+                                            @if (!string.IsNullOrWhiteSpace(project.Description))
+                                            {
+                                                <div class="project-description">
+                                                    @project.Description
+                                                </div>
+                                            }
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+
+                                <!-- STATUS -->
+
+                                <td>
+
+                                    <span class="project-status">
+                                        @project.Status
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- TEAM -->
+
+                                <td>
+
+                                    <span class="project-team">
+
+                                        <i class="mdi mdi-account-group-outline"></i>
+
+                                        @project.TeamMemberCount
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- TASKS -->
+
+                                <td>
+
+                                    <span class="project-task-count">
+
+                                        @project.CompletedTasks
+                                        /
+                                        @project.TotalTasks
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- EDIT -->
+
+                                <td>
+
+                                    <button type="button"
+                                            class="project-edit-button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editModal"
+                                            data-id="@project.Id"
+                                            data-name="@project.Name"
+                                            data-description="@project.Description"
+                                            data-status="@((int)project.Status)"
+                                            data-startdate="@project.StartDate.ToString("yyyy-MM-dd")"
+                                            data-enddate="@(project.EndDate?.ToString("yyyy-MM-dd"))"
+                                            title="Edit Project">
+
+                                        <i class="mdi mdi-pencil-outline"></i>
+
+                                    </button>
+
+                                </td>
+
+
+
+                                <!-- MEMBERS -->
+
+                                <td>
+
+                                    <button type="button"
+                                            class="project-member-button manage-member-btn"
+                                            data-id="@project.Id"
+                                            data-name="@project.Name"
+                                            data-members="@string.Join(",", project.Members.Select(x => x.UserId))">
+
+                                        <i class="mdi mdi-account-multiple-outline"></i>
+
+                                        Manage
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+
+</div>
+
+
+
+<!-- =========================================================
+     EMPLOYEE PROJECT DETAILS MODAL
+     ========================================================= -->
+@if (isEmployee)
+{
+    <div class="modal fade"
+         id="projectDetailsModal"
+         tabindex="-1"
+         aria-labelledby="projectDetailsModalLabel"
+         aria-hidden="true">
+
         <div class="modal-dialog modal-lg modal-dialog-centered">
+
             <div class="modal-content">
+
+
+                <!-- HEADER -->
+
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Project</h4>
+
+                    <div>
+
+                        <h4 class="modal-title"
+                            id="projectDetailsModalLabel">
+
+                            Project Details
+
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                            View complete project information
+                        </p>
+
+                    </div>
+
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+
+                </div>
+
+
+
+                <!-- BODY -->
+
+                <div class="modal-body">
+
+
+                    <!-- PROJECT NAME -->
+
+                    <div class="mb-4">
+
+                        <div class="text-muted small mb-1">
+                            Project Name
+                        </div>
+
+                        <h4 id="detailsProjectName"
+                            class="mb-0">
+                        </h4>
+
+                    </div>
+
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="mb-4">
+
+                        <div class="text-muted small mb-1">
+                            Description
+                        </div>
+
+                        <p id="detailsProjectDescription"
+                           class="mb-0">
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- INFORMATION ROW -->
+
+                    <div class="row">
+
+
+                        <!-- STATUS -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="border rounded-3 p-3 h-100">
+
+                                <div class="text-muted small mb-1">
+                                    Status
+                                </div>
+
+                                <div id="detailsProjectStatus"
+                                     class="fw-semibold">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- TEAM -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="border rounded-3 p-3 h-100">
+
+                                <div class="text-muted small mb-1">
+                                    Team Members
+                                </div>
+
+                                <div>
+
+                                    <i class="mdi mdi-account-group-outline me-1">
+                                    </i>
+
+                                    <span id="detailsProjectTeam">
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- COMPLETED TASKS -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="border rounded-3 p-3 h-100">
+
+                                <div class="text-muted small mb-1">
+                                    Completed Tasks
+                                </div>
+
+                                <div class="fw-semibold">
+
+                                    <span id="detailsProjectCompleted">
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- TOTAL TASKS -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="border rounded-3 p-3 h-100">
+
+                                <div class="text-muted small mb-1">
+                                    Total Tasks
+                                </div>
+
+                                <div class="fw-semibold">
+
+                                    <span id="detailsProjectTotal">
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- START DATE -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="border rounded-3 p-3 h-100">
+
+                                <div class="text-muted small mb-1">
+                                    Start Date
+                                </div>
+
+                                <div class="fw-semibold">
+
+                                    <i class="mdi mdi-calendar-start me-1">
+                                    </i>
+
+                                    <span id="detailsProjectStartDate">
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- END DATE -->
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="border rounded-3 p-3 h-100">
+
+                                <div class="text-muted small mb-1">
+                                    End Date
+                                </div>
+
+                                <div class="fw-semibold">
+
+                                    <i class="mdi mdi-calendar-end me-1">
+                                    </i>
+
+                                    <span id="detailsProjectEndDate">
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FOOTER -->
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+
+                        Close
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+
+
+
+<!-- =========================================================
+     EDIT PROJECT MODAL
+     ========================================================= -->
+@if (canManage)
+{
+    <div class="modal fade"
+         id="editModal"
+         tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <h4 class="modal-title">
+                            Edit Project
+                        </h4>
+
+                    </div>
+
+
                     <button type="button"
                             class="btn-close"
                             data-bs-dismiss="modal">
                     </button>
+
                 </div>
-                <form method="post" asp-page-handler="Edit">
+
+
+
+                <form method="post"
+                      asp-page-handler="Edit">
+
                     <div class="modal-body">
+
+
                         <input asp-for="updateProject.Id"
                                type="hidden"
-                               id="Id" />
+                               id="editProjectId" />
+
+
+
+                        <!-- NAME -->
+
                         <div class="mb-3">
-                            <label asp-for="updateProject.Name" class="form-label"></label>
+
+                            <label asp-for="updateProject.Name"
+                                   class="form-label">
+                            </label>
+
+
                             <input asp-for="updateProject.Name"
                                    class="form-control"
-                                   id="projectName" />
+                                   id="editProjectName" />
+
+
                             <span asp-validation-for="updateProject.Name"
-                                  class="text-danger"></span>
+                                  class="text-danger">
+                            </span>
+
                         </div>
+
+
+
+                        <!-- DESCRIPTION -->
+
                         <div class="mb-3">
-                            <label asp-for="updateProject.Description" class="form-label"></label>
+
+                            <label asp-for="updateProject.Description"
+                                   class="form-label">
+                            </label>
+
+
                             <textarea asp-for="updateProject.Description"
                                       class="form-control"
                                       rows="3"
-                                      id="projectDescription"></textarea>
+                                      id="editProjectDescription"></textarea>
+
+
                             <span asp-validation-for="updateProject.Description"
-                                  class="text-danger"></span>
+                                  class="text-danger">
+                            </span>
+
                         </div>
+
+
+
+                        <!-- DATES -->
+
                         <div class="row">
+
                             <div class="col-md-6 mb-3">
-                                <label asp-for="updateProject.StartDate" class="form-label"></label>
+
+                                <label asp-for="updateProject.StartDate"
+                                       class="form-label">
+                                </label>
+
+
                                 <input asp-for="updateProject.StartDate"
                                        type="date"
                                        class="form-control"
-                                       id="startDate" />
+                                       id="editStartDate" />
+
+
                                 <span asp-validation-for="updateProject.StartDate"
-                                      class="text-danger"></span>
+                                      class="text-danger">
+                                </span>
+
                             </div>
+
+
                             <div class="col-md-6 mb-3">
-                                <label asp-for="updateProject.EndDate" class="form-label"></label>
+
+                                <label asp-for="updateProject.EndDate"
+                                       class="form-label">
+                                </label>
+
+
                                 <input asp-for="updateProject.EndDate"
                                        type="date"
                                        class="form-control"
-                                       id="endDate" />
+                                       id="editEndDate" />
+
+
                                 <span asp-validation-for="updateProject.EndDate"
-                                      class="text-danger"></span>
+                                      class="text-danger">
+                                </span>
+
                             </div>
+
                         </div>
+
+
+
+                        <!-- STATUS -->
+
                         <div class="mb-3">
-                            <label asp-for="updateProject.Status" class="form-label"></label>
+
+                            <label asp-for="updateProject.Status"
+                                   class="form-label">
+                            </label>
+
+
                             <select asp-for="updateProject.Status"
                                     asp-items="Model.StatusOptions"
                                     class="form-select"
-                                    id="projectStatus">
+                                    id="editProjectStatus">
                             </select>
+
+
                             <span asp-validation-for="updateProject.Status"
-                                  class="text-danger"></span>
+                                  class="text-danger">
+                            </span>
+
                         </div>
+
                     </div>
+
+
+
                     <div class="modal-footer">
+
                         <button type="button"
                                 class="btn btn-secondary"
                                 data-bs-dismiss="modal">
+
                             Cancel
+
                         </button>
+
+
                         <button type="submit"
                                 class="btn btn-primary">
+
                             Save Changes
+
                         </button>
+
                     </div>
+
                 </form>
+
             </div>
+
         </div>
+
     </div>
-    <!--Create Project Modal-->
-    <div class="modal fade" id="createModal" tabindex="-1">
+}
+
+
+
+<!-- =========================================================
+     CREATE PROJECT MODAL
+     ========================================================= -->
+@if (Model.CanManage)
+{
+    <div class="modal fade"
+         id="createModal"
+         tabindex="-1"
+         aria-hidden="true">
+
         <div class="modal-dialog modal-lg modal-dialog-centered">
 
             <div class="modal-content">
 
+
                 <div class="modal-header">
-                    <h4>Create Project</h4>
-                    <button class="btn-close"
+
+                    <h4 class="modal-title">
+                        Create Project
+                    </h4>
+
+
+                    <button type="button"
+                            class="btn-close"
                             data-bs-dismiss="modal">
                     </button>
+
                 </div>
+
+
+
                 <form method="post"
                       asp-page-handler="Create">
+
                     <div class="modal-body">
+
+
+                        <!-- COMPANY -->
+
                         <input asp-for="createProject.CompanyId"
                                type="hidden" />
+
+
+
+                        <!-- NAME -->
+
                         <div class="mb-3">
-                            <label asp-for="createProject.Name"></label>
+
+                            <label asp-for="createProject.Name"
+                                   class="form-label">
+                            </label>
+
+
                             <input asp-for="createProject.Name"
                                    class="form-control" />
+
+
                             <span asp-validation-for="createProject.Name"
-                                  class="text-danger"></span>
+                                  class="text-danger">
+                            </span>
+
                         </div>
+
+
+
+                        <!-- DESCRIPTION -->
+
                         <div class="mb-3">
-                            <label asp-for="createProject.Description"></label>
+
+                            <label asp-for="createProject.Description"
+                                   class="form-label">
+                            </label>
+
+
                             <textarea asp-for="createProject.Description"
                                       rows="3"
-                                      class="form-control">
-                        </textarea>
+                                      class="form-control"></textarea>
+
+
                             <span asp-validation-for="createProject.Description"
-                                  class="text-danger"></span>
+                                  class="text-danger">
+                            </span>
+
                         </div>
+
+
+
+                        <!-- DATES -->
+
                         <div class="row">
+
                             <div class="col-md-6">
-                                <label asp-for="createProject.StartDate"></label>
+
+                                <label asp-for="createProject.StartDate">
+                                </label>
+
+
                                 <input asp-for="createProject.StartDate"
                                        type="date"
                                        class="form-control" />
+
+
                                 <span asp-validation-for="createProject.StartDate"
-                                      class="text-danger"></span>
+                                      class="text-danger">
+                                </span>
+
                             </div>
+
+
                             <div class="col-md-6">
-                                <label asp-for="createProject.EndDate"></label>
-                                <input asp-for="createProject.EndDate" type="date"class="form-control" />
+
+                                <label asp-for="createProject.EndDate">
+                                </label>
+
+
+                                <input asp-for="createProject.EndDate"
+                                       type="date"
+                                       class="form-control" />
+
+
                                 <span asp-validation-for="createProject.EndDate"
-                                      class="text-danger"></span>
+                                      class="text-danger">
+                                </span>
+
                             </div>
+
                         </div>
+
+
+
+                        <!-- TEAM MEMBERS -->
+
                         <div class="mt-3">
-                            <label class="form-label fw-bold">Team Members</label>
-                            <div class="border rounded-3 p-3" style="max-height:350px; overflow-y:auto;">
+
+                            <label class="form-label fw-bold">
+                                Team Members
+                            </label>
+
+
+                            <div class="border rounded-3 p-3"
+                                 style="max-height:350px; overflow-y:auto;">
+
                                 @foreach (var employee in Model.AllEmployees)
                                 {
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" name="createProject.InitialMemberUserIds" value="@employee.Id" id="create_emp_@employee.Id" />
-                                        <label class="form-check-label" for="create_emp_@employee.Id">
-                                            <strong>@employee.FullName</strong>
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               name="createProject.InitialMemberUserIds"
+                                               value="@employee.Id"
+                                               id="create_emp_@employee.Id" />
+
+
+                                        <label class="form-check-label"
+                                               for="create_emp_@employee.Id">
+
+                                            <strong>
+                                                @employee.FullName
+                                            </strong>
+
+
                                             <span class="text-secondary">
-                                                [@string.Join(", ", employee.Roles)]
+
+                                                [
+                                                @string.Join(
+                                                    ", ",
+                                                    employee.Roles
+                                                )
+                                                ]
+
                                             </span>
+
                                         </label>
+
                                     </div>
                                 }
+
                             </div>
+
                         </div>
+
                     </div>
+
+
+
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Create</button>
+
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button class="btn btn-primary"
+                                type="submit">
+
+                            Create
+
+                        </button>
+
                     </div>
+
                 </form>
+
             </div>
+
         </div>
-    </div>
-    <!--Add or Remove Member Modal-->
-    <div class="modal fade" id="editMemberModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Manage Project Memeber</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <form method="post" asp-page-handler="AddOrRemoveMember">
-                    <div class="modal-body">
-                        <input asp-for="updateMember.ProjectId" type="hidden" id="ProjectId" />
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Project Name</label>
-                            <input id="ProjectName" class="form-control"readonly />
-                        </div>
-                        <hr/>
-                        <h6>Members</h6>
-                        <div class="border rounded-3" style="max-height:350px; overflow-y:auto;">
-                            @foreach (var employee in Model.AllEmployees)
-                                {
-                                    <div class="form-check mb-2">
-                                        <input type="checkbox" class="form-check-input member-checkbox" name="updateMember.MemberUserIds" value="@employee.Id" id="emp_@employee.Id" />
-                                        <label class="form-check-label" for="emp_@employee.Id">
-                                            <strong>@employee.FullName</strong>
-                                            <span class="text-secondary">
-                                                [@string.Join(", ", employee.Roles)]
-                                            </span>
-                                        </label>
-                                    </div>
-                                }
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+
     </div>
 }
-@section Scripts{
+
+
+
+<!-- =========================================================
+     MANAGE MEMBERS MODAL
+     ========================================================= -->
+@if (canManage)
+{
+    <div class="modal fade"
+         id="editMemberModal"
+         tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+
+                <div class="modal-header">
+
+                    <h4 class="modal-title">
+                        Manage Project Member
+                    </h4>
+
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+
+                <form method="post"
+                      asp-page-handler="AddOrRemoveMember">
+
+                    <div class="modal-body">
+
+
+                        <input asp-for="updateMember.ProjectId"
+                               type="hidden"
+                               id="ProjectId" />
+
+
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Project Name
+                            </label>
+
+
+                            <input id="ProjectName"
+                                   class="form-control"
+                                   readonly />
+
+                        </div>
+
+
+                        <hr />
+
+
+                        <h6>
+                            Members
+                        </h6>
+
+
+                        <div class="border rounded-3 p-3"
+                             style="max-height:350px; overflow-y:auto;">
+
+                            @foreach (var employee in Model.AllEmployees)
+                            {
+                                <div class="form-check mb-2">
+
+                                    <input type="checkbox"
+                                           class="form-check-input member-checkbox"
+                                           name="updateMember.MemberUserIds"
+                                           value="@employee.Id"
+                                           id="emp_@employee.Id" />
+
+
+                                    <label class="form-check-label"
+                                           for="emp_@employee.Id">
+
+                                        <strong>
+                                            @employee.FullName
+                                        </strong>
+
+
+                                        <span class="text-secondary">
+
+                                            [
+                                            @string.Join(
+                                                ", ",
+                                                employee.Roles
+                                            )
+                                            ]
+
+                                        </span>
+
+                                    </label>
+
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modal-footer">
+
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            Save Changes
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+
+
+
+@section Scripts
+{
     <script>
-        const editModal = document.getElementById('editModal');
 
-        editModal.addEventListener('show.bs.modal', function (event) {
-            const button = event.relatedTarget;
 
-            document.getElementById("Id").value =
-                button.getAttribute("data-id");
+        /* =========================================================
+           ROLE
+           ========================================================= */
 
-            document.getElementById("projectName").value =
-                button.getAttribute("data-name");
+        const isEmployee =
+                    @Html.Raw(isEmployee.ToString().ToLower());
 
-            document.getElementById("projectDescription").value =
-                button.getAttribute("data-description");
 
-            document.getElementById("projectStatus").value =
-                button.getAttribute("data-status");
+        const canManage =
+                    @Html.Raw(canManage.ToString().ToLower());
 
-            document.getElementById("startDate").value =
-                button.getAttribute("data-startdate");
 
-            document.getElementById("endDate").value =
-                button.getAttribute("data-enddate");
-        });
-        //Update Project Members
-        $(document).on("click", ".manage-member-btn", function () {
 
-            const projectId = $(this).data("id");
-            const projectName = $(this).data("name");
+        /* =========================================================
+           EMPLOYEE PROJECT DETAILS MODAL
+           ========================================================= */
 
-            $("#ProjectId").val(projectId);
-            $("#ProjectName").val(projectName);
+        const projectDetailsModal =
+            document.getElementById(
+                "projectDetailsModal"
+            );
 
-            $(".member-checkbox").prop("checked", false);
 
-            const members = $(this).data("members");
+        if (projectDetailsModal) {
 
-            if (members) {
+            projectDetailsModal.addEventListener(
+                "show.bs.modal",
+                function(event) {
 
-                members.toString().split(',').forEach(function (id) {
+                    const button =
+                        event.relatedTarget;
 
-                    $("#emp_" + id).prop("checked", true);
 
-                });
+                    if (!button) {
+                        return;
+                    }
+
+
+                    /*
+                     * Get project information
+                     * from data-* attributes.
+                     */
+
+                    const name =
+                        button.getAttribute(
+                            "data-name"
+                        );
+
+
+                    const description =
+                        button.getAttribute(
+                            "data-description"
+                        );
+
+
+                    const status =
+                        button.getAttribute(
+                            "data-status"
+                        );
+
+
+                    const team =
+                        button.getAttribute(
+                            "data-team"
+                        );
+
+
+                    const completed =
+                        button.getAttribute(
+                            "data-completed"
+                        );
+
+
+                    const total =
+                        button.getAttribute(
+                            "data-total"
+                        );
+
+
+                    const startDate =
+                        button.getAttribute(
+                            "data-startdate"
+                        );
+
+
+                    const endDate =
+                        button.getAttribute(
+                            "data-enddate"
+                        );
+
+
+
+                    /*
+                     * Put values into modal.
+                     */
+
+                    const nameElement =
+                        document.getElementById(
+                            "detailsProjectName"
+                        );
+
+
+                    const descriptionElement =
+                        document.getElementById(
+                            "detailsProjectDescription"
+                        );
+
+
+                    const statusElement =
+                        document.getElementById(
+                            "detailsProjectStatus"
+                        );
+
+
+                    const teamElement =
+                        document.getElementById(
+                            "detailsProjectTeam"
+                        );
+
+
+                    const completedElement =
+                        document.getElementById(
+                            "detailsProjectCompleted"
+                        );
+
+
+                    const totalElement =
+                        document.getElementById(
+                            "detailsProjectTotal"
+                        );
+
+
+                    const startElement =
+                        document.getElementById(
+                            "detailsProjectStartDate"
+                        );
+
+
+                    const endElement =
+                        document.getElementById(
+                            "detailsProjectEndDate"
+                        );
+
+
+
+                    if (nameElement) {
+                        nameElement.textContent =
+                            name || "N/A";
+                    }
+
+
+                    if (descriptionElement) {
+                        descriptionElement.textContent =
+                            description || "No description available.";
+                    }
+
+
+                    if (statusElement) {
+                        statusElement.textContent =
+                            status || "N/A";
+                    }
+
+
+                    if (teamElement) {
+                        teamElement.textContent =
+                            team || "0";
+                    }
+
+
+                    if (completedElement) {
+                        completedElement.textContent =
+                            completed || "0";
+                    }
+
+
+                    if (totalElement) {
+                        totalElement.textContent =
+                            total || "0";
+                    }
+
+
+                    if (startElement) {
+                        startElement.textContent =
+                            startDate || "Not set";
+                    }
+
+
+                    if (endElement) {
+                        endElement.textContent =
+                            endDate || "Not set";
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================================
+           EDIT PROJECT MODAL
+           ========================================================= */
+
+        const editModal =
+            document.getElementById(
+                "editModal"
+            );
+
+
+        if (editModal) {
+
+            editModal.addEventListener(
+                "show.bs.modal",
+                function(event) {
+
+                    const button =
+                        event.relatedTarget;
+
+
+                    if (!button) {
+                        return;
+                    }
+
+
+                    const id =
+                        button.getAttribute(
+                            "data-id"
+                        );
+
+
+                    const name =
+                        button.getAttribute(
+                            "data-name"
+                        );
+
+
+                    const description =
+                        button.getAttribute(
+                            "data-description"
+                        );
+
+
+                    const status =
+                        button.getAttribute(
+                            "data-status"
+                        );
+
+
+                    const startDate =
+                        button.getAttribute(
+                            "data-startdate"
+                        );
+
+
+                    const endDate =
+                        button.getAttribute(
+                            "data-enddate"
+                        );
+
+
+
+                    const idInput =
+                        document.getElementById(
+                            "editProjectId"
+                        );
+
+
+                    const nameInput =
+                        document.getElementById(
+                            "editProjectName"
+                        );
+
+
+                    const descriptionInput =
+                        document.getElementById(
+                            "editProjectDescription"
+                        );
+
+
+                    const statusInput =
+                        document.getElementById(
+                            "editProjectStatus"
+                        );
+
+
+                    const startInput =
+                        document.getElementById(
+                            "editStartDate"
+                        );
+
+
+                    const endInput =
+                        document.getElementById(
+                            "editEndDate"
+                        );
+
+
+
+                    if (idInput) {
+                        idInput.value =
+                            id || "";
+                    }
+
+
+                    if (nameInput) {
+                        nameInput.value =
+                            name || "";
+                    }
+
+
+                    if (descriptionInput) {
+                        descriptionInput.value =
+                            description || "";
+                    }
+
+
+                    if (statusInput) {
+                        statusInput.value =
+                            status || "";
+                    }
+
+
+                    if (startInput) {
+                        startInput.value =
+                            startDate || "";
+                    }
+
+
+                    if (endInput) {
+                        endInput.value =
+                            endDate || "";
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================================
+           DATATABLE
+           ========================================================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                const tableElement =
+                    document.getElementById(
+                        "table-main"
+                    );
+
+
+                if (!tableElement) {
+                    return;
+                }
+
+
+
+                /*
+                 * Employee:
+                 *
+                 * 0 = Project
+                 * 1 = Status
+                 * 2 = Tasks
+                 * 3 = Action
+                 *
+                 *
+                 * Manager/Admin:
+                 *
+                 * 0 = Project
+                 * 1 = Status
+                 * 2 = Team
+                 * 3 = Tasks
+                 * 4 = Action
+                 * 5 = Members
+                 */
+
+
+                const columnDefs = [];
+
+
+                if (isEmployee) {
+
+                    columnDefs.push(
+                        {
+                            targets: 3,
+
+                            orderable: false,
+
+                            searchable: false
+                        });
+
+                }
+                else {
+
+                    columnDefs.push(
+                        {
+                            targets: 4,
+
+                            orderable: false,
+
+                            searchable: false
+                        });
+
+
+                    columnDefs.push(
+                        {
+                            targets: 5,
+
+                            orderable: false,
+
+                            searchable: false
+                        });
+
+                }
+
+
+
+                const projectTable =
+                    new DataTable(
+                        "#table-main",
+                        {
+
+                            pageLength: 7,
+
+                            searching: true,
+
+                            ordering: true,
+
+                            paging: true,
+
+                            info: true,
+
+
+                            order:
+                                [
+                                    [0, "asc"]
+                                ],
+
+
+                            language:
+                            {
+
+                                emptyTable:
+                                    "No projects found",
+
+                                zeroRecords:
+                                    "No matching projects found",
+
+                                info:
+                                    "Showing _START_ to _END_ of _TOTAL_ projects",
+
+                                infoEmpty:
+                                    "Showing 0 to 0 of 0 projects",
+
+                                lengthMenu:
+                                    "Show _MENU_"
+
+                            },
+
+
+                            columnDefs:
+                                columnDefs,
+
+
+                            layout:
+                            {
+
+                                topStart:
+                                    null,
+
+                                topEnd:
+                                    null,
+
+                                bottomStart:
+                                    [
+                                        "pageLength",
+                                        "info"
+                                    ],
+
+                                bottomEnd:
+                                    "paging"
+
+                            }
+
+                        }
+                    );
+
+
+
+                /* =================================================
+                   SEARCH
+                   ================================================= */
+
+                const searchInput =
+                    document.getElementById(
+                        "projectSearch"
+                    );
+
+
+                if (searchInput) {
+
+                    searchInput.addEventListener(
+                        "input",
+                        function() {
+
+                            projectTable
+                                .search(
+                                    this.value
+                                )
+                                .draw();
+
+                        }
+                    );
+
+                }
+
+
+
+                /* =================================================
+                   STATUS FILTER
+                   ================================================= */
+
+                const statusFilter =
+                    document.getElementById(
+                        "statusFilter"
+                    );
+
+
+                if (
+                    statusFilter &&
+                    !isEmployee
+                ) {
+
+                    statusFilter.addEventListener(
+                        "change",
+                        function() {
+
+                            projectTable
+                                .column(1)
+                                .search(
+                                    this.value
+                                )
+                                .draw();
+
+
+                            updateFilterButton();
+
+                        }
+                    );
+
+                }
+
+
+
+                /* =================================================
+                   CLEAR FILTER
+                   ================================================= */
+
+                const clearFilter =
+                    document.getElementById(
+                        "clearFilter"
+                    );
+
+
+                if (clearFilter) {
+
+                    clearFilter.addEventListener(
+                        "click",
+                        function() {
+
+                            if (statusFilter) {
+                                statusFilter.value =
+                                    "";
+                            }
+
+
+                            if (!isEmployee) {
+
+                                projectTable
+                                    .column(1)
+                                    .search("")
+                                    .draw();
+
+                            }
+
+
+                            updateFilterButton();
+
+                        }
+                    );
+
+                }
+
+
+
+                /* =================================================
+                   FILTER PANEL
+                   ================================================= */
+
+                const filterButton =
+                    document.getElementById(
+                        "filterButton"
+                    );
+
+
+                const filterPanel =
+                    document.getElementById(
+                        "filterPanel"
+                    );
+
+
+                if (
+                    filterButton &&
+                    filterPanel
+                ) {
+
+                    filterButton.addEventListener(
+                        "click",
+                        function(event) {
+
+                            event.stopPropagation();
+
+
+                            filterPanel.classList.toggle(
+                                "show"
+                            );
+
+
+                            filterButton.classList.toggle(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    filterPanel.addEventListener(
+                        "click",
+                        function(event) {
+
+                            event.stopPropagation();
+
+                        }
+                    );
+
+
+                    document.addEventListener(
+                        "click",
+                        function() {
+
+                            filterPanel.classList.remove(
+                                "show"
+                            );
+
+
+                            filterButton.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+                }
+
+
+
+                /* =================================================
+                   FILTER BUTTON STATE
+                   ================================================= */
+
+                function updateFilterButton() {
+
+                    if (!filterButton) {
+                        return;
+                    }
+
+
+                    if (
+                        statusFilter &&
+                        statusFilter.value !== ""
+                    ) {
+
+                        filterButton.classList.add(
+                            "active"
+                        );
+
+                    }
+                    else {
+
+                        filterButton.classList.remove(
+                            "active"
+                        );
+
+                    }
+
+                }
+
+
+
+                /* =================================================
+                   SORT
+                   ================================================= */
+
+                const sortProjects =
+                    document.getElementById(
+                        "sortProjects"
+                    );
+
+
+                if (sortProjects) {
+
+                    sortProjects.addEventListener(
+                        "change",
+                        function() {
+
+                            const value =
+                                this.value.split("-");
+
+
+                            const selectedColumn =
+                                parseInt(
+                                    value[0]
+                                );
+
+
+                            const direction =
+                                value[1];
+
+
+                            /*
+                             * Employee:
+                             *
+                             * Project = 0
+                             * Status = 1
+                             * Tasks = 2
+                             * Action = 3
+                             */
+
+                            if (isEmployee) {
+
+                                if (
+                                    selectedColumn === 0 ||
+                                    selectedColumn === 1
+                                ) {
+
+                                    projectTable
+                                        .order([
+                                            [
+                                                selectedColumn,
+                                                direction
+                                            ]
+                                        ])
+                                        .draw();
+
+                                }
+
+
+                                /*
+                                 * Tasks dropdown option uses 3
+                                 * in the UI, but actual employee
+                                 * Tasks column is 2.
+                                 */
+
+                                else if (
+                                    selectedColumn === 3
+                                ) {
+
+                                    projectTable
+                                        .order([
+                                            [
+                                                2,
+                                                direction
+                                            ]
+                                        ])
+                                        .draw();
+
+                                }
+
+                            }
+                            else {
+
+                                /*
+                                 * Manager/Admin:
+                                 *
+                                 * Project = 0
+                                 * Status = 1
+                                 * Team = 2
+                                 * Tasks = 3
+                                 */
+
+                                if (
+                                    selectedColumn >= 0 &&
+                                    selectedColumn <= 3
+                                ) {
+
+                                    projectTable
+                                        .order([
+                                            [
+                                                selectedColumn,
+                                                direction
+                                            ]
+                                        ])
+                                        .draw();
+
+                                }
+
+                            }
+
+                        }
+                    );
+
+                }
 
             }
+        );
 
-            const modal = new bootstrap.Modal(document.getElementById("editMemberModal"));
-            modal.show();
-        });
+
+
+        /* =========================================================
+           MANAGE PROJECT MEMBERS
+           ========================================================= */
+
+        $(document).on(
+            "click",
+            ".manage-member-btn",
+            function() {
+
+                const projectId =
+                    $(this).data("id");
+
+
+                const projectName =
+                    $(this).data("name");
+
+
+                $("#ProjectId")
+                    .val(projectId);
+
+
+                $("#ProjectName")
+                    .val(projectName);
+
+
+                /*
+                 * Uncheck all first.
+                 */
+
+                $(".member-checkbox")
+                    .prop(
+                        "checked",
+                        false
+                    );
+
+
+                const members =
+                    $(this).data("members");
+
+
+                if (members) {
+
+                    members
+                        .toString()
+                        .split(",")
+                        .forEach(
+                            function(id) {
+
+                                id =
+                                    id.trim();
+
+
+                                if (id !== "") {
+
+                                    $(
+                                        "#emp_" + id
+                                    )
+                                        .prop(
+                                            "checked",
+                                            true
+                                        );
+
+                                }
+
+                            }
+                        );
+
+                }
+
+
+                const modalElement =
+                    document.getElementById(
+                        "editMemberModal"
+                    );
+
+
+                if (modalElement) {
+
+                    const modal =
+                        bootstrap.Modal
+                            .getOrCreateInstance(
+                                modalElement
+                            );
+
+
+                    modal.show();
+
+                }
+
+            }
+        );
 
     </script>
-
-
 }

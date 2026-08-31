@@ -11,7 +11,7 @@ namespace TaskTrackerBLL.Interfaces.Services
         Task<Result<EmployeeDto>> GetByIdAsync(int id, int? actingManagerCompanyId);
         Task<Result<IReadOnlyList<EmployeeDto>>> GetAllAsync(int? companyId);
         Task<Result<IReadOnlyList<EmployeeDto>>> SearchAsync(
-            EmployeeSearchFilterDto filter,int? actingManagerCompanyId);
+            EmployeeSearchFilterDto filter,int? actingManagerCompanyId, int? actingManagerUserId = null);
 
         Task<Result<EmployeeDto>> RegisterAsync(SignupEmployeeDto dto, int? actingUserCompanyId);
 

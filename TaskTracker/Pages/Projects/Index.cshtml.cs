@@ -51,60 +51,88 @@ namespace TaskTracker.Pages.Projects
         [BindProperty]
         public UpdateProjectMemberDto updateMember { get; set; }
         public IReadOnlyList<EmployeeDto> AllEmployees { get; set; } = new List<EmployeeDto>();
-        
+
         public async Task OnGetAsync()
         {
-            CanManage = User.IsInRole(AppRoles.Manager);
-            IsAdmin=User.IsInRole(AppRoles.Admin);
-
-            if (!CanManage && !IsAdmin)
-            {
-                IsEmployeeView = true;
-                var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-                var result = await _projectService.GetByMemberUserIdAsync(userId);
-                AssignedProjects = result.Succeeded ? result.Value! : Array.Empty<ProjectDto>();
-                return;
-            }
-
-            int? scopeCompanyId = User.IsInRole(AppRoles.Admin)
-                ? null
-                : int.Parse(User.FindFirstValue("CompanyId")!);
-
-            var searchResult = await _projectService.SearchAsync(Filter, scopeCompanyId);
-            PagedProjects = searchResult.Succeeded ? searchResult.Value : null;
-
-            if (CanManage)
-            {
-                await PopulateOptionsAsync();
-            }
-
+            await LoadPageDataAsync();
         }
         public async Task<IActionResult> OnPostEditAsync()
         {
+            
+
+            // Remove unrelated ModelState validation
+            // coming from other properties on the page.
+            ModelState.Remove("Name");
+
+            Console.WriteLine($"MODELSTATE VALID: {ModelState.IsValid}");
+
+            foreach (var error in ModelState)
+            {
+                Console.WriteLine(
+                    $"KEY: {error.Key} | " +
+                    $"ERRORS: {string.Join(", ",
+                        error.Value.Errors.Select(e => e.ErrorMessage))}"
+                );
+            }
+
+            CanManage = User.IsInRole(AppRoles.Manager);
+            IsAdmin = User.IsInRole(AppRoles.Admin);
+
             if (!ModelState.IsValid)
             {
+                await LoadPageDataAsync();
                 return Page();
             }
 
-            var actingUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var actingUserId = int.Parse(
+                User.FindFirstValue(ClaimTypes.NameIdentifier)!
+            );
+
             var scopeCompanyId = GetScopeCompanyId();
 
-            var result = await _projectService.UpdateAsync(updateProject, actingUserId, scopeCompanyId);
+            Console.WriteLine("Calling ProjectService.UpdateAsync...");
+
+            var result = await _projectService.UpdateAsync(
+                updateProject,
+                actingUserId,
+                scopeCompanyId
+            );
+
+            Console.WriteLine($"UPDATE RESULT: {result.Succeeded}");
+            Console.WriteLine($"UPDATE ERROR: {result.Error}");
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError(string.Empty, result.Error!);
+                ModelState.AddModelError(
+                    string.Empty,
+                    result.Error ?? "Unable to update project."
+                );
+
+                await LoadPageDataAsync();
                 return Page();
             }
+
+            TempData["SuccessMessage"] =
+                "Project updated successfully.";
+
             return RedirectToPage();
-            //return RedirectToPage("/Projects/Details", new { id = updateProject.Id });
         }
 
         private int? GetScopeCompanyId()
         {
-            return User.IsInRole(AppRoles.Admin)
-                ? null
-                : int.Parse(User.FindFirstValue("CompanyId")!);
+            if (User.IsInRole(AppRoles.Admin))
+            {
+                return null;
+            }
+
+            var companyIdValue = User.FindFirstValue("CompanyId");
+
+            if (int.TryParse(companyIdValue, out var companyId))
+            {
+                return companyId;
+            }
+
+            return null;
         }
         public async Task<IActionResult> OnPostCreateAsync()
         {
@@ -134,24 +162,52 @@ namespace TaskTracker.Pages.Projects
         }
         public async Task<IActionResult> OnPostAddOrRemoveMemberAsync()
         {
-            int actingUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            int actingUserId = int.Parse(
+                User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
             int? scopeCompanyId = GetScopeCompanyId();
 
-            // Current members in database
-            var project = await _projectService.GetByIdAsync(updateMember.ProjectId, scopeCompanyId);
-            /*
+            var project = await _projectService.GetByIdAsync(
+                updateMember.ProjectId,
+                scopeCompanyId);
+
             if (!project.Succeeded)
             {
                 TempData["ErrorMessage"] = project.Error;
                 return RedirectToPage();
-            }*/
+            }
 
-            var existingMembers = project.Value!.Members.Select(m => m.UserId).ToList();
+            var existingMembers = project.Value!.Members
+                .Select(m => m.UserId)
+                .ToList();
+
+            var selectedMembers = updateMember.MemberUserIds
+                .Distinct()
+                .ToList();
+
+            var membersToRemove = existingMembers
+                .Except(selectedMembers)
+                .ToList();
+
+            // Validate all removals before making any changes
+            foreach (var userId in membersToRemove)
+            {
+                var removeResult = await _projectService.RemoveMemberAsync(
+                    updateMember.ProjectId,
+                    userId,
+                    scopeCompanyId);
+
+                if (!removeResult.Succeeded)
+                {
+                    TempData["ErrorMessage"] = removeResult.Error;
+                    return RedirectToPage();
+                }
+            }
 
             // Add newly selected members
-            foreach (var userId in updateMember.MemberUserIds.Except(existingMembers))
+            foreach (var userId in selectedMembers.Except(existingMembers))
             {
-                await _projectService.AddMemberAsync(
+                var addResult = await _projectService.AddMemberAsync(
                     new AssignProjectMemberDto
                     {
                         ProjectId = updateMember.ProjectId,
@@ -159,39 +215,92 @@ namespace TaskTracker.Pages.Projects
                     },
                     actingUserId,
                     scopeCompanyId);
+
+                if (!addResult.Succeeded)
+                {
+                    TempData["ErrorMessage"] = addResult.Error;
+                    return RedirectToPage();
+                }
             }
 
-            // Remove unchecked members
-            foreach (var userId in existingMembers.Except(updateMember.MemberUserIds))
-            {
-                await _projectService.RemoveMemberAsync(
-                    updateMember.ProjectId,
-                    userId,
-                    scopeCompanyId);
-            }
-
-            TempData["SuccessMessage"] = "Project members updated successfully.";
+            TempData["SuccessMessage"] =
+                "Project members updated successfully.";
 
             return RedirectToPage();
         }
         private async Task PopulateOptionsAsync()
         {
-            int companyId = int.Parse(User.FindFirstValue("CompanyId")!);
+            int companyId = int.Parse(
+                User.FindFirstValue("CompanyId")!);
+
             createProject.CompanyId = companyId;
 
-            var employees = await _employeeService.SearchAsync(
-                  new EmployeeSearchFilterDto(),
-                  companyId);
-
-            AllEmployees = employees.Value!;
             var employeesResult = await _employeeService.SearchAsync(
-        new EmployeeSearchFilterDto(),
-        companyId);
+                new EmployeeSearchFilterDto(),
+                companyId);
 
             AllEmployees = employeesResult.Succeeded
                 ? employeesResult.Value!
                 : new List<EmployeeDto>();
+        }
+        private async Task LoadPageDataAsync()
+        {
+            CanManage = User.IsInRole(AppRoles.Manager);
+            IsAdmin = User.IsInRole(AppRoles.Admin);
 
+            if (!CanManage && !IsAdmin)
+            {
+                IsEmployeeView = true;
+
+                var userId = int.Parse(
+                    User.FindFirstValue(ClaimTypes.NameIdentifier)!
+                );
+
+                var result = await _projectService.GetByMemberUserIdAsync(userId);
+
+                AssignedProjects = result.Succeeded
+                    ? result.Value!
+                    : Array.Empty<ProjectDto>();
+
+                return;
+            }
+
+            int? scopeCompanyId = User.IsInRole(AppRoles.Admin)
+                ? null
+                : int.Parse(User.FindFirstValue("CompanyId")!);
+
+            var searchResult = await _projectService.SearchAsync(
+                Filter,
+                scopeCompanyId
+            );
+
+            PagedProjects = searchResult.Succeeded
+                ? searchResult.Value
+                : null;
+
+            if (CanManage)
+            {
+                await PopulateOptionsAsync();
+            }
+        }
+        private async Task ReloadPageDataAsync()
+        {
+            int? scopeCompanyId = User.IsInRole(AppRoles.Admin)
+                ? null
+                : int.Parse(User.FindFirstValue("CompanyId")!);
+
+            var searchResult = await _projectService.SearchAsync(
+                Filter,
+                scopeCompanyId);
+
+            PagedProjects = searchResult.Succeeded
+                ? searchResult.Value
+                : null;
+
+            if (CanManage)
+            {
+                await PopulateOptionsAsync();
+            }
         }
     }
 }

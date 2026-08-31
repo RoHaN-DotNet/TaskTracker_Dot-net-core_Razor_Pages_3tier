@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using TaskTrackerBLL.Common;
 using TaskTrackerBLL.DTOs.Dashboard;
 using TaskTrackerBLL.DTOs.Employee;
@@ -14,6 +15,13 @@ namespace TaskTrackerBLL.Services
 {
     public class DashboardService : IDashboardService
     {
+        // Valid values for the time-range dropdown on the admin dashboard.
+        private const string Range7Days = "7d";
+        private const string Range30Days = "30d";
+        private const string Range6Months = "6m";
+        private const string Range12Months = "12m";
+        private const string DefaultRange = Range12Months;
+
         private readonly IUnitOfWork _unitOfWork;
         private readonly IProjectService _projectService;
         private readonly ITaskService _taskService;
@@ -40,6 +48,17 @@ namespace TaskTrackerBLL.Services
             var pendingTasks = await _unitOfWork.Tasks.CountAsync(t => t.Status == ProjectTasksStatus.NotStarted);
             var overdueTasks = await _unitOfWork.Tasks.CountOverdueAsync(companyId: null);
 
+            // Growth trends for the default range, so the page has data to
+            // render on first load (before the user touches the dropdown).
+            var trendsResult = await GetAdminDashboardTrendsAsync(DefaultRange);
+            var trends = trendsResult.Succeeded
+                ? trendsResult.Value!
+                : new DashboardTrendDto { Range = DefaultRange };
+
+            var usersByRole = await BuildUsersByRoleAsync();
+            var projectsByStatus = await BuildProjectsByStatusAsync();
+            var tasksByStatus = await BuildTasksByStatusAsync();
+
             var dto = new AdminDashboardDto
             {
                 TotalCompanies = totalCompanies,
@@ -50,10 +69,209 @@ namespace TaskTrackerBLL.Services
                 TotalTasks = totalTasks,
                 CompletedTasks = completedTasks,
                 PendingTasks = pendingTasks,
-                OverdueTasks = overdueTasks
+                OverdueTasks = overdueTasks,
+
+                TrendRange = trends.Range,
+                CompanyGrowth = trends.CompanyGrowth,
+                UserGrowth = trends.UserGrowth,
+                ProjectGrowth = trends.ProjectGrowth,
+                TaskGrowth = trends.TaskGrowth,
+
+                UsersByRole = usersByRole,
+                ProjectsByStatus = projectsByStatus,
+                TasksByStatus = tasksByStatus
             };
 
             return Result<AdminDashboardDto>.Success(dto);
+        }
+
+        public async Task<Result<DashboardTrendDto>> GetAdminDashboardTrendsAsync(string range)
+        {
+            var normalizedRange = NormalizeRange(range);
+
+            var companies = await _unitOfWork.Companies.GetAllAsync();
+            var users = await _unitOfWork.Users.GetAllAsync();
+            var projects = await _unitOfWork.Projects.GetAllAsync();
+            var tasks = await _unitOfWork.Tasks.GetAllAsync();
+
+            var dto = new DashboardTrendDto
+            {
+                Range = normalizedRange,
+                CompanyGrowth = BuildTrend(companies.Select(c => c.CreatedAt), normalizedRange),
+                UserGrowth = BuildTrend(users.Select(u => u.CreatedAt), normalizedRange),
+                ProjectGrowth = BuildTrend(projects.Select(p => p.CreatedAt), normalizedRange),
+                TaskGrowth = BuildTrend(tasks.Select(t => t.CreatedAt), normalizedRange)
+            };
+
+            return Result<DashboardTrendDto>.Success(dto);
+        }
+
+        // =====================================================
+        // TREND / BREAKDOWN HELPERS
+        // =====================================================
+
+        private static string NormalizeRange(string? range)
+        {
+            return range switch
+            {
+                Range7Days => Range7Days,
+                Range30Days => Range30Days,
+                Range6Months => Range6Months,
+                Range12Months => Range12Months,
+                _ => DefaultRange
+            };
+        }
+
+        /// <summary>
+        /// Groups a set of creation dates into evenly-spaced buckets for the
+        /// requested range, filling any bucket with no records with 0.
+        /// Daily buckets (7d/30d) are keyed by full date (year+month+day).
+        /// Monthly buckets (6m/12m) are keyed by year+month, so e.g.
+        /// January 2025 and January 2026 are never combined into one bucket.
+        /// </summary>
+        private static List<TrendPointDto> BuildTrend(IEnumerable<DateTime> createdDates, string normalizedRange)
+        {
+            var dates = createdDates.ToList();
+
+            switch (normalizedRange)
+            {
+                case Range7Days:
+                    return BuildDailyTrend(dates, days: 7);
+
+                case Range30Days:
+                    return BuildDailyTrend(dates, days: 30);
+
+                case Range6Months:
+                    return BuildMonthlyTrend(dates, months: 6);
+
+                case Range12Months:
+                default:
+                    return BuildMonthlyTrend(dates, months: 12);
+            }
+        }
+
+        private static List<TrendPointDto> BuildDailyTrend(List<DateTime> dates, int days)
+        {
+            var endDate = DateTime.UtcNow.Date;
+            var startDate = endDate.AddDays(-(days - 1));
+
+            var buckets = Enumerable.Range(0, days)
+                .Select(offset => startDate.AddDays(offset))
+                .ToList();
+
+            var counts = buckets.ToDictionary(bucket => bucket, _ => 0);
+
+            foreach (var date in dates)
+            {
+                var day = date.Date;
+
+                if (day >= startDate && day <= endDate && counts.ContainsKey(day))
+                {
+                    counts[day]++;
+                }
+            }
+
+            return buckets
+                .Select(bucket => new TrendPointDto
+                {
+                    Label = bucket.ToString("MMM dd"),
+                    Count = counts[bucket]
+                })
+                .ToList();
+        }
+
+        private static List<TrendPointDto> BuildMonthlyTrend(List<DateTime> dates, int months)
+        {
+            var endMonth = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1);
+            var startMonth = endMonth.AddMonths(-(months - 1));
+
+            var buckets = Enumerable.Range(0, months)
+                .Select(offset => startMonth.AddMonths(offset))
+                .ToList();
+
+            // Keyed by year+month (not just month number) so different
+            // years are never combined into the same bucket.
+            var counts = buckets.ToDictionary(bucket => bucket, _ => 0);
+
+            foreach (var date in dates)
+            {
+                var monthKey = new DateTime(date.Year, date.Month, 1);
+
+                if (monthKey >= startMonth && monthKey <= endMonth && counts.ContainsKey(monthKey))
+                {
+                    counts[monthKey]++;
+                }
+            }
+
+            return buckets
+                .Select(bucket => new TrendPointDto
+                {
+                    Label = bucket.ToString("MMM"),
+                    Count = counts[bucket]
+                })
+                .ToList();
+        }
+
+        private async Task<List<TrendPointDto>> BuildUsersByRoleAsync()
+        {
+            var roles = await _unitOfWork.Roles.GetAllAsync();
+            var userRoles = await _unitOfWork.UserRoles.GetAllAsync();
+
+            var countsByRoleId = userRoles
+                .GroupBy(ur => ur.RoleId)
+                .ToDictionary(g => g.Key, g => g.Count());
+
+            return roles
+                .Select(role => new TrendPointDto
+                {
+                    Label = role.Name,
+                    Count = countsByRoleId.TryGetValue(role.Id, out var count) ? count : 0
+                })
+                .Where(point => point.Count > 0)
+                .OrderByDescending(point => point.Count)
+                .ToList();
+        }
+
+        private async Task<List<TrendPointDto>> BuildProjectsByStatusAsync()
+        {
+            var projects = await _unitOfWork.Projects.GetAllAsync();
+
+            var countsByStatus = projects
+                .GroupBy(p => p.Status)
+                .ToDictionary(g => g.Key, g => g.Count());
+
+            return Enum.GetValues<ProjectStatus>()
+                .Select(status => new TrendPointDto
+                {
+                    Label = HumanizeEnumName(status.ToString()),
+                    Count = countsByStatus.TryGetValue(status, out var count) ? count : 0
+                })
+                .Where(point => point.Count > 0)
+                .ToList();
+        }
+
+        private async Task<List<TrendPointDto>> BuildTasksByStatusAsync()
+        {
+            var tasks = await _unitOfWork.Tasks.GetAllAsync();
+
+            var countsByStatus = tasks
+                .GroupBy(t => t.Status)
+                .ToDictionary(g => g.Key, g => g.Count());
+
+            return Enum.GetValues<ProjectTasksStatus>()
+                .Select(status => new TrendPointDto
+                {
+                    Label = HumanizeEnumName(status.ToString()),
+                    Count = countsByStatus.TryGetValue(status, out var count) ? count : 0
+                })
+                .Where(point => point.Count > 0)
+                .ToList();
+        }
+
+        /// <summary>Turns "NotStarted" into "Not Started" for chart labels.</summary>
+        private static string HumanizeEnumName(string enumName)
+        {
+            return Regex.Replace(enumName, "(\\B[A-Z])", " $1");
         }
         /*
         public async Task<Result<DashboardDto>> GetDashboardAsync(int companyId)
@@ -129,7 +347,7 @@ namespace TaskTrackerBLL.Services
 
             }
             var recent = new List<TaskTrackerBLL.DTOs.Tasks.TaskDto>();
-            foreach(var task in recentEntities)
+            foreach (var task in recentEntities)
             {
                 var taskResult = await _taskService.GetByIdAsync(task.Id);
                 if (taskResult.Succeeded)
@@ -140,10 +358,10 @@ namespace TaskTrackerBLL.Services
             var dto = new ManagerDashboardDto
             {
                 MyCompany = companyResult.Value!,
-                MyEmployees=employees,
-                MyProjects=projects,
-                TodaysDeadline=dueToday,
-                RecentTasks=recent
+                MyEmployees = employees,
+                MyProjects = projects,
+                TodaysDeadline = dueToday,
+                RecentTasks = recent
             };
             return Result<ManagerDashboardDto>.Success(dto);
         }
@@ -170,6 +388,7 @@ namespace TaskTrackerBLL.Services
 
             return Result<EmployeeDashboardDto>.Success(dto);
         }
+
 
     }
 }

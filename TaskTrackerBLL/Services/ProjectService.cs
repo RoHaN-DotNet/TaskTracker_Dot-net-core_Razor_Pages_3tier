@@ -144,39 +144,55 @@ namespace TaskTrackerBLL.Services
             return Result<ProjectDto>.Success(resultDto);
         }
 
-        public async Task<Result> UpdateAsync(UpdateProjectDto dto, int actingUserId, int? actingManagerCompanyId)
+        public async Task<Result> UpdateAsync(
+    UpdateProjectDto dto,
+    int actingUserId,
+    int? actingManagerCompanyId)
         {
             var project = await _unitOfWork.Projects.GetByIdAsync(dto.Id);
 
-            if (project is null)
+            if (project == null)
             {
-                return Result.Failure($"Project with ID {dto.Id} was not found.");
+                return Result.Failure(
+                    $"Project with ID {dto.Id} was not found.");
             }
 
-            if (actingManagerCompanyId.HasValue && project.CompanyId != actingManagerCompanyId.Value)
+            // Company authorization
+            if (actingManagerCompanyId.HasValue &&
+                project.CompanyId != actingManagerCompanyId.Value)
             {
-                return Result.Failure("You are not authorized to update this project.");
+                return Result.Failure(
+                    "You are not authorized to update this project.");
             }
 
+            // Archived project check
             if (project.Status == ProjectStatus.Archived)
             {
-                return Result.Failure("Archived projects cannot be edited. Restore the project first.");
+                return Result.Failure(
+                    "Archived projects cannot be edited. Restore the project first.");
             }
 
-            if (dto.EndDate.HasValue && dto.EndDate.Value < dto.StartDate)
+            // Date validation
+            if (dto.EndDate.HasValue &&
+                dto.EndDate.Value < dto.StartDate)
             {
-                return Result.Failure("End date cannot be earlier than the start date.");
+                return Result.Failure(
+                    "End date cannot be earlier than the start date.");
             }
 
+            // Don't allow archive through Edit
             if (dto.Status == ProjectStatus.Archived)
             {
-                return Result.Failure("Use the Archive action to archive a project.");
+                return Result.Failure(
+                    "Use the Archive action to archive a project.");
             }
 
+            // Store old values for audit
             var oldName = project.Name;
             var oldStatus = project.Status;
             var oldEndDate = project.EndDate;
 
+            // Update entity
             project.Name = dto.Name;
             project.Description = dto.Description;
             project.StartDate = dto.StartDate;
@@ -184,14 +200,44 @@ namespace TaskTrackerBLL.Services
             project.Status = dto.Status;
             project.UpdatedAt = DateTime.UtcNow;
 
+            // IMPORTANT
             _unitOfWork.Projects.Update(project);
-            await _unitOfWork.SaveChangesAsync();
 
-            await _auditService.LogUpdatedAsync("Project", project.Id, actingUserId, "Name", oldName, dto.Name);
+            var changes = await _unitOfWork.SaveChangesAsync();
+
+            // Temporary debugging
+            Console.WriteLine($"SaveChanges result: {changes}");
+
+            if (changes <= 0)
+            {
+                return Result.Failure(
+                    "No changes were saved to the database.");
+            }
+
+            // Audit
             await _auditService.LogUpdatedAsync(
-                "Project", project.Id, actingUserId, "Status", oldStatus.ToString(), dto.Status.ToString());
+                "Project",
+                project.Id,
+                actingUserId,
+                "Name",
+                oldName,
+                dto.Name);
+
             await _auditService.LogUpdatedAsync(
-                "Project", project.Id, actingUserId, "EndDate", oldEndDate?.ToString("d"), dto.EndDate?.ToString("d"));
+                "Project",
+                project.Id,
+                actingUserId,
+                "Status",
+                oldStatus.ToString(),
+                dto.Status.ToString());
+
+            await _auditService.LogUpdatedAsync(
+                "Project",
+                project.Id,
+                actingUserId,
+                "EndDate",
+                oldEndDate?.ToString("d"),
+                dto.EndDate?.ToString("d"));
 
             return Result.Success();
         }
@@ -272,29 +318,52 @@ namespace TaskTrackerBLL.Services
             return Result.Success();
         }
 
-        public async Task<Result> RemoveMemberAsync(int projectId, int userId, int? actingManagerCompanyId)
+        public async Task<Result> RemoveMemberAsync(
+    int projectId,
+    int userId,
+    int? actingManagerCompanyId)
         {
-            var project = await _unitOfWork.Projects.GetByIdWithMembersAsync(projectId);
+            var project = await _unitOfWork.Projects
+                .GetByIdWithMembersAsync(projectId);
 
             if (project is null)
             {
-                return Result.Failure($"Project with ID {projectId} was not found.");
+                return Result.Failure(
+                    $"Project with ID {projectId} was not found.");
             }
 
-            if (actingManagerCompanyId.HasValue && project.CompanyId != actingManagerCompanyId.Value)
+            if (actingManagerCompanyId.HasValue &&
+                project.CompanyId != actingManagerCompanyId.Value)
             {
-                return Result.Failure("You are not authorized to manage this project's team.");
+                return Result.Failure(
+                    "You are not authorized to manage this project's team.");
             }
 
-            var membership = project.ProjectMembers.FirstOrDefault(pm => pm.UserId == userId);
+            var membership = project.ProjectMembers
+                .FirstOrDefault(pm => pm.UserId == userId);
 
             if (membership is null)
             {
-                return Result.Failure("This user is not a member of the project.");
+                return Result.Failure(
+                    "This user is not a member of the project.");
+            }
+
+            // Check whether this member is assigned
+            // to any task in this project.
+            var assignedTaskCount = await _unitOfWork.Tasks.CountAsync(
+                t => t.ProjectId == projectId &&
+                     t.TaskMembers.Any(tm => tm.UserId == userId));
+
+            if (assignedTaskCount > 0)
+            {
+                return Result.Failure(
+                    "This member cannot be removed because they are assigned to one or more tasks in this project.");
             }
 
             project.ProjectMembers.Remove(membership);
+
             _unitOfWork.Projects.Update(project);
+
             await _unitOfWork.SaveChangesAsync();
 
             return Result.Success();
