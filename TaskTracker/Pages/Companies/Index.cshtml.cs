@@ -144,11 +144,11 @@ namespace TaskTracker.Pages.Companies
             // Check model validation
             // -----------------------------------------------------
 
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 await LoadCompaniesAsync();
                 return Page();
-            }
+            }*/
 
             // -----------------------------------------------------
             // Validate company ID

@@ -289,6 +289,7 @@
 
                         </li>
 
+
                     </ul>
 
 
@@ -365,17 +366,27 @@
                         </li>
 
 
+                       
                         <li class="nav-item">
 
-                            <a class="nav-link @(currentPage == "/ProjectTasks/Tasks" ? "active" : "")"
-                               asp-page="/ProjectTasks/Tasks">
+                            <a class="nav-link @(currentPage == "/ProjectTasks/Index" ? "active" : "")"
+                               asp-page="/ProjectTasks/Index">
 
                                 Tasks
 
                             </a>
 
                         </li>
+                        <li class="nav-item">
 
+                            <a class="nav-link @(currentPage == "/ProjectTasks/Tasks" ? "active" : "")"
+                               asp-page="/ProjectTasks/Tasks">
+
+                                Task Board
+
+                            </a>
+
+                        </li>
                     </ul>
 
 
@@ -541,11 +552,16 @@
                             </a>
 
                         </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link @(currentPage == "/ProjectTasks/Tasks" ? "active" : "")"
-                               asp-page="/ProjectTasks/Tasks">
+
+                            <a class="nav-link @(currentPage == "/ProjectTasks/Index" ? "active" : "")"
+                               asp-page="/ProjectTasks/Index">
+
                                 Tasks
+
                             </a>
+
                         </li>
                     </ul>
 
@@ -694,17 +710,27 @@
                         </li>
 
 
+                        
                         <li class="nav-item">
 
-                            <a class="nav-link @(currentPage == "/ProjectTasks/Tasks" ? "active" : "")"
-                               asp-page="/ProjectTasks/Tasks">
+                            <a class="nav-link @(currentPage == "/ProjectTasks/Index" ? "active" : "")"
+                               asp-page="/ProjectTasks/Index">
 
                                 Tasks
 
                             </a>
 
                         </li>
+                        <li class="nav-item">
 
+                            <a class="nav-link @(currentPage == "/ProjectTasks/Tasks" ? "active" : "")"
+                               asp-page="/ProjectTasks/Tasks">
+
+                                Tasks Board
+
+                            </a>
+
+                        </li>
                     </ul>
 
 
@@ -862,7 +888,7 @@
     <script src="~/js/verify.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js">
     </script>
-
+    
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

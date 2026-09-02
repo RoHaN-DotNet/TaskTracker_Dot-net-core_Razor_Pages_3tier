@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Rewrite;
 using System.Security.Claims;
-using TaskTrackerBLL.Common;
 using TaskTrackerBLL.DTOs.Employee;
-using TaskTrackerBLL.DTOs.Role;
-using TaskTrackerBLL.Infrastucture;
 using TaskTrackerBLL.Interfaces;
 using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerDAL.Constants;
@@ -40,25 +36,47 @@ namespace TaskTracker.Pages.Employee
 
         public List<SelectListItem> Companies { get; set; } = new();
         public int? ActingUserCompanyId { get; set; }
+        
+        public bool IsManager;
+        public bool IsAdmin;
         private async Task LoadDropdownsAsync()
         {
+            IsManager = User.IsInRole(AppRoles.Manager);
+            IsAdmin = User.IsInRole(AppRoles.Admin);
             var roleResult = await _roleService.GetAllAsync();
 
-            if (roleResult.Succeeded)
+            if (roleResult.Succeeded && roleResult.Value != null)
             {
-                Role = roleResult.Value!
-                    .Where(r =>
-                        r.Name != AppRoles.Admin &&
-                        r.Name != AppRoles.Manager)
-                    .Select(r => new SelectListItem
-                    {
-                        Value = r.Name,
-                        Text = r.Name
-                    })
-                    .ToList();
+                if (IsAdmin)
+                {
+                    // Admin can assign Manager and other roles
+                    // But Admin role itself will not be shown
+                    Role = roleResult.Value
+                        .Where(r => r.Name != AppRoles.Admin)
+                        .Select(r => new SelectListItem
+                        {
+                            Value = r.Name,
+                            Text = r.Name
+                        })
+                        .ToList();
+                }
+                else if (IsManager)
+                {
+                    // Manager cannot assign Admin or Manager
+                    Role = roleResult.Value
+                        .Where(r =>
+                            r.Name != AppRoles.Admin &&
+                            r.Name != AppRoles.Manager)
+                        .Select(r => new SelectListItem
+                        {
+                            Value = r.Name,
+                            Text = r.Name
+                        })
+                        .ToList();
+                }
             }
 
-            var companies = await _companyService.GetAllAsync();
+                var companies = await _companyService.GetAllAsync();
 
             if (companies.Succeeded)
             {
@@ -71,7 +89,6 @@ namespace TaskTracker.Pages.Employee
                     .ToList();
             }
         }
-        public bool IsManager;
         //get all employee info
         public async Task<IActionResult> OnGetAsync()
         {
@@ -176,22 +193,18 @@ namespace TaskTracker.Pages.Employee
                 var userIdClaim =
                     User.FindFirst(ClaimTypes.NameIdentifier);
 
-                if (userIdClaim == null ||
-                    !int.TryParse(userIdClaim.Value, out int userId))
+                if (userIdClaim == null ||!int.TryParse(userIdClaim.Value, out int userId))
                 {
-                    TempData["ErrorMessage"] =
-                        "Unable to identify the logged-in user.";
+                    TempData["ErrorMessage"] ="Unable to identify the logged-in user.";
 
                     return RedirectToPage();
                 }
 
-                var currentUser =
-                    await _unitOfWork.Users.GetByIdAsync(userId);
+                var currentUser =await _unitOfWork.Users.GetByIdAsync(userId);
 
                 if (currentUser == null)
                 {
-                    TempData["ErrorMessage"] =
-                        "Your user account could not be found.";
+                    TempData["ErrorMessage"] ="Your user account could not be found.";
 
                     return RedirectToPage();
                 }
@@ -227,9 +240,7 @@ namespace TaskTracker.Pages.Employee
             // CREATE EMPLOYEE
             // -------------------------------------------------
             var result =
-                await _employeeService.RegisterAsync(
-                    SignupEmployee,
-                    actingUserCompanyId);
+                await _employeeService.RegisterAsync(SignupEmployee,actingUserCompanyId);
 
             if (!result.Succeeded)
             {

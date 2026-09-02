@@ -35,6 +35,8 @@ namespace TaskTrackerDAL.Data
         public DbSet<TaskFile> TaskFiles => Set<TaskFile>();//11
         public DbSet<TaskMember> TaskMembers => Set<TaskMember>();//12
 
+
+        /********* Entity Framework Core Fluent API Configuration **********/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

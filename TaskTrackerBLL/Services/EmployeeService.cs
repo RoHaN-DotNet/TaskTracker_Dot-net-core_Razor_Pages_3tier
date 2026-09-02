@@ -182,8 +182,7 @@ namespace TaskTrackerBLL.Services
 
             if (role is null)
             {
-                return Result<EmployeeDto>.Failure(
-                    $"Role '{dto.RoleName}' has not been configured. Contact an administrator.");
+                return Result<EmployeeDto>.Failure($"Role '{dto.RoleName}' has not been configured. Contact an administrator.");
             }
 
             // -------------------------------------------------

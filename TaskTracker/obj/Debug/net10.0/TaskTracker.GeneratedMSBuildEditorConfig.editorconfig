@@ -51,36 +51,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Companies/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGFuaWVzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Companies/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGFuaWVzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Companies/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGFuaWVzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Companies/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGFuaWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Employees/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Employees/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Employees/EditRole.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVzXEVkaXRSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Employees/Index.cshtml]
@@ -107,36 +83,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZVxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/Archive.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcQXJjaGl2ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/AssignMember.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcQXNzaWduTWVtYmVyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/Filter.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcRmlsdGVyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Projects/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/ProjectTasks/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFRhc2tzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/ProjectTasks/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFRhc2tzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/ProjectTasks/Tasks.cshtml]
