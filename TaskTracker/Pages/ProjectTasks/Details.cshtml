@@ -8,20 +8,20 @@
 
     var priorityClass = Model.Task.Priority switch
     {
-        TaskPriority.High => "bg-danger",
-        TaskPriority.Medium => "bg-warning text-dark",
-        TaskPriority.Low => "bg-success",
-        _ => "bg-secondary"
+        TaskPriority.High => "bg-danger opacity-75",
+        TaskPriority.Medium => "bg-warning text-dark opacity-75",
+        TaskPriority.Low => "bg-success opacity-75",
+        _ => "bg-secondary opacity-75"
     };
 
     var statusClass = Model.Task.Status switch
     {
-        ProjectTasksStatus.Completed => "bg-success",
-        ProjectTasksStatus.InProgress => "bg-primary",
-        ProjectTasksStatus.OnHold => "bg-warning text-dark",
-        ProjectTasksStatus.Cancelled => "bg-danger",
-        ProjectTasksStatus.Archived => "bg-secondary",
-        _ => "bg-secondary"
+        ProjectTasksStatus.Completed => "bg-success opacity-75",
+        ProjectTasksStatus.InProgress => "bg-primary opacity-75",
+        ProjectTasksStatus.OnHold => "bg-warning text-dark opacity-75",
+        ProjectTasksStatus.Cancelled => "bg-danger opacity-75",
+        ProjectTasksStatus.Archived => "bg-secondary opacity-75",
+        _ => "bg-secondary opacity-75"
     };
 }
 
@@ -578,7 +578,7 @@
                                                 data-priority="Critical"
                                                 data-priority-value="3">
 
-                                            <span class="priority-option-dot bg-dark-subtle"></span>
+                                            <span class="priority-option-dot bg-dark-subtle opacity-75"></span>
                                             Critical
 
                                         </button>
@@ -592,7 +592,7 @@
                                                 data-priority="High"
                                                 data-priority-value="2">
 
-                                            <span class="priority-option-dot bg-danger"></span>
+                                            <span class="priority-option-dot bg-danger opacity-75"></span>
                                             High
 
                                         </button>
@@ -606,7 +606,7 @@
                                                 data-priority="Medium"
                                                 data-priority-value="1">
 
-                                            <span class="priority-option-dot bg-warning"></span>
+                                            <span class="priority-option-dot bg-warning opacity-75"></span>
                                             Medium
 
                                         </button>
@@ -620,7 +620,7 @@
                                                 data-priority="Low"
                                                 data-priority-value="0">
 
-                                            <span class="priority-option-dot bg-success"></span>
+                                            <span class="priority-option-dot bg-success opacity-75"></span>
                                             Low
 
                                         </button>

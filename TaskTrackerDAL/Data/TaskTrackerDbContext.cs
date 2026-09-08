@@ -34,6 +34,7 @@ namespace TaskTrackerDAL.Data
 
         public DbSet<TaskFile> TaskFiles => Set<TaskFile>();//11
         public DbSet<TaskMember> TaskMembers => Set<TaskMember>();//12
+        public DbSet<TaskTransferHistory> TaskTransferHistories => Set<TaskTransferHistory>();
 
 
         /********* Entity Framework Core Fluent API Configuration **********/
@@ -368,6 +369,37 @@ namespace TaskTrackerDAL.Data
                 entity.HasOne(tm => tm.User)
                     .WithMany(u => u.TaskMemberships)
                     .HasForeignKey(tm => tm.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+            // =========================
+            // TaskTransferHistory
+            // =========================
+            modelBuilder.Entity<TaskTransferHistory>(entity =>
+            {
+                entity.HasKey(h => h.Id);
+
+                entity.Property(h => h.Note)
+                    .IsRequired()
+                    .HasMaxLength(1000);
+
+                entity.HasOne(h => h.Task)
+                    .WithMany()
+                    .HasForeignKey(h => h.TaskId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(h => h.FromUser)
+                    .WithMany()
+                    .HasForeignKey(h => h.FromUserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(h => h.ToUser)
+                    .WithMany()
+                    .HasForeignKey(h => h.ToUserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(h => h.TransferredByUser)
+                    .WithMany()
+                    .HasForeignKey(h => h.TransferredByUserId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
         }

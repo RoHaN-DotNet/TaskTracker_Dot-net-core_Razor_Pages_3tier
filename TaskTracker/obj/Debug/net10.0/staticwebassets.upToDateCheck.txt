@@ -133,6 +133,7 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\uploads\tasks\1f852eb9-11fb-467e-871e-d2096f511b51.pdf
+wwwroot\uploads\tasks\4adf99ad-84a1-4892-b2dc-3c0de9668fd0.cshtml
 wwwroot\uploads\tasks\4d2e43a4-8629-4ff5-954d-27d0321c351f.pdf
 wwwroot\uploads\tasks\55f9ca37-7fd2-404c-a950-c60bd29841ac.pdf
 wwwroot\uploads\tasks\6692c0d8-8dfd-426e-a8f1-3ef354147fbb.png
@@ -146,4 +147,5 @@ wwwroot\uploads\tasks\ad7146f2-c330-460c-9b39-dbf5630a87d5.pdf
 wwwroot\uploads\tasks\d39f8022-a6ae-49a2-8af6-84ec4adb917b.png
 wwwroot\uploads\tasks\ea5efc04-62f1-48a4-ba53-df3c339c0fcb.pdf
 wwwroot\uploads\tasks\f113e706-1744-468a-8b01-20b0692a4d47.pdf
+wwwroot\uploads\tasks\f2ea4108-1869-4e7c-8ea1-8416317c7f1c.cshtml
 wwwroot\uploads\tasks\f329bb63-7471-4178-af15-ad6bc2555e9c.pdf

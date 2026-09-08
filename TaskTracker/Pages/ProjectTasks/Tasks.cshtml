@@ -11,6 +11,8 @@
 
 @{
     ViewData["Title"] = "Tasks";
+
+    ViewData["ViewableTaskIds"] = Model.ViewableTaskIds;
 }
 <!-- =========================
      Toast Notification
@@ -1335,7 +1337,20 @@ function initializeTaskCardClick() {
             ) {
                 return;
             }
+                    // ----------------------------------------------------
+                    // DETAILS PERMISSION
+                    // ----------------------------------------------------
 
+                    if (this.dataset.canViewDetails !== "true") {
+
+                        showToast(
+                            "You are not assigned to this task.",
+                            "warning",
+                            "Access Denied"
+                        );
+
+                        return;
+                    }
             const modalId =
                 this.getAttribute("data-bs-target");
 
@@ -1359,9 +1374,39 @@ function initializeTaskCardClick() {
         });
     });
 }
+        // =========================================================
+        // DETAILS ACCESS DENIED
+        // =========================================================
+
+        function initializeDetailsAccess() {
+
+            document
+                .querySelectorAll(".details-access-denied")
+                .forEach(button => {
+
+                    if (button.dataset.initialized === "true") {
+                        return;
+                    }
+
+                    button.dataset.initialized = "true";
+
+                    button.addEventListener("click", function(e) {
+
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        showToast(
+                            "You are not assigned to this task.",
+                            "warning",
+                            "Access Denied"
+                        );
+                    });
+                });
+        }
 
         // ================= PAGE INITIALIZATION =================
         document.addEventListener("DOMContentLoaded", function() {
+
             createToastContainer();
 
             initializeDragAndDrop();
@@ -1373,6 +1418,8 @@ function initializeTaskCardClick() {
             initializeTaskToggle();
 
             initializeProjectMembers();
+
+            initializeDetailsAccess();
 
             initializeTaskCardClick();
         });

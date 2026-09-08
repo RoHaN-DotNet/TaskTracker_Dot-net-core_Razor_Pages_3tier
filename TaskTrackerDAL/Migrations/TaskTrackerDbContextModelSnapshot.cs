@@ -406,6 +406,50 @@ namespace TaskTrackerDAL.Migrations
                     b.ToTable("Notes");
                 });
 
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskTransferHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FromUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ToUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransferredByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("TaskId");
+
+                    b.HasIndex("ToUserId");
+
+                    b.HasIndex("TransferredByUserId");
+
+                    b.ToTable("TaskTransferHistories");
+                });
+
             modelBuilder.Entity("TaskTrackerDAL.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -623,6 +667,41 @@ namespace TaskTrackerDAL.Migrations
                     b.Navigation("AuthorUser");
 
                     b.Navigation("Task");
+                });
+
+            modelBuilder.Entity("TaskTrackerDAL.Models.TaskTransferHistory", b =>
+                {
+                    b.HasOne("TaskTrackerDAL.Models.User", "FromUser")
+                        .WithMany()
+                        .HasForeignKey("FromUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TaskTrackerDAL.Models.ProjectTask", "Task")
+                        .WithMany()
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TaskTrackerDAL.Models.User", "ToUser")
+                        .WithMany()
+                        .HasForeignKey("ToUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TaskTrackerDAL.Models.User", "TransferredByUser")
+                        .WithMany()
+                        .HasForeignKey("TransferredByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("FromUser");
+
+                    b.Navigation("Task");
+
+                    b.Navigation("ToUser");
+
+                    b.Navigation("TransferredByUser");
                 });
 
             modelBuilder.Entity("TaskTrackerDAL.Models.User", b =>

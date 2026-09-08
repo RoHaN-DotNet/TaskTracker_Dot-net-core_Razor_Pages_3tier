@@ -163,6 +163,20 @@ namespace TaskTracker.Pages.ProjectTasks
 
         [BindProperty]
         public DateTime? EditDueDate { get; set; }
+        [BindProperty]
+        public string EditTitle { get; set; }
+
+        [BindProperty]
+        public string EditDescription { get; set; }
+
+        [BindProperty]
+        public int EditProjectId { get; set; }
+
+        [BindProperty]
+        public IFormFile? EditUploadFile { get; set; }
+
+        [BindProperty]
+        public List<int> DeleteFileIds { get; set; } = new();
 
 
         // =========================================================
@@ -189,7 +203,21 @@ namespace TaskTracker.Pages.ProjectTasks
         public bool IsAdmin { get; private set; }
 
         public bool ShowMyTasks { get; private set; }
+        // =========================================================
+        // TRANSFER TASK
+        // =========================================================
 
+        [BindProperty]
+        public int TransferTaskId { get; set; }
+
+        [BindProperty]
+        public int TransferFromUserId { get; set; }
+
+        [BindProperty]
+        public int TransferToUserId { get; set; }
+
+        [BindProperty]
+        public string TransferNote { get; set; } = string.Empty;
 
         // =========================================================
         // GET
@@ -491,6 +519,54 @@ namespace TaskTracker.Pages.ProjectTasks
 
 
             // =====================================================
+            // BASIC VALIDATION
+            // =====================================================
+
+            if (EditTaskId <= 0)
+            {
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Invalid task."
+                );
+
+                await LoadPageDataAsync(companyId);
+
+                return Page();
+            }
+
+
+            // =====================================================
+            // CHANGE TITLE / DESCRIPTION
+            // (FIX for bug #1: nothing previously persisted this)
+            // =====================================================
+
+            var detailsResult =
+                await _taskService
+                    .UpdateDetailsAsync(
+                        EditTaskId,
+                        EditTitle,
+                        EditDescription,
+                        companyId
+                    );
+
+
+            if (!detailsResult.Succeeded)
+            {
+                ModelState.AddModelError(
+                    string.Empty,
+                    detailsResult.Error ??
+                    "Unable to update task details."
+                );
+
+
+                await LoadPageDataAsync(companyId);
+
+
+                return Page();
+            }
+
+
+            // =====================================================
             // CHANGE STATUS
             // =====================================================
 
@@ -615,8 +691,75 @@ namespace TaskTracker.Pages.ProjectTasks
 
 
             // =====================================================
+            // DELETE SELECTED EXISTING FILES
+            // (FIX for bug #2: DeleteFileIds was bound but never used)
+            // =====================================================
+
+            var uploadFolder =
+                Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "uploads",
+                    "tasks"
+                );
+
+
+            if (DeleteFileIds != null &&
+                DeleteFileIds.Count > 0)
+            {
+                foreach (var fileId in DeleteFileIds.Distinct())
+                {
+                    await _taskFileService
+                        .DeleteAsync(
+                            fileId,
+                            uploadFolder
+                        );
+                }
+            }
+
+
+            // =====================================================
+            // UPLOAD NEW FILE
+            // (FIX for bug #3: EditUploadFile was bound but never
+            //  passed to the file service, so nothing was ever saved)
+            // =====================================================
+
+            if (EditUploadFile != null &&
+                EditUploadFile.Length > 0)
+            {
+                var uploadResult =
+                    await _taskFileService
+                        .UploadAsync(
+                            EditTaskId,
+                            EditUploadFile,
+                            uploadFolder
+                        );
+
+
+                if (!uploadResult.Succeeded)
+                {
+                    ModelState.AddModelError(
+                        string.Empty,
+                        uploadResult.Error ??
+                        "Task updated but file upload failed."
+                    );
+
+
+                    await LoadPageDataAsync(companyId);
+
+
+                    return Page();
+                }
+            }
+
+
+            // =====================================================
             // SUCCESS
             // =====================================================
+
+            TempData["SuccessMessage"] =
+                "Task updated successfully.";
+
 
             return RedirectToPage();
         }
@@ -742,6 +885,69 @@ namespace TaskTracker.Pages.ProjectTasks
             return new JsonResult(
                 assignedUserIds
             );
+        }
+
+
+        // =========================================================
+        // GET EXISTING TASK FILES (for the Edit modal)
+        // NEW HANDLER — fixes bug #2/#3: nothing previously loaded
+        // the current files for a task; "loadTaskFiles(...)" was
+        // called from the page's JS but never had a handler to call.
+        // =========================================================
+
+        public async Task<IActionResult> OnGetTaskFilesAsync(
+            int taskId)
+        {
+            if (taskId <= 0)
+            {
+                return new JsonResult(new List<object>());
+            }
+
+
+            var result =
+                await _taskFileService.GetByTaskIdAsync(taskId);
+
+
+            if (!result.Succeeded || result.Value == null)
+            {
+                return new JsonResult(new List<object>());
+            }
+
+
+            var files =
+                result.Value
+                    .Select(f => new
+                    {
+                        id = f.Id,
+                        fileName = f.FileName,
+                        storedFileName = f.StoredFileName,
+                        fileSizeDisplay = FormatFileSize(f.FileSize)
+                    })
+                    .ToList();
+
+
+            return new JsonResult(files);
+        }
+
+
+        private static string FormatFileSize(long bytes)
+        {
+            if (bytes <= 0)
+            {
+                return string.Empty;
+            }
+
+            if (bytes < 1024)
+            {
+                return $"{bytes} B";
+            }
+
+            if (bytes < 1024 * 1024)
+            {
+                return $"{bytes / 1024.0:F1} KB";
+            }
+
+            return $"{bytes / (1024.0 * 1024.0):F1} MB";
         }
 
 
@@ -911,7 +1117,99 @@ namespace TaskTracker.Pages.ProjectTasks
 
             return id;
         }
+        // =========================================================
+        // TRANSFER TASK
+        // =========================================================
 
+        public async Task<IActionResult> OnPostTransferAsync()
+        {
+            SetRoleFlags();
+
+            // Only Manager can transfer tasks
+            if (!IsManager)
+            {
+                return Forbid();
+            }
+
+            int? companyId =
+                IsAdmin
+                    ? null
+                    : GetCurrentCompanyId();
+
+            if (TransferTaskId <= 0 ||
+                TransferFromUserId <= 0 ||
+                TransferToUserId <= 0)
+            {
+                TempData["ErrorMessage"] =
+                    "Please select both a 'From' and 'To' member.";
+
+                return RedirectToPage();
+            }
+
+            var dto =
+                new TransferTaskDto
+                {
+                    TaskId = TransferTaskId,
+                    FromUserId = TransferFromUserId,
+                    ToUserId = TransferToUserId,
+                    Note = TransferNote
+                };
+
+            var result =
+                await _taskService.TransferAsync(
+                    dto,
+                    GetCurrentUserId(),
+                    companyId
+                );
+
+            if (!result.Succeeded)
+            {
+                TempData["ErrorMessage"] =
+                    result.Error ??
+                    "Failed to transfer task.";
+
+                return RedirectToPage();
+            }
+
+            TempData["SuccessMessage"] =
+                "Task transferred successfully.";
+
+            return RedirectToPage();
+        }
+        // =========================================================
+        // GET TASK TRANSFER HISTORY
+        // =========================================================
+
+        public async Task<IActionResult> OnGetTaskTransferHistoryAsync(
+            int taskId)
+        {
+            if (taskId <= 0)
+            {
+                return new JsonResult(new List<object>());
+            }
+
+            var result =
+                await _taskService.GetTransferHistoryAsync(taskId);
+
+            if (!result.Succeeded || result.Value == null)
+            {
+                return new JsonResult(new List<object>());
+            }
+
+            var history =
+                result.Value
+                    .Select(h => new
+                    {
+                        fromUserName = h.FromUserName,
+                        toUserName = h.ToUserName,
+                        transferredByUserName = h.TransferredByUserName,
+                        note = h.Note,
+                        transferredAt = h.TransferredAt.ToString("dd MMM yyyy, hh:mm tt")
+                    })
+                    .ToList();
+
+            return new JsonResult(history);
+        }
 
         // =========================================================
         // GET PROJECT MEMBERS
@@ -993,5 +1291,6 @@ namespace TaskTracker.Pages.ProjectTasks
 
             return id;
         }
+
     }
 }

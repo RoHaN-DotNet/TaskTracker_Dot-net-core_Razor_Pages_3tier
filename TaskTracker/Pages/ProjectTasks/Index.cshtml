@@ -58,7 +58,57 @@
                            placeholder="Search tasks..." />
 
                 </div>
+                <!-- PROJECT FILTER -->
+                <div class="project-filter-wrapper">
 
+                    <select id="projectFilter"
+                            class="form-select select-search">
+
+                        <option value="">
+                            All Projects
+                        </option>
+
+
+                        @foreach (var project in Model.Projects)
+                        {
+                            <option value="@project.Name">
+                                @project.Name
+                            </option>
+                        }
+
+
+                    </select>
+
+                </div>
+
+
+
+
+                <!-- MEMBER FILTER -->
+                <div class="project-filter-wrapper">
+
+
+                    <select id="memberFilter"
+                            class="form-select select-search">
+
+
+                        <option value="">
+                            All Members
+                        </option>
+
+
+                        @foreach (var employee in Model.AllEmployees)
+                        {
+                            <option value="@employee.FullName">
+                                @employee.FullName
+                            </option>
+                        }
+
+
+                    </select>
+
+
+                </div>
 
                 <!-- RIGHT SIDE -->
                 <div class="project-toolbar-right">
@@ -305,6 +355,7 @@
                                 <tr class="task-row"
                                     data-task-name="@task.Title"
                                     data-task-project="@task.ProjectName"
+                                    data-task-member="@string.Join(",", task.AssignedToUserNames)"
                                     data-task-status="@task.Status"
                                     data-task-priority="@task.Priority"
                                     data-task-due="@task.DueDate">
@@ -434,7 +485,7 @@
                         <!-- =================================================
                              MANAGER / ADMIN TASKS
                              ================================================= -->
-                        @if (Model.IsManager||Model.IsAdmin &&
+                        @if (Model.IsManager || Model.IsAdmin &&
                                                      Model.PagedTasks != null)
                         {
                             foreach (var task in Model.PagedTasks.Items)
@@ -442,6 +493,7 @@
                                 <tr class="task-row"
                                     data-task-name="@task.Title"
                                     data-task-project="@task.ProjectName"
+                                    data-task-member="@string.Join(",", task.AssignedToUserNames)"
                                     data-task-status="@task.Status"
                                     data-task-priority="@task.Priority"
                                     data-task-due="@task.DueDate">
@@ -562,40 +614,53 @@
 
                                             @if (Model.IsManager)
                                             {
+
                                                 
-                                            
-                                            <!-- UPDATE -->
-                                            <button type="button"
-                                                    class="project-edit-button task-update-button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#updateTaskModal"
-                                                    data-id="@task.Id"
-                                                    data-name="@task.Title"
-                                                    data-description="@task.Description"
-                                                    data-status="@((int)task.Status)"
-                                                    data-priority="@task.Priority"
-                                                    data-duedate="@(task.DueDate?.ToString("yyyy-MM-dd") ?? "")">
-
-                                                <i class="mdi mdi-pencil-outline"></i>
-
-                                            </button>
+                                                <!-- UPDATE -->
+                                                <button type="button"
+                                                        class="project-edit-button task-update-button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#updateTaskModal"
+                                                        data-id="@task.Id"
+                                                        data-name="@task.Title"
+                                                        data-description="@task.Description"
+                                                        data-status="@task.Status"
+                                                        data-priority="@task.Priority"
+                                                        data-duedate="@(task.DueDate?.ToString("yyyy-MM-dd") ?? "")"
+                                                        data-files="@task.Id">
+                                                    <i class="mdi mdi-pencil-outline"></i>
+                                                </button>
 
 
-                                            <!-- MANAGE MEMBERS -->
-                                            <button type="button"
-                                                    class="project-member-button task-member-button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#manageMembersModal"
-                                                    data-id="@task.Id"
-                                                    data-name="@task.Title"
-                                                    data-project-id="@task.ProjectId"
-                                                    title="Manage Members">
+                                                <!-- MANAGE MEMBERS 
+                                                <button type="button"
+                                                        class="project-member-button task-member-button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#manageMembersModal"
+                                                        data-id="@task.Id"
+                                                        data-name="@task.Title"
+                                                        data-project-id="@task.ProjectId"
+                                                        title="Manage Members">
 
-                                                <i class="mdi mdi-account-multiple-outline"></i>
+                                                    <i class="mdi mdi-account-multiple-outline"></i>
 
-                                                <span>Manage</span>
+                                                    <span>Manage</span>
+                                                </button>-->
+                                                <!-- TRANSFER -->
+                                                <button type="button"
+                                                        class="project-action-button task-transfer-button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#transferTaskModal"
+                                                        data-id="@task.Id"
+                                                        data-name="@task.Title"
+                                                        data-project-id="@task.ProjectId"
+                                                        title="Transfer Task">
 
-                                            </button>
+                                                    <i class="mdi mdi-swap-horizontal"></i>
+
+                                                    <span>Transfer</span>
+
+                                                </button>
                                             }
                                         </div>
 
@@ -968,92 +1033,195 @@
      ============================================================= -->
 @if (Model.IsManager)
 {
-    <div class="modal fade task-modal"
+    <!-- =============================================================
+     UPDATE TASK MODAL
+     ============================================================= -->
+
+    <div class="modal fade"
          id="updateTaskModal"
-         tabindex="-1"
-         aria-hidden="true">
+         tabindex="-1">
 
         <div class="modal-dialog modal-lg modal-dialog-centered">
 
             <div class="modal-content">
 
-                <!-- IMPORTANT:
-                     PageModel method is OnPostUpdateAsync()
-                     so handler is "Update"
-                -->
+
+                <div class="modal-header">
+
+                    <h4 class="modal-title">
+                        Edit Task
+                    </h4>
+
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
 
                 <form method="post"
-                      asp-page-handler="Update">
-
-                    <div class="modal-header">
-
-                        <h5 class="modal-title">
-                            Update Task
-                        </h5>
-
-                        <button type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal">
-                        </button>
-
-                    </div>
+                      asp-page-handler="Update"
+                      enctype="multipart/form-data">
 
 
                     <div class="modal-body">
 
+
+                        <!-- TASK ID -->
                         <input type="hidden"
-                               id="editTaskId"
-                               name="EditTaskId" />
+                               asp-for="EditTaskId"
+                               id="editTaskId" />
 
 
-                        <!-- TASK NAME -->
+
+                        <!-- TITLE -->
                         <div class="mb-3">
 
-                            <label class="task-form-label">
-                                Task
+                            <label class="form-label fw-bold">
+                                Task Title
                             </label>
 
+
                             <input type="text"
-                                   id="editTaskName"
-                                   class="task-form-control"
-                                   readonly />
+                                   class="form-control"
+                                   asp-for="EditTitle"
+                                   id="editTitle" />
+
 
                         </div>
+
+
+
+
+
+                        <!-- DESCRIPTION -->
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Description
+                            </label>
+
+
+                            <textarea class="form-control"
+                                      rows="4"
+                                      asp-for="EditDescription"
+                                      id="editDescription"></textarea>
+
+
+                        </div>
+
+
+
+
+
+
+                        <!-- EXISTING FILES -->
+                        <div class="mb-3">
+
+
+                            <label class="form-label fw-bold">
+                                Attached Files
+                            </label>
+
+
+
+                            <div id="existingFiles"
+                                 class="border rounded p-3">
+
+
+                                <span class="text-muted">
+                                    No files attached
+                                </span>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <!-- ADD NEW FILE -->
+                        <div class="mb-3">
+
+
+                            <label class="form-label fw-bold">
+                                Add New File
+                            </label>
+
+
+                            <input type="file"
+                                   asp-for="EditUploadFile"
+                                   class="form-control" />
+
+
+                        </div>
+
+
+
+
+
 
 
                         <!-- STATUS -->
                         <div class="mb-3">
 
-                            <label class="task-form-label">
+
+                            <label class="form-label fw-bold">
                                 Status
                             </label>
 
-                            <select id="editTaskStatus"
-                                    name="EditStatus"
-                                    class="task-form-control">
+
+
+                            <select asp-for="EditStatus"
+                                    class="form-select">
+
 
                                 @foreach (var status in Enum.GetValues<ProjectTasksStatus>())
                                 {
-                                    <option value="@((int)status)">
+
+                                    <option value="@status">
                                         @status
                                     </option>
+
                                 }
+
 
                             </select>
 
+
                         </div>
+
+
+
+
+
+
+
 
 
                         <!-- PRIORITY -->
                         <div class="mb-3">
 
-                            <label class="task-form-label">
+
+                            <label class="form-label fw-bold">
                                 Priority
                             </label>
 
-                            <select id="editTaskPriority"
-                                    name="EditPriority"
-                                    class="task-form-control">
+
+
+                            <select asp-for="EditPriority"
+                                    id="EditPriority"
+                                    class="form-select">
+
 
                                 @foreach (var priority in Enum.GetValues<TaskPriority>())
                                 {
@@ -1062,29 +1230,45 @@
                                     </option>
                                 }
 
+
                             </select>
 
+
                         </div>
+
+
+
+
+
 
 
                         <!-- DUE DATE -->
                         <div class="mb-3">
 
-                            <label class="task-form-label">
+
+                            <label class="form-label fw-bold">
                                 Due Date
                             </label>
 
+
                             <input type="date"
-                                   id="editTaskDueDate"
-                                   name="EditDueDate"
-                                   class="task-form-control" />
+                                   asp-for="EditDueDate"
+                                   class="form-control"
+                                   id="editDueDate" />
+
 
                         </div>
+
+
 
                     </div>
 
 
+
+
+
                     <div class="modal-footer">
+
 
                         <button type="button"
                                 class="btn-cancel"
@@ -1094,16 +1278,21 @@
 
                         </button>
 
+
+
                         <button type="submit"
                                 class="btn-save">
 
-                            Save Changes
+                            Update
 
                         </button>
 
+
                     </div>
 
+
                 </form>
+
 
             </div>
 
@@ -1228,12 +1417,179 @@
 
     </div>
 }
+<!-- =============================================================
+     TRANSFER TASK MODAL
+     ============================================================= -->
+@if (Model.IsManager)
+{
+    <div class="modal fade task-modal"
+         id="transferTaskModal"
+         tabindex="-1"
+         aria-hidden="true">
 
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <form method="post"
+                      asp-page-handler="Transfer">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">
+
+                            <i class="mdi mdi-swap-horizontal me-2"></i>
+
+                            Transfer Task
+
+                        </h5>
+
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal">
+                        </button>
+
+                    </div>
+
+
+                    <div class="modal-body">
+
+                        <!-- TASK ID -->
+                        <input type="hidden"
+                               id="transferTaskId"
+                               name="TransferTaskId" />
+
+
+                        <!-- TASK NAME -->
+                        <div class="mb-3">
+
+                            <div class="task-detail-label">
+                                Task
+                            </div>
+
+                            <div id="transferTaskName"
+                                 class="task-detail-value">
+                            </div>
+
+                        </div>
+
+
+                        <!-- FROM -->
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Transfer From
+                            </label>
+
+                            <select id="transferFromUser"
+                                    name="TransferFromUserId"
+                                    class="form-select"
+                                    required>
+
+                                <option value="">
+                                    -- Select current member --
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- TO -->
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Transfer To
+                            </label>
+
+                            <select id="transferToUser"
+                                    name="TransferToUserId"
+                                    class="form-select"
+                                    required>
+
+                                <option value="">
+                                    -- Select project member --
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- NOTE -->
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Reason / Note
+                            </label>
+
+                            <textarea id="transferNote"
+                                      name="TransferNote"
+                                      class="form-control"
+                                      rows="3"
+                                      placeholder="Why is this task being transferred?"
+                                      required></textarea>
+
+                        </div>
+
+
+                        <!-- HISTORY -->
+                        <div class="mb-2">
+
+                            <label class="form-label fw-bold">
+                                Transfer History
+                            </label>
+
+                            <div id="transferHistoryList"
+                                 class="border rounded-3 p-3"
+                                 style="max-height:180px; overflow-y:auto;">
+
+                                <div class="text-muted text-center py-2">
+                                    No transfer history yet.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-footer">
+
+                        <button type="button"
+                                class="btn-cancel"
+                                data-bs-dismiss="modal">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button type="submit"
+                                class="btn-save">
+
+                            <i class="mdi mdi-swap-horizontal me-1"></i>
+
+                            Transfer
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+}
 
 <!-- =============================================================
      JAVASCRIPT
      ============================================================= -->
-
+@section Scripts {
 <script>
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -1318,21 +1674,21 @@
                     if (!projectId) {
 
                         projectMembersContainer.innerHTML = `
-                                <div class="text-muted">
-                                    Please select a project first.
-                                </div>
-                            `;
+                                        <div class="text-muted">
+                                            Please select a project first.
+                                        </div>
+                                    `;
 
                         return;
                     }
 
 
                     projectMembersContainer.innerHTML = `
-                            <div class="text-muted text-center py-3">
-                                <div class="spinner-border spinner-border-sm me-2"></div>
-                                Loading members...
-                            </div>
-                        `;
+                                    <div class="text-muted text-center py-3">
+                                        <div class="spinner-border spinner-border-sm me-2"></div>
+                                        Loading members...
+                                    </div>
+                                `;
 
 
                     try {
@@ -1360,10 +1716,10 @@
                             members.length === 0) {
 
                             projectMembersContainer.innerHTML = `
-                                    <div class="text-muted text-center py-3">
-                                        No project members found.
-                                    </div>
-                                `;
+                                            <div class="text-muted text-center py-3">
+                                                No project members found.
+                                            </div>
+                                        `;
 
                             return;
                         }
@@ -1432,10 +1788,10 @@
 
 
                         projectMembersContainer.innerHTML = `
-                                <div class="text-danger">
-                                    Something went wrong while loading members.
-                                </div>
-                            `;
+                                        <div class="text-danger">
+                                            Something went wrong while loading members.
+                                        </div>
+                                    `;
 
                     }
 
@@ -1508,9 +1864,9 @@
                             true;
 
                         submitButton.innerHTML = `
-                                <span class="spinner-border spinner-border-sm me-1"></span>
-                                Creating...
-                            `;
+                                        <span class="spinner-border spinner-border-sm me-1"></span>
+                                        Creating...
+                                    `;
 
                     }
 
@@ -1649,10 +2005,18 @@
         /* =====================================================
            UPDATE MODAL
            ===================================================== */
+        /* =====================================================
+    UPDATE MODAL — populate fields + load existing files
+    (FIXED: consolidated into one handler using the
+    correct element IDs; the old handler above referenced
+    IDs like "editTaskName"/"editTaskStatus" that don't
+    exist on this page, and silently threw before ever
+    reaching a description update, and loadTaskFiles()
+    was called but never defined.)
+    ===================================================== */
 
         const updateModal =
             document.getElementById("updateTaskModal");
-
 
         if (updateModal) {
 
@@ -1660,66 +2024,159 @@
                 "show.bs.modal",
                 function(event) {
 
-                    const button =
-                        event.relatedTarget;
+                    const button = event.relatedTarget;
 
-
-                    if (!button)
+                    if (!button) {
                         return;
-
+                    }
 
                     const taskId =
-                        button.getAttribute("data-id");
+                        button.getAttribute("data-id") || "";
 
+                    document.getElementById("editTaskId").value = taskId;
+                    document.getElementById("editTitle").value =
+                        button.getAttribute("data-name") || "";
+                    document.getElementById("editDescription").value =
+                        button.getAttribute("data-description") || "";
+                    document.getElementById("EditStatus").value =
+                        button.getAttribute("data-status") || "";
+                    document.getElementById("EditPriority").value =
+                        button.getAttribute("data-priority") || "";
+                    document.getElementById("editDueDate").value =
+                        button.getAttribute("data-duedate") || "";
 
-                    const taskName =
-                        button.getAttribute("data-name");
-
-
-                    const status =
-                        button.getAttribute("data-status");
-
-
-                    const priority =
-                        button.getAttribute("data-priority");
-
-
-                    const dueDate =
-                        button.getAttribute("data-duedate");
-
-
-                    document.getElementById(
-                        "editTaskId"
-                    ).value =
-                        taskId || "";
-
-
-                    document.getElementById(
-                        "editTaskName"
-                    ).value =
-                        taskName || "";
-
-
-                    document.getElementById(
-                        "editTaskStatus"
-                    ).value =
-                        status || "";
-
-
-                    document.getElementById(
-                        "editTaskPriority"
-                    ).value =
-                        priority || "";
-
-
-                    document.getElementById(
-                        "editTaskDueDate"
-                    ).value =
-                        dueDate || "";
-
+                    loadTaskFiles(taskId);
                 }
             );
+        }
 
+
+        /* =====================================================
+           EXISTING TASK FILES — load + individual delete
+           NEW: this function was being called but never existed,
+           which is why the Edit modal always showed the static
+           "No files attached" placeholder.
+           ===================================================== */
+
+        function formatFileSizeFallback(bytes) {
+
+            if (!bytes || bytes <= 0) {
+                return "";
+            }
+
+            if (bytes < 1024) {
+                return bytes + " B";
+            }
+
+            if (bytes < 1024 * 1024) {
+                return (bytes / 1024).toFixed(1) + " KB";
+            }
+
+            return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+        }
+
+        async function loadTaskFiles(taskId) {
+
+            const container = document.getElementById("existingFiles");
+
+            if (!container) {
+                return;
+            }
+
+            if (!taskId) {
+
+                container.innerHTML =
+                    '<span class="text-muted">No files attached</span>';
+
+                return;
+            }
+
+            container.innerHTML = `
+            <div class="text-muted text-center py-2">
+                <div class="spinner-border spinner-border-sm me-2"></div>
+                Loading files...
+            </div>
+        `;
+
+            try {
+
+                const response = await fetch(
+                    `?handler=TaskFiles&taskId=${encodeURIComponent(taskId)}`
+                );
+
+                if (!response.ok) {
+                    throw new Error(`TaskFiles request failed: ${response.status}`);
+                }
+
+                const files = await response.json();
+
+                if (!Array.isArray(files) || files.length === 0) {
+
+                    container.innerHTML =
+                        '<span class="text-muted">No files attached</span>';
+
+                    return;
+                }
+
+                container.innerHTML = "";
+
+                files.forEach(function(file) {
+
+                    const row = document.createElement("div");
+                    row.className =
+                        "d-flex align-items-center justify-content-between mb-2";
+
+                    const info = document.createElement("div");
+
+                    const link = document.createElement("a");
+                    link.href = "/uploads/tasks/" + file.storedFileName;
+                    link.target = "_blank";
+                    link.rel = "noopener";
+                    link.textContent = file.fileName;
+
+                    info.appendChild(link);
+
+                    if (file.fileSizeDisplay) {
+
+                        const size = document.createElement("small");
+                        size.className = "text-muted ms-2";
+                        size.textContent = file.fileSizeDisplay;
+
+                        info.appendChild(size);
+                    }
+
+                    const deleteWrapper = document.createElement("div");
+                    deleteWrapper.className = "form-check";
+
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.className = "form-check-input";
+                    checkbox.name = "DeleteFileIds";
+                    checkbox.value = file.id;
+                    checkbox.id = `deleteFile_${file.id}`;
+
+                    const label = document.createElement("label");
+                    label.className = "form-check-label text-danger small";
+                    label.htmlFor = checkbox.id;
+                    label.textContent = "Delete";
+
+                    deleteWrapper.appendChild(checkbox);
+                    deleteWrapper.appendChild(label);
+
+                    row.appendChild(info);
+                    row.appendChild(deleteWrapper);
+
+                    container.appendChild(row);
+                });
+
+            }
+            catch (error) {
+
+                console.error("TaskFiles Error:", error);
+
+                container.innerHTML =
+                    '<span class="text-danger">Unable to load files.</span>';
+            }
         }
 
 
@@ -1793,11 +2250,11 @@
                        ========================================= */
 
                     manageProjectMembersContainer.innerHTML = `
-                            <div class="text-muted text-center py-3">
-                                <div class="spinner-border spinner-border-sm me-2"></div>
-                                Loading project members...
-                            </div>
-                        `;
+                                    <div class="text-muted text-center py-3">
+                                        <div class="spinner-border spinner-border-sm me-2"></div>
+                                        Loading project members...
+                                    </div>
+                                `;
 
 
                     /* =========================================
@@ -1807,10 +2264,10 @@
                     if (!projectId) {
 
                         manageProjectMembersContainer.innerHTML = `
-                                <div class="text-danger text-center py-3">
-                                    Project information not found for this task.
-                                </div>
-                            `;
+                                        <div class="text-danger text-center py-3">
+                                            Project information not found for this task.
+                                        </div>
+                                    `;
 
                         return;
                     }
@@ -1890,10 +2347,10 @@
                             projectMembers.length === 0) {
 
                             manageProjectMembersContainer.innerHTML = `
-                                    <div class="text-muted text-center py-3">
-                                        No members found in this project.
-                                    </div>
-                                `;
+                                            <div class="text-muted text-center py-3">
+                                                No members found in this project.
+                                            </div>
+                                        `;
 
                             return;
                         }
@@ -2009,10 +2466,10 @@
 
 
                         manageProjectMembersContainer.innerHTML = `
-                                <div class="text-danger text-center py-3">
-                                    Something went wrong while loading project members.
-                                </div>
-                            `;
+                                        <div class="text-danger text-center py-3">
+                                            Something went wrong while loading project members.
+                                        </div>
+                                    `;
 
                     }
 
@@ -2101,12 +2558,13 @@
             );
 
 
-        const rows =
-            Array.from(
+        function getTaskRows() {
+            return Array.from(
                 document.querySelectorAll(
                     ".task-row"
                 )
             );
+        }
 
 
         function applyTaskFilters() {
@@ -2122,8 +2580,16 @@
                     "statusFilter"
                 )?.value || "";
 
+            const projectFilter =
+                (document.getElementById("projectFilter")?.value || "")
+                    .toLowerCase();
 
-            rows.forEach(
+            const memberFilter =
+                (document.getElementById("memberFilter")?.value || "")
+                    .toLowerCase();
+
+
+            getTaskRows().forEach(
                 function(row) {
 
                     const name =
@@ -2159,15 +2625,34 @@
                         );
 
 
+                    const rowMember =
+                        (
+                            row.getAttribute("data-task-member")
+                            || ""
+                        ).toLowerCase();
+
+
                     const matchesStatus =
                         !statusValue ||
                         status ===
                         statusValue.toLowerCase();
 
 
+                    const matchesProject =
+                        !projectFilter ||
+                        project.includes(projectFilter);
+
+
+                    const matchesMember =
+                        !memberFilter ||
+                        rowMember.includes(memberFilter);
+
+
                     row.style.display =
                         matchesSearch &&
-                            matchesStatus
+                            matchesStatus &&
+                            matchesProject &&
+                            matchesMember
                             ? ""
                             : "none";
 
@@ -2181,6 +2666,33 @@
 
             searchInput.addEventListener(
                 "input",
+                applyTaskFilters
+            );
+
+        }
+
+
+        const projectFilter =
+            document.getElementById("projectFilter");
+
+        const memberFilter =
+            document.getElementById("memberFilter");
+
+
+        if (projectFilter) {
+
+            projectFilter.addEventListener(
+                "change",
+                applyTaskFilters
+            );
+
+        }
+
+
+        if (memberFilter) {
+
+            memberFilter.addEventListener(
+                "change",
                 applyTaskFilters
             );
 
@@ -2217,6 +2729,16 @@
                     if (statusFilter) {
                         statusFilter.value = "";
                     }
+
+
+                    $("#projectFilter")
+                        .val("")
+                        .trigger("change");
+
+
+                    $("#memberFilter")
+                        .val("")
+                        .trigger("change");
 
 
                     applyTaskFilters();
@@ -2388,5 +2910,222 @@
         }
 
     });
+    $(document).ready(function() {
+
+
+        $(".select-search").select2({
+
+            width: "220px",
+
+            placeholder: "Select",
+
+            allowClear: true
+
+        });
+
+
+
+    });
+    /* =====================================================
+    TRANSFER TASK MODAL
+    ===================================================== */
+
+    const transferModal =
+        document.getElementById("transferTaskModal");
+
+    const transferFromSelect =
+        document.getElementById("transferFromUser");
+
+    const transferToSelect =
+        document.getElementById("transferToUser");
+
+    const transferHistoryList =
+        document.getElementById("transferHistoryList");
+
+
+    if (transferModal &&
+        transferFromSelect &&
+        transferToSelect) {
+
+        transferModal.addEventListener(
+            "show.bs.modal",
+            async function(event) {
+
+                const button = event.relatedTarget;
+
+                if (!button) {
+                    return;
+                }
+
+                const taskId =
+                    button.getAttribute("data-id") || "";
+
+                const taskName =
+                    button.getAttribute("data-name") || "";
+
+                const projectId =
+                    button.getAttribute("data-project-id") || "";
+
+                document.getElementById("transferTaskId").value = taskId;
+                document.getElementById("transferTaskName").textContent = taskName;
+                document.getElementById("transferNote").value = "";
+
+                transferFromSelect.innerHTML =
+                    '<option value="">Loading...</option>';
+
+                transferToSelect.innerHTML =
+                    '<option value="">Loading...</option>';
+
+                transferHistoryList.innerHTML = `
+                    <div class="text-muted text-center py-2">
+                        <div class="spinner-border spinner-border-sm me-2"></div>
+                        Loading...
+                    </div>
+                `;
+
+                if (!projectId) {
+
+                    transferFromSelect.innerHTML =
+                        '<option value="">No project found</option>';
+
+                    transferToSelect.innerHTML =
+                        '<option value="">No project found</option>';
+
+                    return;
+                }
+
+                try {
+
+                    const [projectMembersResp, taskMemberIdsResp, historyResp] =
+                        await Promise.all([
+                            fetch(`?handler=ProjectMembers&projectId=${encodeURIComponent(projectId)}`),
+                            fetch(`?handler=TaskMembers&taskId=${encodeURIComponent(taskId)}`),
+                            fetch(`?handler=TaskTransferHistory&taskId=${encodeURIComponent(taskId)}`)
+                        ]);
+
+                    const projectMembers =
+                        projectMembersResp.ok ? await projectMembersResp.json() : [];
+
+                    const taskMemberIds =
+                        taskMemberIdsResp.ok ? await taskMemberIdsResp.json() : [];
+
+                    const history =
+                        historyResp.ok ? await historyResp.json() : [];
+
+                    const taskMemberIdSet =
+                        new Set(
+                            (Array.isArray(taskMemberIds) ? taskMemberIds : [])
+                                .map(id => Number(id))
+                        );
+
+                    /* -------- FROM: only members currently on the task -------- */
+
+                    transferFromSelect.innerHTML =
+                        '<option value="">-- Select current member --</option>';
+
+                    projectMembers
+                        .filter(m => taskMemberIdSet.has(Number(m.id)))
+                        .forEach(function(member) {
+
+                            const option = document.createElement("option");
+                            option.value = member.id;
+                            option.textContent = member.name || "Unknown member";
+
+                            transferFromSelect.appendChild(option);
+                        });
+
+                    /* -------- TO: any project member -------- */
+
+                    transferToSelect.innerHTML =
+                        '<option value="">-- Select project member --</option>';
+
+                    projectMembers.forEach(function(member) {
+
+                        const option = document.createElement("option");
+                        option.value = member.id;
+                        option.textContent = member.name || "Unknown member";
+
+                        transferToSelect.appendChild(option);
+                    });
+
+                    /* -------- HISTORY -------- */
+
+                    if (!Array.isArray(history) || history.length === 0) {
+
+                        transferHistoryList.innerHTML =
+                            '<div class="text-muted text-center py-2">No transfer history yet.</div>';
+                    }
+                    else {
+
+                        transferHistoryList.innerHTML = "";
+
+                        history.forEach(function(entry) {
+
+                            const item = document.createElement("div");
+                            item.className = "mb-2 pb-2 border-bottom";
+
+                            const line1 = document.createElement("div");
+
+                            const strongFrom = document.createElement("strong");
+                            strongFrom.textContent = entry.fromUserName;
+
+                            const arrow = document.createTextNode(" \u2192 ");
+
+                            const strongTo = document.createElement("strong");
+                            strongTo.textContent = entry.toUserName;
+
+                            const dateSmall = document.createElement("small");
+                            dateSmall.className = "text-muted ms-1";
+                            dateSmall.textContent = entry.transferredAt;
+
+                            line1.appendChild(strongFrom);
+                            line1.appendChild(arrow);
+                            line1.appendChild(strongTo);
+                            line1.appendChild(dateSmall);
+
+                            const noteLine = document.createElement("div");
+                            noteLine.className = "text-muted small";
+                            noteLine.textContent = entry.note;
+
+                            const byLine = document.createElement("div");
+                            byLine.className = "text-muted small";
+                            byLine.textContent = "By " + entry.transferredByUserName;
+
+                            item.appendChild(line1);
+                            item.appendChild(noteLine);
+                            item.appendChild(byLine);
+
+                            transferHistoryList.appendChild(item);
+                        });
+                    }
+
+                }
+                catch (error) {
+
+                    console.error("Transfer modal load error:", error);
+
+                    transferFromSelect.innerHTML =
+                        '<option value="">Error loading members</option>';
+
+                    transferToSelect.innerHTML =
+                        '<option value="">Error loading members</option>';
+
+                    transferHistoryList.innerHTML =
+                        '<div class="text-danger text-center py-2">Unable to load history.</div>';
+                }
+            }
+        );
+
+        // Prevent picking the same person for both From and To
+        transferFromSelect.addEventListener("change", function() {
+
+            Array.from(transferToSelect.options).forEach(function(opt) {
+                opt.disabled =
+                    opt.value !== "" &&
+                    opt.value === transferFromSelect.value;
+            });
+        });
+    }
 
 </script>
+}

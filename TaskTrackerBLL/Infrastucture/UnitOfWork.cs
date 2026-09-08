@@ -24,7 +24,7 @@ namespace TaskTrackerBLL.Infrastucture
         private ITaskFileFeature? _taskFiles;
         private ITaskMemberFeature? _taskMembers;
         private IUserRoleFeature? _userRoles;
-        
+        private ITaskTransferHistoryFeature _taskTransferHistories;
         
         public UnitOfWork(TaskTrackerDbContext context)
         {
@@ -48,6 +48,7 @@ namespace TaskTrackerBLL.Infrastucture
 
         public ITaskFileFeature TaskFiles =>_taskFiles ??= new TaskFileRepository(_context);
         public ITaskMemberFeature TaskMembers => _taskMembers ??= new TaskMemberRepository(_context);
+        public ITaskTransferHistoryFeature TaskTransferHistories => _taskTransferHistories ??= new TaskTransferHistoryRepository(_context);
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();

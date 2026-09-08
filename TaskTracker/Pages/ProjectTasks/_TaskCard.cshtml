@@ -1,11 +1,22 @@
 ﻿@model TaskTrackerBLL.DTOs.Tasks.TaskDto
 @using TaskTrackerDAL.Models.Enums
 @using TaskTrackerDAL.Constants
+@using System.Collections.Generic
+
+@{
+    var viewableTaskIds =
+        ViewData["ViewableTaskIds"] as HashSet<int>;
+
+    bool canViewDetails =
+        viewableTaskIds != null &&
+        viewableTaskIds.Contains(Model.Id);
+}
 
 <div class="task-card card shadow-sm border-0 mb-3"
      draggable="true"
      data-bs-target="#taskDetailsModal-@Model.Id"
-     data-id="@Model.Id">
+     data-id="@Model.Id"
+     data-can-view-details="@canViewDetails.ToString().ToLowerInvariant()">
 
     <div class="card-body">
 
@@ -23,7 +34,7 @@
             {
                 case TaskPriority.High:
 
-                    <span class="priority-dot bg-danger"
+                    <span class="priority-dot bg-danger bg-opacity-75"
                           title="High">
                     </span>
 
@@ -31,7 +42,7 @@
 
                 case TaskPriority.Medium:
 
-                    <span class="priority-dot bg-warning text-dark"
+                    <span class="priority-dot bg-warning text-dark bg-opacity-75"
                           title="Medium">
                     </span>
 
@@ -39,7 +50,7 @@
 
                 case TaskPriority.Low:
 
-                    <span class="priority-dot bg-success"
+                    <span class="priority-dot bg-success bg-opacity-75"
                           title="Low">
                     </span>
 
@@ -157,15 +168,28 @@
 
 
             <!-- DETAILS -->
+            @if (canViewDetails)
+            {
+                <a asp-page="/ProjectTasks/Details"
+                   asp-route-id="@Model.Id"
+                   class="icon-btn action-details"
+                   title="View Details">
 
-            <a asp-page="/ProjectTasks/Details"
-               asp-route-id="@Model.Id"
-               class="icon-btn action-details"
-               title="View Details">
+                    <i class="bi bi-eye"></i>
 
-                <i class="bi bi-eye"></i>
+                </a>
+            }
+            else
+            {
+                <button type="button"
+                        class="icon-btn action-details details-access-denied"
+                        title="View Details">
 
-            </a>
+                    <i class="bi bi-eye"></i>
+
+                </button>
+            }
+           
 
         </div>
 
@@ -457,210 +481,79 @@
 <!-- =========================================================
      TASK DETAILS MODAL
 ========================================================= -->
+@if (canViewDetails)
+{
 
-<div class="modal fade"
-     id="taskDetailsModal-@Model.Id"
-     tabindex="-1"
-     aria-hidden="true">
+    <div class="modal fade"
+    id="taskDetailsModal-@Model.Id"
+    tabindex="-1"
+    aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
 
-        <div class="modal-content">
+            <div class="modal-content">
 
-            <!-- HEADER -->
+                <!-- HEADER -->
 
-            <div class="modal-header">
-
-                <div>
-
-                    <h5 class="modal-title fw-bold mb-1">
-                        @Model.Title
-                    </h5>
-
-                    <small class="text-muted">
-                        Task Details
-                    </small>
-
-                </div>
-
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal">
-                </button>
-
-            </div>
-
-
-            <!-- BODY -->
-
-            <div class="modal-body">
-
-                <!-- PROJECT -->
-
-                <div class="mb-3">
-
-                    <label class="fw-semibold text-muted">
-                        Project
-                    </label>
+                <div class="modal-header">
 
                     <div>
-                        @Model.ProjectName
+
+                        <h5 class="modal-title fw-bold mb-1">
+                            @Model.Title
+                        </h5>
+
+                        <small class="text-muted">
+                            Task Details
+                        </small>
+
                     </div>
+
+                    <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                    </button>
 
                 </div>
 
 
-                <!-- DESCRIPTION -->
+                <!-- BODY -->
 
-                <div class="mb-3">
+                <div class="modal-body">
 
-                    <label class="fw-semibold text-muted">
-                        Description
-                    </label>
+                    <!-- PROJECT -->
 
-                    <div class="border rounded p-3 bg-light">
-
-                        @if (!string.IsNullOrWhiteSpace(Model.Description))
-                        {
-                            @Model.Description
-                        }
-                        else
-                        {
-                            <span class="text-muted">
-                                No description available.
-                            </span>
-                        }
-
-                    </div>
-
-                </div>
-
-
-                <!-- STATUS + PRIORITY -->
-
-                <div class="row mb-3">
-
-                    <div class="col-md-6">
+                    <div class="mb-3">
 
                         <label class="fw-semibold text-muted">
-                            Status
+                            Project
                         </label>
 
                         <div>
-                            <span class="badge bg-primary">
-                                @Model.Status
-                            </span>
+                            @Model.ProjectName
                         </div>
 
                     </div>
 
 
-                    <div class="col-md-6">
+                    <!-- DESCRIPTION -->
+
+                    <div class="mb-3">
 
                         <label class="fw-semibold text-muted">
-                            Priority
+                            Description
                         </label>
 
-                        <div>
+                        <div class="border rounded p-3 bg-light">
 
-                            @switch (Model.Priority)
+                            @if (!string.IsNullOrWhiteSpace(Model.Description))
                             {
-                                case TaskPriority.Critical:
-
-                                    <span class="badge bg-dark">
-                                        Critical
-                                    </span>
-
-                                    break;
-
-                                case TaskPriority.High:
-
-                                    <span class="badge bg-danger">
-                                        High
-                                    </span>
-
-                                    break;
-
-                                case TaskPriority.Medium:
-
-                                    <span class="badge bg-warning text-dark">
-                                        Medium
-                                    </span>
-
-                                    break;
-
-                                case TaskPriority.Low:
-
-                                    <span class="badge bg-success">
-                                        Low
-                                    </span>
-
-                                    break;
-                            }
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ASSIGNED USERS -->
-
-                <div class="mb-3">
-
-                    <label class="fw-semibold text-muted">
-                        Assigned To
-                    </label>
-
-                    <div class="border rounded p-2">
-
-                        @if (Model.AssignedToUserNames != null &&
-                             Model.AssignedToUserNames.Any())
-                        {
-                            @foreach (var userName in Model.AssignedToUserNames)
-                            {
-                                <div class="mb-1">
-
-                                    <i class="bi bi-person me-1"></i>
-
-                                    @userName
-
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <span class="text-muted">
-                                Unassigned
-                            </span>
-                        }
-
-                    </div>
-
-                </div>
-
-
-                <!-- DEADLINE -->
-
-                <div class="row">
-
-                    <div class="col-md-6">
-
-                        <label class="fw-semibold text-muted">
-                            Deadline
-                        </label>
-
-                        <div>
-
-                            @if (Model.DueDate.HasValue)
-                            {
-                                @Model.DueDate.Value.ToString("dd MMM yyyy")
+                                @Model.Description
                             }
                             else
                             {
                                 <span class="text-muted">
-                                    No Deadline
+                                    No description available.
                                 </span>
                             }
 
@@ -669,28 +562,163 @@
                     </div>
 
 
-                    <!-- OVERDUE -->
+                    <!-- STATUS + PRIORITY -->
 
-                    <div class="col-md-6">
+                    <div class="row mb-3">
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Status
+                            </label>
+
+                            <div>
+                                <span class="badge bg-primary opacity-75">
+                                    @Model.Status
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Priority
+                            </label>
+
+                            <div>
+
+                                @switch (Model.Priority)
+                                {
+                                    case TaskPriority.Critical:
+
+                                        <span class="badge bg-dark opacity-75">
+                                            Critical
+                                        </span>
+
+                                        break;
+
+                                    case TaskPriority.High:
+
+                                        <span class="badge bg-danger opacity-75">
+                                            High
+                                        </span>
+
+                                        break;
+
+                                    case TaskPriority.Medium:
+
+                                        <span class="badge bg-warning text-dark opacity-75">
+                                            Medium
+                                        </span>
+
+                                        break;
+
+                                    case TaskPriority.Low:
+
+                                        <span class="badge bg-success opacity-75">
+                                            Low
+                                        </span>
+
+                                        break;
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ASSIGNED USERS -->
+
+                    <div class="mb-3">
 
                         <label class="fw-semibold text-muted">
-                            Deadline Status
+                            Assigned To
                         </label>
 
-                        <div>
+                        <div class="border rounded p-2">
 
-                            @if (Model.IsOverdue)
+                            @if (Model.AssignedToUserNames != null &&
+                                                                         Model.AssignedToUserNames.Any())
                             {
-                                <span class="badge bg-danger">
-                                    Overdue
-                                </span>
+                                @foreach (var userName in Model.AssignedToUserNames)
+                                {
+                                    <div class="mb-1">
+
+                                        <i class="bi bi-person me-1"></i>
+
+                                        @userName
+
+                                    </div>
+                                }
                             }
                             else
                             {
-                                <span class="badge bg-success">
-                                    On Track
+                                <span class="text-muted">
+                                    Unassigned
                                 </span>
                             }
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DEADLINE -->
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Deadline
+                            </label>
+
+                            <div>
+
+                                @if (Model.DueDate.HasValue)
+                                {
+                                    @Model.DueDate.Value.ToString("dd MMM yyyy")
+                                }
+                                else
+                                {
+                                    <span class="text-muted">
+                                        No Deadline
+                                    </span>
+                                }
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- OVERDUE -->
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Deadline Status
+                            </label>
+
+                            <div>
+
+                                @if (Model.IsOverdue)
+                                {
+                                    <span class="badge bg-danger opacity-75">
+                                        Overdue
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success opacity-75">
+                                        On Track
+                                    </span>
+                                }
+
+                            </div>
 
                         </div>
 
@@ -698,35 +726,34 @@
 
                 </div>
 
-            </div>
 
+                <!-- FOOTER -->
 
-            <!-- FOOTER -->
+                <div class="modal-footer">
 
-            <div class="modal-footer">
+                    <a asp-page="/ProjectTasks/Details"
+                    asp-route-id="@Model.Id"
+                    class="btn-save">
 
-                <a asp-page="/ProjectTasks/Details"
-                   asp-route-id="@Model.Id"
-                   class="btn-save">
+                        <i class="bi bi-eye me-1"></i>
 
-                    <i class="bi bi-eye me-1"></i>
+                        View Full Details
 
-                    View Full Details
+                    </a>
 
-                </a>
+                    <button type="button"
+                    class="btn-cancel"
+                    data-bs-dismiss="modal">
 
-                <button type="button"
-                        class="btn-cancel"
-                        data-bs-dismiss="modal">
+                        Close
 
-                    Close
+                    </button>
 
-                </button>
+                </div>
 
             </div>
 
         </div>
 
     </div>
-
-</div>
+}

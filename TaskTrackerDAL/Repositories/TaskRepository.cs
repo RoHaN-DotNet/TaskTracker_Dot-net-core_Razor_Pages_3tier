@@ -27,7 +27,8 @@ namespace TaskTrackerDAL.Repositories
         public async Task<IReadOnlyList<ProjectTask>> GetByAssignedUserIdAsync(int userId)
         {
             return await _context.Tasks
-                .AsNoTracking()
+                .Include(t => t.TaskMembers)
+                    .ThenInclude(tm => tm.User)
                 .Where(t => t.TaskMembers.Any(tm => tm.UserId == userId))
                 .OrderBy(t => t.DueDate)
                 .ToListAsync();

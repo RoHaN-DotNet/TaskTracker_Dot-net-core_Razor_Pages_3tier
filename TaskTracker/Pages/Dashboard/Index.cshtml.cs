@@ -4,16 +4,19 @@ using System.Security.Claims;
 using TaskTrackerBLL.DTOs.Dashboard;
 using TaskTrackerBLL.Interfaces.Services;
 using TaskTrackerDAL.Constants;
+using TaskTrackerDAL.Models.Enums;
 
 namespace TaskTracker.Pages.Dashboard
 {
     public class IndexModel : PageModel
     {
         private readonly IDashboardService _dashboardService;
+        private readonly ITaskService _taskService;
 
-        public IndexModel(IDashboardService dashboardService)
+        public IndexModel(IDashboardService dashboardService, ITaskService taskService)
         {
             _dashboardService = dashboardService;
+            _taskService = taskService;
         }
 
         // Dashboard DTOs
@@ -23,7 +26,14 @@ namespace TaskTracker.Pages.Dashboard
 
         public EmployeeDashboardDto? EmployeeDashboard { get; set; }
 
+        //Emp Dashboard
+        public int NotStartedTaskCount { get; set; }
 
+        public int InProgressTaskCount { get; set; }
+
+        public int CompletedTaskCount { get; set; }
+
+        public int CancelledTaskCount { get; set; }
         // =====================================================
         // ADMIN
         // =====================================================
@@ -89,6 +99,10 @@ namespace TaskTracker.Pages.Dashboard
 
             else
             {
+                // =====================================================
+                // GET CURRENT EMPLOYEE ID
+                // =====================================================
+
                 var userIdValue =
                     User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -102,16 +116,66 @@ namespace TaskTracker.Pages.Dashboard
                     return Forbid();
                 }
 
-                var result =
+
+                // =====================================================
+                // EMPLOYEE DASHBOARD INFORMATION
+                // =====================================================
+
+                var dashboardResult =
                     await _dashboardService
                         .GetEmployeeDashboardAsync(userId);
 
-                if (!result.Succeeded)
+                if (!dashboardResult.Succeeded)
                 {
                     return StatusCode(500);
                 }
 
-                EmployeeDashboard = result.Value;
+                EmployeeDashboard = dashboardResult.Value;
+
+
+                // =====================================================
+                // GET ONLY TASKS ASSIGNED TO THIS EMPLOYEE
+                // =====================================================
+
+                var taskResult =
+                    await _taskService
+                        .GetByAssignedUserIdAsync(userId);
+
+                if (taskResult.Succeeded &&
+                    taskResult.Value != null)
+                {
+                    var employeeTasks =
+                        taskResult.Value.ToList();
+
+
+                    // NOT STARTED
+                    NotStartedTaskCount =
+                        employeeTasks.Count(t =>
+                            t.Status ==
+                            ProjectTasksStatus.NotStarted);
+
+
+                    // IN PROGRESS
+                    InProgressTaskCount =
+                        employeeTasks.Count(t =>
+                            t.Status ==
+                            ProjectTasksStatus.InProgress);
+
+
+                    // COMPLETED
+                    CompletedTaskCount =
+                        employeeTasks.Count(t =>
+                            t.Status ==
+                            ProjectTasksStatus.Completed);
+
+
+                    // CANCELLED
+                    CancelledTaskCount =
+                        employeeTasks.Count(t =>
+                            t.Status ==
+                            ProjectTasksStatus.Cancelled);
+                }
+
 
                 return Page();
             }

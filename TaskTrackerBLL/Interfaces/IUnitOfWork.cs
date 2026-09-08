@@ -20,7 +20,7 @@ namespace TaskTrackerBLL.Interfaces
         ITaskFileFeature TaskFiles { get; }//
         ITaskMemberFeature TaskMembers { get; }
         IUserRoleFeature UserRoles { get; }
-
+        ITaskTransferHistoryFeature TaskTransferHistories { get; }
         Task<int> SaveChangesAsync();
     }
 }

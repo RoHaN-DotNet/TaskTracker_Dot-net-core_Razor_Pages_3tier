@@ -86,7 +86,7 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // CREATE TASK
         // ============================================================
-        public async Task<Result<TaskDto>> CreateAsync(CreateTaskDto dto,int createdByUserId,int? actingManagerCompanyId)
+        public async Task<Result<TaskDto>> CreateAsync(CreateTaskDto dto, int createdByUserId, int? actingManagerCompanyId)
         {
             // --------------------------------------------------------
             // 1. Check project
@@ -109,7 +109,7 @@ namespace TaskTrackerBLL.Services
             var selectedUserIds = dto.AssignedToUserIds.Distinct().ToList();
             foreach (var userId in selectedUserIds)
             {
-                var isProjectMember =await _unitOfWork.Projects.IsUserProjectMemberAsync(dto.ProjectId,userId);
+                var isProjectMember = await _unitOfWork.Projects.IsUserProjectMemberAsync(dto.ProjectId, userId);
                 if (!isProjectMember)
                 {
                     return Result<TaskDto>.Failure($"User with ID {userId} is not a member of this project.");
@@ -159,7 +159,7 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // DELETE TASK
         // ============================================================
-        public async Task<Result> DeleteAsync(int id,int actingUserId,int? actingManagerCompanyId)
+        public async Task<Result> DeleteAsync(int id, int actingUserId, int? actingManagerCompanyId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(id);
             if (task is null)
@@ -168,23 +168,23 @@ namespace TaskTrackerBLL.Services
                     $"Task with ID {id} was not found.");
             }
             // Manager scope validation
-            var scopeResult =await ValidateManagerScopeAsync(task,actingManagerCompanyId);
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
             if (!scopeResult.Succeeded)
             {
                 return scopeResult;
             }
-            var snapshot =$"{task.Title} (Project #{task.ProjectId})";
+            var snapshot = $"{task.Title} (Project #{task.ProjectId})";
             // Delete task
             _unitOfWork.Tasks.Remove(task);
             await _unitOfWork.SaveChangesAsync();
             // Audit
-            await _auditService.LogDeletedAsync("ProjectTask",id,actingUserId,snapshot);
+            await _auditService.LogDeletedAsync("ProjectTask", id, actingUserId, snapshot);
             return Result.Success();
         }
         // ============================================================
         // ASSIGN TASK
         // ============================================================
-        public async Task<Result> AssignAsync(AssignTaskDto dto,int? actingManagerCompanyId)
+        public async Task<Result> AssignAsync(AssignTaskDto dto, int? actingManagerCompanyId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
             if (task is null)
@@ -192,19 +192,19 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure($"Task with ID {dto.TaskId} was not found.");
             }
             // Manager scope
-            var scopeResult =await ValidateManagerScopeAsync(task,actingManagerCompanyId);
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
             if (!scopeResult.Succeeded)
             {
                 return scopeResult;
             }
             // Check project membership
-            var isProjectMember =await _unitOfWork.Projects.IsUserProjectMemberAsync(task.ProjectId,dto.AssignedToUserId);
+            var isProjectMember = await _unitOfWork.Projects.IsUserProjectMemberAsync(task.ProjectId, dto.AssignedToUserId);
             if (!isProjectMember)
             {
                 return Result.Failure("The user must be a member of this project.");
             }
             // Check whether already assigned
-            var alreadyAssigned =await _unitOfWork.TaskMembers.ExistsAsync(dto.TaskId,dto.AssignedToUserId);
+            var alreadyAssigned = await _unitOfWork.TaskMembers.ExistsAsync(dto.TaskId, dto.AssignedToUserId);
             if (alreadyAssigned)
             {
                 return Result.Failure("This user is already assigned to this task.");
@@ -222,7 +222,7 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // REASSIGN TASK
         // ============================================================
-        public async Task<Result> ReassignAsync(AssignTaskDto dto,int? actingManagerCompanyId)
+        public async Task<Result> ReassignAsync(AssignTaskDto dto, int? actingManagerCompanyId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
             if (task is null)
@@ -230,20 +230,20 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure($"Task with ID {dto.TaskId} was not found.");
             }
             // Manager scope
-            var scopeResult = await ValidateManagerScopeAsync(task,actingManagerCompanyId);
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
             if (!scopeResult.Succeeded)
             {
                 return scopeResult;
             }
 
             // Check new user project membership
-            var isProjectMember =await _unitOfWork.Projects.IsUserProjectMemberAsync(task.ProjectId,dto.AssignedToUserId);
+            var isProjectMember = await _unitOfWork.Projects.IsUserProjectMemberAsync(task.ProjectId, dto.AssignedToUserId);
             if (!isProjectMember)
             {
                 return Result.Failure("The new user must be a member of this project.");
             }
             // Get current task members
-            var currentMembers =await _unitOfWork.TaskMembers.GetByTaskIdAsync(dto.TaskId);
+            var currentMembers = await _unitOfWork.TaskMembers.GetByTaskIdAsync(dto.TaskId);
             if (currentMembers.Count == 0)
             {
                 return Result.Failure("This task has no current members. Use Assign instead.");
@@ -275,14 +275,14 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // CHANGE DEADLINE
         // ============================================================
-        public async Task<Result> ChangeDeadlineAsync(ChangeDeadlineDto dto,int? actingManagerCompanyId)
+        public async Task<Result> ChangeDeadlineAsync(ChangeDeadlineDto dto, int? actingManagerCompanyId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
             if (task is null)
             {
                 return Result.Failure($"Task with ID {dto.TaskId} was not found.");
             }
-            var scopeResult =await ValidateManagerScopeAsync(task,actingManagerCompanyId);
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
             if (!scopeResult.Succeeded)
             {
                 return scopeResult;
@@ -296,14 +296,14 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // CHANGE PRIORITY
         // ============================================================
-        public async Task<Result> ChangePriorityAsync(ChangePriorityDto dto,int? actingManagerCompanyId)
+        public async Task<Result> ChangePriorityAsync(ChangePriorityDto dto, int? actingManagerCompanyId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
             if (task is null)
             {
                 return Result.Failure($"Task with ID {dto.TaskId} was not found.");
             }
-            var scopeResult =await ValidateManagerScopeAsync(task,actingManagerCompanyId);
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
             if (!scopeResult.Succeeded)
             {
                 return scopeResult;
@@ -319,7 +319,7 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // CHANGE STATUS
         // ============================================================
-        public async Task<Result> ChangeStatusAsync(MoveTaskStatusDto dto,int actingUserId,bool isManager)
+        public async Task<Result> ChangeStatusAsync(MoveTaskStatusDto dto, int actingUserId, bool isManager)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
             if (task is null)
@@ -333,12 +333,12 @@ namespace TaskTrackerBLL.Services
             if (!isManager)
             {
                 // Completed / Cancelled cannot be changed
-                if (task.Status == ProjectTasksStatus.Completed ||task.Status == ProjectTasksStatus.Cancelled)
+                if (task.Status == ProjectTasksStatus.Completed || task.Status == ProjectTasksStatus.Cancelled)
                 {
-                    return Result.Failure($"This task is already {task.Status} " +"and its status can no longer be changed.");
+                    return Result.Failure($"This task is already {task.Status} " + "and its status can no longer be changed.");
                 }
                 // User must be TaskMember
-                var isTaskMember =await _unitOfWork.TaskMembers.ExistsAsync(dto.TaskId,actingUserId);
+                var isTaskMember = await _unitOfWork.TaskMembers.ExistsAsync(dto.TaskId, actingUserId);
                 if (!isTaskMember)
                 {
                     return Result.Failure("You can only update the status of tasks assigned to you.");
@@ -362,6 +362,43 @@ namespace TaskTrackerBLL.Services
             await _unitOfWork.SaveChangesAsync();
             return Result.Success();
         }
+
+        // ============================================================
+        // UPDATE TASK DETAILS (Title / Description)
+        // ============================================================
+        // NEW METHOD — nothing previously persisted Title/Description
+        // edits made from the "Edit Task" modal. OnPostUpdateAsync only
+        // called ChangeStatusAsync / ChangePriorityAsync / ChangeDeadlineAsync,
+        // so any description/title change the user typed was silently lost.
+        public async Task<Result> UpdateDetailsAsync(int taskId, string title, string? description, int? actingManagerCompanyId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(taskId);
+            if (task is null)
+            {
+                return Result.Failure($"Task with ID {taskId} was not found.");
+            }
+
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
+            if (!scopeResult.Succeeded)
+            {
+                return scopeResult;
+            }
+
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                return Result.Failure("Task title is required.");
+            }
+
+            task.Title = title.Trim();
+            task.Description = description;
+            task.UpdatedAt = DateTime.UtcNow;
+
+            _unitOfWork.Tasks.Update(task);
+            await _unitOfWork.SaveChangesAsync();
+
+            return Result.Success();
+        }
+
         // ============================================================
         // GET PROGRESS NOTES
         // ============================================================
@@ -385,7 +422,7 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // ADD PROGRESS NOTE
         // ============================================================
-        public async Task<Result> AddProgressNoteAsync(AddProgressNoteDto dto,int authorUserId)
+        public async Task<Result> AddProgressNoteAsync(AddProgressNoteDto dto, int authorUserId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
             if (task is null)
@@ -393,7 +430,7 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure($"Task with ID {dto.TaskId} was not found.");
             }
             // User must be TaskMember
-            var isTaskMember =await _unitOfWork.TaskMembers.ExistsAsync(dto.TaskId,authorUserId);
+            var isTaskMember = await _unitOfWork.TaskMembers.ExistsAsync(dto.TaskId, authorUserId);
             if (!isTaskMember)
             {
                 return Result.Failure("You can only add notes to tasks assigned to you.");
@@ -413,7 +450,7 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // ADD COMPLETION COMMENT
         // ============================================================
-        public async Task<Result> AddCompletionCommentAsync(AddCompletionCommentDto dto,int authorUserId)
+        public async Task<Result> AddCompletionCommentAsync(AddCompletionCommentDto dto, int authorUserId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
             if (task is null)
@@ -421,7 +458,7 @@ namespace TaskTrackerBLL.Services
                 return Result.Failure($"Task with ID {dto.TaskId} was not found.");
             }
             // User must be TaskMember
-            var isTaskMember =await _unitOfWork.TaskMembers.ExistsAsync( dto.TaskId,authorUserId);
+            var isTaskMember = await _unitOfWork.TaskMembers.ExistsAsync(dto.TaskId, authorUserId);
             if (!isTaskMember)
             {
                 return Result.Failure("You can only comment on tasks assigned to you.");
@@ -429,7 +466,7 @@ namespace TaskTrackerBLL.Services
             // Task must be completed
             if (task.Status != ProjectTasksStatus.Completed)
             {
-                return Result.Failure("A completion comment can only be added " +"once the task is marked Completed.");
+                return Result.Failure("A completion comment can only be added " + "once the task is marked Completed.");
             }
             var note = new TaskProgressNote
             {
@@ -447,7 +484,7 @@ namespace TaskTrackerBLL.Services
         // MANAGER SCOPE VALIDATION
         // ============================================================
 
-        private async Task<Result> ValidateManagerScopeAsync(ProjectTask task,int? actingManagerCompanyId)
+        private async Task<Result> ValidateManagerScopeAsync(ProjectTask task, int? actingManagerCompanyId)
         {
             // No company restriction
             if (!actingManagerCompanyId.HasValue)
@@ -478,7 +515,7 @@ namespace TaskTrackerBLL.Services
             // --------------------------------------------------------
             // Task Members
             // --------------------------------------------------------
-            var taskMembers =await _unitOfWork.TaskMembers.GetByTaskIdAsync(task.Id);
+            var taskMembers = await _unitOfWork.TaskMembers.GetByTaskIdAsync(task.Id);
             // --------------------------------------------------------
             // Existing TaskDto is still using singular
             // AssignedToUserId.
@@ -506,11 +543,11 @@ namespace TaskTrackerBLL.Services
             {
                 Id = task.Id,
                 ProjectId = task.ProjectId,
-                ProjectName =project?.Name ?? "Unknown",
+                ProjectName = project?.Name ?? "Unknown",
                 Title = task.Title,
                 Description = task.Description,
-                AssignedToUserIds =assignedToUserIds,
-                AssignedToUserNames =assignedToUserNames,
+                AssignedToUserIds = assignedToUserIds,
+                AssignedToUserNames = assignedToUserNames,
                 Status = task.Status,
                 Priority = task.Priority,
                 DueDate = task.DueDate,
@@ -522,7 +559,7 @@ namespace TaskTrackerBLL.Services
         // ============================================================
         // FILTER
         // ============================================================
-        public async Task<Result<PagedResult<TaskDto>>> FilterAsync(TaskFilterDto filter,int? actingManagerCompanyId)
+        public async Task<Result<PagedResult<TaskDto>>> FilterAsync(TaskFilterDto filter, int? actingManagerCompanyId)
         {
             var pageNumber =
                 filter.PageNumber < 1
@@ -561,7 +598,19 @@ namespace TaskTrackerBLL.Services
             return Result<PagedResult<TaskDto>>
                 .Success(result);
         }
-        public async Task<Result> AssignMembersAsync(int taskId,List<int> assignedToUserIds,int actingUserId)
+
+        // ============================================================
+        // ASSIGN / UPDATE TASK MEMBERS (Manage Members modal)
+        // ============================================================
+        // FIXED: this used to modify task.TaskMembers (a navigation
+        // collection). GetByIdAsync() does NOT Include() TaskMembers,
+        // so task.TaskMembers was always an empty, unloaded collection —
+        // meaning existing members were never actually removed, and
+        // re-adding an already-assigned member could throw a duplicate
+        // key error on SaveChangesAsync. Now uses the same
+        // GetByTaskIdAsync/RemoveAsync/AddAsync pattern already used
+        // (correctly) by ReassignAsync above.
+        public async Task<Result> AssignMembersAsync(int taskId, List<int> assignedToUserIds, int actingUserId)
         {
             var task = await _unitOfWork.Tasks.GetByIdAsync(taskId);
             if (task == null)
@@ -570,25 +619,30 @@ namespace TaskTrackerBLL.Services
             }
             assignedToUserIds ??= new List<int>();
             assignedToUserIds = assignedToUserIds.Distinct().ToList();
+
             // =====================================================
-            // REMOVE EXISTING MEMBERS
+            // REMOVE EXISTING MEMBERS (loaded directly via the
+            // repository, not via the unloaded navigation property)
             // =====================================================
-            var existingMembers = task.TaskMembers?.ToList()?? new List<TaskMember>();
+            var existingMembers = await _unitOfWork.TaskMembers.GetByTaskIdAsync(taskId);
+
             foreach (var member in existingMembers)
             {
-                task.TaskMembers.Remove(member);
+                await _unitOfWork.TaskMembers.RemoveAsync(member);
             }
+
             // =====================================================
             // ADD NEW MEMBERS
             // =====================================================
             foreach (var userId in assignedToUserIds)
             {
-                task.TaskMembers.Add(new TaskMember
+                await _unitOfWork.TaskMembers.AddAsync(new TaskMember
                 {
                     TaskId = taskId,
                     UserId = userId
                 });
             }
+
             // =====================================================
             // UPDATE
             // =====================================================
@@ -596,6 +650,108 @@ namespace TaskTrackerBLL.Services
             _unitOfWork.Tasks.Update(task);
             await _unitOfWork.SaveChangesAsync();
             return Result.Success();
+        }
+        // ============================================================
+        // TRANSFER TASK (with note + history log)
+        // ============================================================
+        public async Task<Result> TransferAsync(TransferTaskDto dto, int actingUserId, int? actingManagerCompanyId)
+        {
+            var task = await _unitOfWork.Tasks.GetByIdAsync(dto.TaskId);
+            if (task is null)
+            {
+                return Result.Failure($"Task with ID {dto.TaskId} was not found.");
+            }
+
+            var scopeResult = await ValidateManagerScopeAsync(task, actingManagerCompanyId);
+            if (!scopeResult.Succeeded)
+            {
+                return scopeResult;
+            }
+
+            if (dto.FromUserId == dto.ToUserId)
+            {
+                return Result.Failure("The task is already assigned to this person.");
+            }
+
+            if (string.IsNullOrWhiteSpace(dto.Note))
+            {
+                return Result.Failure("Please provide a reason for the transfer.");
+            }
+
+            // "From" must currently be assigned to the task
+            var currentMembers = await _unitOfWork.TaskMembers.GetByTaskIdAsync(dto.TaskId);
+            var fromMember = currentMembers.FirstOrDefault(m => m.UserId == dto.FromUserId);
+
+            if (fromMember is null)
+            {
+                return Result.Failure("The selected 'From' member is not currently assigned to this task.");
+            }
+
+            // "To" must be a member of the task's project
+            var isToProjectMember = await _unitOfWork.Projects.IsUserProjectMemberAsync(task.ProjectId, dto.ToUserId);
+            if (!isToProjectMember)
+            {
+                return Result.Failure("The selected 'To' member must be a member of this project.");
+            }
+
+            // Remove "From" member
+            await _unitOfWork.TaskMembers.RemoveAsync(fromMember);
+
+            // Add "To" member, unless they are already on the task
+            var alreadyToMember = currentMembers.Any(m => m.UserId == dto.ToUserId);
+            if (!alreadyToMember)
+            {
+                await _unitOfWork.TaskMembers.AddAsync(new TaskMember
+                {
+                    TaskId = dto.TaskId,
+                    UserId = dto.ToUserId
+                });
+            }
+
+            // Log transfer history (who -> who, why, by whom)
+            var history = new TaskTransferHistory
+            {
+                TaskId = dto.TaskId,
+                FromUserId = dto.FromUserId,
+                ToUserId = dto.ToUserId,
+                TransferredByUserId = actingUserId,
+                Note = dto.Note.Trim()
+            };
+
+            await _unitOfWork.TaskTransferHistories.AddAsync(history);
+
+            task.UpdatedAt = DateTime.UtcNow;
+            _unitOfWork.Tasks.Update(task);
+
+            await _unitOfWork.SaveChangesAsync();
+
+            return Result.Success();
+        }
+
+        // ============================================================
+        // GET TRANSFER HISTORY
+        // ============================================================
+        public async Task<Result<IReadOnlyList<TaskTransferHistoryDto>>> GetTransferHistoryAsync(int taskId)
+        {
+            var history = await _unitOfWork.TaskTransferHistories.GetByTaskIdAsync(taskId);
+
+            var dtos = history
+                .Select(h => new TaskTransferHistoryDto
+                {
+                    Id = h.Id,
+                    TaskId = h.TaskId,
+                    FromUserId = h.FromUserId,
+                    FromUserName = h.FromUser?.FullName ?? "Unknown",
+                    ToUserId = h.ToUserId,
+                    ToUserName = h.ToUser?.FullName ?? "Unknown",
+                    TransferredByUserId = h.TransferredByUserId,
+                    TransferredByUserName = h.TransferredByUser?.FullName ?? "Unknown",
+                    Note = h.Note,
+                    TransferredAt = h.CreatedAt
+                })
+                .ToList();
+
+            return Result<IReadOnlyList<TaskTransferHistoryDto>>.Success(dtos);
         }
     }
 }

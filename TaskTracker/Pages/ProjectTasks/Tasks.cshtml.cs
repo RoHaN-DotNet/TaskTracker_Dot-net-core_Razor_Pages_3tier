@@ -85,7 +85,10 @@ namespace TaskTracker.Pages.ProjectTasks
 
         [BindProperty]
         public IReadOnlyList<EmployeeDto> AllEmployees { get; set; } = new List<EmployeeDto>();
-
+        // =========================================================
+        // TASK DETAILS ACCESS
+        // =========================================================
+        public HashSet<int> ViewableTaskIds { get; private set; } = new();
 
         // =========================================================
         // STATUS
@@ -208,7 +211,28 @@ namespace TaskTracker.Pages.ProjectTasks
             {
                 var userId = GetCurrentUserId();
 
+                // -------------------------------------------------
+                // GET TASKS ASSIGNED TO THIS EMPLOYEE
+                // -------------------------------------------------
+
+                var assignedResult =
+                    await _taskService.GetByAssignedUserIdAsync(userId);
+
+                var assignedTasks =
+                    assignedResult.Succeeded &&
+                    assignedResult.Value != null
+                        ? assignedResult.Value.ToList()
+                        : new List<TaskDto>();
+
+
+                // These are the ONLY task details the employee can open
+                ViewableTaskIds = assignedTasks
+                    .Select(t => t.Id)
+                    .ToHashSet();
+
+
                 List<TaskDto> tasks;
+
 
                 // -------------------------------------------------
                 // MY TASKS
@@ -216,19 +240,11 @@ namespace TaskTracker.Pages.ProjectTasks
 
                 if (ShowMyTasks)
                 {
-                    var result =
-                        await _taskService.GetByAssignedUserIdAsync(userId);
-
-                    if (!result.Succeeded || result.Value == null)
-                    {
-                        return;
-                    }
-
-                    tasks = result.Value.ToList();
+                    tasks = assignedTasks;
                 }
 
                 // -------------------------------------------------
-                // ALL TASKS
+                // ALL COMPANY TASKS
                 // -------------------------------------------------
 
                 else
@@ -266,6 +282,10 @@ namespace TaskTracker.Pages.ProjectTasks
             // MANAGER
             // =====================================================
 
+            // =====================================================
+            // MANAGER
+            // =====================================================
+
             else if (IsManager)
             {
                 var filter = new TaskFilterDto
@@ -286,6 +306,11 @@ namespace TaskTracker.Pages.ProjectTasks
                 }
 
                 var tasks = result.Value.Items.ToList();
+
+                // Manager can view every task in their company
+                ViewableTaskIds = tasks
+                    .Select(t => t.Id)
+                    .ToHashSet();
 
                 SetTaskColumns(tasks);
             }
