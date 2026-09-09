@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model TaskTracker.Pages.ProjectTasks.IndexModel
 
 @using TaskTrackerDAL.Models.Enums
@@ -1160,6 +1160,7 @@
 
                             <input type="file"
                                    asp-for="EditUploadFile"
+                                   id="editUploadFile"
                                    class="form-control" />
 
 
@@ -1674,21 +1675,21 @@
                         if (!projectId) {
 
                             projectMembersContainer.innerHTML = `
-                                                        <div class="text-muted">
-                                                            Please select a project first.
-                                                        </div>
-                                                    `;
+                                                <div class="text-muted">
+                                                    Please select a project first.
+                                                </div>
+                                            `;
 
                             return;
                         }
 
 
                         projectMembersContainer.innerHTML = `
-                                                    <div class="text-muted text-center py-3">
-                                                        <div class="spinner-border spinner-border-sm me-2"></div>
-                                                        Loading members...
-                                                    </div>
-                                                `;
+                                            <div class="text-muted text-center py-3">
+                                                <div class="spinner-border spinner-border-sm me-2"></div>
+                                                Loading members...
+                                            </div>
+                                        `;
 
 
                         try {
@@ -1716,10 +1717,10 @@
                                 members.length === 0) {
 
                                 projectMembersContainer.innerHTML = `
-                                                            <div class="text-muted text-center py-3">
-                                                                No project members found.
-                                                            </div>
-                                                        `;
+                                                    <div class="text-muted text-center py-3">
+                                                        No project members found.
+                                                    </div>
+                                                `;
 
                                 return;
                             }
@@ -1788,10 +1789,10 @@
 
 
                             projectMembersContainer.innerHTML = `
-                                                        <div class="text-danger">
-                                                            Something went wrong while loading members.
-                                                        </div>
-                                                    `;
+                                                <div class="text-danger">
+                                                    Something went wrong while loading members.
+                                                </div>
+                                            `;
 
                         }
 
@@ -1864,9 +1865,9 @@
                                 true;
 
                             submitButton.innerHTML = `
-                                                        <span class="spinner-border spinner-border-sm me-1"></span>
-                                                        Creating...
-                                                    `;
+                                                <span class="spinner-border spinner-border-sm me-1"></span>
+                                                Creating...
+                                            `;
 
                         }
 
@@ -2004,6 +2005,24 @@
 
             /* =====================================================
                UPDATE MODAL — populate fields + load existing files
+
+               KEY FIX:
+               Every time this modal is opened we FIRST wipe out any
+               leftover state from a previous (possibly cancelled)
+               edit session — the file input and the existingFiles
+               container — and THEN fetch a fresh file list from the
+               server via loadTaskFiles(taskId). This guarantees:
+
+                 - If the user clicked the trash icon on a file but
+                   then closed the modal WITHOUT clicking Update,
+                   nothing was ever sent to the server, so the file
+                   is still in the DB. Reopening the modal re-fetches
+                   the real list and the file reappears.
+
+                 - Only an actual form submit (Update button) posts
+                   the DeleteFileIds checkboxes to OnPostUpdateAsync,
+                   which is the only place files are removed from
+                   the database.
                ===================================================== */
 
             const updateModal =
@@ -2036,7 +2055,51 @@
                         document.getElementById("editDueDate").value =
                             button.getAttribute("data-duedate") || "";
 
+                        // Reset the "add new file" input so a file picked
+                        // during a previously-cancelled edit doesn't linger.
+                        const editUploadFile =
+                            document.getElementById("editUploadFile");
+
+                        if (editUploadFile) {
+                            editUploadFile.value = "";
+                        }
+
+                        // Wipe any stale rows/checkboxes before the fresh
+                        // fetch resolves, so nothing "hidden" from a
+                        // previous cancelled session can leak through.
+                        const existingFilesContainer =
+                            document.getElementById("existingFiles");
+
+                        if (existingFilesContainer) {
+                            existingFilesContainer.innerHTML = "";
+                        }
+
                         loadTaskFiles(taskId);
+                    }
+                );
+
+                // Extra safety net: also clear the file list when the
+                // modal finishes closing (covers Cancel, the X button,
+                // and clicking outside the modal), so the very next
+                // show.bs.modal always starts from a clean slate.
+                updateModal.addEventListener(
+                    "hidden.bs.modal",
+                    function() {
+
+                        const existingFilesContainer =
+                            document.getElementById("existingFiles");
+
+                        if (existingFilesContainer) {
+                            existingFilesContainer.innerHTML =
+                                '<span class="text-muted">No files attached</span>';
+                        }
+
+                        const editUploadFile =
+                            document.getElementById("editUploadFile");
+
+                        if (editUploadFile) {
+                            editUploadFile.value = "";
+                        }
                     }
                 );
             }
@@ -2045,43 +2108,24 @@
             /* =====================================================
                EXISTING TASK FILES — load + individual delete
 
-               HOW THIS WORKS (this is the exact behavior you asked for):
+               Delete icon click:
+                 - Marks the file's hidden "DeleteFileIds" checkbox
+                   as checked
+                 - Hides the row from view
+                 - Does NOT call any API and does NOT touch the DB
 
-               1. Every time the modal opens, loadTaskFiles() fetches the
-                  REAL file list from the server and rebuilds the list —
-                  nothing left over from a previous open persists.
+               Update button click (separate <form> submit handled by
+               the server in OnPostUpdateAsync):
+                 - The checked DeleteFileIds values are posted
+                 - Only then are the files actually deleted from disk
+                   and the database
 
-               2. Clicking the trash-can button on a file row:
-                    - hides that row (file "disappears" from the modal)
-                    - checks a HIDDEN checkbox named "DeleteFileIds" for
-                      that file's id
-                    - does NOT call the server, does NOT touch the
-                      database — it is a purely client-side/visual change.
-
-               3. If you close the modal WITHOUT clicking "Update":
-                    - the form was never submitted
-                    - nothing was sent to the server
-                    - the file still exists in the database
-                    - next time you open the modal, loadTaskFiles() fetches
-                      fresh from the server and the file reappears.
-
-               4. If you click "Update":
-                    - the whole form submits (title, description, status,
-                      priority, due date, the new file if any, AND every
-                      checked "DeleteFileIds" checkbox)
-                    - OnPostUpdateAsync() (already fixed earlier) loops over
-                      DeleteFileIds and calls _taskFileService.DeleteAsync()
-                      for each one — THIS is the only point the file is
-                      actually removed from the database and disk.
-
-               FIX (this version):
-               The delegated click handler below previously called
-               row.remove(), which deletes the checked "DeleteFileIds"
-               checkbox from the DOM ALONG WITH the row — so it never
-               gets submitted with the form, and Update never actually
-               deletes the file. Now it hides the row instead
-               (row.style.display = "none"), which keeps the checked
-               checkbox in the DOM so it IS submitted with the form.
+               Cancel / close without Update:
+                 - Nothing was submitted, so nothing changed in the DB
+                 - loadTaskFiles() always re-fetches the real,
+                   authoritative list from the server the next time
+                   the modal opens, so a "removed" file that was never
+                   saved will show up again.
                ===================================================== */
 
             function formatFileSizeFallback(bytes) {
@@ -2118,11 +2162,11 @@
                 }
 
                 container.innerHTML = `
-                        <div class="text-muted text-center py-2">
-                            <div class="spinner-border spinner-border-sm me-2"></div>
-                            Loading files...
-                        </div>
-                    `;
+                    <div class="text-muted text-center py-2">
+                        <div class="spinner-border spinner-border-sm me-2"></div>
+                        Loading files...
+                    </div>
+                `;
 
                 try {
 
@@ -2144,18 +2188,18 @@
                         return;
                     }
 
+                    // Rebuilt from scratch every time the modal opens, so
+                    // anything "removed" visually last time but never saved
+                    // is discarded — this always reflects what's really in the DB.
                     container.innerHTML = "";
 
                     files.forEach(function(file) {
 
                         const row = document.createElement("div");
-
-                        // A class works even if this markup somehow gets built
-                        // twice, whereas getElementById always returns only
-                        // the FIRST matching id in the whole document, which
-                        // can silently target the wrong (invisible) copy.
                         row.className =
-                            "d-flex align-items-center justify-content-between mb-2 file-row";
+                            "d-flex align-items-center justify-content-between mb-2 existing-file-row";
+                        row.id = `fileRow_${file.id}`;
+                        row.dataset.fileId = file.id;
 
                         const info = document.createElement("div");
 
@@ -2176,17 +2220,32 @@
                             info.appendChild(size);
                         }
 
+                        // Hidden checkbox — this is what actually gets submitted
+                        // with the form as "DeleteFileIds". The user never sees
+                        // it directly; the trash icon button controls it.
+                        // Starts UNCHECKED every time, since this element is
+                        // freshly created from the server's current file list.
                         const checkbox = document.createElement("input");
                         checkbox.type = "checkbox";
                         checkbox.name = "DeleteFileIds";
                         checkbox.value = file.id;
+                        checkbox.id = `deleteFile_${file.id}`;
                         checkbox.checked = false;
                         checkbox.style.display = "none";
 
+                        // Trash icon button — marked with a stable class so a
+                        // single DELEGATED click listener on the container
+                        // (attached once, below) handles it. This avoids any
+                        // issue where a listener attached directly on a
+                        // dynamically-created button fails to fire (e.g. the
+                        // row gets re-created by a fast double render, or the
+                        // click lands during a re-render race).
                         const deleteButton = document.createElement("button");
                         deleteButton.type = "button";
-                        deleteButton.className = "btn btn-sm btn-outline-danger file-delete-btn";
+                        deleteButton.className =
+                            "btn btn-sm btn-outline-danger existing-file-delete-btn";
                         deleteButton.title = "Remove file";
+                        deleteButton.dataset.fileId = file.id;
                         deleteButton.innerHTML = '<i class="mdi mdi-trash-can-outline"></i>';
 
                         row.appendChild(info);
@@ -2206,46 +2265,54 @@
                 }
             }
 
-
-            // =====================================================
-            // DELEGATED CLICK HANDLER FOR FILE DELETE BUTTONS
+            // =========================================================
+            // DELETE (existing file) — ONE delegated listener on the
+            // container instead of one listener per button. Works no
+            // matter how many times loadTaskFiles() re-renders the
+            // rows, since it listens on the (never-recreated)
+            // #existingFiles container itself and looks at what was
+            // actually clicked.
             //
-            // Walks the DOM directly from the clicked button to its
-            // own parent row (button.closest(".file-row")) — this is
-            // always the exact row the button is sitting in, no id
-            // collisions possible.
-            //
-            // FIX: hide the row (display: none) instead of removing
-            // it from the DOM. row.remove() was also deleting the
-            // checked "DeleteFileIds" checkbox living inside that row,
-            // so it never made it into the form submission and the
-            // file was never actually deleted on Update. Hiding the
-            // row keeps the checkbox present (and checked) so it IS
-            // submitted, while the file still visually disappears.
-            // =====================================================
+            // Click = only hides the row + checks its hidden
+            // DeleteFileIds checkbox. No fetch, no DB call here —
+            // deletion only really happens when the Update button
+            // submits the form.
+            // =========================================================
 
-            document.addEventListener("click", function(event) {
+            const existingFilesContainer =
+                document.getElementById("existingFiles");
 
-                const button = event.target.closest(".file-delete-btn");
+            if (existingFilesContainer) {
 
-                if (!button) {
-                    return;
-                }
+                existingFilesContainer.addEventListener(
+                    "click",
+                    function(event) {
 
-                const row = button.closest(".file-row");
+                        const deleteButton =
+                            event.target.closest(".existing-file-delete-btn");
 
-                if (!row) {
-                    return;
-                }
+                        if (!deleteButton) {
+                            return;
+                        }
 
-                const checkbox = row.querySelector('input[name="DeleteFileIds"]');
+                        const fileId = deleteButton.dataset.fileId;
 
-                if (checkbox) {
-                    checkbox.checked = true;
-                }
+                        const row =
+                            document.getElementById(`fileRow_${fileId}`);
 
-                row.style.setProperty("display", "none", "important");
-            });
+                        const checkbox =
+                            document.getElementById(`deleteFile_${fileId}`);
+
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        }
+
+                        if (row) {
+                            row.style.display = "none";
+                        }
+                    }
+                );
+            }
 
 
             /* =====================================================
@@ -2318,11 +2385,11 @@
                            ========================================= */
 
                         manageProjectMembersContainer.innerHTML = `
-                                                    <div class="text-muted text-center py-3">
-                                                        <div class="spinner-border spinner-border-sm me-2"></div>
-                                                        Loading project members...
-                                                    </div>
-                                                `;
+                                            <div class="text-muted text-center py-3">
+                                                <div class="spinner-border spinner-border-sm me-2"></div>
+                                                Loading project members...
+                                            </div>
+                                        `;
 
 
                         /* =========================================
@@ -2332,10 +2399,10 @@
                         if (!projectId) {
 
                             manageProjectMembersContainer.innerHTML = `
-                                                        <div class="text-danger text-center py-3">
-                                                            Project information not found for this task.
-                                                        </div>
-                                                    `;
+                                                <div class="text-danger text-center py-3">
+                                                    Project information not found for this task.
+                                                </div>
+                                            `;
 
                             return;
                         }
@@ -2415,10 +2482,10 @@
                                 projectMembers.length === 0) {
 
                                 manageProjectMembersContainer.innerHTML = `
-                                                            <div class="text-muted text-center py-3">
-                                                                No members found in this project.
-                                                            </div>
-                                                        `;
+                                                    <div class="text-muted text-center py-3">
+                                                        No members found in this project.
+                                                    </div>
+                                                `;
 
                                 return;
                             }
@@ -2534,10 +2601,10 @@
 
 
                             manageProjectMembersContainer.innerHTML = `
-                                                        <div class="text-danger text-center py-3">
-                                                            Something went wrong while loading project members.
-                                                        </div>
-                                                    `;
+                                                <div class="text-danger text-center py-3">
+                                                    Something went wrong while loading project members.
+                                                </div>
+                                            `;
 
                         }
 
@@ -3045,11 +3112,11 @@
                         '<option value="">Loading...</option>';
 
                     transferHistoryList.innerHTML = `
-                                    <div class="text-muted text-center py-2">
-                                        <div class="spinner-border spinner-border-sm me-2"></div>
-                                        Loading...
-                                    </div>
-                                `;
+                            <div class="text-muted text-center py-2">
+                                <div class="spinner-border spinner-border-sm me-2"></div>
+                                Loading...
+                            </div>
+                        `;
 
                     if (!projectId) {
 

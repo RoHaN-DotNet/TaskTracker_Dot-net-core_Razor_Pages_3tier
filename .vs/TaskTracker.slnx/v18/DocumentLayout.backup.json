@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "D:\\PracticeWebProject\\TaskTracker\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projecttasks\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projecttasks\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projecttasks\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projecttasks\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\taskfileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\taskfileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\repositories\\generic\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\repositories\\generic\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\interfaces\\generic\\igenericfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\interfaces\\generic\\igenericfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projecttasks\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projecttasks\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projecttasks\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projecttasks\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\repositories\\tasktransferhistoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\repositories\\tasktransferhistoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,24 +43,12 @@
       "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\middlewares\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projecttasks\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projecttasks\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projecttasks\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projecttasks\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\interfaces\\services\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\interfaces\\services\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\dtos\\tasks\\tasktransferhistorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -141,10 +161,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\dashboard\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\dashboard\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\projecttasks\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\pages\\projecttasks\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DA14652D-DEE4-706A-5A12-A0C7A742A68E}|TaskTracker\\TaskTracker.csproj|d:\\practicewebproject\\tasktracker\\tasktracker\\pages\\employees\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -291,10 +307,6 @@
       "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\tasktrackerdal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\interfaces\\generic\\igenericfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\interfaces\\generic\\igenericfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\interfaces\\icompanyfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\interfaces\\icompanyfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -425,10 +437,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\infrastucture\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|solutionrelative:tasktrackerbll\\infrastucture\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerdal\\repositories\\generic\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3830F414-8581-C6FD-AAE3-AD7C517CF8D8}|TaskTrackerDAL\\TaskTrackerDAL.csproj|solutionrelative:tasktrackerdal\\repositories\\generic\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08516AFD-7732-F689-75F4-BC8D95C9A168}|TaskTrackerBLL\\TaskTrackerBLL.csproj|d:\\practicewebproject\\tasktracker\\tasktrackerbll\\services\\roleassignmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -760,12 +768,12 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 262,
-          "SelectedChildIndex": 8,
+          "DockedHeight": 425,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "Style.css",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\wwwroot\\css\\Style.css",
               "RelativeDocumentMoniker": "TaskTracker\\wwwroot\\css\\Style.css",
@@ -774,18 +782,17 @@
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-07-15T03:56:35.353Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\ProjectTasks\\Index.cshtml.cs",
               "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Index.cshtml.cs",
               "RelativeToolTip": "TaskTracker\\Pages\\ProjectTasks\\Index.cshtml.cs",
-              "ViewState": "AgIAAIABAAAAAAAAAAAAALsEAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAPcEAAAAAAAAAAAgwAUFAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-01T05:25:23.155Z",
               "IsPinned": true,
@@ -793,13 +800,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Index.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\ProjectTasks\\Index.cshtml",
               "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Index.cshtml",
               "RelativeToolTip": "TaskTracker\\Pages\\ProjectTasks\\Index.cshtml",
-              "ViewState": "AgIAAC0GAAAAAAAAAAAAADgGAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAGUMAAAAAAAAAAAYwH8MAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-09-01T05:25:18.292Z",
               "IsPinned": true,
@@ -807,7 +814,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 38,
               "Title": "Tasks.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Tasks.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\ProjectTasks\\Tasks.cshtml.cs",
@@ -820,7 +827,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 31,
               "Title": "Tasks.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Tasks.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\ProjectTasks\\Tasks.cshtml",
@@ -829,6 +836,32 @@
               "ViewState": "AgIAAFEFAAAAAAAAAAAAwJAFAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-09-02T04:14:01.796Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\ProjectTasks\\Details.cshtml.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Details.cshtml.cs",
+              "RelativeToolTip": "TaskTracker\\Pages\\ProjectTasks\\Details.cshtml.cs",
+              "ViewState": "AgIAAKUDAAAAAAAAAAAkwL4DAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T11:33:26.21Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Details.cshtml",
+              "RelativeDocumentMoniker": "TaskTracker\\Pages\\ProjectTasks\\Details.cshtml",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Details.cshtml",
+              "RelativeToolTip": "TaskTracker\\Pages\\ProjectTasks\\Details.cshtml",
+              "ViewState": "AgIAAOYJAAAAAAAAAAAkwDUKAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-02T09:02:55.581Z",
               "IsPinned": true
             },
             {
@@ -841,28 +874,15 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:27:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TaskTransferHistoryRepository.cs",
-              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskTransferHistoryRepository.cs",
-              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\TaskTransferHistoryRepository.cs",
-              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskTransferHistoryRepository.cs",
-              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\TaskTransferHistoryRepository.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBQAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T09:29:08.216Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:18:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:27:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
@@ -874,7 +894,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "TaskFileService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskFileService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\TaskFileService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskFileService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\TaskFileService.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAowJQAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-09T05:36:35.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAQwDIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T09:42:50.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IGenericFeature.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAArwBQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-13T11:15:57.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TaskService.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskService.cs",
+              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\TaskService.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskService.cs",
+              "RelativeToolTip": "TaskTrackerBLL\\Services\\TaskService.cs",
+              "ViewState": "AgIAAOACAAAAAAAAAAAAwPACAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T05:04:58.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ExceptionHandlingMiddleware.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Middlewares\\ExceptionHandlingMiddleware.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Middlewares\\ExceptionHandlingMiddleware.cs",
@@ -882,12 +954,23 @@
               "RelativeToolTip": "TaskTracker\\Middlewares\\ExceptionHandlingMiddleware.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAgwBMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T09:52:15.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-08T09:52:15.158Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
+              "Title": "TaskTransferHistoryRepository.cs",
+              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskTransferHistoryRepository.cs",
+              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\TaskTransferHistoryRepository.cs",
+              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskTransferHistoryRepository.cs",
+              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\TaskTransferHistoryRepository.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T09:29:08.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Shared\\_Layout.cshtml",
@@ -895,12 +978,11 @@
               "RelativeToolTip": "TaskTracker\\Pages\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAI4DAAAAAAAAAAAAAJwDAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-28T11:39:55.573Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-28T11:39:55.573Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "TaskTransferHistoryDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\TaskTransferHistoryDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\TaskTransferHistoryDto.cs",
@@ -908,25 +990,11 @@
               "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Tasks\\TaskTransferHistoryDto.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAA3wBYAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T09:39:53.984Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-08T09:39:53.984Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TaskService.cs",
-              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskService.cs",
-              "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\TaskService.cs",
-              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskService.cs",
-              "RelativeToolTip": "TaskTrackerBLL\\Services\\TaskService.cs",
-              "ViewState": "AgIAAOACAAAAAAAAAAAAwPICAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T05:04:58.757Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "ITaskService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\ITaskService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\ITaskService.cs",
@@ -934,12 +1002,11 @@
               "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\Services\\ITaskService.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAAswCcAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T04:40:17.146Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-08T04:40:17.146Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "TransferTaskDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\TransferTaskDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\TransferTaskDto.cs",
@@ -947,12 +1014,11 @@
               "RelativeToolTip": "TaskTrackerBLL\\DTOs\\Tasks\\TransferTaskDto.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAwBcAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T09:38:29.303Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-08T09:38:29.303Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "AppRoles.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Constants\\AppRoles.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Constants\\AppRoles.cs",
@@ -960,12 +1026,11 @@
               "RelativeToolTip": "TaskTrackerDAL\\Constants\\AppRoles.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAA7wBUAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T05:15:28.305Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-15T05:15:28.305Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "IUnitOfWork.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\IUnitOfWork.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\IUnitOfWork.cs",
@@ -973,12 +1038,11 @@
               "RelativeToolTip": "TaskTrackerBLL\\Interfaces\\IUnitOfWork.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAYwBYAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-14T10:09:32.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-14T10:09:32.813Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Infrastucture\\UnitOfWork.cs",
@@ -986,12 +1050,11 @@
               "RelativeToolTip": "TaskTrackerBLL\\Infrastucture\\UnitOfWork.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAA6wBoAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-02T05:23:14.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-02T05:23:14.443Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Infrastructure\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Infrastructure\\DependencyInjection.cs",
@@ -999,12 +1062,11 @@
               "RelativeToolTip": "TaskTrackerDAL\\Infrastructure\\DependencyInjection.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAABeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-13T06:43:59.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-13T06:43:59.662Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "TaskTrackerDbContext.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Data\\TaskTrackerDbContext.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Data\\TaskTrackerDbContext.cs",
@@ -1012,12 +1074,11 @@
               "RelativeToolTip": "TaskTrackerDAL\\Data\\TaskTrackerDbContext.cs",
               "ViewState": "AgIAAIEBAAAAAAAAAAAwwCQAAABeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T04:45:57.777Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-01T04:45:57.777Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "ITaskTransferHistoryFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ITaskTransferHistoryFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\ITaskTransferHistoryFeature.cs",
@@ -1025,12 +1086,11 @@
               "RelativeToolTip": "TaskTrackerDAL\\Interfaces\\ITaskTransferHistoryFeature.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T09:27:39.74Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-08T09:27:39.74Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "TaskTransferHistory.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\TaskTransferHistory.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\TaskTransferHistory.cs",
@@ -1038,12 +1098,11 @@
               "RelativeToolTip": "TaskTrackerDAL\\Models\\TaskTransferHistory.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T09:25:27.788Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-08T09:25:27.788Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "TaskDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\TaskDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\TaskDto.cs",
@@ -1055,7 +1114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "ChangePriorityDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\ChangePriorityDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\ChangePriorityDto.cs",
@@ -1067,7 +1126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "ChangeDeadlineDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\ChangeDeadlineDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\ChangeDeadlineDto.cs",
@@ -1079,7 +1138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "TaskDetailsDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\TaskDetailsDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\TaskDetailsDto.cs",
@@ -1091,7 +1150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "AssignTaskDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\AssignTaskDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\AssignTaskDto.cs",
@@ -1103,7 +1162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 28,
               "Title": "TaskRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\TaskRepository.cs",
@@ -1115,7 +1174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 29,
               "Title": "ITaskFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ITaskFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\ITaskFeature.cs",
@@ -1127,7 +1186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "TaskMemberRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskMemberRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\TaskMemberRepository.cs",
@@ -1139,7 +1198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 30,
               "Title": "TaskMemberService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\TaskMemberService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\TaskMemberService.cs",
@@ -1151,7 +1210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 33,
               "Title": "Home.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\LandingPage\\Home.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\LandingPage\\Home.cshtml",
@@ -1163,7 +1222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 37,
               "Title": "FAQs.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\LandingPage\\FAQs.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\LandingPage\\FAQs.cshtml",
@@ -1175,7 +1234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 36,
               "Title": "Contact.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\LandingPage\\Contact.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\LandingPage\\Contact.cshtml",
@@ -1187,7 +1246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 32,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\Login.cshtml",
@@ -1199,7 +1258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 34,
               "Title": "About.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\LandingPage\\About.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\LandingPage\\About.cshtml",
@@ -1211,7 +1270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Dashboard\\Index.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Dashboard\\Index.cshtml",
@@ -1223,7 +1282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 41,
               "Title": "Dashboard.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Admin\\Dashboard.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Admin\\Dashboard.cshtml",
@@ -1235,7 +1294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 40,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Index.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\Index.cshtml",
@@ -1247,19 +1306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Details.cshtml",
-              "RelativeDocumentMoniker": "TaskTracker\\Pages\\ProjectTasks\\Details.cshtml",
-              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\ProjectTasks\\Details.cshtml",
-              "RelativeToolTip": "TaskTracker\\Pages\\ProjectTasks\\Details.cshtml",
-              "ViewState": "AgIAABcBAAAAAAAAAAAAAA0AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-02T09:02:55.581Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 39,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Dashboard\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Dashboard\\Index.cshtml.cs",
@@ -1271,7 +1318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 44,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Roles\\Index.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Roles\\Index.cshtml",
@@ -1283,7 +1330,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 42,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Projects\\Index.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Projects\\Index.cshtml",
@@ -1295,7 +1342,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 43,
               "Title": "site.js",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "TaskTracker\\wwwroot\\js\\site.js",
@@ -1307,7 +1354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 45,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Employees\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Employees\\Index.cshtml.cs",
@@ -1319,7 +1366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 48,
               "Title": "RoleRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\RoleRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Infrastucture\\RoleRepository.cs",
@@ -1331,7 +1378,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 47,
               "Title": "EmployeeService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\EmployeeService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\EmployeeService.cs",
@@ -1343,7 +1390,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 46,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\UserRepository.cs",
@@ -1355,7 +1402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 49,
               "Title": "IRoleFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\IRoleFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\IRoleFeature.cs",
@@ -1367,7 +1414,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 50,
               "Title": "IEmployeeService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IEmployeeService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IEmployeeService.cs",
@@ -1379,7 +1426,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 51,
               "Title": "IUserFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\IUserFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\IUserFeature.cs",
@@ -1391,7 +1438,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 52,
               "Title": "TaskPriority.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\TaskPriority.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Enums\\TaskPriority.cs",
@@ -1403,7 +1450,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 53,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Companies\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Companies\\Index.cshtml.cs",
@@ -1415,7 +1462,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 54,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\UserService.cs",
@@ -1427,7 +1474,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 56,
               "Title": "IAuditLogFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\IAuditLogFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\IAuditLogFeature.cs",
@@ -1439,7 +1486,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 57,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\User.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\User.cs",
@@ -1451,7 +1498,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 55,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\AuthService.cs",
@@ -1463,7 +1510,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 58,
               "Title": "BaseModel.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Common\\BaseModel.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Common\\BaseModel.cs",
@@ -1475,7 +1522,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 101,
+              "DocumentIndex": 104,
               "Title": "CompanyService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\CompanyService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\CompanyService.cs",
@@ -1487,7 +1534,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 63,
               "Title": "TrendPointDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Dashboard\\TrendPointDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Dashboard\\TrendPointDto.cs",
@@ -1499,7 +1546,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 62,
               "Title": "DashboardTrendDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Dashboard\\DashboardTrendDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Dashboard\\DashboardTrendDto.cs",
@@ -1511,7 +1558,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 61,
               "Title": "AdminDashboardDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Dashboard\\AdminDashboardDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Dashboard\\AdminDashboardDto.cs",
@@ -1523,7 +1570,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 60,
               "Title": "IDashboardService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IDashboardService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IDashboardService.cs",
@@ -1535,7 +1582,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 59,
               "Title": "DashboardService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\DashboardService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\DashboardService.cs",
@@ -1547,7 +1594,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 65,
               "Title": "ProjectService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\ProjectService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\ProjectService.cs",
@@ -1559,7 +1606,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 100,
+              "DocumentIndex": 103,
               "Title": "UserRole.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\UserRole.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\UserRole.cs",
@@ -1571,7 +1618,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 64,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Roles\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Roles\\Index.cshtml.cs",
@@ -1583,7 +1630,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 67,
               "Title": "UpdateProfileDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Profile\\UpdateProfileDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Profile\\UpdateProfileDto.cs",
@@ -1595,7 +1642,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 70,
               "Title": "UserDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\User\\UserDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\User\\UserDto.cs",
@@ -1607,7 +1654,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 66,
               "Title": "EmployeeDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EmployeeDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\EmployeeDto.cs",
@@ -1619,7 +1666,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 69,
               "Title": "IRoleService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IRoleService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IRoleService.cs",
@@ -1631,7 +1678,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 68,
               "Title": "RoleService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\RoleService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\RoleService.cs",
@@ -1643,7 +1690,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 74,
               "Title": "PagedResult.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Common\\PagedResult.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Common\\PagedResult.cs",
@@ -1655,7 +1702,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 71,
               "Title": "UpdateRoleDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\UpdateRoleDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Role\\UpdateRoleDto.cs",
@@ -1667,7 +1714,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 72,
               "Title": "RoleDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\RoleDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Role\\RoleDto.cs",
@@ -1679,7 +1726,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 73,
               "Title": "Result.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Common\\Result.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Common\\Result.cs",
@@ -1691,7 +1738,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 75,
               "Title": "TaskTrackerDAL.csproj",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\TaskTrackerDAL.csproj",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\TaskTrackerDAL.csproj",
@@ -1703,19 +1750,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
-              "Title": "IGenericFeature.cs",
-              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
-              "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
-              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
-              "RelativeToolTip": "TaskTrackerDAL\\Interfaces\\Generic\\IGenericFeature.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-13T11:15:57.318Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 76,
               "Title": "ICompanyFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ICompanyFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\ICompanyFeature.cs",
@@ -1727,7 +1762,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 77,
               "Title": "INotificationFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\INotificationFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\INotificationFeature.cs",
@@ -1739,7 +1774,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 78,
               "Title": "IProjectFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\IProjectFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\IProjectFeature.cs",
@@ -1751,7 +1786,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 79,
               "Title": "ITaskFileFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ITaskFileFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\ITaskFileFeature.cs",
@@ -1763,7 +1798,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 80,
               "Title": "ITaskMemberFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\ITaskMemberFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\ITaskMemberFeature.cs",
@@ -1775,7 +1810,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 81,
               "Title": "IUserRoleFeature.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Interfaces\\IUserRoleFeature.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Interfaces\\IUserRoleFeature.cs",
@@ -1787,7 +1822,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 82,
               "Title": "AuditActionType.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\AuditActionType.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Enums\\AuditActionType.cs",
@@ -1799,7 +1834,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 83,
               "Title": "NotificationType.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\NotificationType.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Enums\\NotificationType.cs",
@@ -1811,7 +1846,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 84,
               "Title": "ProjectStatus.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\ProjectStatus.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Enums\\ProjectStatus.cs",
@@ -1823,7 +1858,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 85,
               "Title": "ProjectTasksStatus.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Enums\\ProjectTasksStatus.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Enums\\ProjectTasksStatus.cs",
@@ -1835,7 +1870,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 86,
               "Title": "AuditLog.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\AuditLog.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\AuditLog.cs",
@@ -1847,7 +1882,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 87,
               "Title": "Company.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Company.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Company.cs",
@@ -1859,7 +1894,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 88,
               "Title": "Notification.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Notification.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Notification.cs",
@@ -1871,7 +1906,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 89,
               "Title": "Project.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Project.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Project.cs",
@@ -1883,7 +1918,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 90,
               "Title": "ProjectMember.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\ProjectMember.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\ProjectMember.cs",
@@ -1895,7 +1930,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 91,
               "Title": "ProjectTask.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\ProjectTask.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\ProjectTask.cs",
@@ -1907,7 +1942,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 92,
               "Title": "Role.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\Role.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\Role.cs",
@@ -1919,7 +1954,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 93,
               "Title": "TaskFile.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\TaskFile.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\TaskFile.cs",
@@ -1931,7 +1966,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 94,
               "Title": "TaskMember.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\TaskMember.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\TaskMember.cs",
@@ -1943,7 +1978,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 95,
               "Title": "TaskProgressNote.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Models\\TaskProgressNote.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Models\\TaskProgressNote.cs",
@@ -1955,7 +1990,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 96,
               "Title": "UserRoleRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\UserRoleRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\UserRoleRepository.cs",
@@ -1967,7 +2002,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 97,
               "Title": "AppPolicies.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Constants\\AppPolicies.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Constants\\AppPolicies.cs",
@@ -1979,7 +2014,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 98,
               "Title": "AuditLogRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\AuditLogRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\AuditLogRepository.cs",
@@ -1991,7 +2026,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 99,
               "Title": "CompanyRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\CompanyRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\CompanyRepository.cs",
@@ -2003,7 +2038,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 100,
               "Title": "NotificationRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\NotificationRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\NotificationRepository.cs",
@@ -2015,7 +2050,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 101,
               "Title": "ProjectRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\ProjectRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\ProjectRepository.cs",
@@ -2027,7 +2062,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 102,
               "Title": "TaskFileRepository.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\TaskFileRepository.cs",
               "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\TaskFileRepository.cs",
@@ -2039,7 +2074,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 103,
+              "DocumentIndex": 106,
               "Title": "CompanyDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanyDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\CompanyDto.cs",
@@ -2051,7 +2086,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 104,
+              "DocumentIndex": 107,
               "Title": "UpdateCompanyDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\UpdateCompanyDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\UpdateCompanyDto.cs",
@@ -2063,7 +2098,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 102,
+              "DocumentIndex": 105,
               "Title": "CreateCompanyDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CreateCompanyDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\CreateCompanyDto.cs",
@@ -2075,19 +2110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 106,
-              "Title": "GenericRepository.cs",
-              "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
-              "RelativeDocumentMoniker": "TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
-              "ToolTip": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
-              "RelativeToolTip": "TaskTrackerDAL\\Repositories\\Generic\\GenericRepository.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAA1wCwAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-13T09:42:50.039Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 105,
+              "DocumentIndex": 108,
               "Title": "PasswordHasher.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Infrastucture\\Security\\PasswordHasher.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Infrastucture\\Security\\PasswordHasher.cs",
@@ -2099,7 +2122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 107,
+              "DocumentIndex": 109,
               "Title": "RoleAssignmentService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\RoleAssignmentService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\RoleAssignmentService.cs",
@@ -2111,7 +2134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 108,
+              "DocumentIndex": 110,
               "Title": "EmployeeService.cs",
               "DocumentMoniker": "C:\\Users\\Shahariar\\AppData\\Local\\SourceServer\\a9e4ea9f39d21a110e44611ce37355aa0514786a95cc6f4cdcde811dea0dc24b\\TaskTrackerBLL\\Services\\EmployeeService.cs",
               "ToolTip": "C:\\Users\\Shahariar\\AppData\\Local\\SourceServer\\a9e4ea9f39d21a110e44611ce37355aa0514786a95cc6f4cdcde811dea0dc24b\\TaskTrackerBLL\\Services\\EmployeeService.cs",
@@ -2121,7 +2144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 111,
+              "DocumentIndex": 113,
               "Title": "IPasswordHasher.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Security\\IPasswordHasher.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Security\\IPasswordHasher.cs",
@@ -2133,7 +2156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 109,
+              "DocumentIndex": 111,
               "Title": "EditEmployeeDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EditEmployeeDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\EditEmployeeDto.cs",
@@ -2145,7 +2168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 113,
+              "DocumentIndex": 115,
               "Title": "ChangePasswordDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Auth\\ChangePasswordDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Auth\\ChangePasswordDto.cs",
@@ -2157,7 +2180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 110,
+              "DocumentIndex": 112,
               "Title": "ChangePriority.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\ChangePriority.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\ChangePriority.cshtml.cs",
@@ -2169,7 +2192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 112,
+              "DocumentIndex": 114,
               "Title": "IUserService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IUserService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IUserService.cs",
@@ -2181,7 +2204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 116,
+              "DocumentIndex": 118,
               "Title": "ProjectDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\ProjectDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\ProjectDto.cs",
@@ -2193,7 +2216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 114,
+              "DocumentIndex": 116,
               "Title": "UpdateUserDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\User\\UpdateUserDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\User\\UpdateUserDto.cs",
@@ -2205,7 +2228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 115,
+              "DocumentIndex": 117,
               "Title": "ProfileDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Profile\\ProfileDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Profile\\ProfileDto.cs",
@@ -2217,7 +2240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 118,
+              "DocumentIndex": 120,
               "Title": "Details.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Details.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Details.cshtml.cs",
@@ -2229,7 +2252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 120,
+              "DocumentIndex": 122,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\appsettings.json",
               "RelativeDocumentMoniker": "TaskTracker\\appsettings.json",
@@ -2241,7 +2264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 117,
+              "DocumentIndex": 119,
               "Title": "Reassign.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Reassign.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Reassign.cshtml.cs",
@@ -2253,7 +2276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 119,
+              "DocumentIndex": 121,
               "Title": "Reassign.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Reassign.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Reassign.cshtml",
@@ -2265,7 +2288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 121,
+              "DocumentIndex": 123,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Program.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Program.cs",
@@ -2277,7 +2300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 122,
+              "DocumentIndex": 124,
               "Title": "TaskTracker.csproj",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
               "RelativeDocumentMoniker": "TaskTracker\\TaskTracker.csproj",
@@ -2289,7 +2312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 124,
+              "DocumentIndex": 126,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Create.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Create.cshtml",
@@ -2301,7 +2324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 123,
+              "DocumentIndex": 125,
               "Title": "ITaskFileService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\ITaskFileService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\ITaskFileService.cs",
@@ -2313,7 +2336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 125,
+              "DocumentIndex": 127,
               "Title": "ReportingService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\ReportingService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\ReportingService.cs",
@@ -2325,7 +2348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 126,
+              "DocumentIndex": 128,
               "Title": "NotificationService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\NotificationService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\NotificationService.cs",
@@ -2337,7 +2360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 127,
+              "DocumentIndex": 129,
               "Title": "INotificationService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\INotificationService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\INotificationService.cs",
@@ -2349,7 +2372,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 128,
+              "DocumentIndex": 130,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DependencyInjection.cs",
@@ -2361,7 +2384,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 129,
+              "DocumentIndex": 131,
               "Title": "ITaskMemberService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\ITaskMemberService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\ITaskMemberService.cs",
@@ -2373,7 +2396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 131,
+              "DocumentIndex": 133,
               "Title": "NotificationDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Notification\\NotificationDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Notification\\NotificationDto.cs",
@@ -2385,7 +2408,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 130,
+              "DocumentIndex": 132,
               "Title": "Logout.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Logout.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\Logout.cshtml.cs",
@@ -2397,7 +2420,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 133,
+              "DocumentIndex": 135,
               "Title": "UpdateEmployeeRoleDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\UpdateEmployeeRoleDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\UpdateEmployeeRoleDto.cs",
@@ -2409,7 +2432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 132,
+              "DocumentIndex": 134,
               "Title": "Login.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Login.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\Login.cshtml.cs",
@@ -2421,7 +2444,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 135,
+              "DocumentIndex": 137,
               "Title": "TaskFilterDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\TaskFilterDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\TaskFilterDto.cs",
@@ -2433,7 +2456,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 134,
+              "DocumentIndex": 136,
               "Title": "TaskFileDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\TaskFile\\TaskFileDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\TaskFile\\TaskFileDto.cs",
@@ -2445,7 +2468,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 137,
+              "DocumentIndex": 139,
               "Title": "ChangeDeadline.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\ChangeDeadline.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\ChangeDeadline.cshtml.cs",
@@ -2457,7 +2480,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 138,
+              "DocumentIndex": 140,
               "Title": "ChangeDeadline.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\ChangeDeadline.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\ChangeDeadline.cshtml",
@@ -2469,7 +2492,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 136,
+              "DocumentIndex": 138,
               "Title": "TaskProgressNoteDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\TaskProgressNoteDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\TaskProgressNoteDto.cs",
@@ -2481,7 +2504,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 139,
+              "DocumentIndex": 141,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Index.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Index.cshtml",
@@ -2493,7 +2516,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 140,
+              "DocumentIndex": 142,
               "Title": "AuditService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Services\\AuditService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Services\\AuditService.cs",
@@ -2505,7 +2528,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 141,
+              "DocumentIndex": 143,
               "Title": "TaskTrackerBLL.csproj",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\TaskTrackerBLL.csproj",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\TaskTrackerBLL.csproj",
@@ -2517,7 +2540,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 142,
+              "DocumentIndex": 144,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IAuthService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IAuthService.cs",
@@ -2529,7 +2552,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 143,
+              "DocumentIndex": 145,
               "Title": "AddProgressNoteDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\AddProgressNoteDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\AddProgressNoteDto.cs",
@@ -2541,7 +2564,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 144,
+              "DocumentIndex": 146,
               "Title": "Assign.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Assign.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Assign.cshtml.cs",
@@ -2553,7 +2576,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 145,
+              "DocumentIndex": 147,
               "Title": "Filter.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Filter.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Filter.cshtml.cs",
@@ -2565,7 +2588,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 146,
+              "DocumentIndex": 148,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Index.cshtml.cs",
@@ -2577,7 +2600,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 147,
+              "DocumentIndex": 149,
               "Title": "AddCompletionCommentDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\AddCompletionCommentDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\AddCompletionCommentDto.cs",
@@ -2589,7 +2612,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 148,
+              "DocumentIndex": 150,
               "Title": "UpdateTaskPriorityDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Tasks\\UpdateTaskPriorityDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Tasks\\UpdateTaskPriorityDto.cs",
@@ -2601,7 +2624,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 149,
+              "DocumentIndex": 151,
               "Title": "ManagerReportDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Reporting\\ManagerReportDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Reporting\\ManagerReportDto.cs",
@@ -2613,7 +2636,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 150,
+              "DocumentIndex": 152,
               "Title": "IReportingService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IReportingService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IReportingService.cs",
@@ -2625,7 +2648,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 151,
+              "DocumentIndex": 153,
               "Title": "ManagerDashboardDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Dashboard\\ManagerDashboardDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Dashboard\\ManagerDashboardDto.cs",
@@ -2637,7 +2660,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 152,
+              "DocumentIndex": 154,
               "Title": "EmployeeDashboardDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Dashboard\\EmployeeDashboardDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Dashboard\\EmployeeDashboardDto.cs",
@@ -2649,7 +2672,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 153,
+              "DocumentIndex": 155,
               "Title": "UpdateProjectMemberDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\UpdateProjectMemberDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\UpdateProjectMemberDto.cs",
@@ -2661,7 +2684,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 156,
+              "DocumentIndex": 158,
               "Title": "UpdateProjectDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\UpdateProjectDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\UpdateProjectDto.cs",
@@ -2673,7 +2696,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 154,
+              "DocumentIndex": 156,
               "Title": "ICompanyService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\ICompanyService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\ICompanyService.cs",
@@ -2685,7 +2708,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 155,
+              "DocumentIndex": 157,
               "Title": "IRoleAssignmentService.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Interfaces\\Services\\IRoleAssignmentService.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Interfaces\\Services\\IRoleAssignmentService.cs",
@@ -2697,7 +2720,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 158,
+              "DocumentIndex": 160,
               "Title": "AssignProjectMemberDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\AssignProjectMemberDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\AssignProjectMemberDto.cs",
@@ -2709,7 +2732,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 157,
+              "DocumentIndex": 159,
               "Title": "CreateProjectDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\CreateProjectDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\CreateProjectDto.cs",
@@ -2721,7 +2744,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 159,
+              "DocumentIndex": 161,
               "Title": "ProjectSearchFilterDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\ProjectSearchFilterDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\ProjectSearchFilterDto.cs",
@@ -2733,7 +2756,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 160,
+              "DocumentIndex": 162,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Index.cshtml.cs",
@@ -2745,7 +2768,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 161,
+              "DocumentIndex": 163,
               "Title": "_Layout.cshtml.css",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Shared\\_Layout.cshtml.css",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Shared\\_Layout.cshtml.css",
@@ -2757,7 +2780,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 162,
+              "DocumentIndex": 164,
               "Title": "SignupEmployeeDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\SignupEmployeeDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\SignupEmployeeDto.cs",
@@ -2769,7 +2792,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 163,
+              "DocumentIndex": 165,
               "Title": "Signup.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Signup.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\Signup.cshtml",
@@ -2781,7 +2804,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 164,
+              "DocumentIndex": 166,
               "Title": "Signup.cshtml.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\Signup.cshtml.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\Signup.cshtml.cs",
@@ -2793,7 +2816,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 165,
+              "DocumentIndex": 167,
               "Title": "SignupDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Auth\\SignupDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Auth\\SignupDto.cs",
@@ -2805,7 +2828,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 166,
+              "DocumentIndex": 168,
               "Title": "CreateRoleDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\CreateRoleDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Role\\CreateRoleDto.cs",
@@ -2817,7 +2840,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 167,
+              "DocumentIndex": 169,
               "Title": "AssignableRoleDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Role\\AssignableRoleDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Role\\AssignableRoleDto.cs",
@@ -2829,7 +2852,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 168,
+              "DocumentIndex": 170,
               "Title": "Assign.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Assign.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Assign.cshtml",
@@ -2841,7 +2864,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 169,
+              "DocumentIndex": 171,
               "Title": "EmployeeSearchFilterDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Employee\\EmployeeSearchFilterDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Employee\\EmployeeSearchFilterDto.cs",
@@ -2853,7 +2876,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 170,
+              "DocumentIndex": 172,
               "Title": "CompanySearchFilterDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanySearchFilterDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\CompanySearchFilterDto.cs",
@@ -2865,7 +2888,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 171,
+              "DocumentIndex": 173,
               "Title": "CompanyStatisticsDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Company\\CompanyStatisticsDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Company\\CompanyStatisticsDto.cs",
@@ -2877,7 +2900,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 172,
+              "DocumentIndex": 174,
               "Title": "LoginDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Auth\\LoginDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Auth\\LoginDto.cs",
@@ -2889,7 +2912,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 173,
+              "DocumentIndex": 175,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\_ViewStart.cshtml",
@@ -2901,7 +2924,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 174,
+              "DocumentIndex": 176,
               "Title": "DataAccessHandler.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\DataAccessHandler.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Authorization\\DataAccessHandler.cs",
@@ -2913,7 +2936,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 176,
+              "DocumentIndex": 178,
               "Title": "AuthorizationResources.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\AuthorizationResources.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Authorization\\AuthorizationResources.cs",
@@ -2925,7 +2948,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 175,
+              "DocumentIndex": 177,
               "Title": "DataAccessRequirement.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\Authorization\\DataAccessRequirement.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\Authorization\\DataAccessRequirement.cs",
@@ -2937,7 +2960,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 177,
+              "DocumentIndex": 179,
               "Title": "AuditLogDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Audit\\AuditLogDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Audit\\AuditLogDto.cs",
@@ -2949,7 +2972,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 178,
+              "DocumentIndex": 180,
               "Title": "AdminReportDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Reporting\\AdminReportDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Reporting\\AdminReportDto.cs",
@@ -2961,7 +2984,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 179,
+              "DocumentIndex": 181,
               "Title": "ProjectProgressDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Reporting\\ProjectProgressDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Reporting\\ProjectProgressDto.cs",
@@ -2973,7 +2996,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 180,
+              "DocumentIndex": 182,
               "Title": "EmployeePerformanceDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Reporting\\EmployeePerformanceDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Reporting\\EmployeePerformanceDto.cs",
@@ -2985,7 +3008,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 181,
+              "DocumentIndex": 183,
               "Title": "Filter.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Tasks\\Filter.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Tasks\\Filter.cshtml",
@@ -2997,7 +3020,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 182,
+              "DocumentIndex": 184,
               "Title": "ProjectFilterDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Project\\ProjectFilterDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Project\\ProjectFilterDto.cs",
@@ -3009,7 +3032,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 183,
+              "DocumentIndex": 185,
               "Title": "DashboardDto.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerBLL\\DTOs\\Dashboard\\DashboardDto.cs",
               "RelativeDocumentMoniker": "TaskTrackerBLL\\DTOs\\Dashboard\\DashboardDto.cs",
@@ -3021,7 +3044,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 184,
+              "DocumentIndex": 186,
               "Title": "ForgotPassword.cshtml",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTracker\\Pages\\Account\\ForgotPassword.cshtml",
               "RelativeDocumentMoniker": "TaskTracker\\Pages\\Account\\ForgotPassword.cshtml",
@@ -3033,7 +3056,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 186,
+              "DocumentIndex": 188,
               "Title": "BusinessRuleException.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\Exceptions\\BusinessRuleException.cs",
               "RelativeDocumentMoniker": "TaskTrackerShared\\Exceptions\\BusinessRuleException.cs",
@@ -3045,7 +3068,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 185,
+              "DocumentIndex": 187,
               "Title": "NotFoundException.cs",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\Exceptions\\NotFoundException.cs",
               "RelativeDocumentMoniker": "TaskTrackerShared\\Exceptions\\NotFoundException.cs",
@@ -3057,7 +3080,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 187,
+              "DocumentIndex": 189,
               "Title": "TaskTrackerShared.csproj",
               "DocumentMoniker": "D:\\PracticeWebProject\\TaskTracker\\TaskTrackerShared\\TaskTrackerShared.csproj",
               "RelativeDocumentMoniker": "TaskTrackerShared\\TaskTrackerShared.csproj",
@@ -3070,7 +3093,7 @@
           ]
         },
         {
-          "DockedHeight": 248,
+          "DockedHeight": 85,
           "SelectedChildIndex": -1,
           "Children": [
             {

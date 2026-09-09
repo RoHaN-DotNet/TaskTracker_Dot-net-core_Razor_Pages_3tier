@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model TaskTracker.Pages.ProjectTasks.IndexModel
 
 @using TaskTrackerDAL.Models.Enums
@@ -1674,21 +1674,21 @@
                         if (!projectId) {
 
                             projectMembersContainer.innerHTML = `
-                                                        <div class="text-muted">
-                                                            Please select a project first.
-                                                        </div>
-                                                    `;
+                                                <div class="text-muted">
+                                                    Please select a project first.
+                                                </div>
+                                            `;
 
                             return;
                         }
 
 
                         projectMembersContainer.innerHTML = `
-                                                    <div class="text-muted text-center py-3">
-                                                        <div class="spinner-border spinner-border-sm me-2"></div>
-                                                        Loading members...
-                                                    </div>
-                                                `;
+                                            <div class="text-muted text-center py-3">
+                                                <div class="spinner-border spinner-border-sm me-2"></div>
+                                                Loading members...
+                                            </div>
+                                        `;
 
 
                         try {
@@ -1716,10 +1716,10 @@
                                 members.length === 0) {
 
                                 projectMembersContainer.innerHTML = `
-                                                            <div class="text-muted text-center py-3">
-                                                                No project members found.
-                                                            </div>
-                                                        `;
+                                                    <div class="text-muted text-center py-3">
+                                                        No project members found.
+                                                    </div>
+                                                `;
 
                                 return;
                             }
@@ -1788,10 +1788,10 @@
 
 
                             projectMembersContainer.innerHTML = `
-                                                        <div class="text-danger">
-                                                            Something went wrong while loading members.
-                                                        </div>
-                                                    `;
+                                                <div class="text-danger">
+                                                    Something went wrong while loading members.
+                                                </div>
+                                            `;
 
                         }
 
@@ -1864,9 +1864,9 @@
                                 true;
 
                             submitButton.innerHTML = `
-                                                        <span class="spinner-border spinner-border-sm me-1"></span>
-                                                        Creating...
-                                                    `;
+                                                <span class="spinner-border spinner-border-sm me-1"></span>
+                                                Creating...
+                                            `;
 
                         }
 
@@ -2118,11 +2118,11 @@
                 }
 
                 container.innerHTML = `
-                        <div class="text-muted text-center py-2">
-                            <div class="spinner-border spinner-border-sm me-2"></div>
-                            Loading files...
-                        </div>
-                    `;
+                <div class="text-muted text-center py-2">
+                    <div class="spinner-border spinner-border-sm me-2"></div>
+                    Loading files...
+                </div>
+            `;
 
                 try {
 
@@ -2244,8 +2244,9 @@
                     checkbox.checked = true;
                 }
 
-                row.style.setProperty("display", "none", "important");
+                row.style.display = "none";
             });
+                
 
 
             /* =====================================================
@@ -2318,11 +2319,11 @@
                            ========================================= */
 
                         manageProjectMembersContainer.innerHTML = `
-                                                    <div class="text-muted text-center py-3">
-                                                        <div class="spinner-border spinner-border-sm me-2"></div>
-                                                        Loading project members...
-                                                    </div>
-                                                `;
+                                            <div class="text-muted text-center py-3">
+                                                <div class="spinner-border spinner-border-sm me-2"></div>
+                                                Loading project members...
+                                            </div>
+                                        `;
 
 
                         /* =========================================
@@ -2332,10 +2333,10 @@
                         if (!projectId) {
 
                             manageProjectMembersContainer.innerHTML = `
-                                                        <div class="text-danger text-center py-3">
-                                                            Project information not found for this task.
-                                                        </div>
-                                                    `;
+                                                <div class="text-danger text-center py-3">
+                                                    Project information not found for this task.
+                                                </div>
+                                            `;
 
                             return;
                         }
@@ -2415,10 +2416,10 @@
                                 projectMembers.length === 0) {
 
                                 manageProjectMembersContainer.innerHTML = `
-                                                            <div class="text-muted text-center py-3">
-                                                                No members found in this project.
-                                                            </div>
-                                                        `;
+                                                    <div class="text-muted text-center py-3">
+                                                        No members found in this project.
+                                                    </div>
+                                                `;
 
                                 return;
                             }
@@ -2534,10 +2535,10 @@
 
 
                             manageProjectMembersContainer.innerHTML = `
-                                                        <div class="text-danger text-center py-3">
-                                                            Something went wrong while loading project members.
-                                                        </div>
-                                                    `;
+                                                <div class="text-danger text-center py-3">
+                                                    Something went wrong while loading project members.
+                                                </div>
+                                            `;
 
                         }
 
@@ -3045,11 +3046,11 @@
                         '<option value="">Loading...</option>';
 
                     transferHistoryList.innerHTML = `
-                                    <div class="text-muted text-center py-2">
-                                        <div class="spinner-border spinner-border-sm me-2"></div>
-                                        Loading...
-                                    </div>
-                                `;
+                            <div class="text-muted text-center py-2">
+                                <div class="spinner-border spinner-border-sm me-2"></div>
+                                Loading...
+                            </div>
+                        `;
 
                     if (!projectId) {
 

@@ -146,8 +146,7 @@ namespace TaskTrackerBLL.Services
             int id,
             string uploadFolder)
         {
-            var file = await _unitOfWork.TaskFiles
-                .GetByIdWithTaskAsync(id);
+            var file = await _unitOfWork.TaskFiles.GetByIdAsync(id);
 
             if (file == null)
             {

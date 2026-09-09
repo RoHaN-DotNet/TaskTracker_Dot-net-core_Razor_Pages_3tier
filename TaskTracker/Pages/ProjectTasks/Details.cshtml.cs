@@ -39,7 +39,9 @@ namespace TaskTracker.Pages.ProjectTasks
         // PERMISSION
         // =========================================================
         public bool CanManage { get; set; }
+        public bool IsAdmin {  get; set; }
         public bool IsAssignedToMe { get; set; }
+        public bool IsEmployee {  get; set; }
         // =========================================================
         // NOTE
         // =========================================================
@@ -65,6 +67,21 @@ namespace TaskTracker.Pages.ProjectTasks
         //Priority
         [BindProperty]
         public ChangePriorityDto Priority { get; set; } = new();
+        // =========================================================
+        // TRANSFER TASK
+        // =========================================================
+
+        [BindProperty]
+        public int TransferTaskId { get; set; }
+
+        [BindProperty]
+        public int TransferFromUserId { get; set; }
+
+        [BindProperty]
+        public int TransferToUserId { get; set; }
+
+        [BindProperty]
+        public string TransferNote { get; set; } = string.Empty;
         // =========================================================
         // GET DETAILS PAGE
         // =========================================================
@@ -214,8 +231,9 @@ namespace TaskTracker.Pages.ProjectTasks
             // ROLE
             // -----------------------------------------------------
             CanManage =
-                User.IsInRole(AppRoles.Admin) ||
+                
                 User.IsInRole(AppRoles.Manager);
+            IsAdmin = User.IsInRole(AppRoles.Admin);
             IsAssignedToMe =
                 Task.AssignedToUserIds.Contains(
                     currentUserId.Value);
@@ -651,6 +669,148 @@ namespace TaskTracker.Pages.ProjectTasks
             });
         }
         // =========================================================
+        // TRANSFER TASK
+        // =========================================================
+
+        public async Task<IActionResult> OnPostTransferAsync()
+        {
+            SetRoleFlags();
+
+            // Only Manager can transfer tasks
+            if (!CanManage)
+            {
+                return Forbid();
+            }
+
+            int? companyId =
+                IsAdmin
+                    ? null
+                    : GetCurrentCompanyId();
+
+            if (TransferTaskId <= 0 ||
+                TransferFromUserId <= 0 ||
+                TransferToUserId <= 0)
+            {
+                TempData["ErrorMessage"] =
+                    "Please select both a 'From' and 'To' member.";
+
+                return RedirectToPage();
+            }
+
+            var dto =
+                new TransferTaskDto
+                {
+                    TaskId = TransferTaskId,
+                    FromUserId = TransferFromUserId,
+                    ToUserId = TransferToUserId,
+                    Note = TransferNote
+                };
+
+            var result =
+                await _taskService.TransferAsync(
+                    dto,
+                    GetCurrentEmpId(),
+                    companyId
+                );
+
+            if (!result.Succeeded)
+            {
+                TempData["ErrorMessage"] =
+                    result.Error ??
+                    "Failed to transfer task.";
+
+                return RedirectToPage();
+            }
+
+            TempData["SuccessMessage"] =
+                "Task transferred successfully.";
+
+            return RedirectToPage();
+        }
+        // =========================================================
+        // GET TASK TRANSFER HISTORY
+        // =========================================================
+
+        public async Task<IActionResult> OnGetTaskTransferHistoryAsync(
+            int taskId)
+        {
+            if (taskId <= 0)
+            {
+                return new JsonResult(new List<object>());
+            }
+
+            var result =
+                await _taskService.GetTransferHistoryAsync(taskId);
+
+            if (!result.Succeeded || result.Value == null)
+            {
+                return new JsonResult(new List<object>());
+            }
+
+            var history =
+                result.Value
+                    .Select(h => new
+                    {
+                        fromUserName = h.FromUserName,
+                        toUserName = h.ToUserName,
+                        transferredByUserName = h.TransferredByUserName,
+                        note = h.Note,
+                        transferredAt = h.TransferredAt.ToString("dd MMM yyyy, hh:mm tt")
+                    })
+                    .ToList();
+
+            return new JsonResult(history);
+        }
+
+        // =========================================================
+        // ROLE FLAGS
+        // =========================================================
+
+        private void SetRoleFlags()
+        {
+            IsAdmin =
+                User.IsInRole(
+                    AppRoles.Admin
+                );
+
+
+            CanManage =
+                User.IsInRole(
+                    AppRoles.Manager
+                );
+
+
+            IsEmployee =
+                !IsAdmin &&
+                !CanManage;
+        }
+
+
+        // =========================================================
+        // CURRENT USER ID
+        // =========================================================
+
+        private int GetCurrentEmpId()
+        {
+            var userId =
+                User.FindFirstValue(
+                    ClaimTypes.NameIdentifier
+                );
+
+
+            if (!int.TryParse(
+                    userId,
+                    out var id))
+            {
+                throw new InvalidOperationException(
+                    "Current user ID could not be determined."
+                );
+            }
+
+
+            return id;
+        }
+        // =========================================================
         // HELPER
         // CURRENT USER ID
         // =========================================================
@@ -693,6 +853,12 @@ namespace TaskTracker.Pages.ProjectTasks
         // CHANGE PRIORITY - AJAX
         // =========================================================
 
+
+
+
+
+
+
         public async Task<IActionResult> OnPostChangePriorityAsync(
             ChangePriorityDto dto)
         {
@@ -718,7 +884,7 @@ namespace TaskTracker.Pages.ProjectTasks
             // -----------------------------------------------------
 
             var canManage =
-                User.IsInRole(AppRoles.Admin) ||
+                
                 User.IsInRole(AppRoles.Manager);
 
             if (!canManage)

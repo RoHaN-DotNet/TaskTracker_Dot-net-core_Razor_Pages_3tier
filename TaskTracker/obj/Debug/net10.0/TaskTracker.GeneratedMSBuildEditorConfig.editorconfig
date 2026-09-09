@@ -31,12 +31,16 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/PracticeWebProject/TaskTracker/TaskTracker/wwwroot/uploads/tasks/4adf99ad-84a1-4892-b2dc-3c0de9668fd0.cshtml]
-build_metadata.AdditionalFiles.TargetPath = d3d3cm9vdFx1cGxvYWRzXHRhc2tzXDRhZGY5OWFkLTg0YTEtNDg5Mi1iMmRjLTNjMGRlOTY2OGZkMC5jc2h0bWw=
+[D:/PracticeWebProject/TaskTracker/TaskTracker/wwwroot/uploads/tasks/ad663a25-3d2f-4749-b8a7-d5470ab74467.cshtml]
+build_metadata.AdditionalFiles.TargetPath = d3d3cm9vdFx1cGxvYWRzXHRhc2tzXGFkNjYzYTI1LTNkMmYtNDc0OS1iOGE3LWQ1NDcwYWI3NDQ2Ny5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/wwwroot/uploads/tasks/f2ea4108-1869-4e7c-8ea1-8416317c7f1c.cshtml]
 build_metadata.AdditionalFiles.TargetPath = d3d3cm9vdFx1cGxvYWRzXHRhc2tzXGYyZWE0MTA4LTE4NjktNGU3Yy04ZWExLTg0MTYzMTdjN2YxYy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PracticeWebProject/TaskTracker/TaskTracker/wwwroot/uploads/tasks/f5248a20-743e-42a0-af23-fb731511c640.cshtml]
+build_metadata.AdditionalFiles.TargetPath = d3d3cm9vdFx1cGxvYWRzXHRhc2tzXGY1MjQ4YTIwLTc0M2UtNDJhMC1hZjIzLWZiNzMxNTExYzY0MC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PracticeWebProject/TaskTracker/TaskTracker/Pages/Account/ForgotPassword.cshtml]
